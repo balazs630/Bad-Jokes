@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  JokesViewController.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2017. 07. 18..
@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-class MainViewController: UIViewController, UNUserNotificationCenterDelegate {
+class JokesViewController: UIViewController, UNUserNotificationCenterDelegate {
 
     var newJokes = [NSMutableDictionary]()
     var usedJokes = [NSMutableDictionary]()

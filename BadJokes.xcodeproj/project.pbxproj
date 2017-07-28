@@ -7,19 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
+		AC88F9EA1F2BEAE300ACD4B5 /* RecurrenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E91F2BEAE300ACD4B5 /* RecurrenceViewController.swift */; };
+		AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */; };
 		ACB0C9401F1E6D90003F34EE /* jokes.json in Resources */ = {isa = PBXBuildFile; fileRef = ACB0C93F1F1E6D90003F34EE /* jokes.json */; };
+		ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE906B21F22A27200A6A082 /* SettingsViewController.swift */; };
 		ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */; };
-		ACEEA9651F1E5FA600BCF905 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEA9641F1E5FA600BCF905 /* MainViewController.swift */; };
+		ACEEA9651F1E5FA600BCF905 /* JokesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEA9641F1E5FA600BCF905 /* JokesViewController.swift */; };
 		ACEEA9681F1E5FA600BCF905 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9661F1E5FA600BCF905 /* Main.storyboard */; };
 		ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */; };
 		ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
+		AC88F9E91F2BEAE300ACD4B5 /* RecurrenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurrenceViewController.swift; sourceTree = "<group>"; };
+		AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
 		ACB0C93F1F1E6D90003F34EE /* jokes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = jokes.json; sourceTree = "<group>"; };
+		ACE906B21F22A27200A6A082 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ACEEA95F1F1E5FA600BCF905 /* BadJokes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadJokes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ACEEA9641F1E5FA600BCF905 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		ACEEA9641F1E5FA600BCF905 /* JokesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesViewController.swift; sourceTree = "<group>"; };
 		ACEEA9671F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACEEA96C1F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,7 +64,11 @@
 		ACEEA9611F1E5FA600BCF905 /* BadJokes */ = {
 			isa = PBXGroup;
 			children = (
-				ACEEA9641F1E5FA600BCF905 /* MainViewController.swift */,
+				ACEEA9641F1E5FA600BCF905 /* JokesViewController.swift */,
+				ACE906B21F22A27200A6A082 /* SettingsViewController.swift */,
+				AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */,
+				AC88F9E91F2BEAE300ACD4B5 /* RecurrenceViewController.swift */,
+				AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */,
 				ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */,
 				ACEEA9661F1E5FA600BCF905 /* Main.storyboard */,
 				ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */,
@@ -141,8 +153,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACEEA9651F1E5FA600BCF905 /* MainViewController.swift in Sources */,
+				ACEEA9651F1E5FA600BCF905 /* JokesViewController.swift in Sources */,
+				AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */,
 				ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */,
+				AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */,
+				AC88F9EA1F2BEAE300ACD4B5 /* RecurrenceViewController.swift in Sources */,
+				ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

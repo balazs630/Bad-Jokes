@@ -1,0 +1,32 @@
+{
+    "jokes": [
+              {
+              "type": "durva",
+              "joke": "- Két tészta megy a sivatagban. Melyik a zsidó?\n- ???\n- A metélt."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Két süteménytészta beszélget a kemencében:\n- Nagyon forró ez a kemence!\n- Ja! Már süti a hátam!"
+              },
+              {
+              "type": "állatos",
+              "joke": "- Ki az állatok diszkósa?\n- ???\n- A technos-béka."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Hogy hívják a süket kutyát?\n- ???\n- Hát, jó hangosan!"
+              },
+              {
+              "type": "állatos",
+              "joke": "Két tehén nadrágot vásárol a boltban. Mondja az egyik:\n- Bőő!\nMondja a másik:\n- Honnan tudod, még fel sem próbáltad!"
+              },
+              {
+              "type": "állatos",
+              "joke": "- Áll egy tehén a buszmegállóban. Ha megjön a busz, hova fog felszállni?\n- ???\n- Legelőre."
+              },
+              {
+              "type": "állatos",
+              "joke": "A pocok kérdezi a kígyót:\n- Hé, te kígyó, tényleg megetted a haveromat?\n- Mérget vehetsz rá!"
+              }
+              ]
+}
