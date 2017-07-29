@@ -1,14 +1,6 @@
 {
     "jokes": [
               {
-              "type": "durva",
-              "joke": "- Két tészta megy a sivatagban. Melyik a zsidó?\n- ???\n- A metélt."
-              },
-              {
-              "type": "fárasztó",
-              "joke": "- Két süteménytészta beszélget a kemencében:\n- Nagyon forró ez a kemence!\n- Ja! Már süti a hátam!"
-              },
-              {
               "type": "állatos",
               "joke": "- Ki az állatok diszkósa?\n- ???\n- A technos-béka."
               },
@@ -27,6 +19,331 @@
               {
               "type": "állatos",
               "joke": "A pocok kérdezi a kígyót:\n- Hé, te kígyó, tényleg megetted a haveromat?\n- Mérget vehetsz rá!"
+              },
+              {
+              "type": "állatos",
+              "joke": "- Hogy rejtőzik el a gyík a kemencében?\n- ???\n- Beleolvad a környezetébe!"
+              },
+              {
+              "type": "állatos",
+              "joke": "- Hogy hívják azt a pávát, amelyik tigrissel találkozik?\n- ???\n- Pápáva."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Mi a különbség a leopárd és a pöttyös labda között?\n- ???\n- A labdába kétszer is nyugodtan bele lehet rúgni."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Miért van akkora füle az elefántnak?\n- ???\n- Hogy könnyebben szállhasson virágról virágra!"
+              },
+              {
+              "type": "állatos",
+              "joke": "- Mit mond a horgász, ha megmoccan a vízben az úszója?\n- ???\n- Pszt! Ráng!"
+              },
+              {
+              "type": "állatos",
+              "joke": "- Melyik hal tanulna idegen nyelvet?\n- ???\n- Az angolna."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Mit ér az a sirály, amelyik elfelejt repülni?\n- ???\n- Földet!"
+              },
+              {
+              "type": "állatos",
+              "joke": "- Mit rágcsál az emberevő hód?\n- ???\n- Családfát."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Miért zsíros a tej?\n- ???\n- Hogy ne nyikorogjon a tehén fejés közben."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Milyenre vágatja a frizuráját a vidra?\n- ???\n- Rövidra!"
+              },
+              {
+              "type": "állatos",
+              "joke": ""
+              },
+              {
+              "type": "állatos",
+              "joke": ""
+              },
+              {
+              "type": "állatos",
+              "joke": ""
+              },
+              {
+              "type": "állatos",
+              "joke": ""
+              },
+              {
+              "type": "állatos",
+              "joke": ""
+              },
+              
+              
+              
+              {
+              "type": "durva",
+              "joke": "- Két tészta megy a sivatagban. Melyik a zsidó?\n- ???\n- A metélt."
+              },
+              {
+              "type": "durva",
+              "joke": "- Mondj egy selymes, zöld prófétát!\n- ???\n- Mohamed."
+              },
+              {
+              "type": "durva",
+              "joke": "- Mi a hasonlóság a szexben és a teniszben?\n- ???\n- A teniszben az a lényeg hogy ki szervál, míg a szexben melyik szerv áll!"
+              },
+              {
+              "type": "durva",
+              "joke": ""
+              },
+              {
+              "type": "durva",
+              "joke": ""
+              },
+              {
+              "type": "durva",
+              "joke": ""
+              },
+              {
+              "type": "durva",
+              "joke": ""
+              },
+              {
+              "type": "durva",
+              "joke": ""
+              },
+              
+              
+              
+              {
+              "type": "favicc",
+              "joke": "- Mi lesz a sáskából ha megnő?\n- ???\n- Sás."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Ki tud magasabbra ugrani, mint egy felhőkarcoló?\n- ???\n- Mindenki, mert a felhőkarcolók nem tudnak ugrani!"
+              },
+              {
+              "type": "favicc",
+              "joke": "- Mit csinálnak a várvédők szabadidejükben?\n- ???\n- Elfoglalják magukat..."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Kőműves Kelemen ebédnél:\n- Egyél fiam anyád már fal!"
+              },
+              {
+              "type": "favicc",
+              "joke": "- Mit vet a kövér paraszt?\n- ???\n- Jó nagy árnyékot."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Hol legelnek a Floppy-lemezek?\n- ???\n- Diszkréten..."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Hogyan hívják a liftet New Yorkban?\n- ???\n- Nyomógombbal."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Fehér, hideg és teljesen mozdulatlan, mi az?\n- ???\n- Hulla hó."
+              },
+              {
+              "type": "favicc",
+              "joke": ""
+              },
+              {
+              "type": "favicc",
+              "joke": ""
+              },
+              {
+              "type": "favicc",
+              "joke": ""
+              },
+              {
+              "type": "favicc",
+              "joke": ""
+              },
+              {
+              "type": "favicc",
+              "joke": ""
+              },
+              
+              
+              
+              {
+              "type": "fárasztó",
+              "joke": "- Két süteménytészta beszélget a kemencében:\n- Nagyon forró ez a kemence!\n- Ja! Már süti a hátam!"
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mi történne a pisai ferde toronnyal a Szaharában?\n- ???\n- Dűne."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mivel járnak a turisták Karthágó romjaihoz?\n- ???\n- Rombusszal."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Két egyiptomi a sivatag közepén:\n- Tevén ülsz?\n- Vénül ám az öreganyád!"
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mit csinál a norvég hajóskapitány, ha zsákutcába jut a hajója?\n- ???\n- Megfjordul."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Miben különbözik Irán és egy porszívó?\n- ???\n- Az egyik perzsákkal van tele a másik porzsákkal."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Hogy kínálja áruját az olajsejk?\n- ???\n- Kő olaj?"
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mit csinál a süket kalóz a telefonfülkében?\n- ???\n- Halóz."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Miről lehet felismerni a mérges búvárt?\n- ???\n- Alig lát a pipától."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Hogy került a kezdő autóvezető lába a sütőbe?\n- ???\n- A barátai bíztatták, hogy nyugodtan taposson a gázba."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mi van a favágó szerszámoskamrájának ajtaján?\n- ???\n- Baltazár."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mit mond az, aki szánkó nélkül tér haza a szánkózásból?\n- ???\n- Szánom bánom!"
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Melyik a prémvadász kedvenc városa?\n- ???\n- Veszprém."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mondj egy tűzhányót, amelyik kimegy a divatból!\n- ???\n- Ela-vulkán."
+              },
+              {
+              "type": "fárasztó",
+              "joke": ""
+              },
+              {
+              "type": "fárasztó",
+              "joke": ""
+              },
+              {
+              "type": "fárasztó",
+              "joke": ""
+              },
+              {
+              "type": "fárasztó",
+              "joke": ""
+              },
+              {
+              "type": "fárasztó",
+              "joke": ""
+              },
+              
+              
+              
+              {
+              "type": "jean",
+              "joke": ""
+              },
+              {
+              "type": "jean",
+              "joke": ""
+              },
+              {
+              "type": "jean",
+              "joke": ""
+              },
+              {
+              "type": "jean",
+              "joke": ""
+              },
+              {
+              "type": "jean",
+              "joke": ""
+              },
+              
+              
+              
+              {
+              "type": "móriczkás",
+              "joke": "- Móriczka, mondj egy téli zöldséget!\n- Síparadicsom!"
+              },
+              {
+              "type": "móriczkás",
+              "joke": "- Móriczka, mit eszik az orángután?\n- ???\n- Még sosem ettem orangot, és tessék inkább tegezni Tanárnő!"
+              },
+              {
+              "type": "móriczkás",
+              "joke": ""
+              },
+              {
+              "type": "móriczkás",
+              "joke": ""
+              },
+              {
+              "type": "móriczkás",
+              "joke": ""
+              },
+              {
+              "type": "móriczkás",
+              "joke": ""
+              },
+              
+              
+              
+              {
+              "type": "rendőrös",
+              "joke": ""
+              },
+              {
+              "type": "rendőrös",
+              "joke": ""
+              },
+              {
+              "type": "rendőrös",
+              "joke": ""
+              },
+              {
+              "type": "rendőrös",
+              "joke": ""
+              },
+              {
+              "type": "rendőrös",
+              "joke": ""
+              },
+              
+              
+              
+              {
+              "type": "szőke nős",
+              "joke": ""
+              },
+              {
+              "type": "szőke nős",
+              "joke": ""
+              },
+              {
+              "type": "szőke nős",
+              "joke": ""
+              },
+              {
+              "type": "szőke nős",
+              "joke": ""
+              },
+              {
+              "type": "szőke nős",
+              "joke": ""
               }
               ]
 }
