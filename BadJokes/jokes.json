@@ -62,7 +62,11 @@
               },
               {
               "type": "állatos",
-              "joke": ""
+              "joke": "- Mit fűrészel a macska?\n- ???\n- A kutya fáját."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Hogy hívják a portugál madarat?\n- ???\n- Rodrigó"
               },
               {
               "type": "állatos",
@@ -72,15 +76,7 @@
               "type": "állatos",
               "joke": ""
               },
-              {
-              "type": "állatos",
-              "joke": ""
-              },
-              {
-              "type": "állatos",
-              "joke": ""
-              },
-              
+
               
               
               {
@@ -97,7 +93,63 @@
               },
               {
               "type": "durva",
-              "joke": ""
+              "joke": "- Hol található sok fekete lyuk?\n- ???\n- Afrikában."
+              },
+              {
+              "type": "durva",
+              "joke": "- Mi a különbség a részeg és a nyuszika közt?\n- ???\n- A részeg kinyitja a sörét, a nyuszikát kinyírja a sörét."
+              },
+              {
+              "type": "durva",
+              "joke": "- Mit mond a vak DJ?\n- ???\n- Nem látom a kezekeeeeet!"
+              },
+              {
+              "type": "durva",
+              "joke": "- Miről ismered meg a buzi hóembert?\n- ???\n- A répa a seggében van."
+              },
+              {
+              "type": "durva",
+              "joke": "- Mit mond a pedofil a MÁV pénztárnál?\n- ???\n- Egy diákot Pestig. "
+              },
+              {
+              "type": "durva",
+              "joke": "- Mit mond a pedofil mikor felkerül a mennybe?\n- ???\n- Hol van a kis Jézus?"
+              },
+              {
+              "type": "durva",
+              "joke": "- Mi az: fehér és a sarkon áll?\n- ???\n- Kurvára esik a hó."
+              },
+              {
+              "type": "durva",
+              "joke": "- Hogy hívják az illatos cigányt?\n- ???\n- Aroma."
+              },
+              {
+              "type": "durva",
+              "joke": "- Mi a közös a nőben és a gyufában?\n- ???\n-  Ha benedvesedik, akkor baszhatod!"
+              },
+              {
+              "type": "durva",
+              "joke": "- Mit csinál a cigány ha befejezi az egyetemet?\n- ???\n- Átmegy egy másik építkezésre!"
+              },
+              {
+              "type": "durva",
+              "joke": "- Mi az: Nyelve piros, szarva barna?\n- ???\n- Paradicsom."
+              },
+              {
+              "type": "durva",
+              "joke": "- Mi az anyós mértékegysége?\n- ???\n- Megakurvaanyád."
+              },
+              {
+              "type": "durva",
+              "joke": "- Mit vesz a halott a boltban?\n- ???\n- Élesztőt."
+              },
+              {
+              "type": "durva",
+              "joke": "- Mi az? Két hulla úszik a vízen?\n- ???\n- Holtverseny."
+              },
+              {
+              "type": "durva",
+              "joke": "- Mi az abszolút fajgyűlölet?\n- ???\n- Amikor a kopaszbarack veri a cigánymeggyet."
               },
               {
               "type": "durva",
@@ -107,12 +159,51 @@
               "type": "durva",
               "joke": ""
               },
+              
+              
+              
               {
-              "type": "durva",
+              "type": "informatikus",
+              "joke": "- Mi a női programozó rémálma?\n- ???\n- A végtelen ciklus."
+              },
+              {
+              "type": "informatikus",
+              "joke": "- Mi a számítógépes szépségápolás?\n- ???\n- Átküldök neked egy giga bájt!"
+              },
+              {
+              "type": "informatikus",
+              "joke": "- Hol alszanak az álmos bitek?\n- ???\n- A hálókártyán."
+              },
+              {
+              "type": "informatikus",
+              "joke": "- Miért nem csak ül a digit?\n- ???\n- Mert a digit áll is."
+              },
+              {
+              "type": "informatikus",
+              "joke": "- Mit kavar fel két egymás mellett haladó nyomtató a sivatagban?\n- ???\n- Párhuzamos port."
+              },
+              {
+              "type": "informatikus",
+              "joke": "- Melyik a leghosszabb hálózati kapcsolat?\n- ???\n- HoltodigLAN."
+              },
+              {
+              "type": "informatikus",
+              "joke": "- Mi az: kicsi, sárga, de mégis nagy hatalma van?\n- ???\n- A root kiskacsa..."
+              },
+              {
+              "type": "informatikus",
+              "joke": "- Mire táncolnak a programozók a bulin?\n- ???\n- Algoritmusra."
+              },
+              {
+              "type": "informatikus",
+              "joke": "- Hol legelnek a Floppy-lemezek?\n- ???\n- Diszkréten..."
+              },
+              {
+              "type": "informatikus",
               "joke": ""
               },
               {
-              "type": "durva",
+              "type": "informatikus",
               "joke": ""
               },
               
@@ -140,10 +231,6 @@
               },
               {
               "type": "favicc",
-              "joke": "- Hol legelnek a Floppy-lemezek?\n- ???\n- Diszkréten..."
-              },
-              {
-              "type": "favicc",
               "joke": "- Hogyan hívják a liftet New Yorkban?\n- ???\n- Nyomógombbal."
               },
               {
@@ -152,7 +239,43 @@
               },
               {
               "type": "favicc",
-              "joke": ""
+              "joke": "- Mit csinál a depressziós vállfa?\n- ???\n- Felakasztja magát."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Miért nem lehet a járdán biciklizni?\n- ???\n- Mert nincs rajta pedál."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Hogyan lehet felismerni a kezdő tűzoltót?\n- ???\n- Elég könnyen..."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Akarsz sokat keresni?\n- Igen.\n- Akkor jól elbújok."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Mit kap a kis vidra ha ki jön a vízből?\n- ???\n- Levegőt. "
+              },
+              {
+              "type": "favicc",
+              "joke": "- Mit érez a katona, amikor látja hazájának zászlaját lobogni?\n- ???\n- A szelet."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Azt hallottad, hogy rájöttek a Loch Ness-i szörny titkára?\n- Nincs is neki titkára."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Miért kering a sas a hegy fölött?\n- ???\n- Mert alatta nem tud."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Hogy hívják a japán tűzoltót?\n- ???\n- Telefonon."
+              },
+              {
+              "type": "favicc",
+              "joke": "- Mit söpörnek a reptéren?\n- ???\n- Airport."
               },
               {
               "type": "favicc",
@@ -162,15 +285,7 @@
               "type": "favicc",
               "joke": ""
               },
-              {
-              "type": "favicc",
-              "joke": ""
-              },
-              {
-              "type": "favicc",
-              "joke": ""
-              },
-              
+
               
               
               {
@@ -231,15 +346,47 @@
               },
               {
               "type": "fárasztó",
-              "joke": ""
+              "joke": "- Miért kell óvatosan kinyitni a Nemzeti Sportot?\n- ???\n- Hogy ki ne essen az Újpest."
               },
               {
               "type": "fárasztó",
-              "joke": ""
+              "joke": "- Miért karikás az ördög szeme?\n- ???\n- Mert az ördög sohasem alszik."
               },
               {
               "type": "fárasztó",
-              "joke": ""
+              "joke": "- Hogy hívják az afrikai tolvajt?\n- ???\n- Anti lop"
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mi az: cukros és szobahőmérsékleten köt?\n- ???\n- Nagymama."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mi palacsinta ország fővárosa?\n- ???\n- Lekváros."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mire jött rá Józsi 6 év börtön után?\n- ???\n- Hogy nem is ő van bezárva, hanem az ajtó."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Hogy hívják a nincstelen titkosügynököt?\n- ???\n- Szegénykém."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mit csinál az űrjahós, ha megszomjazik?\n- ???\n- Űrkutat ás."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Miért buta a fa?\n- ???\n- Mert esze ágában sincs."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Melyek a legtétovább rovarok?\n- ???\n- A mitévő legyek."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mije van a birsalma fának?\n- ???\n- Birságai."
               },
               {
               "type": "fárasztó",
@@ -254,15 +401,11 @@
               
               {
               "type": "jean",
-              "joke": ""
+              "joke": "- Jean, mi ez a dubörgés a szekrényben?\n- ???\n- Csak a ruhák mennek ki a divatból uram!"
               },
               {
               "type": "jean",
-              "joke": ""
-              },
-              {
-              "type": "jean",
-              "joke": ""
+              "joke": "- Jean, vigye az ágyamat a padlásra!\n- Miért uram?\n- Mert fent szeretnék maradni."
               },
               {
               "type": "jean",
@@ -291,28 +434,24 @@
               "type": "móriczkás",
               "joke": ""
               },
-              {
-              "type": "móriczkás",
-              "joke": ""
-              },
-              {
-              "type": "móriczkás",
-              "joke": ""
-              },
               
               
               
               {
               "type": "rendőrös",
-              "joke": ""
+              "joke": "- Miért ás a rendőr két gödröt?\n- ???\n- Mert az egyik túl kicsire sikerült. "
               },
               {
               "type": "rendőrös",
-              "joke": ""
+              "joke": "- Melyik a rendőr szúnyog?\n- ???\n- Amelyik nyakon csíp!"
               },
               {
               "type": "rendőrös",
-              "joke": ""
+              "joke": "- Hogyan fog a rendőr nyulat?\n- ???\n- Utánozza a répa hangját."
+              },
+              {
+              "type": "rendőrös",
+              "joke": "- Miért megy a rendőr a fal mellett?\n- ???\n- Hogy körbe ne röhögjék."
               },
               {
               "type": "rendőrös",
@@ -327,15 +466,7 @@
               
               {
               "type": "szőke nős",
-              "joke": ""
-              },
-              {
-              "type": "szőke nős",
-              "joke": ""
-              },
-              {
-              "type": "szőke nős",
-              "joke": ""
+              "joke": "- Hogy csinál a szőke nő lekvárt?\n- ???\n- Kinyomja a buktából. "
               },
               {
               "type": "szőke nős",
