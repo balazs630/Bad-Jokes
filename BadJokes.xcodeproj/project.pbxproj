@@ -45,6 +45,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC56CBA41F3093E300509EDA /* Settings Detail VCs */ = {
+			isa = PBXGroup;
+			children = (
+				AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */,
+				AC88F9E91F2BEAE300ACD4B5 /* RecurrenceViewController.swift */,
+				AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */,
+			);
+			name = "Settings Detail VCs";
+			sourceTree = "<group>";
+		};
 		ACEEA9561F1E5FA600BCF905 = {
 			isa = PBXGroup;
 			children = (
@@ -66,9 +76,7 @@
 			children = (
 				ACEEA9641F1E5FA600BCF905 /* JokesViewController.swift */,
 				ACE906B21F22A27200A6A082 /* SettingsViewController.swift */,
-				AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */,
-				AC88F9E91F2BEAE300ACD4B5 /* RecurrenceViewController.swift */,
-				AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */,
+				AC56CBA41F3093E300509EDA /* Settings Detail VCs */,
 				ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */,
 				ACEEA9661F1E5FA600BCF905 /* Main.storyboard */,
 				ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */,

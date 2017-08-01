@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-class JokesViewController: UIViewController, UNUserNotificationCenterDelegate {
+class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, SettingsViewControllerDelegate {
 
     var newJokes = [NSMutableDictionary]()
     var usedJokes = [NSMutableDictionary]()
@@ -24,6 +24,30 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate {
         UNUserNotificationCenter.current().delegate = self
     }
 
+    @IBAction func sendNotification(_ sender: UIButton) {
+        //Setting content of the notification
+        let content = UNMutableNotificationContent()
+        content.title = "Vicc:"
+        content.body = getRandomJoke()
+        content.badge = 1
+        content.sound = UNNotificationSound.default()
+
+        //Setting time for notification trigger
+        let date = Date(timeIntervalSinceNow: 3)
+        let dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
+
+        //Adding request
+        let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+
+    func updateSettings() {
+        print("updateSettings called")
+    }
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         //To display notifications when app is running  inforeground
@@ -35,7 +59,8 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate {
             do {
                 let jsonData = try NSData(contentsOfFile: path, options: NSData.ReadingOptions.mappedIfSafe)
                 do {
-                    let jsonResult: NSMutableDictionary = try JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSMutableDictionary
+                    let options = JSONSerialization.ReadingOptions.mutableContainers
+                    let jsonResult: NSMutableDictionary = try JSONSerialization.jsonObject(with: jsonData as Data, options: options) as! NSMutableDictionary
                     newJokes = jsonResult["jokes"] as! [NSMutableDictionary]
                 } catch {
                     print(error)
@@ -72,24 +97,11 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate {
         usedJokes.removeAll()
     }
 
-    @IBAction func sendNotification(_ sender: UIButton) {
-        //Setting content of the notification
-        let content = UNMutableNotificationContent()
-        content.title = "Vicc:"
-        content.body = getRandomJoke()
-        content.badge = 1
-        content.sound = UNNotificationSound.default()
-
-        //Setting time for notification trigger
-        let date = Date(timeIntervalSinceNow: 3)
-        let dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
-
-        //Adding request
-        let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
-
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showSettingsSegue" {
+            let destVC = segue.destination as! SettingsViewController
+            destVC.delegate = self
+        }
     }
 
 }
