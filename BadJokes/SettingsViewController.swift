@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SettingsViewControllerDelegate: class {
-    func updateSettings()
+    func settingsDidClose()
 }
 
 class SettingsViewController: UITableViewController, PeriodicityViewControllerDelegate, RecurrenceViewControllerDelegate, TimeViewControllerDelegate {
@@ -31,15 +31,19 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     @IBOutlet weak var sldCop: UISlider!
     @IBOutlet weak var sldBlonde: UISlider!
 
+    let defaults = UserDefaults.standard
+
     weak var delegate: SettingsViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
+        loadPreferences()
     }
 
     @IBAction func closeSettings(_ sender: Any) {
-        delegate?.updateSettings()
+        savePreferences()
+        delegate?.settingsDidClose()
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -53,6 +57,46 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
 
     func saveTimeWith(selectedCellText: String) {
         lblTime.text = selectedCellText
+    }
+
+    func loadPreferences() {
+        swGlobalOnOff.isOn = defaults.bool(forKey: "swGlobalOnOff")
+        swNotificationSound.isOn = defaults.bool(forKey: "swNotificationSound")
+
+        lblPeriodicity.text = defaults.string(forKey: "lblPeriodicity")
+        lblRecurrence.text = defaults.string(forKey: "lblRecurrence")
+        lblTime.text = defaults.string(forKey: "lblTime")
+
+        sldAnimal.value = defaults.float(forKey: "sldAnimal")
+        sldRough.value = defaults.float(forKey: "sldRough")
+        sldIT.value = defaults.float(forKey: "sldIT")
+        sldAnti.value = defaults.float(forKey: "sldAnti")
+        sldTiring.value = defaults.float(forKey: "sldTiring")
+        sldJean.value = defaults.float(forKey: "sldJean")
+        sldMoriczka.value = defaults.float(forKey: "sldMoriczka")
+        sldCop.value = defaults.float(forKey: "sldCop")
+        sldBlonde.value = defaults.float(forKey: "sldBlonde")
+    }
+
+    func savePreferences() {
+        defaults.set(swGlobalOnOff.isOn, forKey: "swGlobalOnOff")
+        defaults.set(swNotificationSound.isOn, forKey: "swNotificationSound")
+
+        defaults.set(lblPeriodicity.text, forKey: "lblPeriodicity")
+        defaults.set(lblRecurrence.text, forKey: "lblRecurrence")
+        defaults.set(lblTime.text, forKey: "lblTime")
+
+        defaults.set(sldAnimal.value, forKey: "sldAnimal")
+        defaults.set(sldRough.value, forKey: "sldRough")
+        defaults.set(sldIT.value, forKey: "sldIT")
+        defaults.set(sldAnti.value, forKey: "sldAnti")
+        defaults.set(sldTiring.value, forKey: "sldTiring")
+        defaults.set(sldJean.value, forKey: "sldJean")
+        defaults.set(sldMoriczka.value, forKey: "sldMoriczka")
+        defaults.set(sldCop.value, forKey: "sldCop")
+        defaults.set(sldBlonde.value, forKey: "sldBlonde")
+
+        defaults.synchronize()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

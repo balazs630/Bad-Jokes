@@ -13,9 +13,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        let defaults = UserDefaults.standard
+
+        if defaults.object(forKey: "isAppAlreadyLaunchedOnce") == nil {
+            // First launch
+            defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
+
+            let firstTimeLaunchDefaults: [String : Any] = [
+                "swGlobalOnOff": true,
+                "swNotificationSound": true,
+                "lblPeriodicity": "Napi",
+                "lblRecurrence": "1x",
+                "lblTime": "Véletlen időpontban",
+                "sldAnimal": 5,
+                "sldRough": 0,
+                "sldIT": 1,
+                "sldAnti": 3,
+                "sldTiring": 5,
+                "sldJean": 1,
+                "sldMoriczka": 3,
+                "sldCop": 2,
+                "sldBlonde": 1
+            ]
+
+            for item in firstTimeLaunchDefaults {
+                defaults.set(item.value, forKey: item.key)
+            }
+
+            defaults.synchronize()
+        }
+
         return true
     }
 
@@ -41,6 +71,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-
