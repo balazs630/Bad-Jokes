@@ -31,6 +31,21 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     @IBOutlet weak var sldCop: UISlider!
     @IBOutlet weak var sldBlonde: UISlider!
 
+    // Slider variables and it's UserDefaults keys
+    var sldCollection: [UISlider:String] {
+        return [
+            sldAnimal: "sldAnimal",
+            sldRough: "sldRough",
+            sldIT: "sldIT",
+            sldAnti: "sldAnti",
+            sldTiring: "sldTiring",
+            sldJean: "sldJean",
+            sldMoriczka: "sldMoriczka",
+            sldCop: "sldCop",
+            sldBlonde: "sldBlonde"
+        ]
+    }
+
     let defaults = UserDefaults.standard
 
     weak var delegate: SettingsViewControllerDelegate?
@@ -45,6 +60,10 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         savePreferences()
         delegate?.settingsDidClose()
         self.navigationController?.popViewController(animated: true)
+    }
+
+    @IBAction func swGlobalOnOffDidChange(_ sender: Any) {
+        disablePreferencesOnGlobalSwitchOffState()
     }
 
     func savePeriodicityWith(selectedCellText: String) {
@@ -67,15 +86,11 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         lblRecurrence.text = defaults.string(forKey: "lblRecurrence")
         lblTime.text = defaults.string(forKey: "lblTime")
 
-        sldAnimal.value = defaults.float(forKey: "sldAnimal")
-        sldRough.value = defaults.float(forKey: "sldRough")
-        sldIT.value = defaults.float(forKey: "sldIT")
-        sldAnti.value = defaults.float(forKey: "sldAnti")
-        sldTiring.value = defaults.float(forKey: "sldTiring")
-        sldJean.value = defaults.float(forKey: "sldJean")
-        sldMoriczka.value = defaults.float(forKey: "sldMoriczka")
-        sldCop.value = defaults.float(forKey: "sldCop")
-        sldBlonde.value = defaults.float(forKey: "sldBlonde")
+        for item in sldCollection {
+            item.key.value = defaults.float(forKey: item.value)
+        }
+
+        disablePreferencesOnGlobalSwitchOffState()
     }
 
     func savePreferences() {
@@ -86,17 +101,25 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         defaults.set(lblRecurrence.text, forKey: "lblRecurrence")
         defaults.set(lblTime.text, forKey: "lblTime")
 
-        defaults.set(sldAnimal.value, forKey: "sldAnimal")
-        defaults.set(sldRough.value, forKey: "sldRough")
-        defaults.set(sldIT.value, forKey: "sldIT")
-        defaults.set(sldAnti.value, forKey: "sldAnti")
-        defaults.set(sldTiring.value, forKey: "sldTiring")
-        defaults.set(sldJean.value, forKey: "sldJean")
-        defaults.set(sldMoriczka.value, forKey: "sldMoriczka")
-        defaults.set(sldCop.value, forKey: "sldCop")
-        defaults.set(sldBlonde.value, forKey: "sldBlonde")
-
+        for item in sldCollection {
+            defaults.set(item.key.value, forKey: item.value)
+        }
         defaults.synchronize()
+    }
+
+    func disablePreferencesOnGlobalSwitchOffState() {
+        // If this switch is off, no other preferences can be changed
+        let swGlobalState = swGlobalOnOff.isOn
+
+        swNotificationSound.isEnabled = swGlobalState
+
+        lblPeriodicity.isEnabled = swGlobalState
+        lblRecurrence.isEnabled = swGlobalState
+        lblTime.isEnabled = swGlobalState
+
+        for item in sldCollection {
+            item.key.isEnabled = swGlobalState
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
