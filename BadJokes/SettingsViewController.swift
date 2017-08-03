@@ -14,7 +14,7 @@ protocol SettingsViewControllerDelegate: class {
 
 class SettingsViewController: UITableViewController, PeriodicityViewControllerDelegate, RecurrenceViewControllerDelegate, TimeViewControllerDelegate {
 
-    @IBOutlet weak var swGlobalOnOff: UISwitch!
+    @IBOutlet weak var swGlobalOff: UISwitch!
     @IBOutlet weak var swNotificationSound: UISwitch!
 
     @IBOutlet weak var lblPeriodicity: UILabel!
@@ -30,6 +30,11 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     @IBOutlet weak var sldMoriczka: UISlider!
     @IBOutlet weak var sldCop: UISlider!
     @IBOutlet weak var sldBlonde: UISlider!
+
+    // For time picker components
+    var pckTimeHours = String()
+    var pckTimeMinutes = String()
+    var lblTimeOptionName = String()
 
     // Slider variables and it's UserDefaults keys
     var sldCollection: [UISlider:String] {
@@ -63,7 +68,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     }
 
     @IBAction func swGlobalOnOffDidChange(_ sender: Any) {
-        disablePreferencesOnGlobalSwitchOffState()
+        disablePreferencesOnGlobalSwitchState()
     }
 
     func savePeriodicityWith(selectedCellText: String) {
@@ -74,42 +79,68 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         lblRecurrence.text = selectedCellText
     }
 
-    func saveTimeWith(selectedCellText: String) {
-        lblTime.text = selectedCellText
+    func saveTimeWithSelected(cellText: String) {
+        lblTimeOptionName = cellText
+        lblTime.text = cellText
+    }
+
+    func saveTimeWithSelected(cellText: String, hours: String, minutes: String) {
+        lblTime.text = "Pontosan \(hours):\(minutes)-kor"
+        lblTimeOptionName = cellText
+        pckTimeHours = hours
+        pckTimeMinutes = minutes
     }
 
     func loadPreferences() {
-        swGlobalOnOff.isOn = defaults.bool(forKey: "swGlobalOnOff")
+        swGlobalOff.isOn = defaults.bool(forKey: "swGlobalOff")
         swNotificationSound.isOn = defaults.bool(forKey: "swNotificationSound")
 
         lblPeriodicity.text = defaults.string(forKey: "lblPeriodicity")
         lblRecurrence.text = defaults.string(forKey: "lblRecurrence")
-        lblTime.text = defaults.string(forKey: "lblTime")
+
+        if let hours = defaults.string(forKey: "pckTimeHours"), let minutes = defaults.string(forKey: "pckTimeMinutes") {
+            pckTimeHours = hours
+            pckTimeMinutes = minutes
+        }
+
+        if defaults.string(forKey: "lblTime") == "Pontos időpontban" {
+            lblTime.text = "Pontosan \(pckTimeHours):\(pckTimeMinutes)-kor"
+            lblTimeOptionName = "Pontos időpontban"
+        } else {
+            lblTime.text = defaults.string(forKey: "lblTime")
+            if let text = defaults.string(forKey: "lblTime") {
+                lblTimeOptionName = text
+            }
+        }
 
         for item in sldCollection {
             item.key.value = defaults.float(forKey: item.value)
         }
 
-        disablePreferencesOnGlobalSwitchOffState()
+        disablePreferencesOnGlobalSwitchState()
     }
 
     func savePreferences() {
-        defaults.set(swGlobalOnOff.isOn, forKey: "swGlobalOnOff")
+        defaults.set(swGlobalOff.isOn, forKey: "swGlobalOff")
         defaults.set(swNotificationSound.isOn, forKey: "swNotificationSound")
 
         defaults.set(lblPeriodicity.text, forKey: "lblPeriodicity")
         defaults.set(lblRecurrence.text, forKey: "lblRecurrence")
-        defaults.set(lblTime.text, forKey: "lblTime")
+        defaults.set(lblTimeOptionName, forKey: "lblTime")
+
+        defaults.set(pckTimeHours, forKey: "pckTimeHours")
+        defaults.set(pckTimeMinutes, forKey: "pckTimeMinutes")
+        defaults.synchronize()
 
         for item in sldCollection {
             defaults.set(item.key.value, forKey: item.value)
+            defaults.synchronize()
         }
-        defaults.synchronize()
     }
 
-    func disablePreferencesOnGlobalSwitchOffState() {
-        // If this switch is off, no other preferences can be changed
-        let swGlobalState = swGlobalOnOff.isOn
+    func disablePreferencesOnGlobalSwitchState() {
+        // If this switch is on, every settings are disabled
+        let swGlobalState = !swGlobalOff.isOn
 
         swNotificationSound.isEnabled = swGlobalState
 
@@ -129,15 +160,28 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
                 switch segueIdentifier {
                 case "periodityDetailSegue":
                     let destVC = segue.destination as! PeriodicityViewController
-                    destVC.lastSelectedIndexPath = IndexPath(item: 0, section: 0)
+                    if let lblPeriodicityText = lblPeriodicity.text {
+                        destVC.lastSelectedOption = lblPeriodicityText
+                    }
                     destVC.delegate = self
                 case "recurrenceDetailSegue":
                     let destVC = segue.destination as! RecurrenceViewController
-                    destVC.lastSelectedIndexPath = IndexPath(item: 0, section: 0)
+                    if let lblRecurrenceText = lblRecurrence.text {
+                        destVC.lastSelectedOption = lblRecurrenceText
+                    }
                     destVC.delegate = self
                 case "timeDetailSegue":
                     let destVC = segue.destination as! TimeViewController
-                    destVC.lastSelectedIndexPath = IndexPath(item: 0, section: 0)
+                    destVC.lastSelectedOption = lblTimeOptionName
+
+                    let gregorian = Calendar(identifier: .gregorian)
+
+                    var timeComponents = gregorian.dateComponents([.hour, .minute], from: Date())
+                    timeComponents.hour = Int(pckTimeHours)
+                    timeComponents.minute = Int(pckTimeMinutes)
+
+                    destVC.lastSelectedTime = gregorian.date(from: timeComponents)!
+
                     destVC.delegate = self
                 default:
                     print("Unexpected segue identifier was given in: \(#file), line: \(#line)")

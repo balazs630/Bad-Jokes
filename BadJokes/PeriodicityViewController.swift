@@ -14,43 +14,36 @@ protocol PeriodicityViewControllerDelegate: class {
 
 class PeriodicityViewController: UITableViewController {
 
-    @IBOutlet weak var lblDaily: UILabel!
-    @IBOutlet weak var lblWeekly: UILabel!
-    @IBOutlet weak var lblMonthly: UILabel!
+    let tableContent = ["Napi", "Heti", "Havi"]
 
-    var lastSelectedIndexPath = IndexPath()
+    var lastSelectedOption = String()
+    var selectedIndexPath = IndexPath(row: 0, section: 0)
+
     weak var delegate: PeriodicityViewControllerDelegate?
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        tableView.selectRow(at: lastSelectedIndexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
-        tableView.cellForRow(at: lastSelectedIndexPath)?.accessoryType = .checkmark
+        // Set the row index of the last selected option
+        if let index = tableContent.index(of: lastSelectedOption) {
+            selectedIndexPath.row = index
+        }
+
+        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
+        tableView.cellForRow(at: selectedIndexPath)?.accessoryType = .checkmark
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         //When navigating to the previous VC with "back" nav bar button
-        if (self.isMovingFromParentViewController) {
-
-            switch lastSelectedIndexPath.row {
-            case 0:
-                delegate?.savePeriodicityWith(selectedCellText: lblDaily.text!)
-            case 1:
-                delegate?.savePeriodicityWith(selectedCellText: lblWeekly.text!)
-            case 2:
-                delegate?.savePeriodicityWith(selectedCellText: lblMonthly.text!)
-            default:
-                print("Unexpected row number was given in: \(#file), line: \(#line)")
-            }
-        }
+        delegate?.savePeriodicityWith(selectedCellText: tableContent[selectedIndexPath.row])
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
-            lastSelectedIndexPath = indexPath
+            selectedIndexPath = indexPath
         }
     }
 
@@ -58,6 +51,17 @@ class PeriodicityViewController: UITableViewController {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .none
         }
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableContent.count
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "prototypeCell")
+        cell.textLabel?.text = tableContent[indexPath.row]
+
+        return cell
     }
 
 }

@@ -23,11 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
 
             let firstTimeLaunchDefaults: [String : Any] = [
-                "swGlobalOnOff": true,
+                "swGlobalOff": false,
                 "swNotificationSound": true,
                 "lblPeriodicity": "Napi",
                 "lblRecurrence": "1x",
                 "lblTime": "Véletlen időpontban",
+                "pckTimeHours": "12",
+                "pckTimeMinutes": "00",
                 "sldAnimal": 5,
                 "sldRough": 0,
                 "sldIT": 1,
