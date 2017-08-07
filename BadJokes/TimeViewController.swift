@@ -17,13 +17,13 @@ class TimeViewController: UITableViewController {
 
     @IBOutlet weak var timePicker: UIDatePicker!
 
-    let tableContent = ["Véletlen időpontban", "Délelőtt", "Délután", "Pontos időpontban"]
+    let tableContent = ["Véletlen időpontban", "Délelőtt", "Délután", "Este", "Pontos időpontban"]
 
     var lastSelectedOption = String()
     var lastSelectedTime = Date()
     var selectedIndexPath = IndexPath(row: 0, section: 0)
 
-    let givenTimeIndexPath = IndexPath(item: 3, section: 0)
+    let givenTimeIndexPath = IndexPath(item: 4, section: 0)
     weak var delegate: TimeViewControllerDelegate?
 
     override func viewWillAppear(_ animated: Bool) {

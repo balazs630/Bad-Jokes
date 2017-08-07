@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 protocol SettingsViewControllerDelegate: class {
     func settingsDidClose()
@@ -55,10 +56,14 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
 
     weak var delegate: SettingsViewControllerDelegate?
 
+    let notificationWarningIndexPath = IndexPath(item: 0, section: 0)
+    var isNotificationEnabled: Bool = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         loadPreferences()
+        checkNotificationStatus()
     }
 
     @IBAction func closeSettings(_ sender: Any) {
@@ -69,6 +74,10 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
 
     @IBAction func swGlobalOnOffDidChange(_ sender: Any) {
         disablePreferencesOnGlobalSwitchState()
+    }
+
+    @IBAction func openIphoneNotificationSettings(_ sender: Any) {
+        UIApplication.shared.open(URL(string:"App-Prefs:root=NOTIFICATIONS_ID")!, options: [:], completionHandler: nil)
     }
 
     func savePeriodicityWith(selectedCellText: String) {
@@ -151,6 +160,38 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         for item in sldCollection {
             item.key.isEnabled = swGlobalState
         }
+    }
+
+    func checkNotificationStatus() {
+        let current = UNUserNotificationCenter.current()
+
+        current.getNotificationSettings(completionHandler: { (settings) in
+            if settings.authorizationStatus == .denied || settings.authorizationStatus == .notDetermined {
+                self.isNotificationEnabled = false
+            }
+        })
+    }
+
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Hide notification warning if the notifications are turned on
+        if isNotificationEnabled == true {
+            if indexPath.section == notificationWarningIndexPath.section
+                && indexPath.row == notificationWarningIndexPath.row {
+                cell.isHidden = true
+            }
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Set notification warning row height to 0 if the notifications are turned on
+        if isNotificationEnabled == true {
+            if indexPath.section == notificationWarningIndexPath.section
+                && indexPath.row == notificationWarningIndexPath.row {
+                return 0
+            }
+        }
+
+        return super.tableView(tableView, heightForRowAt: indexPath)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

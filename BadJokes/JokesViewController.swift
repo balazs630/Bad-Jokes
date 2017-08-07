@@ -14,6 +14,8 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
     var newJokes = [NSMutableDictionary]()
     var usedJokes = [NSMutableDictionary]()
 
+    let defaults = UserDefaults.standard
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,7 +32,10 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         content.title = "Vicc:"
         content.body = getRandomJoke()
         content.badge = 1
-        content.sound = UNNotificationSound.default()
+
+        if defaults.bool(forKey: "swNotificationSound") {
+            content.sound = UNNotificationSound.default()
+        }
 
         //Setting time for notification trigger
         let date = Date(timeIntervalSinceNow: 3)
