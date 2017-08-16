@@ -70,12 +70,61 @@
               },
               {
               "type": "állatos",
-              "joke": ""
+              "joke": "- Hova járnak szórakozni a hernyók?\n- ???\n- Bábszínházba."
               },
               {
               "type": "állatos",
-              "joke": ""
+              "joke": "- Honnan lehet felismerni a vidám elefántot?\n- ???\n- Nem lógatja az orrát."
               },
+              {
+              "type": "állatos",
+              "joke": "- Mi van a macske fején?\n- ???\n- Cirmos cica haj "
+              },
+              {
+              "type": "állatos",
+              "joke": "- A sivatagban él és látszólag semm dolga nincs, mi az?\n- ???\n- Ücsörgőkígyó."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Hogyan jut lakáshoz a meztelen csiga?\n- ???\n- Megházasodik."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Melyik a legfeledékenyebb hal?\n- ???\n- Nem emlékszem rája.."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Miből faragják a fatehenet?\n- ???\n- Tőgyfából."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Mi az amiről a kígyók beszélgetnek?\n- ???\n- Szisztéma."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Két hangyász beszélget:\n- Megkóstolod az ebédemet?\n- Na jó, de csak egy katonát.."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Mit csinál a medúza a rock koncerten?\n- ???\n- Az első sorban csápol."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Miről lehet felismerni a repülő nyulat?\n- ???\n- Egy hatalmas sast cipel a hátán."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Miért szeret a fóka a jégen sörözni?\n- ???\n- Mert ott jobban csúszik."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Miért szomorú a hím gólya?\n- ???\n- Mert a nőstényt nem érdekli hogy mennyit költ."
+              },
+              {
+              "type": "állatos",
+              "joke": "- Milyen zene szól a hangyász temetésén?\n- ???\n- A han-gyászinduló"
+              },
+
 
               
               
@@ -153,12 +202,13 @@
               },
               {
               "type": "durva",
-              "joke": ""
+              "joke": "- Mi a hasonlóság a cigány fiában és a borotvapengében?\n- ???\n- Mind a kettő Józsilett."
               },
               {
               "type": "durva",
-              "joke": ""
+              "joke": "- Hogy hívják a kávéfőző cigánygyereket?\n- ???\n- Jakobs a roma."
               },
+              
               
               
               
@@ -198,14 +248,7 @@
               "type": "informatikus",
               "joke": "- Hol legelnek a Floppy-lemezek?\n- ???\n- Diszkréten..."
               },
-              {
-              "type": "informatikus",
-              "joke": ""
-              },
-              {
-              "type": "informatikus",
-              "joke": ""
-              },
+
               
               
               
@@ -279,12 +322,17 @@
               },
               {
               "type": "favicc",
-              "joke": ""
+              "joke": "- Milyen gyapja marad a kis lámának a nyírás után?\n- ???\n- Nagyapja."
               },
               {
               "type": "favicc",
-              "joke": ""
+              "joke": "- Min nevetnek a legtöbbet a cowboyok?\n- ???\n- Lóháton."
               },
+              {
+              "type": "favicc",
+              "joke": "- Minek megy a vak az erdőbe?\n- ???\n- Fának."
+              },
+              
 
               
               
@@ -390,12 +438,85 @@
               },
               {
               "type": "fárasztó",
-              "joke": ""
+              "joke": "- Miért adott fel apróhirdetést a légtornász?\n- ???\n- Mert elvesztette az egyensúlyát"
               },
               {
               "type": "fárasztó",
-              "joke": ""
+              "joke": "- Miért nem rosszalkodik az iskolában a tulipánhagyma?\n- ???\n- Fél, hogy elültetik."
               },
+              {
+              "type": "fárasztó",
+              "joke": "- Mit csinál a tolvaj ha nyaralni megy?\n- ???\n- Lopja a napot."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mi a hímzés ellenkezője?\n- ???\n- Nőzés."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mikor boldog az űrhajó?\n- ???\n- Az űr ha jó."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Hogyan kiáltott fel a zeneszerző amikor legújabb műve beleesett a forró vízbe?\n- ???\n- Forr a dalom!"
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Miért csípte ki magát a tehetségtelen festő?\n- ???\n- Mert azt mondták neki hogy jól fest öltönyben."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mi van a csempész arcán ha lebukik a határon?\n- ???\n- Vám pír."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Miben különbözik egy kaktusz és egy nő?\n- ???\n- Egy kaktusz a sivatagban is nő, de egy nő a sivatagban sem kaktusz."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Miért nincs soha pénze a Jetinek?\n- ???\n- Túl nagy lábon él."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Miért nincs a mozdonyon bástya?\n- ???\n- Mert a vonat nem vár..."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Miért nem esett el soha Mozart a hajón?\n- ???\n- Mert hatéves kora óta tudott kompon állni."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Mit csinál a bizonytalan tetoválóművész?\n- ???\n- Tétovál."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Milyenek lesznek az átfázott emberek a konyaktól?\n- ???\n- Mozgékonyak."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Miárt nem lehet megbízni a villámban?\n- ???\n- Mert percenként akár százszor is becsaphat!"
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Honnan lehet felismerni a makkegészséges hegyet?\n- ???\n- Csúcsformában van."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Miért szereti a gumikötél a bungee jumpingot?\n- ???\n- Mert nem kell megszakadni a munkában."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Hogy tanul a gabonakereskedő?\n- ???\n- Bemagol mindent."
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Miért nincs az ágyon Ű betű?\n- ???\n- Mert az ágyneműtartó!"
+              },
+              {
+              "type": "fárasztó",
+              "joke": "- Kit hívnak ha beleesik a vak a kútba?\n- ???\n- A vakmerőt."
+              },
+
               
               
               
@@ -407,14 +528,7 @@
               "type": "jean",
               "joke": "- Jean, vigye az ágyamat a padlásra!\n- Miért uram?\n- Mert fent szeretnék maradni."
               },
-              {
-              "type": "jean",
-              "joke": ""
-              },
-              {
-              "type": "jean",
-              "joke": ""
-              },
+              
               
               
               
@@ -428,12 +542,13 @@
               },
               {
               "type": "móriczkás",
-              "joke": ""
+              "joke": "- Móriczka, ilyen piszkosan nem mehetsz az olimpiára!\n- De anyu, ez csak díszkosz."
               },
               {
               "type": "móriczkás",
-              "joke": ""
+              "joke": "- Miért nem tanult meg Móriczka vízisízni?\n- ???\n- Mert nem talált lejtős tavat."
               },
+              
               
               
               
@@ -455,26 +570,15 @@
               },
               {
               "type": "rendőrös",
-              "joke": ""
+              "joke": "- Két rendőr közül melyik pisil távolabb?\n- ???\n- Amelyik előtte lehúzza a sliccét. "
               },
-              {
-              "type": "rendőrös",
-              "joke": ""
-              },
+              
               
               
               
               {
               "type": "szőke nős",
               "joke": "- Hogy csinál a szőke nő lekvárt?\n- ???\n- Kinyomja a buktából. "
-              },
-              {
-              "type": "szőke nős",
-              "joke": ""
-              },
-              {
-              "type": "szőke nős",
-              "joke": ""
               }
               ]
 }
