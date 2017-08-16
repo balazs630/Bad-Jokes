@@ -14,6 +14,9 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
     var newJokes = [NSMutableDictionary]()
     var usedJokes = [NSMutableDictionary]()
 
+    let timeFormatter = DateFormatter()
+    let dateFormatter = DateFormatter()
+
     let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
@@ -24,6 +27,21 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         //Seeking permission of the user to display app notifications
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {_, _ in })
         UNUserNotificationCenter.current().delegate = self
+
+        timeFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+        if defaults.string(forKey: "lblTime") == "Pontos időpontban" {
+            let time = getGivenTime()
+            setNotification(for: time)
+        } else {
+            //Véletlen időpontban, délelőtt, délután vagy este
+            let timeInterval = getTimeInterval()
+            let notificationTimes = generateNotificationTimesBetween(timeInterval.0, timeInterval.1)
+            for time in notificationTimes {
+                setNotification(for: time)
+            }
+        }
     }
 
     @IBAction func sendNotification(_ sender: UIButton) {
@@ -50,22 +68,94 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
     }
 
     func settingsDidClose() {
-        print("settingsDidClose")
-        //printAllUserDefaulsKeysAndValues()
-    }
-
-    func printAllUserDefaulsKeysAndValues() {
-        // For debug purpose
-        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
-            print("\(key) = \(value) \n")
-        }
-        print("=========================================================")
+        //TODO
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         //To display notifications when app is running  inforeground
         completionHandler([.alert, .sound])
+    }
+
+    func removeAllPendingNotificationRequests() {
+        // Which are not delivered yet but scheduled
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+
+    func getGivenTime() -> Date {
+        let gregorian = Calendar(identifier: .gregorian)
+        var timeComponents = gregorian.dateComponents([.hour, .minute], from: Date())
+
+        timeComponents.hour = defaults.integer(forKey: "pckTimeHours")
+        timeComponents.minute = defaults.integer(forKey: "pckTimeMinutes")
+
+        let time = gregorian.date(from: timeComponents)!
+        return time
+    }
+
+    func getTimeInterval() -> (Date, Date) {
+        var startTime = Date()
+        var endTime = Date()
+
+        if let timeSettings = defaults.string(forKey: "lblTime") {
+            switch timeSettings {
+            case "Véletlen időpontban":
+                startTime = timeFormatter.date(from: "09:00")!
+                endTime = timeFormatter.date(from: "21:00")!
+            case "Délelőtt":
+                startTime = timeFormatter.date(from: "09:00")!
+                endTime = timeFormatter.date(from: "12:00")!
+            case "Délután":
+                startTime = timeFormatter.date(from: "12:00")!
+                endTime = timeFormatter.date(from: "18:00")!
+            case "Este":
+                startTime = timeFormatter.date(from: "18:00")!
+                endTime = timeFormatter.date(from: "21:00")!
+            default:
+                print("Unexpected time identifier was given in: \(#file), line: \(#line)")
+            }
+        }
+
+        return (startTime, endTime)
+    }
+
+    func generateNotificationTimesBetween(_ startTime: Date, _ endTime: Date) -> [Date] {
+        var notificationTimes = [Date]()
+
+        if let recurranceString = defaults.string(forKey: "lblRecurrence") {
+            let multiplier: Int = recurranceNumber(from: recurranceString)
+            let intervalSeconds = endTime.timeIntervalSince(startTime)
+
+            for _ in 1...multiplier {
+                let randomSec = arc4random_uniform(UInt32(intervalSeconds))
+                let randomTime: Date = startTime + TimeInterval(randomSec)
+                notificationTimes.append(randomTime)
+            }
+        }
+
+        return notificationTimes
+    }
+
+    func setNotification(for time: Date) {
+        //Setting content of the notification
+        let content = UNMutableNotificationContent()
+        content.title = "Vicc:"
+        content.body = getRandomJoke()
+        content.badge = 1
+
+        if defaults.bool(forKey: "swNotificationSound") {
+            content.sound = UNNotificationSound.default()
+        }
+
+        //Setting time for notification trigger
+        let dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: time)
+
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
+
+        //Adding request
+        let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 
     func readJokesFrom(fileName: String, ext: String) {
@@ -91,7 +181,9 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         }
 
         let index: Int = Int(arc4random_uniform(UInt32(newJokes.count)))
-        let randomJoke = newJokes[index].value(forKey: "joke") as! String
+        guard let randomJoke = newJokes[index].value(forKey: "joke") as? String else {
+            return "Error getting a random joke"
+        }
         jokeDidUseWith(index)
 
         return randomJoke

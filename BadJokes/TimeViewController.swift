@@ -18,6 +18,7 @@ class TimeViewController: UITableViewController {
     @IBOutlet weak var timePicker: UIDatePicker!
 
     let tableContent = ["Véletlen időpontban", "Délelőtt", "Délután", "Este", "Pontos időpontban"]
+    let tableDetailContent = ["09:00 - 21:00 között", "09:00 - 12:00 között", "12:00 - 18:00 között", "18:00 - 21:00 között", ""]
 
     var lastSelectedOption = String()
     var lastSelectedTime = Date()
@@ -89,8 +90,9 @@ class TimeViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "prototypeCell")
+        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "prototypeCell")
         cell.textLabel?.text = tableContent[indexPath.row]
+        cell.detailTextLabel?.text = tableDetailContent[indexPath.row]
 
         return cell
     }
