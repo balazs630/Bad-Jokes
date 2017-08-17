@@ -31,7 +31,7 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         timeFormatter.dateFormat = "HH:mm"
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
 
-        if defaults.string(forKey: "lblTime") == Time.atGivenTime {
+        if defaults.string(forKey: UserDefaultsKeys.Lbl.time) == Time.atGivenTime {
             let time = getGivenTime()
             setNotification(for: time)
         } else {
@@ -51,7 +51,7 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         content.body = getRandomJoke()
         content.badge = 1
 
-        if defaults.bool(forKey: "swNotificationSound") {
+        if defaults.bool(forKey: UserDefaultsKeys.Sw.notificationSound) {
             content.sound = UNNotificationSound.default()
         }
 
@@ -86,8 +86,8 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         let gregorian = Calendar(identifier: .gregorian)
         var timeComponents = gregorian.dateComponents([.hour, .minute], from: Date())
 
-        timeComponents.hour = defaults.integer(forKey: "pckTimeHours")
-        timeComponents.minute = defaults.integer(forKey: "pckTimeMinutes")
+        timeComponents.hour = defaults.integer(forKey: UserDefaultsKeys.Pck.timeHours)
+        timeComponents.minute = defaults.integer(forKey: UserDefaultsKeys.Pck.timeMinutes)
 
         let time = gregorian.date(from: timeComponents)!
         return time
@@ -97,7 +97,7 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         var startTime = Date()
         var endTime = Date()
 
-        if let timeSettings = defaults.string(forKey: "lblTime") {
+        if let timeSettings = defaults.string(forKey: UserDefaultsKeys.Lbl.time) {
             switch timeSettings {
             case Time.random:
                 startTime = timeFormatter.date(from: Time.Hour.nine)!
@@ -122,7 +122,7 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
     func generateNotificationTimesBetween(_ startTime: Date, _ endTime: Date) -> [Date] {
         var notificationTimes = [Date]()
 
-        if let recurranceString = defaults.string(forKey: "lblRecurrence") {
+        if let recurranceString = defaults.string(forKey: UserDefaultsKeys.Lbl.recurrence) {
             let multiplier: Int = recurranceNumber(from: recurranceString)
             let intervalSeconds = endTime.timeIntervalSince(startTime)
 
@@ -143,7 +143,7 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         content.body = getRandomJoke()
         content.badge = 1
 
-        if defaults.bool(forKey: "swNotificationSound") {
+        if defaults.bool(forKey: UserDefaultsKeys.Sw.notificationSound) {
             content.sound = UNNotificationSound.default()
         }
 
@@ -182,6 +182,7 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
 
         let index: Int = Int(arc4random_uniform(UInt32(newJokes.count)))
         guard let randomJoke = newJokes[index].value(forKey: "joke") as? String else {
+            //TODO: Add a default joke instead of a warning
             return "Error getting a random joke"
         }
         jokeDidUseWith(index)

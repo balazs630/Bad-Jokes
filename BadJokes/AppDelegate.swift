@@ -8,6 +8,36 @@
 
 import UIKit
 
+struct UserDefaultsKeys {
+    struct Sw {
+        static let globalOff = "swGlobalOff"
+        static let notificationSound = "swNotificationSound"
+    }
+
+    struct Lbl {
+        static let periodicity = "lblPeriodicity"
+        static let recurrence = "lblRecurrence"
+        static let time = "lblTime"
+    }
+
+    struct Pck {
+        static let timeHours = "pckTimeHours"
+        static let timeMinutes = "pckTimeMinutes"
+    }
+
+    struct Sld {
+        static let animal = "sldAnimal"
+        static let rough = "sldRough"
+        static let IT = "sldIT"
+        static let anti = "sldAnti"
+        static let tiring = "sldTiring"
+        static let jean = "sldJean"
+        static let moriczka = "sldMoriczka"
+        static let cop = "sldCop"
+        static let blonde = "sldBlonde"
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -23,22 +53,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
 
             let firstTimeLaunchDefaults: [String : Any] = [
-                "swGlobalOff": false,
-                "swNotificationSound": true,
-                "lblPeriodicity": "Napi",
-                "lblRecurrence": "1x",
-                "lblTime": "Véletlen időpontban",
-                "pckTimeHours": "12",
-                "pckTimeMinutes": "00",
-                "sldAnimal": 5,
-                "sldRough": 0,
-                "sldIT": 1,
-                "sldAnti": 3,
-                "sldTiring": 5,
-                "sldJean": 1,
-                "sldMoriczka": 3,
-                "sldCop": 2,
-                "sldBlonde": 1
+                UserDefaultsKeys.Sw.globalOff: false,
+                UserDefaultsKeys.Sw.notificationSound: true,
+
+                UserDefaultsKeys.Lbl.periodicity: "Napi",
+                UserDefaultsKeys.Lbl.recurrence: "1x",
+                UserDefaultsKeys.Lbl.time: "Véletlen időpontban",
+
+                UserDefaultsKeys.Pck.timeHours: "12",
+                UserDefaultsKeys.Pck.timeMinutes: "00",
+
+                UserDefaultsKeys.Sld.animal: 5,
+                UserDefaultsKeys.Sld.rough: 0,
+                UserDefaultsKeys.Sld.IT: 1,
+                UserDefaultsKeys.Sld.anti: 3,
+                UserDefaultsKeys.Sld.tiring: 5,
+                UserDefaultsKeys.Sld.jean: 1,
+                UserDefaultsKeys.Sld.moriczka: 3,
+                UserDefaultsKeys.Sld.cop: 2,
+                UserDefaultsKeys.Sld.blonde: 1
             ]
 
             for item in firstTimeLaunchDefaults {

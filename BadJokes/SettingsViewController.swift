@@ -37,18 +37,18 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     var pckTimeMinutes = String()
     var lblTimeOptionName = String()
 
-    // Slider variables and it's UserDefaults keys
+    // Slider IBOutlets and it's UserDefault keys
     var sldCollection: [UISlider:String] {
         return [
-            sldAnimal: "sldAnimal",
-            sldRough: "sldRough",
-            sldIT: "sldIT",
-            sldAnti: "sldAnti",
-            sldTiring: "sldTiring",
-            sldJean: "sldJean",
-            sldMoriczka: "sldMoriczka",
-            sldCop: "sldCop",
-            sldBlonde: "sldBlonde"
+            sldAnimal: UserDefaultsKeys.Sld.animal,
+            sldRough: UserDefaultsKeys.Sld.rough,
+            sldIT: UserDefaultsKeys.Sld.IT,
+            sldAnti: UserDefaultsKeys.Sld.anti,
+            sldTiring: UserDefaultsKeys.Sld.tiring,
+            sldJean: UserDefaultsKeys.Sld.jean,
+            sldMoriczka: UserDefaultsKeys.Sld.moriczka,
+            sldCop: UserDefaultsKeys.Sld.cop,
+            sldBlonde: UserDefaultsKeys.Sld.blonde
         ]
     }
 
@@ -101,23 +101,24 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     }
 
     func loadPreferences() {
-        swGlobalOff.isOn = defaults.bool(forKey: "swGlobalOff")
-        swNotificationSound.isOn = defaults.bool(forKey: "swNotificationSound")
+        swGlobalOff.isOn = defaults.bool(forKey: UserDefaultsKeys.Sw.globalOff)
+        swNotificationSound.isOn = defaults.bool(forKey: UserDefaultsKeys.Sw.notificationSound)
 
-        lblPeriodicity.text = defaults.string(forKey: "lblPeriodicity")
-        lblRecurrence.text = defaults.string(forKey: "lblRecurrence")
+        lblPeriodicity.text = defaults.string(forKey: UserDefaultsKeys.Lbl.periodicity)
+        lblRecurrence.text = defaults.string(forKey: UserDefaultsKeys.Lbl.recurrence)
 
-        if let hours = defaults.string(forKey: "pckTimeHours"), let minutes = defaults.string(forKey: "pckTimeMinutes") {
+        if let hours = defaults.string(forKey: UserDefaultsKeys.Pck.timeHours),
+            let minutes = defaults.string(forKey: UserDefaultsKeys.Pck.timeMinutes) {
             pckTimeHours = hours
             pckTimeMinutes = minutes
         }
 
-        if defaults.string(forKey: "lblTime") == Time.atGivenTime {
+        if defaults.string(forKey: UserDefaultsKeys.Lbl.time) == Time.atGivenTime {
             lblTime.text = "Pontosan \(pckTimeHours):\(pckTimeMinutes)-kor"
             lblTimeOptionName = Time.atGivenTime
         } else {
-            lblTime.text = defaults.string(forKey: "lblTime")
-            if let text = defaults.string(forKey: "lblTime") {
+            lblTime.text = defaults.string(forKey: UserDefaultsKeys.Lbl.time)
+            if let text = defaults.string(forKey: UserDefaultsKeys.Lbl.time) {
                 lblTimeOptionName = text
             }
         }
@@ -130,15 +131,15 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     }
 
     func savePreferences() {
-        defaults.set(swGlobalOff.isOn, forKey: "swGlobalOff")
-        defaults.set(swNotificationSound.isOn, forKey: "swNotificationSound")
+        defaults.set(swGlobalOff.isOn, forKey: UserDefaultsKeys.Sw.globalOff)
+        defaults.set(swNotificationSound.isOn, forKey: UserDefaultsKeys.Sw.notificationSound)
 
-        defaults.set(lblPeriodicity.text, forKey: "lblPeriodicity")
-        defaults.set(lblRecurrence.text, forKey: "lblRecurrence")
-        defaults.set(lblTimeOptionName, forKey: "lblTime")
+        defaults.set(lblPeriodicity.text, forKey: UserDefaultsKeys.Lbl.periodicity)
+        defaults.set(lblRecurrence.text, forKey: UserDefaultsKeys.Lbl.recurrence)
+        defaults.set(lblTimeOptionName, forKey: UserDefaultsKeys.Lbl.time)
 
-        defaults.set(pckTimeHours, forKey: "pckTimeHours")
-        defaults.set(pckTimeMinutes, forKey: "pckTimeMinutes")
+        defaults.set(pckTimeHours, forKey: UserDefaultsKeys.Pck.timeHours)
+        defaults.set(pckTimeMinutes, forKey: UserDefaultsKeys.Pck.timeMinutes)
         defaults.synchronize()
 
         for item in sldCollection {
