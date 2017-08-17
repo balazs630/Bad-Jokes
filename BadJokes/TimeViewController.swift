@@ -62,13 +62,13 @@ class TimeViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        // Set timePicker's value to the last selected value
-        timePicker.date = lastSelectedTime
-
         // Set the row index of the last selected option
         if let index = tableContent.index(of: lastSelectedOption) {
             selectedIndexPath.row = index
         }
+
+        // Set timePicker's value to the last selected value
+        timePicker.date = lastSelectedTime
 
         // Hide time picker if not the last choice is selected
         if selectedIndexPath != givenTimeIndexPath {
@@ -85,10 +85,15 @@ class TimeViewController: UITableViewController {
         //When navigating to the previous VC with "back" nav bar button
 
         if selectedIndexPath == givenTimeIndexPath {
-            // Time picker
+            // Time picker is active
             let timeComponents = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
             if let hourComponent = timeComponents.hour, let minuteComponent = timeComponents.minute {
-                delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row], hours: String(hourComponent), minutes: String(minuteComponent))
+                if minuteComponent == 0 {
+                    //TODO: Rewrite with proper dateformatter
+                    delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row], hours: String(hourComponent), minutes: "00")
+                } else {
+                    delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row], hours: String(hourComponent), minutes: String(minuteComponent))
+                }
             }
         } else {
             delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row])
