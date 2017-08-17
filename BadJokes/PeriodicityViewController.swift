@@ -12,9 +12,17 @@ protocol PeriodicityViewControllerDelegate: class {
     func savePeriodicityWith(selectedCellText: String)
 }
 
+struct Periodicity {
+    static let napi = "Napi"
+    static let heti = "Heti"
+    static let havi = "Havi"
+}
+
 class PeriodicityViewController: UITableViewController {
 
-    let tableContent = ["Napi", "Heti", "Havi"]
+    let tableContent = [Periodicity.napi,
+                        Periodicity.heti,
+                        Periodicity.havi]
 
     var lastSelectedOption = String()
     var selectedIndexPath = IndexPath(row: 0, section: 0)

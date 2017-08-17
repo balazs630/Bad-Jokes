@@ -12,9 +12,23 @@ protocol RecurrenceViewControllerDelegate: class {
     func saveRecurrenceWith(selectedCellText: String)
 }
 
+struct Recurrence {
+    static let once = "1x"
+    static let twice = "2x"
+    static let threeTimes = "3x"
+    static let fiveTimes = "5x"
+    static let tenTimes = "10x"
+    static let twentyTimes = "20x"
+}
+
 class RecurrenceViewController: UITableViewController {
 
-    let tableContent = ["1x", "2x", "3x", "5x", "10x", "20x"]
+    let tableContent = [Recurrence.once,
+                        Recurrence.twice,
+                        Recurrence.threeTimes,
+                        Recurrence.fiveTimes,
+                        Recurrence.tenTimes,
+                        Recurrence.twentyTimes]
 
     var lastSelectedOption = String()
     var selectedIndexPath = IndexPath(row: 0, section: 0)

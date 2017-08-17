@@ -112,9 +112,9 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
             pckTimeMinutes = minutes
         }
 
-        if defaults.string(forKey: "lblTime") == "Pontos időpontban" {
+        if defaults.string(forKey: "lblTime") == Time.atGivenTime {
             lblTime.text = "Pontosan \(pckTimeHours):\(pckTimeMinutes)-kor"
-            lblTimeOptionName = "Pontos időpontban"
+            lblTimeOptionName = Time.atGivenTime
         } else {
             lblTime.text = defaults.string(forKey: "lblTime")
             if let text = defaults.string(forKey: "lblTime") {

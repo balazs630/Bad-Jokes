@@ -13,12 +13,44 @@ protocol TimeViewControllerDelegate: class {
     func saveTimeWithSelected(cellText: String, hours: String, minutes: String)
 }
 
+struct Time {
+    static let random = "Véletlen időpontban"
+    static let morning = "Délelőtt"
+    static let afternoon = "Délután"
+    static let evening = "Este"
+    static let atGivenTime = "Pontos időpontban"
+
+    struct Hour {
+        static let nine = "09:00"
+        static let noon = "12:00"
+        static let eighteen = "18:00"
+        static let twentyone = "21:00"
+    }
+
+    struct Detail {
+        static let random = "09:00 - 21:00 között"
+        static let morning = "09:00 - 12:00 között"
+        static let afternoon = "12:00 - 18:00 között"
+        static let evening = "18:00 - 21:00 között"
+        static let atGivenTime = ""
+    }
+}
+
 class TimeViewController: UITableViewController {
 
     @IBOutlet weak var timePicker: UIDatePicker!
 
-    let tableContent = ["Véletlen időpontban", "Délelőtt", "Délután", "Este", "Pontos időpontban"]
-    let tableDetailContent = ["09:00 - 21:00 között", "09:00 - 12:00 között", "12:00 - 18:00 között", "18:00 - 21:00 között", ""]
+    let tableContent = [Time.random,
+                        Time.morning,
+                        Time.afternoon,
+                        Time.evening,
+                        Time.atGivenTime]
+
+    let tableDetailContent = [Time.Detail.random,
+                              Time.Detail.morning,
+                              Time.Detail.afternoon,
+                              Time.Detail.evening,
+                              Time.Detail.atGivenTime]
 
     var lastSelectedOption = String()
     var lastSelectedTime = Date()

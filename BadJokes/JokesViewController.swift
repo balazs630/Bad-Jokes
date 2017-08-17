@@ -31,7 +31,7 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         timeFormatter.dateFormat = "HH:mm"
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
 
-        if defaults.string(forKey: "lblTime") == "Pontos időpontban" {
+        if defaults.string(forKey: "lblTime") == Time.atGivenTime {
             let time = getGivenTime()
             setNotification(for: time)
         } else {
@@ -99,18 +99,18 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
 
         if let timeSettings = defaults.string(forKey: "lblTime") {
             switch timeSettings {
-            case "Véletlen időpontban":
-                startTime = timeFormatter.date(from: "09:00")!
-                endTime = timeFormatter.date(from: "21:00")!
-            case "Délelőtt":
-                startTime = timeFormatter.date(from: "09:00")!
-                endTime = timeFormatter.date(from: "12:00")!
-            case "Délután":
-                startTime = timeFormatter.date(from: "12:00")!
-                endTime = timeFormatter.date(from: "18:00")!
-            case "Este":
-                startTime = timeFormatter.date(from: "18:00")!
-                endTime = timeFormatter.date(from: "21:00")!
+            case Time.random:
+                startTime = timeFormatter.date(from: Time.Hour.nine)!
+                endTime = timeFormatter.date(from: Time.Hour.twentyone)!
+            case Time.morning:
+                startTime = timeFormatter.date(from: Time.Hour.nine)!
+                endTime = timeFormatter.date(from: Time.Hour.noon)!
+            case Time.afternoon:
+                startTime = timeFormatter.date(from: Time.Hour.noon)!
+                endTime = timeFormatter.date(from: Time.Hour.eighteen)!
+            case Time.evening:
+                startTime = timeFormatter.date(from: Time.Hour.eighteen)!
+                endTime = timeFormatter.date(from: Time.Hour.twentyone)!
             default:
                 print("Unexpected time identifier was given in: \(#file), line: \(#line)")
             }
