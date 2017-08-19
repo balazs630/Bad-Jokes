@@ -216,14 +216,12 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
                     let destVC = segue.destination as! TimeViewController
                     destVC.lastSelectedOption = lblTimeOptionName
 
-                    let gregorian = Calendar(identifier: .gregorian)
-
-                    var timeComponents = gregorian.dateComponents([.hour, .minute], from: Date())
+                    let calendar = Calendar(identifier: .gregorian)
+                    var timeComponents = calendar.dateComponents([.hour, .minute], from: Date())
                     timeComponents.hour = Int(pckTimeHours)
                     timeComponents.minute = Int(pckTimeMinutes)
 
-                    destVC.lastSelectedTime = gregorian.date(from: timeComponents)!
-
+                    destVC.lastSelectedTime = calendar.date(from: timeComponents)!
                     destVC.delegate = self
                 default:
                     print("Unexpected segue identifier was given in: \(#file), line: \(#line)")

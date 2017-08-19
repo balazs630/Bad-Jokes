@@ -16,6 +16,7 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
 
     let timeFormatter = DateFormatter()
     let dateFormatter = DateFormatter()
+    var localTimeZoneName: String { return TimeZone.current.identifier }
 
     let defaults = UserDefaults.standard
 
@@ -29,46 +30,10 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         UNUserNotificationCenter.current().delegate = self
 
         timeFormatter.dateFormat = "HH:mm"
+        timeFormatter.timeZone = TimeZone(identifier: localTimeZoneName)
+
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-
-        if defaults.string(forKey: UserDefaultsKeys.Lbl.time) == Time.atGivenTime {
-            let time = getGivenTime()
-            setNotification(for: time)
-        } else {
-            //Véletlen időpontban, délelőtt, délután vagy este
-            let timeInterval = getTimeInterval()
-            let notificationTimes = generateNotificationTimesBetween(timeInterval.0, timeInterval.1)
-            for time in notificationTimes {
-                setNotification(for: time)
-            }
-        }
-    }
-
-    @IBAction func sendNotification(_ sender: UIButton) {
-        //Setting content of the notification
-        let content = UNMutableNotificationContent()
-        content.title = "Vicc:"
-        content.body = getRandomJoke()
-        content.badge = 1
-
-        if defaults.bool(forKey: UserDefaultsKeys.Sw.notificationSound) {
-            content.sound = UNNotificationSound.default()
-        }
-
-        //Setting time for notification trigger
-        let date = Date(timeIntervalSinceNow: 3)
-        let dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
-
-        //Adding request
-        let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
-
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-    }
-
-    func settingsDidClose() {
-        //TODO
+        dateFormatter.timeZone = TimeZone(identifier: localTimeZoneName)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
@@ -82,14 +47,43 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
+    func settingsDidClose() {
+        applyCurrentNotificationSettings()
+    }
+
+    func applyCurrentNotificationSettings() {
+        if defaults.string(forKey: UserDefaultsKeys.Lbl.time) == Time.atGivenTime {
+            //Pontos időpontban
+            let time = getGivenTime()
+            if let recurranceString = defaults.string(forKey: UserDefaultsKeys.Lbl.recurrence) {
+                let multiplier: Int = recurranceNumber(from: recurranceString)
+                for i in 1...multiplier {
+                    // Separate multiple notifications with 1 second difference
+                    setNotification(for: time + TimeInterval(i))
+                }
+            }
+        } else {
+            //Véletlen időpontban, délelőtt, délután vagy este
+            let timeInterval = getTimeInterval()
+            let notificationTimes = generateNotificationTimesBetween(timeInterval.0, timeInterval.1)
+            for time in notificationTimes {
+                setNotification(for: time)
+            }
+        }
+    }
+
     func getGivenTime() -> Date {
-        let gregorian = Calendar(identifier: .gregorian)
-        var timeComponents = gregorian.dateComponents([.hour, .minute], from: Date())
+        let calendar = Calendar(identifier: .gregorian)
+        var timeComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
+        timeComponents.timeZone = TimeZone(identifier: localTimeZoneName)
 
         timeComponents.hour = defaults.integer(forKey: UserDefaultsKeys.Pck.timeHours)
         timeComponents.minute = defaults.integer(forKey: UserDefaultsKeys.Pck.timeMinutes)
+        print("getGivenTime(): timeComponents: \(timeComponents)")
 
-        let time = gregorian.date(from: timeComponents)!
+        let time = calendar.date(from: timeComponents)!
+        print("getGivenTime(): \(time)")
+        print("")
         return time
     }
 
@@ -100,17 +94,17 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         if let timeSettings = defaults.string(forKey: UserDefaultsKeys.Lbl.time) {
             switch timeSettings {
             case Time.random:
-                startTime = timeFormatter.date(from: Time.Hour.nine)!
-                endTime = timeFormatter.date(from: Time.Hour.twentyone)!
+                startTime = timeFormatter.date(from: Time.Hour.morningStart)!
+                endTime = timeFormatter.date(from: Time.Hour.nightStart)!
             case Time.morning:
-                startTime = timeFormatter.date(from: Time.Hour.nine)!
-                endTime = timeFormatter.date(from: Time.Hour.noon)!
+                startTime = timeFormatter.date(from: Time.Hour.morningStart)!
+                endTime = timeFormatter.date(from: Time.Hour.afternoonStart)!
             case Time.afternoon:
-                startTime = timeFormatter.date(from: Time.Hour.noon)!
-                endTime = timeFormatter.date(from: Time.Hour.eighteen)!
+                startTime = timeFormatter.date(from: Time.Hour.afternoonStart)!
+                endTime = timeFormatter.date(from: Time.Hour.eveningStart)!
             case Time.evening:
-                startTime = timeFormatter.date(from: Time.Hour.eighteen)!
-                endTime = timeFormatter.date(from: Time.Hour.twentyone)!
+                startTime = timeFormatter.date(from: Time.Hour.eveningStart)!
+                endTime = timeFormatter.date(from: Time.Hour.nightStart)!
             default:
                 print("Unexpected time identifier was given in: \(#file), line: \(#line)")
             }
@@ -136,6 +130,13 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         return notificationTimes
     }
 
+    func recurranceNumber(from value: String) -> Int {
+        guard let recurranceNumber = Int(value.substring(to: value.index(before: value.endIndex))) else {
+            return Int()
+        }
+        return recurranceNumber
+    }
+
     func setNotification(for time: Date) {
         //Setting content of the notification
         let content = UNMutableNotificationContent()
@@ -148,9 +149,12 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
         }
 
         //Setting time for notification trigger
-        let dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: time)
+        var dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: time)
+        dateCompenents.timeZone = TimeZone(identifier: localTimeZoneName)
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
+        print("setNotification fromSettings, trigger: \(trigger)")
+        print("")
 
         //Adding request
         let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
@@ -202,13 +206,6 @@ class JokesViewController: UIViewController, UNUserNotificationCenterDelegate, S
     func restoreUsedJokesAsNew() {
         newJokes = usedJokes
         usedJokes.removeAll()
-    }
-
-    func recurranceNumber(from value: String) -> Int {
-        guard let recurranceNumber = Int(value.substring(to: value.index(before: value.endIndex))) else {
-            return Int()
-        }
-        return recurranceNumber
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
