@@ -82,7 +82,7 @@ class TimeViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        //When navigating to the previous VC with "back" nav bar button
+        // When navigating to the previous VC with "back" nav bar button
 
         if selectedIndexPath == givenTimeIndexPath {
             // Time picker is active

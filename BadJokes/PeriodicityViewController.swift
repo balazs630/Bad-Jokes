@@ -44,7 +44,7 @@ class PeriodicityViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        //When navigating to the previous VC with "back" nav bar button
+        // When navigating to the previous VC with "back" nav bar button
         delegate?.savePeriodicityWith(selectedCellText: tableContent[selectedIndexPath.row])
     }
 

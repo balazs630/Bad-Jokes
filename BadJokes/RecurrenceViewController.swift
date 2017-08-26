@@ -50,7 +50,7 @@ class RecurrenceViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        //When navigating to the previous VC with "back" nav bar button
+        // When navigating to the previous VC with "back" nav bar button
         delegate?.saveRecurrenceWith(selectedCellText: tableContent[selectedIndexPath.row])
     }
 
