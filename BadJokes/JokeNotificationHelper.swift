@@ -29,7 +29,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
             // At given time
             let time = getGivenTime()
             if let recurranceString = defaults.string(forKey: UserDefaultsKeys.Lbl.recurrence) {
-                let multiplier: Int = recurranceNumber(from: recurranceString)
+                let multiplier: Int = recurranceString.cutLastCharacter()
                 for i in 1...multiplier {
                     // Separate multiple notifications with 1 second difference
                     setNotification(for: time + TimeInterval(i))
@@ -131,7 +131,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         var notificationTimes = [Date]()
 
         if let recurranceString = defaults.string(forKey: UserDefaultsKeys.Lbl.recurrence) {
-            let multiplier: Int = recurranceNumber(from: recurranceString)
+            let multiplier: Int = recurranceString.cutLastCharacter()
             let intervalSeconds = endTime.timeIntervalSince(startTime)
 
             for _ in 1...multiplier {
@@ -144,15 +144,8 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         return notificationTimes
     }
 
-    private func recurranceNumber(from value: String) -> Int {
-        // Cut down the last letter, e.x. 10x -> 10
-        guard let recurranceNumber = Int(value.substring(to: value.index(before: value.endIndex))) else {
-            return Int()
-        }
-        return recurranceNumber
-    }
-
     private func getJokeType() -> String {
+        // Get a joke type and check if the type has unused joke(s)
         var jokeType = generateJokeType()
         var n = 0
         while true {
@@ -179,13 +172,32 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     }
 
     private func generateJokeType() -> String {
-        // TODO: Generate a joke type based on the sliders from the Settings screen
-        return ""
+        // Generate a joke type based on the sliders from the Settings screen
+        var sldProbabilities = [String]()
+
+        for sld in UserDefaultsKeys.sldCollection {
+            let sldValue = defaults.double(forKey: sld)
+            for _ in 0...Int(sldValue) {
+                // Add the slider's name to the array as many times as it's value (0-10)
+                sldProbabilities.append(sld)
+            }
+        }
+
+        // Retuns a random element from the array
+        return sldProbabilities[Int(arc4random_uniform(UInt32(sldProbabilities.count)))]
     }
 
     private func getLeftOverJokeType() -> String {
-        // TODO: Goes through each joke type and returns the first joke type that contains unused joke(s)
-        return ""
-    }
+        // Goes through each joke type and returns the first joke type that contains unused joke(s)
+        var type = String()
 
+        for sld in UserDefaultsKeys.sldCollection {
+            if plistFileManager.isAllJokeUsedWith(type: sld) == false {
+                type = sld
+                break
+            }
+        }
+
+        return type
+    }
 }

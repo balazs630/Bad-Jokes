@@ -8,36 +8,6 @@
 
 import UIKit
 
-struct UserDefaultsKeys {
-    struct Sw {
-        static let globalOff = "swGlobalOff"
-        static let notificationSound = "swNotificationSound"
-    }
-
-    struct Lbl {
-        static let periodicity = "lblPeriodicity"
-        static let recurrence = "lblRecurrence"
-        static let time = "lblTime"
-    }
-
-    struct Pck {
-        static let timeHours = "pckTimeHours"
-        static let timeMinutes = "pckTimeMinutes"
-    }
-
-    struct Sld {
-        static let animal = "sldAnimal"
-        static let rough = "sldRough"
-        static let IT = "sldIT"
-        static let anti = "sldAnti"
-        static let tiring = "sldTiring"
-        static let jean = "sldJean"
-        static let moriczka = "sldMoriczka"
-        static let cop = "sldCop"
-        static let blonde = "sldBlonde"
-    }
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -48,11 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let defaults = UserDefaults.standard
 
-        if defaults.object(forKey: "isAppAlreadyLaunchedOnce") == nil {
+        if defaults.object(forKey: UserDefaultsKeys.isAppAlreadyLaunchedOnce) == nil {
             // First launch
-            defaults.set(true, forKey: "isAppAlreadyLaunchedOnce")
-
             let firstTimeLaunchDefaults: [String : Any] = [
+                UserDefaultsKeys.isAppAlreadyLaunchedOnce: true,
+
                 UserDefaultsKeys.Sw.globalOff: false,
                 UserDefaultsKeys.Sw.notificationSound: true,
 
@@ -63,15 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UserDefaultsKeys.Pck.timeHours: "12",
                 UserDefaultsKeys.Pck.timeMinutes: "00",
 
-                UserDefaultsKeys.Sld.animal: 5,
+                UserDefaultsKeys.Sld.animal: 10,
                 UserDefaultsKeys.Sld.rough: 0,
-                UserDefaultsKeys.Sld.IT: 1,
-                UserDefaultsKeys.Sld.anti: 3,
-                UserDefaultsKeys.Sld.tiring: 5,
-                UserDefaultsKeys.Sld.jean: 1,
-                UserDefaultsKeys.Sld.moriczka: 3,
-                UserDefaultsKeys.Sld.cop: 2,
-                UserDefaultsKeys.Sld.blonde: 1
+                UserDefaultsKeys.Sld.IT: 2,
+                UserDefaultsKeys.Sld.anti: 6,
+                UserDefaultsKeys.Sld.tiring: 10,
+                UserDefaultsKeys.Sld.jean: 2,
+                UserDefaultsKeys.Sld.moriczka: 6,
+                UserDefaultsKeys.Sld.cop: 4,
+                UserDefaultsKeys.Sld.blonde: 2
             ]
 
             for item in firstTimeLaunchDefaults {

@@ -10,9 +10,25 @@ import Foundation
 
 class PlistFileManager {
 
+    let fileManager = FileManager.default
+
     func getRandomJokeWith(type: String) -> String {
         // TODO: Beállított feltételeknek megfelelően visszaad egy viccet
-        return "joke!"
+
+        var randomJoke = String()
+
+        if let fileUrl = Bundle.main.url(forResource: "jokes", withExtension: "plist"),
+            let data = try? Data(contentsOf: fileUrl) {
+            if let result = try? PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [String: Any] {
+                if let jokes = result?["jokes"] as? [NSDictionary] {
+                    if let joke = jokes[0]["joke"] {
+                        randomJoke = joke as! String
+                    }
+                }
+            }
+        }
+
+        return randomJoke
     }
 
     func isAllJokeUsed() -> Bool {
