@@ -14,7 +14,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     var localTimeZoneName: String { return TimeZone.current.identifier }
 
     let defaults = UserDefaults.standard
-    let plistFileManager = PlistFileManager()
+    let dbManager = DBManager()
 
     override init() {
         super.init()
@@ -57,7 +57,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         content.title = "Vicc:"
         content.badge = 1
         let type = getJokeType()
-        content.body = plistFileManager.getRandomJokeWith(type: type)
+        content.body = dbManager.getRandomJokeWith(type: type).joke
 
         if defaults.bool(forKey: UserDefaultsKeys.Sw.notificationSound) {
             content.sound = UNNotificationSound.default()
@@ -68,8 +68,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         dateCompenents.timeZone = TimeZone(identifier: localTimeZoneName)
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
-        print("setNotification fromSettings, trigger: \(trigger)")
-        print("")
+        print("setNotification fromSettings, trigger: \(trigger)\n")
 
         // Adding request
         let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
@@ -92,8 +91,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         print("getGivenTime(): timeComponents: \(timeComponents)")
 
         let time = calendar.date(from: timeComponents)!
-        print("getGivenTime(): \(time)")
-        print("")
+        print("getGivenTime(): \(time)\n")
         return time
     }
 
@@ -135,8 +133,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
             let intervalSeconds = endTime.timeIntervalSince(startTime)
 
             for _ in 1...multiplier {
-                let randomSec = arc4random_uniform(UInt32(intervalSeconds))
-                let randomTime: Date = startTime + TimeInterval(randomSec)
+                let randomTime: Date = startTime + TimeInterval(intervalSeconds.randomSec())
                 notificationTimes.append(randomTime)
             }
         }
@@ -149,7 +146,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         var jokeType = generateJokeType()
         var n = 0
         while true {
-            if plistFileManager.isAllJokeUsedWith(type: jokeType) {
+            if dbManager.isAllJokeUsedWith(type: jokeType) {
                 jokeType = generateJokeType()
                 n += 1
             } else {
@@ -158,9 +155,10 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
             // If it couldn't find a joke type from 100 tries that has unused jokes
             if n == 100 {
-                if plistFileManager.isAllJokeUsed() {
-                    plistFileManager.restoreUsedJokesAsNew()
-                    jokeType = generateJokeType()
+                if dbManager.isAllJokeUsed() {
+                    dbManager.restoreUsedJokesAsNew()
+                    // Recursion
+                    jokeType = getJokeType()
                 } else {
                     jokeType = getLeftOverJokeType()
                 }
@@ -168,6 +166,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
             }
         }
 
+        print("getJokeType: \(jokeType)")
         return jokeType
     }
 
@@ -175,24 +174,32 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         // Generate a joke type based on the sliders from the Settings screen
         var sldProbabilities = [String]()
 
-        for sld in UserDefaultsKeys.sldCollection {
-            let sldValue = defaults.double(forKey: sld)
-            for _ in 0...Int(sldValue) {
-                // Add the slider's name to the array as many times as it's value (0-10)
-                sldProbabilities.append(sld)
+        for slider in UserDefaultsKeys.sldDictionaty {
+            let sldValue = defaults.integer(forKey: slider.key)
+
+            // Skip joke types with value 0
+            if sldValue > 0 {
+                for _ in 1...sldValue {
+                    // Add the joke type to the array as many times as it's slider value (1-10)
+                    sldProbabilities.append(slider.value)
+                }
             }
         }
 
         // Retuns a random element from the array
-        return sldProbabilities[Int(arc4random_uniform(UInt32(sldProbabilities.count)))]
+        guard let randomItem = sldProbabilities.randomItem() else {
+            return "Empty array!"
+        }
+
+        return randomItem
     }
 
     private func getLeftOverJokeType() -> String {
         // Goes through each joke type and returns the first joke type that contains unused joke(s)
         var type = String()
 
-        for sld in UserDefaultsKeys.sldCollection {
-            if plistFileManager.isAllJokeUsedWith(type: sld) == false {
+        for sld in UserDefaultsKeys.sldDictionaty.values {
+            if dbManager.isAllJokeUsedWith(type: sld) == false {
                 type = sld
                 break
             }

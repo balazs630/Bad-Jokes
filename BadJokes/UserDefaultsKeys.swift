@@ -40,18 +40,17 @@ struct UserDefaultsKeys {
         static let blonde = "sldBlonde"
     }
 
-    static var sldCollection: [String] {
+    static var sldDictionaty: [String : String] {
         return [
-            UserDefaultsKeys.Sld.animal,
-            UserDefaultsKeys.Sld.rough,
-            UserDefaultsKeys.Sld.IT,
-            UserDefaultsKeys.Sld.anti,
-            UserDefaultsKeys.Sld.tiring,
-            UserDefaultsKeys.Sld.jean,
-            UserDefaultsKeys.Sld.moriczka,
-            UserDefaultsKeys.Sld.cop,
-            UserDefaultsKeys.Sld.blonde
+            "sldAnimal": "animal",
+            "sldRough": "rough",
+            "sldIT": "IT",
+            "sldAnti": "anti",
+            "sldTiring": "tiring",
+            "sldJean": "jean",
+            "sldMoriczka": "moriczka",
+            "sldCop": "cop",
+            "sldBlonde": "blonde"
         ]
     }
-
 }

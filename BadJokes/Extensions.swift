@@ -27,3 +27,30 @@ public extension UserDefaults {
         print("=========================================================")
     }
 }
+
+public extension Array {
+    func randomIndex() -> Int? {
+        if self.isEmpty {
+            return nil
+        }
+        let index = Int(arc4random_uniform(UInt32(self.count)))
+        return index
+    }
+}
+
+public extension Array {
+    func randomItem() -> Element? {
+        if self.isEmpty {
+            return nil
+        }
+        let index = Int(arc4random_uniform(UInt32(self.count)))
+        return self[index]
+    }
+}
+
+public extension TimeInterval {
+    func randomSec() -> UInt32 {
+        let index = UInt32(arc4random_uniform(UInt32(self)))
+        return index
+    }
+}

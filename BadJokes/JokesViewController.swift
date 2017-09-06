@@ -15,7 +15,7 @@ class JokesViewController: UIViewController, SettingsViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: Finish this func to work properly
-        print(PlistFileManager().getRandomJokeWith(type: "animal"))
+
     }
 
     func settingsDidClose() {
