@@ -16,7 +16,7 @@ struct Field {
         static let isUsed = "isUsed"
         static let isStored = "isStored"
         static let type = "type"
-        static let joke = "joke"
+        static let jokeText = "jokeText"
     }
 }
 
@@ -85,7 +85,7 @@ class DBManager: NSObject {
                                     isUsed: Int(results.int(forColumn: Field.Jokes.isUsed)),
                                     isStored: Int(results.int(forColumn: Field.Jokes.isStored)),
                                     type: results.string(forColumn: Field.Jokes.type),
-                                    joke: results.string(forColumn: Field.Jokes.joke))
+                                    jokeText: results.string(forColumn: Field.Jokes.jokeText))
 
                     resultsArray.append(joke)
                 }
@@ -113,7 +113,7 @@ class DBManager: NSObject {
                                      isUsed: Int(results.int(forColumn: Field.Jokes.isUsed)),
                                      isStored: Int(results.int(forColumn: Field.Jokes.isStored)),
                                      type: results.string(forColumn: Field.Jokes.type),
-                                     joke: results.string(forColumn: Field.Jokes.joke))
+                                     jokeText: results.string(forColumn: Field.Jokes.jokeText))
 
                     resultsArray.append(joke)
                 }
@@ -141,7 +141,7 @@ class DBManager: NSObject {
                                     isUsed: Int(results.int(forColumn: Field.Jokes.isUsed)),
                                     isStored: Int(results.int(forColumn: Field.Jokes.isStored)),
                                     type: results.string(forColumn: Field.Jokes.type),
-                                    joke: results.string(forColumn: Field.Jokes.joke))
+                                    jokeText: results.string(forColumn: Field.Jokes.jokeText))
 
                     resultsArray.append(joke)
                 }
@@ -175,7 +175,7 @@ class DBManager: NSObject {
                                     isUsed: Int(results.int(forColumn: Field.Jokes.isUsed)),
                                     isStored: Int(results.int(forColumn: Field.Jokes.isStored)),
                                     type: results.string(forColumn: Field.Jokes.type),
-                                    joke: results.string(forColumn: Field.Jokes.joke))
+                                    jokeText: results.string(forColumn: Field.Jokes.jokeText))
                     resultsArray.append(joke)
                 }
             } catch {
@@ -206,7 +206,7 @@ class DBManager: NSObject {
                                     isUsed: Int(results.int(forColumn: Field.Jokes.isUsed)),
                                     isStored: Int(results.int(forColumn: Field.Jokes.isStored)),
                                     type: results.string(forColumn: Field.Jokes.type),
-                                    joke: results.string(forColumn: Field.Jokes.joke))
+                                    jokeText: results.string(forColumn: Field.Jokes.jokeText))
 
                     resultsArray.append(joke)
                 }
@@ -238,7 +238,7 @@ class DBManager: NSObject {
                                     isUsed: Int(results.int(forColumn: Field.Jokes.isUsed)),
                                     isStored: Int(results.int(forColumn: Field.Jokes.isStored)),
                                     type: results.string(forColumn: Field.Jokes.type),
-                                    joke: results.string(forColumn: Field.Jokes.joke))
+                                    jokeText: results.string(forColumn: Field.Jokes.jokeText))
 
                     resultsArray.append(joke)
                 }

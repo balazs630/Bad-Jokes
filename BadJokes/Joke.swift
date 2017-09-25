@@ -9,9 +9,9 @@
 import Foundation
 
 struct Joke {
-    var id: Int!
-    var isUsed: Int!
-    var isStored: Int!
-    var type: String!
-    var joke: String!
+    let id: Int
+    let isUsed: Int
+    let isStored: Int
+    let type: String!
+    let jokeText: String!
 }

@@ -57,7 +57,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         content.title = "Vicc:"
         content.badge = 1
         let type = getJokeType()
-        content.body = dbManager.getRandomJokeWith(type: type).joke
+        content.body = dbManager.getRandomJokeWith(type: type).jokeText
 
         if defaults.bool(forKey: UserDefaultsKeys.Sw.notificationSound) {
             content.sound = UNNotificationSound.default()
