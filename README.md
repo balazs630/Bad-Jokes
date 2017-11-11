@@ -12,6 +12,8 @@ This app is in its alpha stage of development. This means that the game is under
 <img src="http://i.imgur.com/evLFsWN.jpg" width="900px" />
 
 ___
+**Done:**
+
 - [x] Over 200 jokes
 - [x] Jokes stored using SQLite db with FMDB wrapper
 - [x] Ability to display an alert if the notifications are turned off for the app
@@ -20,6 +22,8 @@ ___
 - [x] Ability to set a local Notification based on the given timing paramaters
 
 ___
+**Backlog:**
+
 - [ ] Store already sent jokes in a table
 - [ ] Ability to share stored jokes with Mail or custom apps
 - [ ] Logic to handle recurring joke notifications
