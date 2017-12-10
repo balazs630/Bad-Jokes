@@ -47,8 +47,10 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // To display notifications when app is running  inforeground
+        // To display notifications when app is running in foreground
         completionHandler([.alert, .sound])
+        
+        NotificationCenter.default.post(name: NotificationIdentifier.notificationWillFire, object: nil)
     }
 
     private func setNotification(for time: Date) {

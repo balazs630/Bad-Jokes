@@ -72,7 +72,7 @@ class DBManager: NSObject {
         }
     }
 
-    func getAllJokes() -> [Joke]! {
+    func getAllJokes() -> [Joke] {
         var resultsArray = [Joke]()
 
         if openDatabase() {
@@ -100,7 +100,7 @@ class DBManager: NSObject {
         return resultsArray
     }
 
-    func getStoredJokes() -> [Joke]! {
+    func getStoredJokes() -> [Joke] {
         var resultsArray = [Joke]()
 
         if openDatabase() {
@@ -128,7 +128,7 @@ class DBManager: NSObject {
         return resultsArray
     }
 
-    func getRandomJokeWith(type: String) -> Joke! {
+    func getRandomJokeWith(type: String) -> Joke {
         var resultsArray = [Joke]()
 
         if openDatabase() {
@@ -154,11 +154,10 @@ class DBManager: NSObject {
         }
 
         guard let randomIndex = resultsArray.randomIndex() else {
-            return nil
+            restoreUsedJokesAsNew()
+            return resultsArray[resultsArray.randomIndex()!]
         }
-        setJokeUsedAndStoredWith(id: resultsArray[randomIndex].id)
-        print("resultArray count: \(resultsArray.count), randomindex: \(randomIndex)")
-
+        
         return resultsArray[randomIndex]
     }
 

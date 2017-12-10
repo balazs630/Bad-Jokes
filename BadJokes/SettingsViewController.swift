@@ -200,19 +200,19 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
             if let segueIdentifier = segue.identifier {
 
                 switch segueIdentifier {
-                case "periodityDetailSegue":
+                case SegueIdentifier.periodicityDetail:
                     let destVC = segue.destination as! PeriodicityViewController
                     if let lblPeriodicityText = lblPeriodicity.text {
                         destVC.lastSelectedOption = lblPeriodicityText
                     }
                     destVC.delegate = self
-                case "recurrenceDetailSegue":
+                case SegueIdentifier.recurrenceDetail:
                     let destVC = segue.destination as! RecurrenceViewController
                     if let lblRecurrenceText = lblRecurrence.text {
                         destVC.lastSelectedOption = lblRecurrenceText
                     }
                     destVC.delegate = self
-                case "timeDetailSegue":
+                case SegueIdentifier.timeDetail:
                     let destVC = segue.destination as! TimeViewController
                     destVC.lastSelectedOption = lblTimeOptionName
 

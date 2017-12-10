@@ -9,7 +9,8 @@
 import UIKit
 
 class JokesDataSource: NSObject {
-    let jokes: [Joke]
+    let dbManager = DBManager()
+    var jokes: [Joke]
     
     init(jokes: [Joke]) {
         self.jokes = jokes
@@ -27,5 +28,13 @@ extension JokesDataSource: UITableViewDataSource {
         let joke = jokes[indexPath.row]
         cell.jokeText = joke.jokeText
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            dbManager.removeStoredJokeWith(id: jokes[indexPath.row].id)
+            jokes.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
     }
 }

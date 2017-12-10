@@ -11,12 +11,12 @@
 		AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */; };
 		AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */; };
 		AC100EAC1F548A430069C0DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC100EAB1F548A430069C0DE /* Extensions.swift */; };
-		AC100EAE1F5494040069C0DE /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC100EAD1F5494040069C0DE /* UserDefaultsKeys.swift */; };
 		AC7A4E341F51F74700E8F438 /* JokeNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */; };
 		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
 		AC88F9EA1F2BEAE300ACD4B5 /* RecurrenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E91F2BEAE300ACD4B5 /* RecurrenceViewController.swift */; };
 		AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */; };
 		ACACF6E91F51C93E00F501B1 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACF6E81F51C93E00F501B1 /* DBManager.swift */; };
+		ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB7C1E71FDD6106007ED514 /* Constants.swift */; };
 		ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE906B21F22A27200A6A082 /* SettingsViewController.swift */; };
 		ACECF0A51F60A88F0072367C /* jokesDB.db in Resources */ = {isa = PBXBuildFile; fileRef = ACECF0A41F60A88F0072367C /* jokesDB.db */; };
 		ACECF0A71F60AC230072367C /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACECF0A61F60AC230072367C /* Joke.swift */; };
@@ -32,12 +32,12 @@
 		AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeCell.swift; sourceTree = "<group>"; };
 		AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesDataSource.swift; sourceTree = "<group>"; };
 		AC100EAB1F548A430069C0DE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		AC100EAD1F5494040069C0DE /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeNotificationHelper.swift; sourceTree = "<group>"; };
 		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
 		AC88F9E91F2BEAE300ACD4B5 /* RecurrenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurrenceViewController.swift; sourceTree = "<group>"; };
 		AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
 		ACACF6E81F51C93E00F501B1 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		ACB7C1E71FDD6106007ED514 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ACE906B21F22A27200A6A082 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ACECF0A21F60A47E0072367C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		ACECF0A41F60A88F0072367C /* jokesDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jokesDB.db; sourceTree = "<group>"; };
@@ -125,13 +125,13 @@
 			isa = PBXGroup;
 			children = (
 				ACECF0A61F60AC230072367C /* Joke.swift */,
+				ACACF6E81F51C93E00F501B1 /* DBManager.swift */,
 				AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */,
 				AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */,
 				AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */,
-				ACACF6E81F51C93E00F501B1 /* DBManager.swift */,
 				ACECF0A91F60AF820072367C /* ViewControllers */,
 				AC100EAB1F548A430069C0DE /* Extensions.swift */,
-				AC100EAD1F5494040069C0DE /* UserDefaultsKeys.swift */,
+				ACB7C1E71FDD6106007ED514 /* Constants.swift */,
 				ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */,
 				ACEEA9661F1E5FA600BCF905 /* Main.storyboard */,
 				ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */,
@@ -276,7 +276,6 @@
 			files = (
 				ACEEA9651F1E5FA600BCF905 /* JokesViewController.swift in Sources */,
 				AC7A4E341F51F74700E8F438 /* JokeNotificationHelper.swift in Sources */,
-				AC100EAE1F5494040069C0DE /* UserDefaultsKeys.swift in Sources */,
 				AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */,
 				AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */,
 				AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */,
@@ -285,6 +284,7 @@
 				AC100EAC1F548A430069C0DE /* Extensions.swift in Sources */,
 				AC88F9EA1F2BEAE300ACD4B5 /* RecurrenceViewController.swift in Sources */,
 				ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */,
+				ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */,
 				ACACF6E91F51C93E00F501B1 /* DBManager.swift in Sources */,
 				ACECF0A71F60AC230072367C /* Joke.swift in Sources */,
 			);

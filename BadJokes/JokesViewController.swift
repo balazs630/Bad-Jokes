@@ -12,32 +12,9 @@ class JokesViewController: UIViewController, SettingsViewControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let dataSource: JokesDataSource
+    var dataSource: JokesDataSource
     let dbManager = DBManager()
     let jokeNotificationHelper = JokeNotificationHelper()
-    
-    required init?(coder aDecoder: NSCoder) {
-        let jokes = dbManager.getStoredJokes()
-        
-        self.dataSource = JokesDataSource(jokes: jokes!)
-        super.init(coder: aDecoder)
-    }
-    
-    func settingsDidClose() {
-        jokeNotificationHelper.applyCurrentNotificationSettings()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showSettingsSegue" {
-            let destVC = segue.destination as! SettingsViewController
-            destVC.delegate = self
-        }
-    }
-    
-}
-
-// MARK: UIViewController
-extension JokesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,5 +22,40 @@ extension JokesViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = dataSource
         tableView.reloadData()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(refreshTableContent),
+                                               name: NotificationIdentifier.notificationWillFire,
+                                               object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.refreshTableContent()
+    }
+    
+    @objc func refreshTableContent() {
+        self.dataSource = JokesDataSource(jokes: dbManager.getStoredJokes())
+        tableView.dataSource = dataSource
+        tableView.reloadData()
+    }
+    
+    func settingsDidClose() {
+        jokeNotificationHelper.applyCurrentNotificationSettings()
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueIdentifier.showSettings {
+            let destVC = segue.destination as! SettingsViewController
+            destVC.delegate = self
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        let jokes = dbManager.getStoredJokes()
+        
+        self.dataSource = JokesDataSource(jokes: jokes)
+        super.init(coder: aDecoder)
     }
 }
+
