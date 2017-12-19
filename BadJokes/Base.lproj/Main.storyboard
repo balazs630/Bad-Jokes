@@ -517,15 +517,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nem találhatóak korábbi viccek! Állítsd be hogy mikor szeretnél értesítésként viccet kapni!" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWu-A0-riW">
-                                <rect key="frame" x="27" y="72" width="321" height="107"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bKb-W4-Hgi">
-                                <rect key="frame" x="0.0" y="173" width="375" height="494"/>
+                                <rect key="frame" x="0.0" y="82" width="375" height="585"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="JokeCell" id="XK4-Zi-ehe" customClass="JokeCell" customModule="BadJokes">
@@ -555,7 +548,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3Tn-qN-o1Z" firstAttribute="top" secondItem="bKb-W4-Hgi" secondAttribute="bottom" id="2lk-s2-wVx"/>
-                            <constraint firstItem="bKb-W4-Hgi" firstAttribute="top" secondItem="HCP-6T-LfB" secondAttribute="bottom" constant="109" id="CWC-6K-6ae"/>
+                            <constraint firstItem="bKb-W4-Hgi" firstAttribute="top" secondItem="HCP-6T-LfB" secondAttribute="bottom" constant="18" id="Ksv-pS-WTy"/>
                             <constraint firstItem="bKb-W4-Hgi" firstAttribute="leading" secondItem="TIy-Pi-8Tk" secondAttribute="leading" id="Ylx-8s-eSh"/>
                             <constraint firstAttribute="trailing" secondItem="bKb-W4-Hgi" secondAttribute="trailing" id="Z6N-SM-P5q"/>
                         </constraints>

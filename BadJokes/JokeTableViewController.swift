@@ -31,7 +31,7 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.refreshTableContent()
+        refreshTableContent()
     }
     
     func notificationDidFire(with jokeID: Int) {
@@ -44,6 +44,20 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
         tableView.dataSource = dataSource
         tableView.reloadData()
         refreshControl.endRefreshing()
+        
+        if tableView.visibleCells.isEmpty {
+            // Display a message instead of an empty table
+            let emptyStateLabel = UILabel()
+            emptyStateLabel.text = "Nem találhatóak korábbi viccek!"
+            emptyStateLabel.textAlignment = .center
+            
+            tableView.separatorStyle = .none
+            tableView.backgroundView = emptyStateLabel
+            tableView.backgroundView?.isHidden = false
+        } else {
+            tableView.separatorStyle = .singleLine
+            tableView.backgroundView?.isHidden = true
+        }
     }
     
     func settingsDidClose() {
