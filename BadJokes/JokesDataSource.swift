@@ -26,7 +26,7 @@ extension JokesDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: JokeCell.self)) as! JokeCell
         let joke = jokes[indexPath.row]
-        cell.jokeText = joke.jokeText
+        cell.jokeText = joke.jokeText.formatLineBreaks()
         return cell
     }
     

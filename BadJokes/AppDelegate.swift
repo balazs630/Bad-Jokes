@@ -18,30 +18,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let defaults = UserDefaults.standard
 
-        if defaults.object(forKey: UserDefaultsKeys.isAppAlreadyLaunchedOnce) == nil {
+        if defaults.object(forKey: UserDefaults.Keys.isAppAlreadyLaunchedOnce) == nil {
             // First launch
             let firstTimeLaunchDefaults: [String : Any] = [
-                UserDefaultsKeys.isAppAlreadyLaunchedOnce: true,
+                UserDefaults.Keys.isAppAlreadyLaunchedOnce: true,
 
-                UserDefaultsKeys.Sw.globalOff: false,
-                UserDefaultsKeys.Sw.notificationSound: true,
+                UserDefaults.Keys.Sw.globalOff: false,
+                UserDefaults.Keys.Sw.notificationSound: true,
 
-                UserDefaultsKeys.Lbl.periodicity: "Napi",
-                UserDefaultsKeys.Lbl.recurrence: "1x",
-                UserDefaultsKeys.Lbl.time: "Véletlen időpontban",
+                UserDefaults.Keys.Lbl.periodicity: "Napi",
+                UserDefaults.Keys.Lbl.recurrence: "1x",
+                UserDefaults.Keys.Lbl.time: "Véletlen időpontban",
 
-                UserDefaultsKeys.Pck.timeHours: "12",
-                UserDefaultsKeys.Pck.timeMinutes: "00",
+                UserDefaults.Keys.Pck.timeHours: "12",
+                UserDefaults.Keys.Pck.timeMinutes: "00",
 
-                UserDefaultsKeys.Sld.animal: 10,
-                UserDefaultsKeys.Sld.rough: 0,
-                UserDefaultsKeys.Sld.IT: 2,
-                UserDefaultsKeys.Sld.anti: 6,
-                UserDefaultsKeys.Sld.tiring: 10,
-                UserDefaultsKeys.Sld.jean: 2,
-                UserDefaultsKeys.Sld.moriczka: 6,
-                UserDefaultsKeys.Sld.cop: 4,
-                UserDefaultsKeys.Sld.blonde: 2
+                UserDefaults.Keys.Sld.animal: 10,
+                UserDefaults.Keys.Sld.rough: 0,
+                UserDefaults.Keys.Sld.IT: 2,
+                UserDefaults.Keys.Sld.anti: 6,
+                UserDefaults.Keys.Sld.tiring: 10,
+                UserDefaults.Keys.Sld.jean: 2,
+                UserDefaults.Keys.Sld.moriczka: 6,
+                UserDefaults.Keys.Sld.cop: 4,
+                UserDefaults.Keys.Sld.blonde: 2
             ]
 
             for item in firstTimeLaunchDefaults {

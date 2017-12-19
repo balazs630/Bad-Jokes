@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension String {
+extension String {
     func cutLastCharacter() -> Int {
         // Cut down the last letter, e.x. 10x -> 10 and returns as an Int
         let splitIndex = index(before: endIndex)
@@ -18,9 +18,13 @@ public extension String {
         
         return number
     }
+    
+    func formatLineBreaks() -> String {
+        return self.replacingOccurrences(of: "\\n", with: "\n")
+    }
 }
 
-public extension UserDefaults {
+extension UserDefaults {
     func printAllUserDefaulsKeysAndValues() {
         // For debug purpose
         for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
@@ -30,7 +34,7 @@ public extension UserDefaults {
     }
 }
 
-public extension Array {
+extension Array {
     func randomIndex() -> Int? {
         if self.isEmpty {
             return nil
@@ -40,7 +44,7 @@ public extension Array {
     }
 }
 
-public extension Array {
+extension Array {
     func randomItem() -> Element? {
         if self.isEmpty {
             return nil
@@ -50,7 +54,7 @@ public extension Array {
     }
 }
 
-public extension TimeInterval {
+extension TimeInterval {
     func randomSec() -> UInt32 {
         let index = UInt32(arc4random_uniform(UInt32(self)))
         return index
