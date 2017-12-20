@@ -13,13 +13,12 @@ protocol SettingsViewControllerDelegate: class {
     func settingsDidClose()
 }
 
-class SettingsViewController: UITableViewController, PeriodicityViewControllerDelegate, RecurrenceViewControllerDelegate, TimeViewControllerDelegate {
+class SettingsViewController: UITableViewController, PeriodicityViewControllerDelegate, TimeViewControllerDelegate {
 
     @IBOutlet weak var swGlobalOff: UISwitch!
     @IBOutlet weak var swNotificationSound: UISwitch!
 
     @IBOutlet weak var lblPeriodicity: UILabel!
-    @IBOutlet weak var lblRecurrence: UILabel!
     @IBOutlet weak var lblTime: UILabel!
 
     @IBOutlet weak var sldAnimal: UISlider!
@@ -84,10 +83,6 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         lblPeriodicity.text = selectedCellText
     }
 
-    func saveRecurrenceWith(selectedCellText: String) {
-        lblRecurrence.text = selectedCellText
-    }
-
     func saveTimeWithSelected(cellText: String) {
         lblTimeOptionName = cellText
         lblTime.text = cellText
@@ -105,7 +100,6 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         swNotificationSound.isOn = defaults.bool(forKey: UserDefaults.Keys.Sw.notificationSound)
 
         lblPeriodicity.text = defaults.string(forKey: UserDefaults.Keys.Lbl.periodicity)
-        lblRecurrence.text = defaults.string(forKey: UserDefaults.Keys.Lbl.recurrence)
 
         if let hours = defaults.string(forKey: UserDefaults.Keys.Pck.timeHours),
             let minutes = defaults.string(forKey: UserDefaults.Keys.Pck.timeMinutes) {
@@ -135,7 +129,6 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         defaults.set(swNotificationSound.isOn, forKey: UserDefaults.Keys.Sw.notificationSound)
 
         defaults.set(lblPeriodicity.text, forKey: UserDefaults.Keys.Lbl.periodicity)
-        defaults.set(lblRecurrence.text, forKey: UserDefaults.Keys.Lbl.recurrence)
         defaults.set(lblTimeOptionName, forKey: UserDefaults.Keys.Lbl.time)
 
         defaults.set(pckTimeHours, forKey: UserDefaults.Keys.Pck.timeHours)
@@ -155,7 +148,6 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         swNotificationSound.isEnabled = swGlobalState
 
         lblPeriodicity.isEnabled = swGlobalState
-        lblRecurrence.isEnabled = swGlobalState
         lblTime.isEnabled = swGlobalState
 
         for item in sldCollection {
@@ -204,12 +196,6 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
                     let destVC = segue.destination as! PeriodicityViewController
                     if let lblPeriodicityText = lblPeriodicity.text {
                         destVC.lastSelectedOption = lblPeriodicityText
-                    }
-                    destVC.delegate = self
-                case SegueIdentifier.recurrenceDetail:
-                    let destVC = segue.destination as! RecurrenceViewController
-                    if let lblRecurrenceText = lblRecurrence.text {
-                        destVC.lastSelectedOption = lblRecurrenceText
                     }
                     destVC.delegate = self
                 case SegueIdentifier.timeDetail:

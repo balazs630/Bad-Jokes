@@ -34,20 +34,12 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         if defaults.string(forKey: UserDefaults.Keys.Lbl.time) == Time.atGivenTime {
             // At given time
             let time = getGivenTime()
-            if let recurranceString = defaults.string(forKey: UserDefaults.Keys.Lbl.recurrence) {
-                let multiplier: Int = recurranceString.cutLastCharacter()
-                for i in 1...multiplier {
-                    // Separate multiple notifications with 1 second difference
-                    setNotification(for: time + TimeInterval(i))
-                }
-            }
+            setNotification(for: time)
         } else {
             // Random time / morning / afternoon / evening
             let timeInterval = getTimeInterval()
-            let notificationTimes = generateNotificationTimesBetween(timeInterval.0, timeInterval.1)
-            for time in notificationTimes {
-                setNotification(for: time)
-            }
+            let notificationTime = generateNotificationTimeBetween(timeInterval.0, timeInterval.1)
+            setNotification(for: notificationTime)
         }
     }
 
@@ -133,20 +125,11 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         return (startTime, endTime)
     }
 
-    private func generateNotificationTimesBetween(_ startTime: Date, _ endTime: Date) -> [Date] {
-        var notificationTimes = [Date]()
+    private func generateNotificationTimeBetween(_ startTime: Date, _ endTime: Date) -> Date {
+        let intervalSeconds = endTime.timeIntervalSince(startTime)
+        let randomTime: Date = startTime + TimeInterval(intervalSeconds.randomSec())
 
-        if let recurranceString = defaults.string(forKey: UserDefaults.Keys.Lbl.recurrence) {
-            let multiplier: Int = recurranceString.cutLastCharacter()
-            let intervalSeconds = endTime.timeIntervalSince(startTime)
-
-            for _ in 1...multiplier {
-                let randomTime: Date = startTime + TimeInterval(intervalSeconds.randomSec())
-                notificationTimes.append(randomTime)
-            }
-        }
-
-        return notificationTimes
+        return randomTime
     }
 
     private func getJokeType() -> String {
