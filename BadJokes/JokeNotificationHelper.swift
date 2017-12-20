@@ -31,7 +31,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     }
 
     func applyCurrentNotificationSettings() {
-        if defaults.string(forKey: UserDefaults.Keys.Lbl.time) == Time.atGivenTime {
+        if defaults.string(forKey: UserDefaults.Key.Lbl.time) == Time.atGivenTime {
             // At given time
             let time = getGivenTime()
             setNotification(for: time)
@@ -60,7 +60,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         content.body = joke.jokeText.formatLineBreaks()
         nextJokeId = joke.id
 
-        if defaults.bool(forKey: UserDefaults.Keys.Sw.notificationSound) {
+        if defaults.bool(forKey: UserDefaults.Key.Sw.notificationSound) {
             content.sound = UNNotificationSound.default()
         }
 
@@ -86,8 +86,8 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         var timeComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
         timeComponents.timeZone = TimeZone(identifier: localTimeZoneName)
 
-        timeComponents.hour = defaults.integer(forKey: UserDefaults.Keys.Pck.timeHours)
-        timeComponents.minute = defaults.integer(forKey: UserDefaults.Keys.Pck.timeMinutes)
+        timeComponents.hour = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
+        timeComponents.minute = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
         print("getGivenTime(): timeComponents: \(timeComponents)")
 
         let time = calendar.date(from: timeComponents)!
@@ -103,7 +103,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         timeFormatter.dateFormat = "HH:mm"
         timeFormatter.timeZone = TimeZone(identifier: localTimeZoneName)
 
-        if let timeSettings = defaults.string(forKey: UserDefaults.Keys.Lbl.time) {
+        if let timeSettings = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
             switch timeSettings {
             case Time.random:
                 startTime = timeFormatter.date(from: Time.Hour.morningStart)!
@@ -165,7 +165,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         // Generate a joke type based on the sliders from the Settings screen
         var sldProbabilities = [String]()
 
-        for slider in UserDefaults.Keys.sldDictionaty {
+        for slider in UserDefaults.Key.sldDictionaty {
             let sldValue = defaults.integer(forKey: slider.key)
 
             // Skip joke types with value 0
@@ -189,7 +189,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         // Goes through each joke type and returns the first joke type that contains unused joke(s)
         var type = String()
 
-        for sld in UserDefaults.Keys.sldDictionaty.values {
+        for sld in UserDefaults.Key.sldDictionaty.values {
             if dbManager.isAllJokeUsedWith(type: sld) == false {
                 type = sld
                 break

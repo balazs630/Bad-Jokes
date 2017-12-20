@@ -18,29 +18,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let defaults = UserDefaults.standard
 
-        if defaults.object(forKey: UserDefaults.Keys.isAppAlreadyLaunchedOnce) == nil {
+        if defaults.object(forKey: UserDefaults.Key.isAppAlreadyLaunchedOnce) == nil {
             // First launch
             let firstTimeLaunchDefaults: [String : Any] = [
-                UserDefaults.Keys.isAppAlreadyLaunchedOnce: true,
+                UserDefaults.Key.isAppAlreadyLaunchedOnce: true,
 
-                UserDefaults.Keys.Sw.globalOff: false,
-                UserDefaults.Keys.Sw.notificationSound: true,
+                UserDefaults.Key.Sw.globalOff: false,
+                UserDefaults.Key.Sw.notificationSound: true,
 
-                UserDefaults.Keys.Lbl.periodicity: "Napi",
-                UserDefaults.Keys.Lbl.time: "Véletlen időpontban",
+                UserDefaults.Key.Lbl.periodicity: "Napi",
+                UserDefaults.Key.Lbl.time: "Véletlen időpontban",
 
-                UserDefaults.Keys.Pck.timeHours: "12",
-                UserDefaults.Keys.Pck.timeMinutes: "00",
+                UserDefaults.Key.Pck.timeHours: "12",
+                UserDefaults.Key.Pck.timeMinutes: "00",
 
-                UserDefaults.Keys.Sld.animal: 10,
-                UserDefaults.Keys.Sld.rough: 0,
-                UserDefaults.Keys.Sld.IT: 2,
-                UserDefaults.Keys.Sld.anti: 6,
-                UserDefaults.Keys.Sld.tiring: 10,
-                UserDefaults.Keys.Sld.jean: 2,
-                UserDefaults.Keys.Sld.moriczka: 6,
-                UserDefaults.Keys.Sld.cop: 4,
-                UserDefaults.Keys.Sld.blonde: 2
+                UserDefaults.Key.Sld.animal: 10,
+                UserDefaults.Key.Sld.rough: 0,
+                UserDefaults.Key.Sld.IT: 2,
+                UserDefaults.Key.Sld.anti: 6,
+                UserDefaults.Key.Sld.tiring: 10,
+                UserDefaults.Key.Sld.jean: 2,
+                UserDefaults.Key.Sld.moriczka: 6,
+                UserDefaults.Key.Sld.cop: 4,
+                UserDefaults.Key.Sld.blonde: 2
             ]
 
             for item in firstTimeLaunchDefaults {

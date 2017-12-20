@@ -162,8 +162,7 @@ class DBManager: NSObject {
     }
 
     func isAllJokeUsed() -> Bool {
-        var resultsArray = [Joke]()
-
+        var count = 0
         if openDatabase() {
             let query = "SELECT * FROM jokes WHERE \(Field.Jokes.isUsed)=0"
 
@@ -171,12 +170,7 @@ class DBManager: NSObject {
                 let results = try database.executeQuery(query, values: nil)
 
                 while results.next() {
-                    let joke = Joke(id: Int(results.int(forColumn: Field.Jokes.id)),
-                                    isUsed: Int(results.int(forColumn: Field.Jokes.isUsed)),
-                                    isStored: Int(results.int(forColumn: Field.Jokes.isStored)),
-                                    type: results.string(forColumn: Field.Jokes.type),
-                                    jokeText: results.string(forColumn: Field.Jokes.jokeText))
-                    resultsArray.append(joke)
+                    count += 1
                 }
             } catch {
                 print(error.localizedDescription)
@@ -185,7 +179,7 @@ class DBManager: NSObject {
             database.close()
         }
 
-        if resultsArray.count == 0 {
+        if count == 0 {
             return true
         } else {
             return false
@@ -193,8 +187,7 @@ class DBManager: NSObject {
     }
 
     func isAllJokeUsedWith(type: String) -> Bool {
-        var resultsArray = [Joke]()
-
+        var count = 0
         if openDatabase() {
             let query = "SELECT * FROM jokes WHERE \(Field.Jokes.type)=\"\(type)\" AND \(Field.Jokes.isUsed)=0"
 
@@ -202,13 +195,7 @@ class DBManager: NSObject {
                 let results = try database.executeQuery(query, values: nil)
 
                 while results.next() {
-                    let joke = Joke(id: Int(results.int(forColumn: Field.Jokes.id)),
-                                    isUsed: Int(results.int(forColumn: Field.Jokes.isUsed)),
-                                    isStored: Int(results.int(forColumn: Field.Jokes.isStored)),
-                                    type: results.string(forColumn: Field.Jokes.type),
-                                    jokeText: results.string(forColumn: Field.Jokes.jokeText))
-
-                    resultsArray.append(joke)
+                    count += 1
                 }
             } catch {
                 print(error.localizedDescription)
@@ -217,7 +204,7 @@ class DBManager: NSObject {
             database.close()
         }
 
-        if resultsArray.count == 0 {
+        if count == 0 {
             return true
         } else {
             return false
@@ -225,8 +212,7 @@ class DBManager: NSObject {
     }
 
     func isJokeUsedWith(id: Int) -> Bool {
-        var resultsArray = [Joke]()
-
+        var count = 0
         if openDatabase() {
             let query = "SELECT * FROM jokes WHERE \(Field.Jokes.id)=\(id) AND \(Field.Jokes.isUsed)=0"
 
@@ -234,13 +220,7 @@ class DBManager: NSObject {
                 let results = try database.executeQuery(query, values: nil)
 
                 while results.next() {
-                    let joke = Joke(id: Int(results.int(forColumn: Field.Jokes.id)),
-                                    isUsed: Int(results.int(forColumn: Field.Jokes.isUsed)),
-                                    isStored: Int(results.int(forColumn: Field.Jokes.isStored)),
-                                    type: results.string(forColumn: Field.Jokes.type),
-                                    jokeText: results.string(forColumn: Field.Jokes.jokeText))
-
-                    resultsArray.append(joke)
+                    count += 1
                 }
             } catch {
                 print(error.localizedDescription)
@@ -249,7 +229,7 @@ class DBManager: NSObject {
             database.close()
         }
 
-        if resultsArray.count == 0 {
+        if count == 0 {
             return true
         } else {
             return false

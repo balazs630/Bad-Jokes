@@ -16,7 +16,7 @@ struct SegueIdentifier {
 }
 
 extension UserDefaults {
-    struct Keys {
+    struct Key {
         static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
         
         struct Sw {
