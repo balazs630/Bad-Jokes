@@ -20,10 +20,11 @@ ___
 - [x] Settings screen with detailed preferences regarding the joke notifications
 - [x] App settings are read/write using UserDefaults
 - [x] Ability to set a local Notification based on the given timing paramaters
+- [x] Store already sent jokes in a table, view or delete a single joke, refresh tableview content
 
 ___
 **Backlog:**
 
-- [ ] Store already sent jokes in a table
+
 - [ ] Ability to share stored jokes with Mail or custom apps
 - [ ] Logic to handle recurring joke notifications

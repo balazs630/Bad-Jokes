@@ -9,7 +9,7 @@
 import Foundation
 
 struct Joke {
-    let id: Int
+    let jokeId: Int
     let isUsed: Int
     let isStored: Int
     let type: String!

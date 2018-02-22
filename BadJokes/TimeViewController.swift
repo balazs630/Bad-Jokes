@@ -90,9 +90,16 @@ class TimeViewController: UITableViewController {
             if let hourComponent = timeComponents.hour, let minuteComponent = timeComponents.minute {
                 if minuteComponent == 0 {
                     //TODO: Rewrite with proper dateformatter
-                    delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row], hours: String(hourComponent), minutes: "00")
+                    delegate?.saveTimeWithSelected(cellText:
+                        tableContent[selectedIndexPath.row],
+                        hours: String(hourComponent),
+                        minutes: "00")
                 } else {
-                    delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row], hours: String(hourComponent), minutes: String(minuteComponent))
+                    delegate?.saveTimeWithSelected(cellText:
+                        tableContent[selectedIndexPath.row],
+                        hours: String(hourComponent),
+                        minutes: String(minuteComponent)
+                    )
                 }
             }
         } else {

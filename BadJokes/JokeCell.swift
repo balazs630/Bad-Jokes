@@ -10,7 +10,7 @@ import UIKit
 
 class JokeCell: UITableViewCell {
     @IBOutlet weak var jokeLabel: UILabel!
-    
+
     var jokeText: String? {
         didSet {
             jokeLabel.text = jokeText

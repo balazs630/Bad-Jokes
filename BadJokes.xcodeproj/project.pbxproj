@@ -11,6 +11,8 @@
 		AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */; };
 		AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */; };
 		AC100EAC1F548A430069C0DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC100EAB1F548A430069C0DE /* Extensions.swift */; };
+		AC1C1137203F167000D2370B /* JokeNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C1136203F167000D2370B /* JokeNotificationScheduler.swift */; };
+		AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */; };
 		AC7A4E341F51F74700E8F438 /* JokeNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */; };
 		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
 		AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */; };
@@ -32,6 +34,8 @@
 		AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeCell.swift; sourceTree = "<group>"; };
 		AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesDataSource.swift; sourceTree = "<group>"; };
 		AC100EAB1F548A430069C0DE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AC1C1136203F167000D2370B /* JokeNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeNotificationScheduler.swift; sourceTree = "<group>"; };
+		AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeNotificationGenerator.swift; sourceTree = "<group>"; };
 		AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeNotificationHelper.swift; sourceTree = "<group>"; };
 		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
 		AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
@@ -74,13 +78,79 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		AC56CBA41F3093E300509EDA /* Settings Detail View Controllers */ = {
+		AC2579AD204366D900C1D904 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				ACB7C1E71FDD6106007ED514 /* Constants.swift */,
+				AC100EAB1F548A430069C0DE /* Extensions.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		AC2D2B582041C04C0040DD40 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				ACACF6E81F51C93E00F501B1 /* DBManager.swift */,
+				ACECF0A41F60A88F0072367C /* jokesDB.db */,
+			);
+			name = Storage;
+			sourceTree = "<group>";
+		};
+		AC2D2B592041C1700040DD40 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ACEEA96E1F1E5FA600BCF905 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AC2D2B5A2041C1CF0040DD40 /* App flow */ = {
+			isa = PBXGroup;
+			children = (
+				ACEEA9661F1E5FA600BCF905 /* Main.storyboard */,
+				AC2D2B5B2041C2000040DD40 /* Joke */,
+				AC2D2B5C2041C2310040DD40 /* Settings */,
+			);
+			name = "App flow";
+			sourceTree = "<group>";
+		};
+		AC2D2B5B2041C2000040DD40 /* Joke */ = {
+			isa = PBXGroup;
+			children = (
+				AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */,
+				AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */,
+				ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */,
+				ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */,
+			);
+			name = Joke;
+			sourceTree = "<group>";
+		};
+		AC2D2B5C2041C2310040DD40 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ACE906B21F22A27200A6A082 /* SettingsViewController.swift */,
 				AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */,
 				AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */,
 			);
-			name = "Settings Detail View Controllers";
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		AC2D2B5D2041C2630040DD40 /* Model and state */ = {
+			isa = PBXGroup;
+			children = (
+				ACECF0A61F60AC230072367C /* Joke.swift */,
+			);
+			name = "Model and state";
+			sourceTree = "<group>";
+		};
+		AC2D2B5E2041C3A50040DD40 /* Local Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */,
+				AC1C1136203F167000D2370B /* JokeNotificationScheduler.swift */,
+				AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */,
+			);
+			name = "Local Notifications";
 			sourceTree = "<group>";
 		};
 		ACECF0A11F60A47E0072367C /* Frameworks */ = {
@@ -90,17 +160,6 @@
 				946577951C2F75DE8DA6E042 /* Pods_BadJokes.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		ACECF0A91F60AF820072367C /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */,
-				ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */,
-				ACE906B21F22A27200A6A082 /* SettingsViewController.swift */,
-				AC56CBA41F3093E300509EDA /* Settings Detail View Controllers */,
-			);
-			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		ACEEA9561F1E5FA600BCF905 = {
@@ -124,20 +183,15 @@
 		ACEEA9611F1E5FA600BCF905 /* BadJokes */ = {
 			isa = PBXGroup;
 			children = (
-				ACECF0A61F60AC230072367C /* Joke.swift */,
-				ACACF6E81F51C93E00F501B1 /* DBManager.swift */,
-				AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */,
-				AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */,
-				AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */,
-				ACECF0A91F60AF820072367C /* ViewControllers */,
-				AC100EAB1F548A430069C0DE /* Extensions.swift */,
-				ACB7C1E71FDD6106007ED514 /* Constants.swift */,
 				ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */,
-				ACEEA9661F1E5FA600BCF905 /* Main.storyboard */,
-				ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */,
 				ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */,
-				ACECF0A41F60A88F0072367C /* jokesDB.db */,
-				ACEEA96E1F1E5FA600BCF905 /* Info.plist */,
+				ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */,
+				AC2D2B5A2041C1CF0040DD40 /* App flow */,
+				AC2D2B5D2041C2630040DD40 /* Model and state */,
+				AC2D2B582041C04C0040DD40 /* Storage */,
+				AC2D2B5E2041C3A50040DD40 /* Local Notifications */,
+				AC2579AD204366D900C1D904 /* Common */,
+				AC2D2B592041C1700040DD40 /* Supporting Files */,
 			);
 			path = BadJokes;
 			sourceTree = "<group>";
@@ -155,6 +209,7 @@
 				ACEEA95D1F1E5FA600BCF905 /* Resources */,
 				1E278F0BEBA5BB362B974E2B /* [CP] Embed Pods Frameworks */,
 				A43259CE55EDAE7EE990CB12 /* [CP] Copy Pods Resources */,
+				AC2579A82042CB4300C1D904 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -254,6 +309,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BadJokes/Pods-BadJokes-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AC2579A82042CB4300C1D904 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\nexit\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		B426F3D7A85DBD9B39CEA4B1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -283,11 +351,13 @@
 				ACB5A2931FE7FFA4006DD51E /* JokeViewController.swift in Sources */,
 				AC7A4E341F51F74700E8F438 /* JokeNotificationHelper.swift in Sources */,
 				AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */,
+				AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */,
 				AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */,
 				AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */,
 				ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */,
 				AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */,
 				AC100EAC1F548A430069C0DE /* Extensions.swift in Sources */,
+				AC1C1137203F167000D2370B /* JokeNotificationScheduler.swift in Sources */,
 				ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */,
 				ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */,
 				ACACF6E91F51C93E00F501B1 /* DBManager.swift in Sources */,

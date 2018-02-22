@@ -18,22 +18,22 @@ struct SegueIdentifier {
 extension UserDefaults {
     struct Key {
         static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
-        
+
         struct Sw {
             static let globalOff = "swGlobalOff"
             static let notificationSound = "swNotificationSound"
         }
-        
+
         struct Lbl {
             static let periodicity = "lblPeriodicity"
             static let time = "lblTime"
         }
-        
+
         struct Pck {
             static let timeHours = "pckTimeHours"
             static let timeMinutes = "pckTimeMinutes"
         }
-        
+
         struct Sld {
             static let animal = "sldAnimal"
             static let rough = "sldRough"
@@ -45,8 +45,8 @@ extension UserDefaults {
             static let cop = "sldCop"
             static let blonde = "sldBlonde"
         }
-        
-        static var sldDictionaty: [String : String] {
+
+        static var sldDictionaty: [String: String] {
             return [
                 "sldAnimal": "animal",
                 "sldRough": "rough",
@@ -59,8 +59,6 @@ extension UserDefaults {
                 "sldBlonde": "blonde"
             ]
         }
-        
+
     }
 }
-
-
