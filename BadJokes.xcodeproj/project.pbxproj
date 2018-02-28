@@ -11,10 +11,10 @@
 		AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */; };
 		AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */; };
 		AC100EAC1F548A430069C0DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC100EAB1F548A430069C0DE /* Extensions.swift */; };
-		AC1C1137203F167000D2370B /* JokeNotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C1136203F167000D2370B /* JokeNotificationScheduler.swift */; };
 		AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */; };
-		AC2579B120461AAA00C1D904 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B020461AAA00C1D904 /* DateUtil.swift */; };
+		AC2579B120461AAA00C1D904 /* SettingsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B020461AAA00C1D904 /* SettingsUtil.swift */; };
 		AC2579B3204628C800C1D904 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B2204628C800C1D904 /* Schedule.swift */; };
+		AC385CE12046D71E0070D4A7 /* ColumnNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC385CE02046D71E0070D4A7 /* ColumnNames.swift */; };
 		AC7A4E341F51F74700E8F438 /* JokeNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */; };
 		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
 		AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */; };
@@ -36,10 +36,10 @@
 		AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeCell.swift; sourceTree = "<group>"; };
 		AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesDataSource.swift; sourceTree = "<group>"; };
 		AC100EAB1F548A430069C0DE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		AC1C1136203F167000D2370B /* JokeNotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeNotificationScheduler.swift; sourceTree = "<group>"; };
 		AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeNotificationGenerator.swift; sourceTree = "<group>"; };
-		AC2579B020461AAA00C1D904 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		AC2579B020461AAA00C1D904 /* SettingsUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUtil.swift; sourceTree = "<group>"; };
 		AC2579B2204628C800C1D904 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		AC385CE02046D71E0070D4A7 /* ColumnNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnNames.swift; sourceTree = "<group>"; };
 		AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeNotificationHelper.swift; sourceTree = "<group>"; };
 		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
 		AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				ACACF6E81F51C93E00F501B1 /* DBManager.swift */,
+				AC385CE02046D71E0070D4A7 /* ColumnNames.swift */,
 				ACECF0A41F60A88F0072367C /* jokesDB.db */,
 			);
 			name = Storage;
@@ -133,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				ACE906B21F22A27200A6A082 /* SettingsViewController.swift */,
+				AC2579B020461AAA00C1D904 /* SettingsUtil.swift */,
 				AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */,
 				AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */,
 			);
@@ -152,8 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */,
-				AC1C1136203F167000D2370B /* JokeNotificationScheduler.swift */,
-				AC2579B020461AAA00C1D904 /* DateUtil.swift */,
 				AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */,
 			);
 			name = "Local Notifications";
@@ -243,7 +243,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -359,13 +359,13 @@
 				AC7A4E341F51F74700E8F438 /* JokeNotificationHelper.swift in Sources */,
 				AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */,
 				AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */,
-				AC2579B120461AAA00C1D904 /* DateUtil.swift in Sources */,
+				AC2579B120461AAA00C1D904 /* SettingsUtil.swift in Sources */,
 				AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */,
 				AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */,
+				AC385CE12046D71E0070D4A7 /* ColumnNames.swift in Sources */,
 				ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */,
 				AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */,
 				AC100EAC1F548A430069C0DE /* Extensions.swift in Sources */,
-				AC1C1137203F167000D2370B /* JokeNotificationScheduler.swift in Sources */,
 				ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */,
 				ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */,
 				ACACF6E91F51C93E00F501B1 /* DBManager.swift in Sources */,

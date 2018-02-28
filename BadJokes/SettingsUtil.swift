@@ -8,26 +8,40 @@
 
 import Foundation
 
-class DateUtil {
+class SettingsUtil {
 
     var localTimeZoneName: String { return TimeZone.current.identifier }
     let defaults = UserDefaults.standard
 
-    func getGivenTime() -> Date {
+    func resolveNotificationTimeBasedOnSettings() -> Date {
+        let time: Date
+        if defaults.string(forKey: UserDefaults.Key.Lbl.time) == Time.atGivenTime {
+            // At given time
+            time = getGivenTimeFromSettings()
+        } else {
+            // Random time / morning / afternoon / evening
+            let timeInterval = getTimeIntervalFromSettings()
+            time = getRandomTimeBetweenTwoDate(timeInterval.0, timeInterval.1)
+        }
+
+        return time
+    }
+
+    private func getGivenTimeFromSettings() -> Date {
+        // Get time from settings
         let calendar = Calendar(identifier: .gregorian)
         var timeComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
         timeComponents.timeZone = TimeZone(identifier: localTimeZoneName)
 
         timeComponents.hour = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
         timeComponents.minute = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
-        print("getGivenTime(): timeComponents: \(timeComponents)")
 
         let time = calendar.date(from: timeComponents)!
-        print("getGivenTime(): \(time)\n")
+        
         return time
     }
 
-    func getTimeInterval() -> (Date, Date) {
+    private func getTimeIntervalFromSettings() -> (Date, Date) {
         var startTime = Date()
         var endTime = Date()
 
@@ -57,7 +71,7 @@ class DateUtil {
         return (startTime, endTime)
     }
 
-    func generateTimeBetween(_ startTime: Date, _ endTime: Date) -> Date {
+    private func getRandomTimeBetweenTwoDate(_ startTime: Date, _ endTime: Date) -> Date {
         let intervalSeconds = endTime.timeIntervalSince(startTime)
         let randomTime: Date = startTime + TimeInterval(intervalSeconds.randomSec())
 

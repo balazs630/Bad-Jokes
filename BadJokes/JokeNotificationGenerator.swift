@@ -18,7 +18,7 @@ class JokeNotificationGenerator {
         let content = UNMutableNotificationContent()
         content.title = "Vicc:"
         content.badge = 1
-        let type = getJokeType()
+        let type = generateJokeType()
         let joke = dbManager.getRandomJokeWith(type: type)
         content.body = joke.jokeText.formatLineBreaks()
 
@@ -33,13 +33,13 @@ class JokeNotificationGenerator {
         return content
     }
 
-    private func getJokeType() -> String {
+    private func generateJokeType() -> String {
         // Get a joke type and check if the type has unused joke(s)
-        var jokeType = generateJokeType()
+        var jokeType = getRandomJokeType()
         var n = 0
         while true {
             if dbManager.isAllJokeUsedWith(type: jokeType) {
-                jokeType = generateJokeType()
+                jokeType = getRandomJokeType()
                 n += 1
             } else {
                 break
@@ -50,7 +50,7 @@ class JokeNotificationGenerator {
                 if dbManager.isAllJokeUsed() {
                     dbManager.restoreUsedJokesAsNew()
                     // Recursion
-                    jokeType = getJokeType()
+                    jokeType = generateJokeType()
                 } else {
                     jokeType = getLeftOverJokeType()
                 }
@@ -58,11 +58,10 @@ class JokeNotificationGenerator {
             }
         }
 
-        print("getJokeType: \(jokeType)")
         return jokeType
     }
 
-    private func generateJokeType() -> String {
+    private func getRandomJokeType() -> String {
         // Generate a joke type based on the sliders from the Settings screen
         var sldProbabilities = [String]()
 

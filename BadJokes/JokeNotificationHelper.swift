@@ -20,8 +20,8 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     weak var delegate: JokeNotificationHelperDelegate?
 
     let dbManager = DBManager()
-    let jokeNotificationScheduler = JokeNotificationScheduler()
     let jokeNotificationGenerator = JokeNotificationGenerator()
+    let settingsUtil = SettingsUtil()
 
     override init() {
         super.init()
@@ -40,8 +40,8 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     func applyCurrentNotificationSettings() {
         // Schedule notification
         let content = jokeNotificationGenerator.setNotificationContent()
-        let time = jokeNotificationScheduler.resolveNotificationTimeBasedOnSettings()
-        let trigger = jokeNotificationScheduler.setNotificationTrigger(on: time)
+        let time = settingsUtil.resolveNotificationTimeBasedOnSettings()
+        let trigger = setNotificationTrigger(on: time)
 
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
@@ -51,6 +51,29 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         dbManager.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())
+    }
+
+    private func setNotificationTrigger(on time: Date) -> UNCalendarNotificationTrigger {
+        // Setting time for notification trigger
+        var dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: time)
+        dateCompenents.timeZone = TimeZone(identifier: localTimeZoneName)
+
+        // Adding request
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
+        print("setNotification fromSettings, trigger: \(trigger)\n")
+
+        return trigger
+    }
+
+    func checkForDeliveredJokes() {
+        let scheduledJokesArray = dbManager.getAllSchedules()
+
+        for scheduledJoke in scheduledJokesArray {
+            if TimeInterval(scheduledJoke.time).isInPast() {
+                dbManager.setJokeUsedAndStoredWith(jokeId: scheduledJoke.jokeId)
+                dbManager.deleteScheduleWith(jokeId: scheduledJoke.jokeId)
+            }
+        }
     }
 
     private func removeAllPendingNotificationRequests() {

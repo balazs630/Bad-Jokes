@@ -66,17 +66,17 @@ class DBManager: NSObject {
         var resultsArray = [Joke]()
 
         if openDatabase() {
-            let query = "SELECT * FROM jokes ORDER BY \(Field.JokesTable.jokeId) ASC"
+            let query = "SELECT * FROM jokes ORDER BY \(ColumnName.JokesTable.jokeId) ASC"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
 
                 while results.next() {
-                    let joke = Joke(jokeId: Int(results.int(forColumn: Field.JokesTable.jokeId)),
-                                    isUsed: Int(results.int(forColumn: Field.JokesTable.isUsed)),
-                                    isStored: Int(results.int(forColumn: Field.JokesTable.isStored)),
-                                    type: results.string(forColumn: Field.JokesTable.type),
-                                    jokeText: results.string(forColumn: Field.JokesTable.jokeText))
+                    let joke = Joke(jokeId: Int(results.int(forColumn: ColumnName.JokesTable.jokeId)),
+                                    isUsed: Int(results.int(forColumn: ColumnName.JokesTable.isUsed)),
+                                    isStored: Int(results.int(forColumn: ColumnName.JokesTable.isStored)),
+                                    type: results.string(forColumn: ColumnName.JokesTable.type),
+                                    jokeText: results.string(forColumn: ColumnName.JokesTable.jokeText))
 
                     resultsArray.append(joke)
                 }
@@ -94,17 +94,17 @@ class DBManager: NSObject {
         var resultsArray = [Joke]()
 
         if openDatabase() {
-            let query = "SELECT * FROM jokes WHERE \(Field.JokesTable.isStored)=1"
+            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.isStored)=1"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
 
                 while results.next() {
-                    let joke = Joke(jokeId: Int(results.int(forColumn: Field.JokesTable.jokeId)),
-                                     isUsed: Int(results.int(forColumn: Field.JokesTable.isUsed)),
-                                     isStored: Int(results.int(forColumn: Field.JokesTable.isStored)),
-                                     type: results.string(forColumn: Field.JokesTable.type),
-                                     jokeText: results.string(forColumn: Field.JokesTable.jokeText))
+                    let joke = Joke(jokeId: Int(results.int(forColumn: ColumnName.JokesTable.jokeId)),
+                                     isUsed: Int(results.int(forColumn: ColumnName.JokesTable.isUsed)),
+                                     isStored: Int(results.int(forColumn: ColumnName.JokesTable.isStored)),
+                                     type: results.string(forColumn: ColumnName.JokesTable.type),
+                                     jokeText: results.string(forColumn: ColumnName.JokesTable.jokeText))
 
                     resultsArray.append(joke)
                 }
@@ -122,17 +122,17 @@ class DBManager: NSObject {
         var resultsArray = [Joke]()
 
         if openDatabase() {
-            let query = "SELECT * FROM jokes WHERE \(Field.JokesTable.type)=\"\(type)\" AND \(Field.JokesTable.isUsed)=0"
+            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.type)=\"\(type)\" AND \(ColumnName.JokesTable.isUsed)=0"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
 
                 while results.next() {
-                    let joke = Joke(jokeId: Int(results.int(forColumn: Field.JokesTable.jokeId)),
-                                    isUsed: Int(results.int(forColumn: Field.JokesTable.isUsed)),
-                                    isStored: Int(results.int(forColumn: Field.JokesTable.isStored)),
-                                    type: results.string(forColumn: Field.JokesTable.type),
-                                    jokeText: results.string(forColumn: Field.JokesTable.jokeText))
+                    let joke = Joke(jokeId: Int(results.int(forColumn: ColumnName.JokesTable.jokeId)),
+                                    isUsed: Int(results.int(forColumn: ColumnName.JokesTable.isUsed)),
+                                    isStored: Int(results.int(forColumn: ColumnName.JokesTable.isStored)),
+                                    type: results.string(forColumn: ColumnName.JokesTable.type),
+                                    jokeText: results.string(forColumn: ColumnName.JokesTable.jokeText))
 
                     resultsArray.append(joke)
                 }
@@ -154,7 +154,7 @@ class DBManager: NSObject {
     func isAllJokeUsed() -> Bool {
         var count = 0
         if openDatabase() {
-            let query = "SELECT * FROM jokes WHERE \(Field.JokesTable.isUsed)=0"
+            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.isUsed)=0"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
@@ -179,7 +179,7 @@ class DBManager: NSObject {
     func isAllJokeUsedWith(type: String) -> Bool {
         var count = 0
         if openDatabase() {
-            let query = "SELECT * FROM jokes WHERE \(Field.JokesTable.type)=\"\(type)\" AND \(Field.JokesTable.isUsed)=0"
+            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.type)=\"\(type)\" AND \(ColumnName.JokesTable.isUsed)=0"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
@@ -204,7 +204,7 @@ class DBManager: NSObject {
     func isJokeUsedWith(jokeId: Int) -> Bool {
         var count = 0
         if openDatabase() {
-            let query = "SELECT * FROM jokes WHERE \(Field.JokesTable.jokeId)=\(jokeId) AND \(Field.JokesTable.isUsed)=0"
+            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId) AND \(ColumnName.JokesTable.isUsed)=0"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
@@ -228,7 +228,7 @@ class DBManager: NSObject {
 
     func setJokeUsedWith(jokeId: Int) {
         if openDatabase() {
-            let query = "UPDATE jokes SET \(Field.JokesTable.isUsed)=1 WHERE \(Field.JokesTable.jokeId)=\(jokeId)"
+            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isUsed)=1 WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
 
             do {
                 try database.executeUpdate(query, values: nil)
@@ -242,7 +242,7 @@ class DBManager: NSObject {
 
     func setJokeStoredWith(jokeId: Int) {
         if openDatabase() {
-            let query = "UPDATE jokes SET \(Field.JokesTable.isStored)=1 WHERE \(Field.JokesTable.jokeId)=\(jokeId)"
+            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isStored)=1 WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
 
             do {
                 try database.executeUpdate(query, values: nil)
@@ -256,7 +256,7 @@ class DBManager: NSObject {
 
     func setJokeUsedAndStoredWith(jokeId: Int) {
         if openDatabase() {
-            let query = "UPDATE jokes SET \(Field.JokesTable.isUsed)=1, \(Field.JokesTable.isStored)=1 WHERE \(Field.JokesTable.jokeId)=\(jokeId)"
+            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isUsed)=1, \(ColumnName.JokesTable.isStored)=1 WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
 
             do {
                 try database.executeUpdate(query, values: nil)
@@ -270,7 +270,7 @@ class DBManager: NSObject {
 
     func restoreUsedJokesAsNew() {
         if openDatabase() {
-            let query = "UPDATE jokes SET \(Field.JokesTable.isUsed)=0"
+            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isUsed)=0"
 
             do {
                 try database.executeUpdate(query, values: nil)
@@ -284,7 +284,7 @@ class DBManager: NSObject {
 
     func removeStoredJokeWith(jokeId: Int) {
         if openDatabase() {
-            let query = "UPDATE jokes SET \(Field.JokesTable.isStored)=0 WHERE \(Field.JokesTable.jokeId)=\(jokeId)"
+            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isStored)=0 WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
 
             do {
                 try database.executeUpdate(query, values: nil)
@@ -302,14 +302,14 @@ class DBManager: NSObject {
         var resultsArray = [Schedule]()
 
         if openDatabase() {
-            let query = "SELECT * FROM schedules ORDER BY \(Field.SchedulesTable.jokeId) ASC"
+            let query = "SELECT * FROM schedules ORDER BY \(ColumnName.SchedulesTable.jokeId) ASC"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
 
                 while results.next() {
-                    let schedule = Schedule(jokeId: Int(results.int(forColumn: Field.JokesTable.jokeId)),
-                                    time: Int(results.int(forColumn: Field.JokesTable.isUsed)))
+                    let schedule = Schedule(jokeId: Int(results.int(forColumn: ColumnName.SchedulesTable.jokeId)),
+                                    time: Int(results.int(forColumn: ColumnName.SchedulesTable.time)))
 
                     resultsArray.append(schedule)
                 }
@@ -325,7 +325,21 @@ class DBManager: NSObject {
 
     func insertNewScheduledJoke(with jokeId: Int, on time: Int) {
         if openDatabase() {
-            let query = "INSERT INTO schedules (\(Field.SchedulesTable.jokeId), \(Field.SchedulesTable.time)) VALUES(\(jokeId), \(time))"
+            let query = "INSERT INTO schedules (\(ColumnName.SchedulesTable.jokeId), \(ColumnName.SchedulesTable.time)) VALUES(\(jokeId), \(time))"
+
+            do {
+                try database.executeUpdate(query, values: nil)
+            } catch {
+                print(error.localizedDescription)
+            }
+
+            database.close()
+        }
+    }
+
+    func deleteScheduleWith(jokeId: Int) {
+        if openDatabase() {
+            let query = "DELETE FROM schedules WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
 
             do {
                 try database.executeUpdate(query, values: nil)

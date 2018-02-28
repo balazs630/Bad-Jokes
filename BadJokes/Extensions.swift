@@ -32,9 +32,7 @@ extension Array {
         let index = Int(arc4random_uniform(UInt32(self.count)))
         return index
     }
-}
 
-extension Array {
     func randomItem() -> Element? {
         if self.isEmpty {
             return nil
@@ -49,16 +47,15 @@ extension TimeInterval {
         let index = UInt32(arc4random_uniform(UInt32(self)))
         return index
     }
+
+    func isInPast() -> Bool {
+        let date = Date(timeIntervalSince1970: self)
+        return date.timeIntervalSinceNow.sign == .minus ? true : false
+    }
 }
 
 extension Date {
     func convertToUnixTimeStamp() -> Int {
         return Int(self.timeIntervalSince1970)
-    }
-}
-
-extension Int {
-    func convertToDate() -> Date {
-        return Date(timeIntervalSince1970: TimeInterval(self))
     }
 }

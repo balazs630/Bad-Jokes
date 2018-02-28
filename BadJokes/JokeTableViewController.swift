@@ -19,18 +19,11 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.estimatedRowHeight = 113
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.dataSource = dataSource
-        tableView.reloadData()
-
-        refreshControl.addTarget(self, action: #selector(refreshTableContent), for: UIControlEvents.valueChanged)
-        tableView.refreshControl = refreshControl
-
+        configureTableView()
         jokeNotificationHelper.delegate = self
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         refreshTableContent()
     }
 
@@ -39,7 +32,7 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
     }
 
     @objc func refreshTableContent() {
-        // TODO: Set joke isUsed=true, isStored=true if joke's schedule time is in the past
+        jokeNotificationHelper.checkForDeliveredJokes()
 
         self.dataSource = JokesDataSource(jokes: dbManager.getStoredJokes())
         tableView.dataSource = dataSource
@@ -99,5 +92,17 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
 
         self.dataSource = JokesDataSource(jokes: jokes)
         super.init(coder: aDecoder)
+    }
+}
+
+extension JokeTableViewController {
+    private func configureTableView() {
+        tableView.estimatedRowHeight = 113
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.dataSource = dataSource
+        tableView.reloadData()
+
+        refreshControl.addTarget(self, action: #selector(refreshTableContent), for: UIControlEvents.valueChanged)
+        tableView.refreshControl = refreshControl
     }
 }
