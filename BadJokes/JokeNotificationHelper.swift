@@ -10,17 +10,15 @@ import Foundation
 import UserNotifications
 
 protocol JokeNotificationHelperDelegate: class {
-    func notificationDidFire(with jokeID: Int)
+    func notificationDidFire()
 }
 
 class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
     var localTimeZoneName: String { return TimeZone.current.identifier }
-    var nextJokeId = Int()
 
     weak var delegate: JokeNotificationHelperDelegate?
 
-    let defaults = UserDefaults.standard
     let dbManager = DBManager()
     let jokeNotificationScheduler = JokeNotificationScheduler()
     let jokeNotificationGenerator = JokeNotificationGenerator()
@@ -36,49 +34,28 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // To display notifications when app is running in foreground
         completionHandler([.alert, .sound])
-        delegate?.notificationDidFire(with: nextJokeId)
+        delegate?.notificationDidFire()
     }
 
     func applyCurrentNotificationSettings() {
-        if defaults.string(forKey: UserDefaults.Key.Lbl.time) == Time.atGivenTime {
-            // At given time
-            let time = jokeNotificationScheduler.getGivenTime()
-            scheduleNotification(for: time)
-        } else {
-            // Random time / morning / afternoon / evening
-            let timeInterval = jokeNotificationScheduler.getTimeInterval()
-            let notificationTime = jokeNotificationScheduler.generateNotificationTimeBetween(timeInterval.0, timeInterval.1)
-            scheduleNotification(for: notificationTime)
+        // Schedule notification
+        let content = jokeNotificationGenerator.setNotificationContent()
+        let time = jokeNotificationScheduler.resolveNotificationTimeBasedOnSettings()
+        let trigger = jokeNotificationScheduler.setNotificationTrigger(on: time)
+
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+        guard let jokeId = content.userInfo["jokeId"] as? Int else {
+            return
         }
+
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        dbManager.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())
     }
 
     private func removeAllPendingNotificationRequests() {
         // Which are not delivered yet but scheduled
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-    }
-
-    private func scheduleNotification(for time: Date) {
-        let content = setNotificationContent()
-
-        let trigger = jokeNotificationScheduler.setNotificationTrigger(on: time)
-        let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-    }
-
-    private func setNotificationContent() -> UNMutableNotificationContent {
-        let content = UNMutableNotificationContent()
-        content.title = "Vicc:"
-        content.badge = 1
-        let type = jokeNotificationGenerator.getJokeType()
-        let joke = dbManager.getRandomJokeWith(type: type)
-        content.body = joke.jokeText.formatLineBreaks()
-        nextJokeId = joke.jokeId
-
-        if defaults.bool(forKey: UserDefaults.Key.Sw.notificationSound) {
-            content.sound = UNNotificationSound.default()
-        }
-
-        return content
     }
 
 }

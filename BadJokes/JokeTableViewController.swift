@@ -16,7 +16,6 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
     let dbManager = DBManager()
     let jokeNotificationHelper = JokeNotificationHelper()
     let refreshControl = UIRefreshControl()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +34,13 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
         refreshTableContent()
     }
 
-    func notificationDidFire(with jokeID: Int) {
-        dbManager.setJokeUsedAndStoredWith(jokeId: jokeID)
+    func notificationDidFire() {
         refreshTableContent()
     }
 
     @objc func refreshTableContent() {
+        // TODO: Set joke isUsed=true, isStored=true if joke's schedule time is in the past
+
         self.dataSource = JokesDataSource(jokes: dbManager.getStoredJokes())
         tableView.dataSource = dataSource
         tableView.reloadData()

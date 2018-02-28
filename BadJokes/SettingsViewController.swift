@@ -142,7 +142,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     }
 
     func disablePreferencesOnGlobalSwitchState() {
-        // If this switch is on, every settings are disabled
+        // If this switch is on, all settings are disabled
         let swGlobalState = !swGlobalOff.isOn
 
         swNotificationSound.isEnabled = swGlobalState

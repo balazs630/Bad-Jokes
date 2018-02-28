@@ -15,6 +15,21 @@ struct SegueIdentifier {
     static let showJoke = "showJokeSegue"
 }
 
+struct Field {
+    struct JokesTable {
+        static let jokeId = "jokeId"
+        static let isUsed = "isUsed"
+        static let isStored = "isStored"
+        static let type = "type"
+        static let jokeText = "jokeText"
+    }
+
+    struct SchedulesTable {
+        static let jokeId = "jokeId"
+        static let time = "time"
+    }
+}
+
 extension UserDefaults {
     struct Key {
         static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"

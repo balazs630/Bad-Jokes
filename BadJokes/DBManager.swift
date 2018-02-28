@@ -9,24 +9,6 @@
 import Foundation
 import FMDB
 
-struct Field {
-
-    // Field names in Jokes table
-    struct JokesTable {
-        static let jokeId = "jokeId"
-        static let isUsed = "isUsed"
-        static let isStored = "isStored"
-        static let type = "type"
-        static let jokeText = "jokeText"
-    }
-
-    // Field names in Schedules table
-    struct SchedulesTable {
-        static let jokeId = "jokeId"
-        static let time = "time"
-    }
-}
-
 class DBManager: NSObject {
 
     static let shared: DBManager = DBManager()
@@ -77,6 +59,8 @@ class DBManager: NSObject {
             print("Database file already exist at: \(destination)")
         }
     }
+
+    // MARK: Jokes table's queries
 
     func getAllJokes() -> [Joke] {
         var resultsArray = [Joke]()
@@ -301,6 +285,47 @@ class DBManager: NSObject {
     func removeStoredJokeWith(jokeId: Int) {
         if openDatabase() {
             let query = "UPDATE jokes SET \(Field.JokesTable.isStored)=0 WHERE \(Field.JokesTable.jokeId)=\(jokeId)"
+
+            do {
+                try database.executeUpdate(query, values: nil)
+            } catch {
+                print(error.localizedDescription)
+            }
+
+            database.close()
+        }
+    }
+
+    // MARK: Schedules table's queries
+
+    func getAllSchedules() -> [Schedule] {
+        var resultsArray = [Schedule]()
+
+        if openDatabase() {
+            let query = "SELECT * FROM schedules ORDER BY \(Field.SchedulesTable.jokeId) ASC"
+
+            do {
+                let results = try database.executeQuery(query, values: nil)
+
+                while results.next() {
+                    let schedule = Schedule(jokeId: Int(results.int(forColumn: Field.JokesTable.jokeId)),
+                                    time: Int(results.int(forColumn: Field.JokesTable.isUsed)))
+
+                    resultsArray.append(schedule)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+
+            database.close()
+        }
+
+        return resultsArray
+    }
+
+    func insertNewScheduledJoke(with jokeId: Int, on time: Int) {
+        if openDatabase() {
+            let query = "INSERT INTO schedules (\(Field.SchedulesTable.jokeId), \(Field.SchedulesTable.time)) VALUES(\(jokeId), \(time))"
 
             do {
                 try database.executeUpdate(query, values: nil)

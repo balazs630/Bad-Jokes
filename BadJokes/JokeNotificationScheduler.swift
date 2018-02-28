@@ -14,6 +14,22 @@ class JokeNotificationScheduler {
     var localTimeZoneName: String { return TimeZone.current.identifier }
     let defaults = UserDefaults.standard
 
+    let dateUtil = DateUtil()
+
+    func resolveNotificationTimeBasedOnSettings() -> Date {
+        let time: Date
+        if defaults.string(forKey: UserDefaults.Key.Lbl.time) == Time.atGivenTime {
+            // At given time
+            time = dateUtil.getGivenTime()
+        } else {
+            // Random time / morning / afternoon / evening
+            let timeInterval = dateUtil.getTimeInterval()
+            time = dateUtil.generateTimeBetween(timeInterval.0, timeInterval.1)
+        }
+
+        return time
+    }
+
     func setNotificationTrigger(on time: Date) -> UNCalendarNotificationTrigger {
         // Setting time for notification trigger
         var dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: time)
@@ -24,57 +40,6 @@ class JokeNotificationScheduler {
         print("setNotification fromSettings, trigger: \(trigger)\n")
 
         return trigger
-    }
-
-    func getGivenTime() -> Date {
-        let calendar = Calendar(identifier: .gregorian)
-        var timeComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
-        timeComponents.timeZone = TimeZone(identifier: localTimeZoneName)
-
-        timeComponents.hour = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
-        timeComponents.minute = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
-        print("getGivenTime(): timeComponents: \(timeComponents)")
-
-        let time = calendar.date(from: timeComponents)!
-        print("getGivenTime(): \(time)\n")
-        return time
-    }
-
-    func getTimeInterval() -> (Date, Date) {
-        var startTime = Date()
-        var endTime = Date()
-
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm"
-        timeFormatter.timeZone = TimeZone(identifier: localTimeZoneName)
-
-        if let timeSettings = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
-            switch timeSettings {
-            case Time.random:
-                startTime = timeFormatter.date(from: Time.Hour.morningStart)!
-                endTime = timeFormatter.date(from: Time.Hour.nightStart)!
-            case Time.morning:
-                startTime = timeFormatter.date(from: Time.Hour.morningStart)!
-                endTime = timeFormatter.date(from: Time.Hour.afternoonStart)!
-            case Time.afternoon:
-                startTime = timeFormatter.date(from: Time.Hour.afternoonStart)!
-                endTime = timeFormatter.date(from: Time.Hour.eveningStart)!
-            case Time.evening:
-                startTime = timeFormatter.date(from: Time.Hour.eveningStart)!
-                endTime = timeFormatter.date(from: Time.Hour.nightStart)!
-            default:
-                print("Unexpected time identifier was given in: \(#file), line: \(#line)")
-            }
-        }
-
-        return (startTime, endTime)
-    }
-
-    func generateNotificationTimeBetween(_ startTime: Date, _ endTime: Date) -> Date {
-        let intervalSeconds = endTime.timeIntervalSince(startTime)
-        let randomTime: Date = startTime + TimeInterval(intervalSeconds.randomSec())
-
-        return randomTime
     }
 
 }

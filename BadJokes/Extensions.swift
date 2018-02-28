@@ -50,3 +50,15 @@ extension TimeInterval {
         return index
     }
 }
+
+extension Date {
+    func convertToUnixTimeStamp() -> Int {
+        return Int(self.timeIntervalSince1970)
+    }
+}
+
+extension Int {
+    func convertToDate() -> Date {
+        return Date(timeIntervalSince1970: TimeInterval(self))
+    }
+}
