@@ -1,5 +1,5 @@
 //
-//  DateUtil.swift
+//  SettingsUtil.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2018. 02. 28..

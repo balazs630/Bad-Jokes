@@ -15,11 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        initUserDefaultsOnFirstLaunch()
+        return true
+    }
 
+    @objc func initUserDefaultsOnFirstLaunch() {
         let defaults = UserDefaults.standard
 
         if defaults.object(forKey: UserDefaults.Key.isAppAlreadyLaunchedOnce) == nil {
-            // First launch
             let firstTimeLaunchDefaults: [String: Any] = [
                 UserDefaults.Key.isAppAlreadyLaunchedOnce: true,
 
@@ -49,8 +53,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             defaults.synchronize()
         }
-
-        return true
     }
 
 }

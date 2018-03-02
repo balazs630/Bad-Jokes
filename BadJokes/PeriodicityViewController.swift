@@ -13,16 +13,16 @@ protocol PeriodicityViewControllerDelegate: class {
 }
 
 struct Periodicity {
-    static let napi = "Napi"
-    static let heti = "Heti"
-    static let havi = "Havi"
+    static let daily = "Napi"
+    static let weekly = "Heti"
+    static let monthly = "Havi"
 }
 
 class PeriodicityViewController: UITableViewController {
 
-    let tableContent = [Periodicity.napi,
-                        Periodicity.heti,
-                        Periodicity.havi]
+    let tableContent = [Periodicity.daily,
+                        Periodicity.weekly,
+                        Periodicity.monthly]
 
     var lastSelectedOption = String()
     var selectedIndexPath = IndexPath(row: 0, section: 0)

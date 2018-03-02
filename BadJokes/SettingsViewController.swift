@@ -114,7 +114,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         pckTimeMinutes = minutes
     }
 
-    func loadPreferences() {
+    private func loadPreferences() {
         swGlobalOff.isOn = defaults.bool(forKey: UserDefaults.Key.Sw.globalOff)
         swNotificationSound.isOn = defaults.bool(forKey: UserDefaults.Key.Sw.notificationSound)
 
@@ -141,7 +141,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         }
     }
 
-    func savePreferences() {
+    private func savePreferences() {
         defaults.set(lblPeriodicity.text, forKey: UserDefaults.Key.Lbl.periodicity)
         defaults.set(lblTimeOptionName, forKey: UserDefaults.Key.Lbl.time)
 
@@ -155,7 +155,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         }
     }
 
-    func disablePreferencesOnGlobalSwitchState() {
+    private func disablePreferencesOnGlobalSwitchState() {
         // If this switch is on, all settings are disabled
         let swGlobalState = !swGlobalOff.isOn
 
@@ -169,7 +169,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         }
     }
 
-    func checkNotificationStatus() {
+    private func checkNotificationStatus() {
         let current = UNUserNotificationCenter.current()
 
         current.getNotificationSettings(completionHandler: { (settings) in

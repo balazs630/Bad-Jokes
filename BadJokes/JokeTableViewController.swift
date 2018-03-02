@@ -1,5 +1,5 @@
 //
-//  JokesViewController.swift
+//  JokeTableViewController.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2017. 07. 18..
@@ -24,21 +24,31 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        refreshTableContent()
+        initTableContent()
     }
 
     func notificationDidFire() {
-        refreshTableContent()
+        initTableContent()
     }
 
-    @objc func refreshTableContent() {
+    @objc func initTableContent() {
         jokeNotificationHelper.checkForDeliveredJokes()
+        pullDataIntoDataSource()
+        reloadData()
+        checkForEmptyTable()
+    }
 
-        self.dataSource = JokesDataSource(jokes: dbManager.getStoredJokes())
+    func pullDataIntoDataSource() {
+        dataSource = JokesDataSource(jokes: dbManager.getStoredJokes())
         tableView.dataSource = dataSource
+    }
+
+    func reloadData() {
         tableView.reloadData()
         refreshControl.endRefreshing()
+    }
 
+    func checkForEmptyTable() {
         if tableView.visibleCells.isEmpty {
             // Display a message instead of an empty table
             let emptyStateLabel = UILabel()
@@ -104,7 +114,7 @@ extension JokeTableViewController {
         tableView.dataSource = dataSource
         tableView.reloadData()
 
-        refreshControl.addTarget(self, action: #selector(refreshTableContent), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(initTableContent), for: UIControlEvents.valueChanged)
         tableView.refreshControl = refreshControl
     }
 }
