@@ -42,33 +42,33 @@ class SettingsUtil {
     }
 
     private func getTimeIntervalFromSettings() -> (Date, Date) {
-        var startTime = Date()
-        var endTime = Date()
+        let gregorian = Calendar(identifier: .gregorian)
 
-        let timeFormatter = DateFormatter()
-        timeFormatter.dateFormat = "HH:mm"
-        timeFormatter.timeZone = TimeZone(identifier: localTimeZoneName)
+        let now = Date()
+        var startComponents = gregorian.dateComponents([.year, .month, .day], from: now)
+        var endComponents = gregorian.dateComponents([.year, .month, .day], from: now)
 
         if let timeSettings = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
             switch timeSettings {
             case Time.random:
-                startTime = timeFormatter.date(from: Time.Hour.morningStart)!
-                endTime = timeFormatter.date(from: Time.Hour.nightStart)!
+                startComponents.hour = Time.Hour.morningStart
+                endComponents.hour = Time.Hour.nightStart
             case Time.morning:
-                startTime = timeFormatter.date(from: Time.Hour.morningStart)!
-                endTime = timeFormatter.date(from: Time.Hour.afternoonStart)!
+                startComponents.hour = Time.Hour.morningStart
+                endComponents.hour = Time.Hour.afternoonStart
             case Time.afternoon:
-                startTime = timeFormatter.date(from: Time.Hour.afternoonStart)!
-                endTime = timeFormatter.date(from: Time.Hour.eveningStart)!
+                startComponents.hour = Time.Hour.afternoonStart
+                endComponents.hour = Time.Hour.eveningStart
             case Time.evening:
-                startTime = timeFormatter.date(from: Time.Hour.eveningStart)!
-                endTime = timeFormatter.date(from: Time.Hour.nightStart)!
+                startComponents.hour = Time.Hour.eveningStart
+                endComponents.hour = Time.Hour.nightStart
             default:
                 print("Unexpected time identifier was given in: \(#file), line: \(#line)")
             }
         }
 
-        return (startTime, endTime)
+        return (gregorian.date(from: startComponents)!,
+                gregorian.date(from: endComponents)!)
     }
 
     private func getRandomTimeBetweenTwoDate(_ startTime: Date, _ endTime: Date) -> Date {

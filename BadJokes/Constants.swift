@@ -45,20 +45,19 @@ extension UserDefaults {
             static let cop = "sldCop"
             static let blonde = "sldBlonde"
         }
+    }
 
-        static var sldDictionaty: [String: String] {
-            return [
-                "sldAnimal": "animal",
-                "sldRough": "rough",
-                "sldIT": "IT",
-                "sldAnti": "anti",
-                "sldTiring": "tiring",
-                "sldJean": "jean",
-                "sldMoriczka": "moriczka",
-                "sldCop": "cop",
-                "sldBlonde": "blonde"
-            ]
-        }
-
+    static var sldDictionaty: [String: String] {
+        return [
+            UserDefaults.Key.Sld.animal: "animal",
+            UserDefaults.Key.Sld.rough: "rough",
+            UserDefaults.Key.Sld.IT: "IT",
+            UserDefaults.Key.Sld.anti: "anti",
+            UserDefaults.Key.Sld.tiring: "tiring",
+            UserDefaults.Key.Sld.jean: "jean",
+            UserDefaults.Key.Sld.moriczka: "moriczka",
+            UserDefaults.Key.Sld.cop: "cop",
+            UserDefaults.Key.Sld.blonde: "blonde"
+        ]
     }
 }

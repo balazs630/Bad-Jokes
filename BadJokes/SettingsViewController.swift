@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 
 protocol SettingsViewControllerDelegate: class {
-    func settingsDidClose()
+    func settingsDidClose(isSettingsChanged: Bool)
 }
 
 class SettingsViewController: UITableViewController, PeriodicityViewControllerDelegate, TimeViewControllerDelegate {
@@ -37,7 +37,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     var lblTimeOptionName = String()
 
     // Slider IBOutlets and it's UserDefault keys
-    var sldCollection: [UISlider:String] {
+    var sldCollection: [UISlider: String] {
         return [
             sldAnimal: UserDefaults.Key.Sld.animal,
             sldRough: UserDefaults.Key.Sld.rough,
@@ -51,8 +51,8 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         ]
     }
 
+    var savedPreferences = String()
     let defaults = UserDefaults.standard
-
     weak var delegate: SettingsViewControllerDelegate?
 
     let notificationWarningIndexPath = IndexPath(item: 0, section: 0)
@@ -62,12 +62,23 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         loadPreferences()
+        disablePreferencesOnGlobalSwitchState()
         checkNotificationStatus()
+        savedPreferences = getActualPreferences()
     }
 
     @IBAction func closeSettings(_ sender: Any) {
-        savePreferences()
-        delegate?.settingsDidClose()
+        if savedPreferences != getActualPreferences() {
+            savePreferences()
+            delegate?.settingsDidClose(isSettingsChanged: true)
+        } else {
+            delegate?.settingsDidClose(isSettingsChanged: false)
+        }
+
+        defaults.set(swGlobalOff.isOn, forKey: UserDefaults.Key.Sw.globalOff)
+        defaults.set(swNotificationSound.isOn, forKey: UserDefaults.Key.Sw.notificationSound)
+        defaults.synchronize()
+
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -77,6 +88,14 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
 
     @IBAction func openIphoneNotificationSettings(_ sender: Any) {
         UIApplication.shared.open(URL(string:"App-Prefs:root=NOTIFICATIONS_ID")!, options: [:], completionHandler: nil)
+    }
+
+    func getActualPreferences() -> String {
+        return """
+        \(String(describing: lblTime.text)) + \(String(describing: lblPeriodicity.text))
+        + \(sldAnimal.value) + \(sldRough.value) \(sldIT.value) \(sldAnti.value) \(sldTiring.value)
+        + \(sldJean.value) \(sldMoriczka.value) \(sldCop.value) \(sldBlonde.value)
+        """
     }
 
     func savePeriodicityWith(selectedCellText: String) {
@@ -120,14 +139,9 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         for item in sldCollection {
             item.key.value = defaults.float(forKey: item.value)
         }
-
-        disablePreferencesOnGlobalSwitchState()
     }
 
     func savePreferences() {
-        defaults.set(swGlobalOff.isOn, forKey: UserDefaults.Key.Sw.globalOff)
-        defaults.set(swNotificationSound.isOn, forKey: UserDefaults.Key.Sw.notificationSound)
-
         defaults.set(lblPeriodicity.text, forKey: UserDefaults.Key.Lbl.periodicity)
         defaults.set(lblTimeOptionName, forKey: UserDefaults.Key.Lbl.time)
 

@@ -65,7 +65,7 @@ class JokeNotificationGenerator {
         // Generate a joke type based on the sliders from the Settings screen
         var sldProbabilities = [String]()
 
-        for slider in UserDefaults.Key.sldDictionaty {
+        for slider in UserDefaults.sldDictionaty {
             let sldValue = defaults.integer(forKey: slider.key)
 
             // Skip joke types with value 0
@@ -89,7 +89,7 @@ class JokeNotificationGenerator {
         // Goes through each joke type and returns the first joke type that contains unused joke(s)
         var type = String()
 
-        for sld in UserDefaults.Key.sldDictionaty.values {
+        for sld in UserDefaults.sldDictionaty.values {
             if dbManager.isAllJokeUsedWith(type: sld) == false {
                 type = sld
                 break

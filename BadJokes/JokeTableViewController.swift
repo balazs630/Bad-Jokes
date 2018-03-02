@@ -54,8 +54,10 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
         }
     }
 
-    func settingsDidClose() {
-        jokeNotificationHelper.applyCurrentNotificationSettings()
+    func settingsDidClose(isSettingsChanged: Bool) {
+        if isSettingsChanged {
+            jokeNotificationHelper.applyNewNotificationSettings()
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

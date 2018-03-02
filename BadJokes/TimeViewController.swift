@@ -21,10 +21,10 @@ struct Time {
     static let atGivenTime = "Pontos időpontban"
 
     struct Hour {
-        static let morningStart = "09:00"
-        static let afternoonStart = "12:00"
-        static let eveningStart = "18:00"
-        static let nightStart = "21:00"
+        static let morningStart = 9
+        static let afternoonStart = 12
+        static let eveningStart = 18
+        static let nightStart = 21
     }
 
     struct Detail {

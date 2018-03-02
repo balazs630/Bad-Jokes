@@ -37,7 +37,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         delegate?.notificationDidFire()
     }
 
-    func applyCurrentNotificationSettings() {
+    func applyNewNotificationSettings() {
         // Schedule notification
         let content = jokeNotificationGenerator.setNotificationContent()
         let time = settingsUtil.resolveNotificationTimeBasedOnSettings()
