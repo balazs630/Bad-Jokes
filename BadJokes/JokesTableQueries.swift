@@ -10,7 +10,7 @@ import Foundation
 import FMDB
 
 extension DBManager {
-    
+
     func getAllJokes() -> [Joke] {
         var resultsArray = [Joke]()
 
@@ -244,6 +244,5 @@ extension DBManager {
             database.close()
         }
     }
-
 
 }

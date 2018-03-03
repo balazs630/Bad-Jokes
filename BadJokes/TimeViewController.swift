@@ -22,16 +22,23 @@ struct Time {
 
     struct Hour {
         static let morningStart = 9
+        static let morningEnd = 11
+
         static let afternoonStart = 12
+        static let afternoonEnd = 17
+
         static let eveningStart = 18
+        static let eveningEnd = 20
+
         static let nightStart = 21
+        static let nightEnd = 23
     }
 
     struct Detail {
-        static let random = "09:00 - 21:00 között"
-        static let morning = "09:00 - 12:00 között"
-        static let afternoon = "12:00 - 18:00 között"
-        static let evening = "18:00 - 21:00 között"
+        static let random = "\(Hour.morningStart):00 - \(Hour.nightStart):00 között"
+        static let morning = "\(Hour.morningStart):00 - \(Hour.afternoonStart):00 között"
+        static let afternoon = "\(Hour.afternoonStart):00 - \(Hour.eveningStart):00 között"
+        static let evening = "\(Hour.eveningStart):00 - \(Hour.nightStart):00 között"
         static let atGivenTime = ""
     }
 }
@@ -92,13 +99,13 @@ class TimeViewController: UITableViewController {
                     //TODO: Rewrite with proper dateformatter
                     delegate?.saveTimeWithSelected(cellText:
                         tableContent[selectedIndexPath.row],
-                        hours: String(hourComponent),
-                        minutes: "00")
+                                                   hours: String(hourComponent),
+                                                   minutes: "00")
                 } else {
                     delegate?.saveTimeWithSelected(cellText:
                         tableContent[selectedIndexPath.row],
-                        hours: String(hourComponent),
-                        minutes: String(minuteComponent)
+                                                   hours: String(hourComponent),
+                                                   minutes: String(minuteComponent)
                     )
                 }
             }

@@ -13,69 +13,86 @@ class SettingsUtil {
     var localTimeZoneName: String { return TimeZone.current.identifier }
     let defaults = UserDefaults.standard
 
-    func resolveNotificationTimeBasedOnSettings() -> Date {
-        let time: Date
+    func resolveDatePartBasedOnSettings(counter: Int) -> Date.DatePart {
+        if let periodicitySettings = defaults.string(forKey: UserDefaults.Key.Lbl.periodicity) {
+            switch periodicitySettings {
+            case Periodicity.daily:
+                return getDailyDatePart(counter: counter)
+            case Periodicity.weekly:
+                return getWeeklyDatePart(counter: counter)
+            case Periodicity.monthly:
+                return getMonthlyDatePart(counter: counter)
+            default:
+                print("Unexpected date identifier was given in: \(#file), line: \(#line)")
+            }
+        }
+        return Date.DatePart()
+    }
+
+    private func getDailyDatePart(counter: Int) -> Date.DatePart {
+        let dateNow = Date()
+        let gregorian = Calendar(identifier: .gregorian)
+        let newDate = dateNow.add(days: counter)
+
+        let dateComponents = gregorian.dateComponents([.year, .month, .day], from: newDate)
+        return dateComponents.datePart()
+    }
+
+    private func getWeeklyDatePart(counter: Int) -> Date.DatePart {
+        let dateNow = Date()
+        let gregorian = Calendar(identifier: .gregorian)
+        let newDate = dateNow.add(weeks: counter)
+
+        let dateComponents = gregorian.dateComponents([.year, .month, .day], from: newDate)
+        return dateComponents.datePart()
+    }
+
+    private func getMonthlyDatePart(counter: Int) -> Date.DatePart {
+        let dateNow = Date()
+        let gregorian = Calendar(identifier: .gregorian)
+        let newDate = dateNow.add(months: counter)
+
+        let dateComponents = gregorian.dateComponents([.year, .month, .day], from: newDate)
+        return dateComponents.datePart()
+    }
+
+    func resolveTimePartBasedOnSettings() -> Date.TimePart {
         if defaults.string(forKey: UserDefaults.Key.Lbl.time) == Time.atGivenTime {
             // At given time
-            time = getGivenTimeFromSettings()
+            return getGivenTimeFromSettings()
         } else {
             // Random time / morning / afternoon / evening
-            let timeInterval = getTimeIntervalFromSettings()
-            time = getRandomTimeBetweenTwoDate(timeInterval.0, timeInterval.1)
+            return getRandomTimeFromSettings()
         }
-
-        return time
     }
 
-    private func getGivenTimeFromSettings() -> Date {
-        // Get time from settings
-        let calendar = Calendar(identifier: .gregorian)
-        var timeComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
-        timeComponents.timeZone = TimeZone(identifier: localTimeZoneName)
+    private func getGivenTimeFromSettings() -> Date.TimePart {
+        let hours = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
+        let minutes = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
 
-        timeComponents.hour = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
-        timeComponents.minute = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
-
-        let time = calendar.date(from: timeComponents)!
-        
-        return time
+        return Date.TimePart(hour: hours, minute: minutes)
     }
 
-    private func getTimeIntervalFromSettings() -> (Date, Date) {
-        let gregorian = Calendar(identifier: .gregorian)
-
-        let now = Date()
-        var startComponents = gregorian.dateComponents([.year, .month, .day], from: now)
-        var endComponents = gregorian.dateComponents([.year, .month, .day], from: now)
+    private func getRandomTimeFromSettings() -> Date.TimePart {
+        var hours = Int()
+        let minutes = Int().randomNumberBetween(lower: 0, upper: 59)
 
         if let timeSettings = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
             switch timeSettings {
             case Time.random:
-                startComponents.hour = Time.Hour.morningStart
-                endComponents.hour = Time.Hour.nightStart
+                hours = Int().randomNumberBetween(lower: Time.Hour.morningStart, upper: Time.Hour.eveningEnd)
             case Time.morning:
-                startComponents.hour = Time.Hour.morningStart
-                endComponents.hour = Time.Hour.afternoonStart
+                hours = Int().randomNumberBetween(lower: Time.Hour.morningStart, upper: Time.Hour.morningEnd)
             case Time.afternoon:
-                startComponents.hour = Time.Hour.afternoonStart
-                endComponents.hour = Time.Hour.eveningStart
+                hours = Int().randomNumberBetween(lower: Time.Hour.afternoonStart, upper: Time.Hour.afternoonEnd)
             case Time.evening:
-                startComponents.hour = Time.Hour.eveningStart
-                endComponents.hour = Time.Hour.nightStart
+                hours = Int().randomNumberBetween(lower: Time.Hour.eveningStart, upper: Time.Hour.eveningEnd)
             default:
                 print("Unexpected time identifier was given in: \(#file), line: \(#line)")
             }
         }
 
-        return (gregorian.date(from: startComponents)!,
-                gregorian.date(from: endComponents)!)
+        return Date.TimePart(hour: hours, minute: minutes)
     }
 
-    private func getRandomTimeBetweenTwoDate(_ startTime: Date, _ endTime: Date) -> Date {
-        let intervalSeconds = endTime.timeIntervalSince(startTime)
-        let randomTime: Date = startTime + TimeInterval(intervalSeconds.randomSec())
-
-        return randomTime
-    }
-    
 }

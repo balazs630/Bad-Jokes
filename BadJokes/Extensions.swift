@@ -42,6 +42,13 @@ extension Array {
     }
 }
 
+extension Int {
+    func randomNumberBetween(lower: Int, upper: Int) -> Int {
+        let result = Int(arc4random_uniform(UInt32(upper - lower)) + UInt32(lower))
+        return result
+    }
+}
+
 extension TimeInterval {
     func randomSec() -> UInt32 {
         let index = UInt32(arc4random_uniform(UInt32(self)))
@@ -55,7 +62,25 @@ extension TimeInterval {
 }
 
 extension Date {
+    func add(days: Int) -> Date {
+        return Calendar.current.date(byAdding: .day, value: days, to: self)!
+    }
+
+    func add(weeks: Int) -> Date {
+        return Calendar.current.date(byAdding: .day, value: 7 * weeks, to: self)!
+    }
+
+    func add(months: Int) -> Date {
+        return Calendar.current.date(byAdding: .month, value: months, to: self)!
+    }
+
     func convertToUnixTimeStamp() -> Int {
         return Int(self.timeIntervalSince1970)
+    }
+}
+
+extension DateComponents {
+    func datePart() -> Date.DatePart {
+        return Date.DatePart(year: self.year!, month: self.month!, day: self.day!)
     }
 }

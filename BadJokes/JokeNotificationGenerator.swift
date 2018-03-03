@@ -26,7 +26,7 @@ class JokeNotificationGenerator {
             content.sound = UNNotificationSound.default()
         }
 
-        var userInfo = [String:Int]()
+        var userInfo = [String: Int]()
         userInfo["jokeId"] = joke.jokeId
         content.userInfo = userInfo
 

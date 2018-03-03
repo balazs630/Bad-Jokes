@@ -16,6 +16,7 @@ protocol JokeNotificationHelperDelegate: class {
 class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
     var localTimeZoneName: String { return TimeZone.current.identifier }
+    let maxLocalNotificationCount = 64
 
     weak var delegate: JokeNotificationHelperDelegate?
 
@@ -38,9 +39,46 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     }
 
     func applyNewNotificationSettings() {
-        // Schedule notification
+        setRepeatingNotifications()
+    }
+
+    private func setRepeatingNotifications() {
+        let notificationTimes = generateNotificationTimes()
+
+        guard notificationTimes.count == maxLocalNotificationCount else {
+            return
+        }
+
+        for i in 0...maxLocalNotificationCount - 1 {
+            addJokeNotificationRequest(on: notificationTimes[i])
+        }
+    }
+
+    private func generateNotificationTimes() -> [Date] {
+        var notificationTimesArray = [Date]()
+        let gregorian = Calendar(identifier: .gregorian)
+
+        for i in 0...maxLocalNotificationCount - 1 {
+            var dateComponents = gregorian.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
+
+            let datePart = settingsUtil.resolveDatePartBasedOnSettings(counter: i)
+            dateComponents.year = datePart.year
+            dateComponents.month = datePart.month
+            dateComponents.day = datePart.day
+
+            let timePart = settingsUtil.resolveTimePartBasedOnSettings()
+            dateComponents.hour = timePart.hour
+            dateComponents.minute = timePart.minute
+
+            let notificationTime = gregorian.date(from: dateComponents)!
+            notificationTimesArray.append(notificationTime)
+        }
+
+        return notificationTimesArray
+    }
+
+    private func addJokeNotificationRequest(on time: Date) {
         let content = jokeNotificationGenerator.setNotificationContent()
-        let time = settingsUtil.resolveNotificationTimeBasedOnSettings()
         let trigger = setNotificationTrigger(on: time)
 
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
@@ -58,9 +96,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         var dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: time)
         dateCompenents.timeZone = TimeZone(identifier: localTimeZoneName)
 
-        // Adding request
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
-        print("setNotification fromSettings, trigger: \(trigger)\n")
 
         return trigger
     }

@@ -10,7 +10,7 @@ import Foundation
 import FMDB
 
 extension DBManager {
-    
+
     func getAllSchedules() -> [Schedule] {
         var resultsArray = [Schedule]()
 

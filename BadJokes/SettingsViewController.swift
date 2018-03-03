@@ -87,7 +87,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     }
 
     @IBAction func openIphoneNotificationSettings(_ sender: Any) {
-        UIApplication.shared.open(URL(string:"App-Prefs:root=NOTIFICATIONS_ID")!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: "App-Prefs:root=NOTIFICATIONS_ID")!, options: [:], completionHandler: nil)
     }
 
     func getActualPreferences() -> String {
