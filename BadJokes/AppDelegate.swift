@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UserDefaults.Key.Sw.notificationSound: true,
 
                 UserDefaults.Key.Lbl.periodicity: "Napi",
+                UserDefaults.Key.Lbl.recurrence: "1x",
                 UserDefaults.Key.Lbl.time: "Véletlen időpontban",
 
                 UserDefaults.Key.Pck.timeHours: "12",

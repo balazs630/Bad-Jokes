@@ -12,6 +12,16 @@ extension String {
     func formatLineBreaks() -> String {
         return self.replacingOccurrences(of: "\\n", with: "\n")
     }
+
+    func cutLastCharacter() -> Int {
+        // Cut down the last letter, e.x. 10x -> 10 and returns as an Int
+        let splitIndex = index(before: endIndex)
+        guard let number = Int(self.prefix(upTo: splitIndex)) else {
+            return Int()
+        }
+
+        return number
+    }
 }
 
 extension UserDefaults {

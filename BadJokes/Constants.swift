@@ -11,6 +11,7 @@ import Foundation
 struct SegueIdentifier {
     static let showSettings = "showSettingsSegue"
     static let periodicityDetail = "periodicityDetailSegue"
+    static let recurrenceDetail = "recurrenceDetailSegue"
     static let timeDetail = "timeDetailSegue"
     static let showJoke = "showJokeSegue"
 }
@@ -27,6 +28,7 @@ extension UserDefaults {
         struct Lbl {
             static let periodicity = "lblPeriodicity"
             static let time = "lblTime"
+            static let recurrence = "lblRecurrence"
         }
 
         struct Pck {
