@@ -63,4 +63,18 @@ extension DBManager {
             database.close()
         }
     }
+
+    func deleteAllSchedules() {
+        if isDatabaseOpen() {
+            let query = "DELETE FROM schedules WHERE \(ColumnName.JokesTable.jokeId)>0"
+
+            do {
+                try database.executeUpdate(query, values: nil)
+            } catch {
+                print(error.localizedDescription)
+            }
+
+            database.close()
+        }
+    }
 }

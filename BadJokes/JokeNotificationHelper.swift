@@ -14,15 +14,11 @@ protocol JokeNotificationHelperDelegate: class {
 }
 
 class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
-
     var localTimeZoneName: String { return TimeZone.current.identifier }
-    let maxLocalNotificationCount = 64
-
     weak var delegate: JokeNotificationHelperDelegate?
 
     let dbManager = DBManager()
     let jokeNotificationGenerator = JokeNotificationGenerator()
-    let settingsUtil = SettingsUtil()
 
     override init() {
         super.init()
@@ -39,42 +35,18 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     }
 
     func applyNewNotificationSettings() {
-        setRepeatingNotifications()
+        setNewRepeatingNotifications()
     }
 
-    private func setRepeatingNotifications() {
-        let notificationTimes = generateNotificationTimes()
+    private func setNewRepeatingNotifications() {
+        removeAllPendingNotificationRequests()
+        dbManager.deleteAllSchedules()
+        
+        let notificationTimes = jokeNotificationGenerator.generateNotificationTimes()
 
-        guard notificationTimes.count == maxLocalNotificationCount else {
-            return
-        }
-
-        for i in 0...maxLocalNotificationCount - 1 {
+        for i in 0...notificationTimes.count - 1 {
             addJokeNotificationRequest(on: notificationTimes[i])
         }
-    }
-
-    private func generateNotificationTimes() -> [Date] {
-        var notificationTimesArray = [Date]()
-        let calendar = Calendar(identifier: .gregorian)
-
-        for i in 0...maxLocalNotificationCount - 1 {
-            var dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
-
-            let datePart = settingsUtil.resolveDatePartBasedOnSettings(counter: i)
-            dateComponents.year = datePart.year
-            dateComponents.month = datePart.month
-            dateComponents.day = datePart.day
-
-            let timePart = settingsUtil.resolveTimePartBasedOnSettings()
-            dateComponents.hour = timePart.hour
-            dateComponents.minute = timePart.minute
-
-            let notificationTime = calendar.date(from: dateComponents)!
-            notificationTimesArray.append(notificationTime)
-        }
-
-        return notificationTimesArray
     }
 
     private func addJokeNotificationRequest(on time: Date) {

@@ -14,61 +14,35 @@ class SettingsUtil {
     var localTimeZoneName: String { return TimeZone.current.identifier }
     let calendar = Calendar(identifier: .gregorian)
 
-    func resolveDatePartBasedOnSettings(counter: Int) -> Date.DatePart {
-        if let periodicitySetting = defaults.string(forKey: UserDefaults.Key.Lbl.periodicity) {
-            switch periodicitySetting {
-            case Periodicity.daily:
-                return getDailyDatePart(counter: counter)
-            case Periodicity.weekly:
-                return getWeeklyDatePart(counter: counter)
-            case Periodicity.monthly:
-                return getMonthlyDatePart(counter: counter)
-            default:
-                print("Unexpected date identifier was given in: \(#file), line: \(#line)")
-            }
-        }
-        return Date.DatePart()
+    func getGeneratedNotificationTimeBetween(startDate: Date, endDate: Date) -> Date {
+        let datePart = randomDatePartBetween(lower: startDate, upper: endDate)
+        let timePart = randomTimeFromSettings()
+
+        var dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
+
+        dateComponents.year = datePart.year
+        dateComponents.month = datePart.month
+        dateComponents.day = datePart.day
+
+        dateComponents.hour = timePart.hour
+        dateComponents.minute = timePart.minute
+
+        return calendar.date(from: dateComponents)!
     }
 
-    func getDailyDatePart(counter: Int) -> Date.DatePart {
-        let newDate = Date().add(days: counter)
+    private func randomDatePartBetween(lower: Date, upper: Date) -> Date.DatePart {
+        let startTimeStamp = UInt32(lower.timeIntervalSince1970)
+        let endTimeStamp = UInt32(upper.timeIntervalSince1970)
 
-        let dateComponents = calendar.dateComponents([.year, .month, .day], from: newDate)
+        let randomTimeStamp = arc4random_uniform(endTimeStamp - startTimeStamp) + startTimeStamp
+        let randomDate = Date(timeIntervalSince1970: TimeInterval(randomTimeStamp))
+
+        let calendar = Calendar(identifier: .gregorian)
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: randomDate)
         return dateComponents.datePart()
     }
 
-    func getWeeklyDatePart(counter: Int) -> Date.DatePart {
-        let newDate = Date().add(weeks: counter)
-
-        let dateComponents = calendar.dateComponents([.year, .month, .day], from: newDate)
-        return dateComponents.datePart()
-    }
-
-    func getMonthlyDatePart(counter: Int) -> Date.DatePart {
-        let newDate = Date().add(months: counter)
-
-        let dateComponents = calendar.dateComponents([.year, .month, .day], from: newDate)
-        return dateComponents.datePart()
-    }
-
-    func resolveTimePartBasedOnSettings() -> Date.TimePart {
-        if defaults.string(forKey: UserDefaults.Key.Lbl.time) == Time.atGivenTime {
-            // At given time
-            return getGivenTimeFromSettings()
-        } else {
-            // Random time / morning / afternoon / evening
-            return getRandomTimeFromSettings()
-        }
-    }
-
-    func getGivenTimeFromSettings() -> Date.TimePart {
-        let hours = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
-        let minutes = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
-
-        return Date.TimePart(hour: hours, minute: minutes)
-    }
-
-    func getRandomTimeFromSettings() -> Date.TimePart {
+    private func randomTimeFromSettings() -> Date.TimePart {
         var hours = Int()
         var minutes = Int().randomNumberBetween(lower: 0, upper: 59)
 
@@ -93,50 +67,19 @@ class SettingsUtil {
         return Date.TimePart(hour: hours, minute: minutes)
     }
 
-    func getDateIntervalForPartOfDaySettings() -> DateInterval {
-        let dateNow = Date()
-        var dateComponents = calendar.dateComponents([.year, .month, .day, .hour], from: dateNow)
-        var dateInterval = DateInterval()
-
-        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
-            switch timeSetting {
-            case Time.random:
-                dateComponents.setValue(Time.Hour.morningStart, for: .hour)
-                dateInterval.start = calendar.date(from: dateComponents)!
-
-                dateComponents.setValue(Time.Hour.eveningEnd, for: .hour)
-                dateInterval.end = calendar.date(from: dateComponents)!
-            case Time.morning:
-                dateComponents.setValue(Time.Hour.morningStart, for: .hour)
-                dateInterval.start = calendar.date(from: dateComponents)!
-
-                dateComponents.setValue(Time.Hour.morningEnd, for: .hour)
-                dateInterval.end = calendar.date(from: dateComponents)!
-            case Time.afternoon:
-                dateComponents.setValue(Time.Hour.afternoonStart, for: .hour)
-                dateInterval.start = calendar.date(from: dateComponents)!
-
-                dateComponents.setValue(Time.Hour.afternoonEnd, for: .hour)
-                dateInterval.end = calendar.date(from: dateComponents)!
-            case Time.evening:
-                dateComponents.setValue(Time.Hour.eveningStart, for: .hour)
-                dateInterval.start = calendar.date(from: dateComponents)!
-
-                dateComponents.setValue(Time.Hour.eveningEnd, for: .hour)
-                dateInterval.end = calendar.date(from: dateComponents)!
-            case Time.atGivenTime:
-                dateComponents.setValue(defaults.integer(forKey: UserDefaults.Key.Pck.timeHours), for: .hour)
-                dateInterval.start = calendar.date(from: dateComponents)!
-                dateInterval.end = dateInterval.start
-            default:
-                print("Unexpected time identifier was given in: \(#file), line: \(#line)")
-            }
-        }
-
-        return dateInterval
+    func getRecurrenceNumberBasedOnFreeTimeRatio() -> Int {
+        return Int((Double(getRecurranceNumber()) * getFreeTimeRatio()).rounded(.up))
     }
 
-    func getFreeTimeRatio() -> Double {
+    func getRecurranceNumber() -> Int {
+        guard let recurranceSetting = defaults.string(forKey: UserDefaults.Key.Lbl.recurrence)?.cutLastCharacter() else {
+            return 1
+        }
+
+        return recurranceSetting
+    }
+
+    private func getFreeTimeRatio() -> Double {
         let dateNow = Date()
         let dateInterval = getDateIntervalForPartOfDaySettings()
         var freeTimeRatio = Double()
@@ -153,29 +96,108 @@ class SettingsUtil {
         return freeTimeRatio
     }
 
-    func getRecurranceNumber() -> Int {
-        guard let recurranceSetting = defaults.string(forKey: UserDefaults.Key.Lbl.recurrence)?.cutLastCharacter() else {
-            return 1
+    private func getDateIntervalForPartOfDaySettings() -> DateInterval {
+        let dateNow = Date()
+        var dateComponents = calendar.dateComponents([.year, .month, .day, .hour], from: dateNow)
+        var dateInterval = DateInterval()
+
+        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
+            switch timeSetting {
+            case Time.random:
+                dateComponents.hour = Time.Hour.morningStart
+                dateInterval.start = calendar.date(from: dateComponents)!
+
+                dateComponents.hour = Time.Hour.eveningEnd
+                dateInterval.end = calendar.date(from: dateComponents)!
+            case Time.morning:
+                dateComponents.hour = Time.Hour.morningStart
+                dateInterval.start = calendar.date(from: dateComponents)!
+
+                dateComponents.hour = Time.Hour.morningEnd
+                dateInterval.end = calendar.date(from: dateComponents)!
+            case Time.afternoon:
+                dateComponents.hour = Time.Hour.afternoonStart
+                dateInterval.start = calendar.date(from: dateComponents)!
+
+                dateComponents.hour = Time.Hour.afternoonEnd
+                dateInterval.end = calendar.date(from: dateComponents)!
+            case Time.evening:
+                dateComponents.hour = Time.Hour.eveningStart
+                dateInterval.start = calendar.date(from: dateComponents)!
+
+                dateComponents.hour = Time.Hour.eveningEnd
+                dateInterval.end = calendar.date(from: dateComponents)!
+            case Time.atGivenTime:
+                dateComponents.hour = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
+                dateInterval.start = calendar.date(from: dateComponents)!
+                dateInterval.end = dateInterval.start
+            default:
+                print("Unexpected time identifier was given in: \(#file), line: \(#line)")
+            }
         }
 
-        return recurranceSetting
+        return dateInterval
     }
 
-    func getRecurrenceNumberBasedOnFreeTimeRatio() -> Int {
-        return Int((Double(getRecurranceNumber()) * getFreeTimeRatio()).rounded(.up))
+    func isPunctualTimeSet() -> Bool {
+        if let timeSetting =  defaults.string(forKey: UserDefaults.Key.Lbl.time) {
+            if timeSetting == Time.atGivenTime {
+                return true
+            }
+        }
+
+        return false
     }
 
-    func combineDatePartsToDate(year: Int, month: Int, day: Int, hour: Int, minute: Int) -> Date {
+    func incrementDateBasedOnPeriodSetting(date: Date) -> Date {
+        if let periodicitySetting =  defaults.string(forKey: UserDefaults.Key.Lbl.periodicity) {
+            switch periodicitySetting {
+            case Periodicity.daily:
+                return date
+            case Periodicity.weekly:
+                return date.add(days: 6)
+            case Periodicity.monthly:
+                return date.add(days: 30)
+            default:
+                print("Unexpected periodicity identifier was given in: \(#file), line: \(#line)")
+            }
+        }
+
+        return date
+    }
+    
+    func isNotificationCanBeSetFor(date: Date) -> Bool {
+        if date.isToday() {
+            if date > getLastNotificationTimeForToday() {
+                return false
+            }
+        }
+
+        return true
+    }
+
+    private func getLastNotificationTimeForToday() -> Date {
         var dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
+        dateComponents.minute = 0
 
-        dateComponents.year = year
-        dateComponents.month = month
-        dateComponents.day = day
-
-        dateComponents.hour = hour
-        dateComponents.minute = minute
-
-        return calendar.date(from: dateComponents)!
+        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
+            switch timeSetting {
+            case Time.random:
+                dateComponents.hour = Time.Hour.eveningEnd
+            case Time.morning:
+                dateComponents.hour = Time.Hour.morningEnd
+            case Time.afternoon:
+                dateComponents.hour = Time.Hour.afternoonEnd
+            case Time.evening:
+                dateComponents.hour = Time.Hour.eveningEnd
+            case Time.atGivenTime:
+                dateComponents.hour = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
+                dateComponents.minute = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
+            default:
+                print("Unexpected time identifier was given in: \(#file), line: \(#line)")
+            }
+        }
+        return calendar.date(from: dateComponents)!.add(minutes: -20)
     }
-
+    
 }

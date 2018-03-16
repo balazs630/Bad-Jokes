@@ -67,16 +67,25 @@ extension TimeInterval {
 }
 
 extension Date {
-    func randomDatePartBetween(lower: Date, upper: Date) -> Date.DatePart {
-        let startTimeStamp = UInt32(lower.timeIntervalSince1970)
-        let endTimeStamp = UInt32(upper.timeIntervalSince1970)
-
-        let randomTimeStamp = arc4random_uniform(endTimeStamp - startTimeStamp) + startTimeStamp
-        let randomDate = Date(timeIntervalSince1970: TimeInterval(randomTimeStamp))
-
+    func isToday() -> Bool {
         let calendar = Calendar(identifier: .gregorian)
-        let dateComponents = calendar.dateComponents([.year, .month, .day], from: randomDate)
-        return dateComponents.datePart()
+        return calendar.isDateInToday(self) ? true : false
+    }
+
+    func isInPast() -> Bool {
+        return self < Date() ? true : false
+    }
+
+    func isInFuture() -> Bool {
+        return self > Date() ? true : false
+    }
+
+    func add(minutes: Int) -> Date {
+        return Calendar.current.date(byAdding: .minute, value: minutes, to: self)!
+    }
+
+    func add(hours: Int) -> Date {
+        return Calendar.current.date(byAdding: .hour, value: hours, to: self)!
     }
 
     func add(days: Int) -> Date {

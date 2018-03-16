@@ -10,9 +10,69 @@ import Foundation
 import UserNotifications
 
 class JokeNotificationGenerator {
-
     let defaults = UserDefaults.standard
+    let maxLocalNotificationCount = 64
+
     let dbManager = DBManager()
+    let settingsUtil = SettingsUtil()
+
+    func generateNotificationTimes() -> [Date] {
+        var notificationTimesArray = [Date]()
+
+        var startDate = Date()
+        var endDate = Date().add(days: -1)
+        var cycleCounter = 0
+        while notificationTimesArray.count < maxLocalNotificationCount {
+            startDate = endDate.add(days: 1)
+            endDate = settingsUtil.incrementDateBasedOnPeriodSetting(date: startDate)
+
+            if settingsUtil.isPunctualTimeSet() {
+                var recurranceValue = settingsUtil.getRecurranceNumber()
+                while recurranceValue > 0 {
+                    if notificationTimesArray.count == maxLocalNotificationCount {
+                        break
+                    }
+
+                    let notificationTime = settingsUtil.getGeneratedNotificationTimeBetween(startDate: startDate, endDate: endDate)
+                    if notificationTime.isInFuture() {
+                        notificationTimesArray.append(notificationTime)
+                        recurranceValue -= 1
+                    } else {
+                        break
+                    }
+                }
+            } else {
+                var recurranceValue = settingsUtil.getRecurrenceNumberBasedOnFreeTimeRatio()
+                while recurranceValue > 0 {
+                    if cycleCounter == 0 {
+                        if !settingsUtil.isNotificationCanBeSetFor(date: endDate) {
+                            break
+                        }
+                    }
+
+                    var notificationTime = Date(timeIntervalSince1970: 0)
+                    while notificationTime.isInPast() {
+                        if notificationTimesArray.count == maxLocalNotificationCount {
+                            break
+                        }
+
+                        notificationTime = settingsUtil.getGeneratedNotificationTimeBetween(startDate: startDate, endDate: endDate)
+                        if notificationTime.isInFuture() {
+                            notificationTimesArray.append(notificationTime)
+                            recurranceValue -= 1
+                        }
+                    }
+
+                    if notificationTimesArray.count == maxLocalNotificationCount {
+                        break
+                    }
+                }
+            }
+            cycleCounter += 1
+        }
+
+        return notificationTimesArray
+    }
 
     func setNotificationContent() -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
