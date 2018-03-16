@@ -17,7 +17,7 @@ extension String {
         // Cut down the last letter, e.x. 10x -> 10 and returns as an Int
         let splitIndex = index(before: endIndex)
         guard let number = Int(self.prefix(upTo: splitIndex)) else {
-            return Int()
+            return 1
         }
 
         return number
@@ -60,11 +60,6 @@ extension Int {
 }
 
 extension TimeInterval {
-    func randomSec() -> UInt32 {
-        let index = UInt32(arc4random_uniform(UInt32(self)))
-        return index
-    }
-
     func isInPast() -> Bool {
         let date = Date(timeIntervalSince1970: self)
         return date.timeIntervalSinceNow.sign == .minus ? true : false
@@ -72,6 +67,18 @@ extension TimeInterval {
 }
 
 extension Date {
+    func randomDatePartBetween(lower: Date, upper: Date) -> Date.DatePart {
+        let startTimeStamp = UInt32(lower.timeIntervalSince1970)
+        let endTimeStamp = UInt32(upper.timeIntervalSince1970)
+
+        let randomTimeStamp = arc4random_uniform(endTimeStamp - startTimeStamp) + startTimeStamp
+        let randomDate = Date(timeIntervalSince1970: TimeInterval(randomTimeStamp))
+
+        let calendar = Calendar(identifier: .gregorian)
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: randomDate)
+        return dateComponents.datePart()
+    }
+
     func add(days: Int) -> Date {
         return Calendar.current.date(byAdding: .day, value: days, to: self)!
     }

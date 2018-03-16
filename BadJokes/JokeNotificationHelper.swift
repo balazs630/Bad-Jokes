@@ -56,10 +56,10 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
     private func generateNotificationTimes() -> [Date] {
         var notificationTimesArray = [Date]()
-        let gregorian = Calendar(identifier: .gregorian)
+        let calendar = Calendar(identifier: .gregorian)
 
         for i in 0...maxLocalNotificationCount - 1 {
-            var dateComponents = gregorian.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
+            var dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
 
             let datePart = settingsUtil.resolveDatePartBasedOnSettings(counter: i)
             dateComponents.year = datePart.year
@@ -70,7 +70,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
             dateComponents.hour = timePart.hour
             dateComponents.minute = timePart.minute
 
-            let notificationTime = gregorian.date(from: dateComponents)!
+            let notificationTime = calendar.date(from: dateComponents)!
             notificationTimesArray.append(notificationTime)
         }
 
