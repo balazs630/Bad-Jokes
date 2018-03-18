@@ -21,9 +21,14 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
         super.viewDidLoad()
         configureTableView()
         jokeNotificationHelper.delegate = self
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(initTableContent),
+                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               object: nil)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         initTableContent()
     }
 
@@ -104,6 +109,13 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
 
         self.dataSource = JokesDataSource(jokes: jokes)
         super.init(coder: aDecoder)
+    }
+
+    deinit {
+        // Remove the observer when this view controller is dismissed/deallocated
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                                  object: nil)
     }
 }
 
