@@ -67,7 +67,7 @@
                                                     <rect key="frame" x="272" y="6" width="87" height="30"/>
                                                     <state key="normal" title="Bekapcsolás"/>
                                                     <connections>
-                                                        <action selector="openIphoneNotificationSettings:" destination="aFP-JL-fEA" eventType="touchUpInside" id="mOF-KW-DzT"/>
+                                                        <action selector="openAppNotificationSettings:" destination="aFP-JL-fEA" eventType="touchUpInside" id="lRf-4b-ffs"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vxq-bH-NWy">

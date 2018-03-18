@@ -52,24 +52,32 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         ]
     }
 
-    var savedPreferences = String()
+    var preferencesSnapshot = String()
     let defaults = UserDefaults.standard
     weak var delegate: SettingsViewControllerDelegate?
 
     let notificationWarningIndexPath = IndexPath(item: 0, section: 0)
-    var isNotificationEnabled: Bool = true
+    var isNotificationEnabled: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         loadPreferences()
-        disablePreferencesOnGlobalSwitchState()
+        updateUIElementsBasedOnGlobalDisablerSwitchState()
+        preferencesSnapshot = getActualPreferences()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkNotificationStatus),
+                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               object: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         checkNotificationStatus()
-        savedPreferences = getActualPreferences()
     }
 
     @IBAction func closeSettings(_ sender: Any) {
-        if savedPreferences != getActualPreferences() {
+        if preferencesSnapshot != getActualPreferences() {
             savePreferences()
             delegate?.settingsDidClose(isSettingsChanged: true)
         } else {
@@ -84,10 +92,10 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     }
 
     @IBAction func swGlobalOnOffDidChange(_ sender: Any) {
-        disablePreferencesOnGlobalSwitchState()
+        updateUIElementsBasedOnGlobalDisablerSwitchState()
     }
 
-    @IBAction func openIphoneNotificationSettings(_ sender: Any) {
+    @IBAction func openAppNotificationSettings(_ sender: Any) {
         UIApplication.shared.open(URL(string: "App-Prefs:root=NOTIFICATIONS_ID")!, options: [:], completionHandler: nil)
     }
 
@@ -162,7 +170,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         }
     }
 
-    private func disablePreferencesOnGlobalSwitchState() {
+    private func updateUIElementsBasedOnGlobalDisablerSwitchState() {
         // If this switch is on, all settings are disabled
         let swGlobalState = !swGlobalOff.isOn
 
@@ -177,23 +185,29 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         }
     }
 
-    private func checkNotificationStatus() {
+    private func isGlobalDisablerSwitchOn() -> Bool {
+        return swGlobalOff.isOn ? true : false
+    }
+
+    @objc private func checkNotificationStatus() {
         let current = UNUserNotificationCenter.current()
 
         current.getNotificationSettings(completionHandler: { (settings) in
-            if settings.authorizationStatus == .denied || settings.authorizationStatus == .notDetermined {
+            if settings.authorizationStatus == .authorized {
+                self.isNotificationEnabled = true
+            } else {
                 self.isNotificationEnabled = false
             }
         })
+
+        tableView.reloadData()
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // Hide notification warning if the notifications are turned on
-        if isNotificationEnabled == true {
-            if indexPath.section == notificationWarningIndexPath.section
-                && indexPath.row == notificationWarningIndexPath.row {
-                cell.isHidden = true
-            }
+        // Hide notification warning cell if the notifications are turned on
+        if indexPath.section == notificationWarningIndexPath.section
+            && indexPath.row == notificationWarningIndexPath.row {
+            cell.isHidden = isNotificationEnabled
         }
     }
 
@@ -207,6 +221,10 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         }
 
         return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return isGlobalDisablerSwitchOn() ? false : true
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -244,4 +262,11 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         }
     }
 
+    deinit {
+        // Remove the observer when this view controller is dismissed/deallocated
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                                  object: nil)
+    }
+    
 }
