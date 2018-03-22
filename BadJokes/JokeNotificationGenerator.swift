@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UserNotifications
 
 class JokeNotificationGenerator {
     let defaults = UserDefaults.standard
@@ -74,26 +73,7 @@ class JokeNotificationGenerator {
         return notificationTimesArray
     }
 
-    func setNotificationContent() -> UNMutableNotificationContent {
-        let content = UNMutableNotificationContent()
-        content.title = "Vicc:"
-        content.badge = 1
-        let type = generateJokeType()
-        let joke = dbManager.getRandomJokeWith(type: type)
-        content.body = joke.jokeText.formatLineBreaks()
-
-        if defaults.bool(forKey: UserDefaults.Key.Sw.notificationSound) {
-            content.sound = UNNotificationSound.default()
-        }
-
-        var userInfo = [String: Int]()
-        userInfo["jokeId"] = joke.jokeId
-        content.userInfo = userInfo
-
-        return content
-    }
-
-    private func generateJokeType() -> String {
+    func generateJokeType() -> String {
         // Get a joke type and check if the type has unused joke(s)
         var jokeType = getRandomJokeType()
         var n = 0

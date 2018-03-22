@@ -6,8 +6,6 @@
 //  Copyright © 2018. Horváth Balázs. All rights reserved.
 //
 
-import Foundation
-
 struct ColumnName {
     struct JokesTable {
         static let jokeId = "jokeId"

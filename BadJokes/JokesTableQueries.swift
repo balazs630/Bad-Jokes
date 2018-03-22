@@ -6,7 +6,6 @@
 //  Copyright © 2018. Horváth Balázs. All rights reserved.
 //
 
-import Foundation
 import FMDB
 
 extension DBManager {

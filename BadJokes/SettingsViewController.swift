@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UserNotifications
 
 protocol SettingsViewControllerDelegate: class {
     func settingsDidClose(isSettingsChanged: Bool)
@@ -56,6 +55,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     let defaults = UserDefaults.standard
     weak var delegate: SettingsViewControllerDelegate?
 
+    let jokeNotificationHelper = JokeNotificationHelper()
     let notificationWarningIndexPath = IndexPath(item: 0, section: 0)
     var isNotificationEnabled: Bool = false
 
@@ -190,14 +190,8 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     }
 
     @objc private func checkNotificationStatus() {
-        let current = UNUserNotificationCenter.current()
-
-        current.getNotificationSettings(completionHandler: { (settings) in
-            if settings.authorizationStatus == .authorized {
-                self.isNotificationEnabled = true
-            } else {
-                self.isNotificationEnabled = false
-            }
+        jokeNotificationHelper.isNotificationsEnabled(callback: { (isAvailable) in
+            self.isNotificationEnabled = isAvailable
         })
 
         tableView.reloadData()
@@ -213,7 +207,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // Set notification warning row height to 0 if the notifications are turned on
-        if isNotificationEnabled == true {
+        if isNotificationEnabled {
             if indexPath.section == notificationWarningIndexPath.section
                 && indexPath.row == notificationWarningIndexPath.row {
                 return 0

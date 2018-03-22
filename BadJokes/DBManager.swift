@@ -6,7 +6,6 @@
 //  Copyright © 2017. Horváth Balázs. All rights reserved.
 //
 
-import Foundation
 import FMDB
 
 class DBManager: NSObject {

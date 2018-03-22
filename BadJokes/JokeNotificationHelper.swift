@@ -6,7 +6,6 @@
 //  Copyright © 2017. Horváth Balázs. All rights reserved.
 //
 
-import Foundation
 import UserNotifications
 
 protocol JokeNotificationHelperDelegate: class {
@@ -14,6 +13,7 @@ protocol JokeNotificationHelperDelegate: class {
 }
 
 class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
+    let defaults = UserDefaults.standard
     var localTimeZoneName: String { return TimeZone.current.identifier }
     weak var delegate: JokeNotificationHelperDelegate?
 
@@ -50,7 +50,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     }
 
     private func addJokeNotificationRequest(on time: Date) {
-        let content = jokeNotificationGenerator.setNotificationContent()
+        let content = setNotificationContent()
         let trigger = setNotificationTrigger(on: time)
 
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
@@ -61,6 +61,24 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         dbManager.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())
+    }
+
+    func setNotificationContent() -> UNMutableNotificationContent {
+        let content = UNMutableNotificationContent()
+        content.title = "Vicc:"
+        let type = jokeNotificationGenerator.generateJokeType()
+        let joke = dbManager.getRandomJokeWith(type: type)
+        content.body = joke.jokeText.formatLineBreaks()
+
+        if defaults.bool(forKey: UserDefaults.Key.Sw.notificationSound) {
+            content.sound = UNNotificationSound.default()
+        }
+
+        var userInfo = [String: Int]()
+        userInfo["jokeId"] = joke.jokeId
+        content.userInfo = userInfo
+
+        return content
     }
 
     private func setNotificationTrigger(on time: Date) -> UNCalendarNotificationTrigger {
@@ -87,6 +105,18 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     private func removeAllPendingNotificationRequests() {
         // Which are not delivered yet but scheduled
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+
+    func isNotificationsEnabled(callback: @escaping (Bool) -> ()) {
+        let current = UNUserNotificationCenter.current()
+
+        current.getNotificationSettings(completionHandler: { (settings) in
+            if settings.authorizationStatus == .authorized {
+                callback(true)
+            } else {
+                callback(false)
+            }
+        })
     }
 
 }
