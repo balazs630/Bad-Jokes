@@ -16,6 +16,10 @@ struct SegueIdentifier {
     static let showJoke = "showJokeSegue"
 }
 
+struct NotificationIdentifier {
+    static let JokesTableDidBecomeEmpty = NSNotification.Name("jokesTableDidBecomeEmpty")
+}
+
 extension UserDefaults {
     struct Key {
         static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"

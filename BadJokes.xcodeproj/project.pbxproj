@@ -15,9 +15,11 @@
 		AC128336204B5F1600FCC19E /* TimePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC128335204B5F1600FCC19E /* TimePart.swift */; };
 		AC1BAF102059D6740047E376 /* RecurrenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */; };
 		AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */; };
+		AC23A4B82068505F008BED6C /* WaitingForFirstNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */; };
 		AC2579B120461AAA00C1D904 /* SettingsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B020461AAA00C1D904 /* SettingsUtil.swift */; };
 		AC2579B3204628C800C1D904 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B2204628C800C1D904 /* Schedule.swift */; };
 		AC385CE12046D71E0070D4A7 /* ColumnNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC385CE02046D71E0070D4A7 /* ColumnNames.swift */; };
+		AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */; };
 		AC7A4E341F51F74700E8F438 /* JokeNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */; };
 		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
 		AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */; };
@@ -45,9 +47,11 @@
 		AC128335204B5F1600FCC19E /* TimePart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePart.swift; sourceTree = "<group>"; };
 		AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurrenceViewController.swift; sourceTree = "<group>"; };
 		AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeNotificationGenerator.swift; sourceTree = "<group>"; };
+		AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitingForFirstNotificationView.xib; sourceTree = "<group>"; };
 		AC2579B020461AAA00C1D904 /* SettingsUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUtil.swift; sourceTree = "<group>"; };
 		AC2579B2204628C800C1D904 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		AC385CE02046D71E0070D4A7 /* ColumnNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnNames.swift; sourceTree = "<group>"; };
+		AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoNotificationScheduledView.xib; sourceTree = "<group>"; };
 		AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeNotificationHelper.swift; sourceTree = "<group>"; };
 		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
 		AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */,
 				ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */,
 				ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */,
+				AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */,
+				AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */,
 			);
 			name = Joke;
 			sourceTree = "<group>";
@@ -296,6 +302,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */,
+				AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */,
+				AC23A4B82068505F008BED6C /* WaitingForFirstNotificationView.xib in Resources */,
 				ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */,
 				ACECF0A51F60A88F0072367C /* jokesDB.db in Resources */,
 				ACEEA9681F1E5FA600BCF905 /* Main.storyboard in Resources */,

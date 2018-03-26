@@ -34,7 +34,11 @@ extension JokesDataSource: UITableViewDataSource {
         if editingStyle == UITableViewCellEditingStyle.delete {
             dbManager.removeStoredJokeWith(jokeId: jokes[indexPath.row].jokeId)
             jokes.remove(at: indexPath.row)
-            tableView.reloadData()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+
+            if jokes.isEmpty {
+                NotificationCenter.default.post(name: NotificationIdentifier.JokesTableDidBecomeEmpty, object: nil)
+            }
         }
     }
 }

@@ -107,15 +107,27 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
-    func isNotificationsEnabled(callback: @escaping (Bool) -> ()) {
+    func isNotificationsEnabled(completed: @escaping (Bool) -> ()) {
         let current = UNUserNotificationCenter.current()
 
         current.getNotificationSettings(completionHandler: { (settings) in
             if settings.authorizationStatus == .authorized {
-                callback(true)
+                completed(true)
             } else {
-                callback(false)
+                completed(false)
             }
+        })
+    }
+
+    func isNotificationsPending(completed: @escaping (Bool) -> ()) {
+        let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests(completionHandler: { requests in
+            if requests.count > 0 {
+                completed(true)
+            } else {
+                completed(false)
+            }
+
         })
     }
 

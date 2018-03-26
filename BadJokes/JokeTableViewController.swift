@@ -16,16 +16,14 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
     let dbManager = DBManager()
     let jokeNotificationHelper = JokeNotificationHelper()
     let refreshControl = UIRefreshControl()
+    let noNotificationScheduledView = Bundle.main.loadNibNamed("NoNotificationScheduledView", owner: nil, options: nil)![0] as! UIView
+    let waitingForFirstNotificationView = Bundle.main.loadNibNamed("WaitingForFirstNotificationView", owner: nil, options: nil)![0] as! UIView
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         jokeNotificationHelper.delegate = self
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(initTableContent),
-                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
-                                               object: nil)
+        addNotificationObservers()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,9 +35,10 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
     }
 
     @objc func initTableContent() {
+        tableView.reloadData()
         jokeNotificationHelper.checkForDeliveredJokes()
         pullDataIntoDataSource()
-        reloadData()
+        refreshControl.endRefreshing()
         checkForEmptyTable()
     }
 
@@ -48,25 +47,23 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
         tableView.dataSource = dataSource
     }
 
-    func reloadData() {
-        tableView.reloadData()
-        refreshControl.endRefreshing()
+    @objc func checkForEmptyTable() {
+        if dataSource.jokes.isEmpty {
+            // Display a message instead of an empty table
+            if dbManager.isSchedulesListEmpty() {
+                displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
+            } else {
+                displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)
+            }
+        } else {
+            noNotificationScheduledView.removeFromSuperview()
+            waitingForFirstNotificationView.removeFromSuperview()
+        }
     }
 
-    func checkForEmptyTable() {
-        if tableView.visibleCells.isEmpty {
-            // Display a message instead of an empty table
-            let emptyStateLabel = UILabel()
-            emptyStateLabel.text = "Nem találhatóak korábbi viccek!"
-            emptyStateLabel.textAlignment = .center
-
-            tableView.separatorStyle = .none
-            tableView.backgroundView = emptyStateLabel
-            tableView.backgroundView?.isHidden = false
-        } else {
-            tableView.separatorStyle = .singleLine
-            tableView.backgroundView?.isHidden = true
-        }
+    func displayViewInFrontOfTableView(frontview view: UIView) {
+        tableView.addSubview(view)
+        tableView.bringSubview(toFront: view)
     }
 
     func settingsDidClose(isSettingsChanged: Bool) {
@@ -101,7 +98,6 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
                 print("Unexpected segue identifier was given in: \(#file), line: \(#line)")
             }
         }
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -128,5 +124,17 @@ extension JokeTableViewController {
 
         refreshControl.addTarget(self, action: #selector(initTableContent), for: UIControlEvents.valueChanged)
         tableView.refreshControl = refreshControl
+    }
+
+    private func addNotificationObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(initTableContent),
+                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               object: nil)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkForEmptyTable),
+                                               name: NotificationIdentifier.JokesTableDidBecomeEmpty,
+                                               object: nil)
     }
 }

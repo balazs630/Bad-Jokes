@@ -49,6 +49,31 @@ extension DBManager {
         }
     }
 
+    func isSchedulesListEmpty() -> Bool {
+        var count = 0
+        if isDatabaseOpen() {
+            let query = "SELECT * FROM schedules"
+
+            do {
+                let results = try database.executeQuery(query, values: nil)
+
+                while results.next() {
+                    count += 1
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+
+            database.close()
+        }
+
+        if count == 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+
     func deleteScheduleWith(jokeId: Int) {
         if isDatabaseOpen() {
             let query = "DELETE FROM schedules WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"

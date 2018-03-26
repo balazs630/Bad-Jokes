@@ -190,9 +190,9 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     }
 
     @objc private func checkNotificationStatus() {
-        jokeNotificationHelper.isNotificationsEnabled(callback: { (isAvailable) in
-            self.isNotificationEnabled = isAvailable
-        })
+        jokeNotificationHelper.isNotificationsEnabled { state in
+            self.isNotificationEnabled = state
+        }
 
         tableView.reloadData()
     }
