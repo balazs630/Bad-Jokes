@@ -6,6 +6,7 @@
 //  Copyright © 2017. Horváth Balázs. All rights reserved.
 //
 
+import UIKit
 import Foundation
 
 struct SegueIdentifier {
@@ -18,6 +19,11 @@ struct SegueIdentifier {
 
 struct NotificationIdentifier {
     static let JokesTableDidBecomeEmpty = NSNotification.Name("jokesTableDidBecomeEmpty")
+}
+
+extension UIView {
+    static let noNotificationScheduledView = "NoNotificationScheduledView"
+    static let waitingForFirstNotificationView = "WaitingForFirstNotificationView"
 }
 
 extension UserDefaults {

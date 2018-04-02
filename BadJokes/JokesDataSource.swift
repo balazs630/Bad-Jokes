@@ -8,12 +8,16 @@
 
 import UIKit
 
+typealias DidBecomeEmpty = () -> Void
+
 class JokesDataSource: NSObject {
     let dbManager = DBManager()
     var jokes: [Joke]
+    let didBecomeEmpty: DidBecomeEmpty
 
-    init(jokes: [Joke]) {
+    init(jokes: [Joke], didBecomeEmpty: @escaping DidBecomeEmpty) {
         self.jokes = jokes
+        self.didBecomeEmpty = didBecomeEmpty
     }
 }
 
@@ -37,7 +41,7 @@ extension JokesDataSource: UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .automatic)
 
             if jokes.isEmpty {
-                NotificationCenter.default.post(name: NotificationIdentifier.JokesTableDidBecomeEmpty, object: nil)
+                didBecomeEmpty()
             }
         }
     }

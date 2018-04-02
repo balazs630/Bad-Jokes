@@ -55,6 +55,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     let defaults = UserDefaults.standard
     weak var delegate: SettingsViewControllerDelegate?
 
+    let dbManager = DBManager()
     let jokeNotificationHelper = JokeNotificationHelper()
     let notificationWarningIndexPath = IndexPath(item: 0, section: 0)
     var isNotificationEnabled: Bool = false
@@ -77,7 +78,7 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     }
 
     @IBAction func closeSettings(_ sender: Any) {
-        if preferencesSnapshot != getActualPreferences() {
+        if isEligibleForSave() {
             savePreferences()
             delegate?.settingsDidClose(isSettingsChanged: true)
         } else {
@@ -153,6 +154,22 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         for item in sldCollection {
             item.key.value = defaults.float(forKey: item.value)
         }
+    }
+
+    private func isEligibleForSave() -> Bool {
+        if isGlobalDisablerSwitchOn() {
+            return false
+        }
+
+        if dbManager.isSchedulesListEmpty() {
+            return true
+        }
+
+        return isPreferencesChanged()
+    }
+
+    private func isPreferencesChanged() -> Bool {
+        return preferencesSnapshot != getActualPreferences()
     }
 
     private func savePreferences() {

@@ -102,14 +102,15 @@ extension DBManager {
     func isAllJokeUsed() -> Bool {
         var count = 0
         if isDatabaseOpen() {
-            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.isUsed)=0"
+            let query = "SELECT count() as count FROM jokes WHERE \(ColumnName.JokesTable.isUsed)=0"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
 
                 while results.next() {
-                    count += 1
+                    count = Int(results.int(forColumn: "count"))
                 }
+
             } catch {
                 print(error.localizedDescription)
             }
@@ -117,23 +118,19 @@ extension DBManager {
             database.close()
         }
 
-        if count == 0 {
-            return true
-        } else {
-            return false
-        }
+        return count == 0
     }
 
     func isAllJokeUsedWith(type: String) -> Bool {
         var count = 0
         if isDatabaseOpen() {
-            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.type)=\"\(type)\" AND \(ColumnName.JokesTable.isUsed)=0"
+            let query = "SELECT count() as count FROM jokes WHERE \(ColumnName.JokesTable.type)=\"\(type)\" AND \(ColumnName.JokesTable.isUsed)=0"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
 
                 while results.next() {
-                    count += 1
+                    count = Int(results.int(forColumn: "count"))
                 }
             } catch {
                 print(error.localizedDescription)
@@ -142,23 +139,19 @@ extension DBManager {
             database.close()
         }
 
-        if count == 0 {
-            return true
-        } else {
-            return false
-        }
+        return count == 0
     }
 
     func isJokeUsedWith(jokeId: Int) -> Bool {
         var count = 0
         if isDatabaseOpen() {
-            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId) AND \(ColumnName.JokesTable.isUsed)=0"
+            let query = "SELECT count() as count FROM jokes WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId) AND \(ColumnName.JokesTable.isUsed)=0"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
 
                 while results.next() {
-                    count += 1
+                    count = Int(results.int(forColumn: "count"))
                 }
             } catch {
                 print(error.localizedDescription)
@@ -167,11 +160,7 @@ extension DBManager {
             database.close()
         }
 
-        if count == 0 {
-            return true
-        } else {
-            return false
-        }
+        return count == 0
     }
 
     func setJokeUsedWith(jokeId: Int) {

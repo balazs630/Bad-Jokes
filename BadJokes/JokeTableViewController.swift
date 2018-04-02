@@ -12,12 +12,12 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
 
     @IBOutlet weak var tableView: UITableView!
 
-    var dataSource: JokesDataSource
+    var dataSource: JokesDataSource!
     let dbManager = DBManager()
     let jokeNotificationHelper = JokeNotificationHelper()
     let refreshControl = UIRefreshControl()
-    let noNotificationScheduledView = Bundle.main.loadNibNamed("NoNotificationScheduledView", owner: nil, options: nil)![0] as! UIView
-    let waitingForFirstNotificationView = Bundle.main.loadNibNamed("WaitingForFirstNotificationView", owner: nil, options: nil)![0] as! UIView
+    let noNotificationScheduledView = Bundle.main.loadNibNamed(UIView.noNotificationScheduledView, owner: nil, options: nil)!.first as! UIView
+    let waitingForFirstNotificationView = Bundle.main.loadNibNamed(UIView.waitingForFirstNotificationView, owner: nil, options: nil)?.first as! UIView
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,19 +35,19 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
     }
 
     @objc func initTableContent() {
-        tableView.reloadData()
         jokeNotificationHelper.checkForDeliveredJokes()
         pullDataIntoDataSource()
+        tableView.reloadData()
         refreshControl.endRefreshing()
-        checkForEmptyTable()
+        presentEmptyView()
     }
 
     func pullDataIntoDataSource() {
-        dataSource = JokesDataSource(jokes: dbManager.getStoredJokes())
+        dataSource = JokesDataSource(jokes: dbManager.getStoredJokes(), didBecomeEmpty: didBecomeEmpty())
         tableView.dataSource = dataSource
     }
 
-    @objc func checkForEmptyTable() {
+    func presentEmptyView() {
         if dataSource.jokes.isEmpty {
             // Display a message instead of an empty table
             if dbManager.isSchedulesListEmpty() {
@@ -101,9 +101,6 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
     }
 
     required init?(coder aDecoder: NSCoder) {
-        let jokes = dbManager.getStoredJokes()
-
-        self.dataSource = JokesDataSource(jokes: jokes)
         super.init(coder: aDecoder)
     }
 
@@ -131,10 +128,11 @@ extension JokeTableViewController {
                                                selector: #selector(initTableContent),
                                                name: NSNotification.Name.UIApplicationDidBecomeActive,
                                                object: nil)
+    }
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkForEmptyTable),
-                                               name: NotificationIdentifier.JokesTableDidBecomeEmpty,
-                                               object: nil)
+    private func didBecomeEmpty() -> DidBecomeEmpty {
+        return {
+            self.presentEmptyView()
+        }
     }
 }
