@@ -88,26 +88,16 @@ class TimeViewController: UITableViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         // When navigating to the previous VC with "back" nav bar button
 
         if selectedIndexPath == givenTimeIndexPath {
             // Time picker is active
             let timeComponents = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
             if let hourComponent = timeComponents.hour, let minuteComponent = timeComponents.minute {
-                if minuteComponent == 0 {
-                    //TODO: Rewrite with proper dateformatter
-                    delegate?.saveTimeWithSelected(cellText:
-                        tableContent[selectedIndexPath.row],
-                                                   hours: String(hourComponent),
-                                                   minutes: "00")
-                } else {
-                    delegate?.saveTimeWithSelected(cellText:
-                        tableContent[selectedIndexPath.row],
-                                                   hours: String(hourComponent),
-                                                   minutes: String(minuteComponent)
-                    )
-                }
+                delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row],
+                                               hours: String(format: "%02d", hourComponent),
+                                               minutes: String(format: "%02d", minuteComponent)
+                )
             }
         } else {
             delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row])
