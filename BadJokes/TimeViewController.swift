@@ -74,7 +74,6 @@ class TimeViewController: UITableViewController {
             selectedIndexPath.row = index
         }
 
-        // Set timePicker's value to the last selected value
         timePicker.date = lastSelectedTime
 
         // Hide time picker if not the last choice is selected

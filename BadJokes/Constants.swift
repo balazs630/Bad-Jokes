@@ -32,7 +32,6 @@ extension UserDefaults {
 
         struct Sw {
             static let globalOff = "swGlobalOff"
-            static let notificationSound = "swNotificationSound"
         }
 
         struct Lbl {

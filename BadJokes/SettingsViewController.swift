@@ -15,7 +15,6 @@ protocol SettingsViewControllerDelegate: class {
 class SettingsViewController: UITableViewController, PeriodicityViewControllerDelegate, TimeViewControllerDelegate, RecurrenceViewControllerDelegate {
 
     @IBOutlet weak var swGlobalOff: UISwitch!
-    @IBOutlet weak var swNotificationSound: UISwitch!
 
     @IBOutlet weak var lblPeriodicity: UILabel!
     @IBOutlet weak var lblRecurrence: UILabel!
@@ -86,7 +85,6 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         }
 
         defaults.set(swGlobalOff.isOn, forKey: UserDefaults.Key.Sw.globalOff)
-        defaults.set(swNotificationSound.isOn, forKey: UserDefaults.Key.Sw.notificationSound)
         defaults.synchronize()
 
         self.navigationController?.popViewController(animated: true)
@@ -94,6 +92,10 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
 
     @IBAction func swGlobalOnOffDidChange(_ sender: Any) {
         updateUIElementsBasedOnGlobalDisablerSwitchState()
+
+        if swGlobalOff.isOn {
+            jokeNotificationHelper.removeAllPendingNotificationRequests()
+        }
     }
 
     @IBAction func openAppNotificationSettings(_ sender: Any) {
@@ -130,7 +132,6 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
 
     private func loadPreferences() {
         swGlobalOff.isOn = defaults.bool(forKey: UserDefaults.Key.Sw.globalOff)
-        swNotificationSound.isOn = defaults.bool(forKey: UserDefaults.Key.Sw.notificationSound)
 
         lblPeriodicity.text = defaults.string(forKey: UserDefaults.Key.Lbl.periodicity)
         lblRecurrence.text = defaults.string(forKey: UserDefaults.Key.Lbl.recurrence)
@@ -190,8 +191,6 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
     private func updateUIElementsBasedOnGlobalDisablerSwitchState() {
         // If this switch is on, all settings are disabled
         let swGlobalState = !swGlobalOff.isOn
-
-        swNotificationSound.isEnabled = swGlobalState
 
         lblPeriodicity.isEnabled = swGlobalState
         lblRecurrence.isEnabled = swGlobalState

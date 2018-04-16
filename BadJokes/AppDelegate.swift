@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UserDefaults.Key.isAppAlreadyLaunchedOnce: true,
 
                 UserDefaults.Key.Sw.globalOff: false,
-                UserDefaults.Key.Sw.notificationSound: true,
 
                 UserDefaults.Key.Lbl.periodicity: "Napi",
                 UserDefaults.Key.Lbl.recurrence: "1x",

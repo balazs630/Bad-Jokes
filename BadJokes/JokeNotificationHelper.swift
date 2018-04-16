@@ -69,10 +69,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         let type = jokeNotificationGenerator.generateJokeType()
         let joke = dbManager.getRandomJokeWith(type: type)
         content.body = joke.jokeText.formatLineBreaks()
-
-        if defaults.bool(forKey: UserDefaults.Key.Sw.notificationSound) {
-            content.sound = UNNotificationSound.default()
-        }
+        content.sound = UNNotificationSound.default()
 
         var userInfo = [String: Int]()
         userInfo["jokeId"] = joke.jokeId
@@ -102,8 +99,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         }
     }
 
-    private func removeAllPendingNotificationRequests() {
-        // Which are not delivered yet but scheduled
+    func removeAllPendingNotificationRequests() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
