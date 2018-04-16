@@ -43,7 +43,7 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
     }
 
     func pullDataIntoDataSource() {
-        dataSource = JokesDataSource(jokes: dbManager.getStoredJokes(), didBecomeEmpty: didBecomeEmpty())
+        dataSource = JokesDataSource(jokes: dbManager.getDeliveredJokes(), didBecomeEmpty: didBecomeEmpty())
         tableView.dataSource = dataSource
     }
 

@@ -104,8 +104,9 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
 
     func getActualPreferences() -> String {
         return """
-        \(String(describing: lblPeriodicity.text)) + \(String(describing: lblRecurrence.text)) + \(String(describing: lblTime.text)) +
-        + \(sldAnimal.value) + \(sldRough.value) \(sldIT.value) \(sldAnti.value) \(sldTiring.value)
+        \(String(describing: lblPeriodicity.text)) + \(String(describing: lblRecurrence.text))
+        + \(String(describing: lblTime.text)) + \(sldAnimal.value) + \(sldRough.value)
+        + \(sldIT.value) \(sldAnti.value) \(sldTiring.value)
         + \(sldJean.value) \(sldMoriczka.value) \(sldCop.value) \(sldBlonde.value)
         """
     }
@@ -278,5 +279,5 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
                                                   name: NSNotification.Name.UIApplicationDidBecomeActive,
                                                   object: nil)
     }
-    
+
 }

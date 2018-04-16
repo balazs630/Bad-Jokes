@@ -41,7 +41,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     private func setNewRepeatingNotifications() {
         removeAllPendingNotificationRequests()
         dbManager.deleteAllSchedules()
-        
+
         let notificationTimes = jokeNotificationGenerator.generateNotificationTimes()
 
         for i in 0...notificationTimes.count - 1 {
@@ -93,7 +93,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
         for scheduledJoke in scheduledJokesArray {
             if TimeInterval(scheduledJoke.time).isInPast() {
-                dbManager.setJokeUsedAndStoredWith(jokeId: scheduledJoke.jokeId)
+                dbManager.setJokeUsedAndDeliveredWith(jokeId: scheduledJoke.jokeId, deliveryTime: scheduledJoke.time)
                 dbManager.deleteScheduleWith(jokeId: scheduledJoke.jokeId)
             }
         }
@@ -103,7 +103,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
-    func isNotificationsEnabled(completed: @escaping (Bool) -> ()) {
+    func isNotificationsEnabled(completed: @escaping (Bool) -> Void) {
         let current = UNUserNotificationCenter.current()
 
         current.getNotificationSettings(completionHandler: { settings in
@@ -111,12 +111,11 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         })
     }
 
-    func isNotificationsPending(completed: @escaping (Bool) -> ()) {
+    func isNotificationsPending(completed: @escaping (Bool) -> Void) {
         let center = UNUserNotificationCenter.current()
         center.getPendingNotificationRequests(completionHandler: { requests in
             completed(requests.count > 0)
         })
     }
-
 
 }

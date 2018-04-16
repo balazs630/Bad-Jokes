@@ -10,7 +10,7 @@ struct ColumnName {
     struct JokesTable {
         static let jokeId = "jokeId"
         static let isUsed = "isUsed"
-        static let isStored = "isStored"
+        static let deliveryTime = "deliveryTime"
         static let type = "type"
         static let jokeText = "jokeText"
     }

@@ -244,7 +244,7 @@
 				ACEEA95D1F1E5FA600BCF905 /* Resources */,
 				1E278F0BEBA5BB362B974E2B /* [CP] Embed Pods Frameworks */,
 				A43259CE55EDAE7EE990CB12 /* [CP] Copy Pods Resources */,
-				AC2579A82042CB4300C1D904 /* ShellScript */,
+				AC2579A82042CB4300C1D904 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -346,13 +346,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BadJokes/Pods-BadJokes-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AC2579A82042CB4300C1D904 /* ShellScript */ = {
+		AC2579A82042CB4300C1D904 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = SwiftLint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

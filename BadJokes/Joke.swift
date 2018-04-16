@@ -11,7 +11,7 @@ import Foundation
 struct Joke {
     let jokeId: Int
     let isUsed: Int
-    let isStored: Int
+    let deliveryTime: Int
     let type: String!
     let jokeText: String!
 }

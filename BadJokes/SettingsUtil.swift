@@ -165,7 +165,7 @@ class SettingsUtil {
 
         return date
     }
-    
+
     func isNotificationCanBeSetFor(date: Date) -> Bool {
         if date.isToday() {
             if date > getLastNotificationTimeForToday() {
@@ -199,5 +199,5 @@ class SettingsUtil {
         }
         return calendar.date(from: dateComponents)!.add(minutes: -20)
     }
-    
+
 }

@@ -10,11 +10,11 @@ import FMDB
 
 extension DBManager {
 
-    func getAllJokes() -> [Joke] {
+    func getDeliveredJokes() -> [Joke] {
         var resultsArray = [Joke]()
 
         if isDatabaseOpen() {
-            let query = "SELECT * FROM jokes ORDER BY \(ColumnName.JokesTable.jokeId) ASC"
+            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.deliveryTime) IS NOT NULL ORDER BY \(ColumnName.JokesTable.deliveryTime) DESC"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
@@ -22,35 +22,7 @@ extension DBManager {
                 while results.next() {
                     let joke = Joke(jokeId: Int(results.int(forColumn: ColumnName.JokesTable.jokeId)),
                                     isUsed: Int(results.int(forColumn: ColumnName.JokesTable.isUsed)),
-                                    isStored: Int(results.int(forColumn: ColumnName.JokesTable.isStored)),
-                                    type: results.string(forColumn: ColumnName.JokesTable.type),
-                                    jokeText: results.string(forColumn: ColumnName.JokesTable.jokeText))
-
-                    resultsArray.append(joke)
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-
-            database.close()
-        }
-
-        return resultsArray
-    }
-
-    func getStoredJokes() -> [Joke] {
-        var resultsArray = [Joke]()
-
-        if isDatabaseOpen() {
-            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.isStored)=1"
-
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
-                while results.next() {
-                    let joke = Joke(jokeId: Int(results.int(forColumn: ColumnName.JokesTable.jokeId)),
-                                    isUsed: Int(results.int(forColumn: ColumnName.JokesTable.isUsed)),
-                                    isStored: Int(results.int(forColumn: ColumnName.JokesTable.isStored)),
+                                    deliveryTime: Int(results.int(forColumn: ColumnName.JokesTable.deliveryTime)),
                                     type: results.string(forColumn: ColumnName.JokesTable.type),
                                     jokeText: results.string(forColumn: ColumnName.JokesTable.jokeText))
 
@@ -78,7 +50,7 @@ extension DBManager {
                 while results.next() {
                     let joke = Joke(jokeId: Int(results.int(forColumn: ColumnName.JokesTable.jokeId)),
                                     isUsed: Int(results.int(forColumn: ColumnName.JokesTable.isUsed)),
-                                    isStored: Int(results.int(forColumn: ColumnName.JokesTable.isStored)),
+                                    deliveryTime: Int(results.int(forColumn: ColumnName.JokesTable.deliveryTime)),
                                     type: results.string(forColumn: ColumnName.JokesTable.type),
                                     jokeText: results.string(forColumn: ColumnName.JokesTable.jokeText))
 
@@ -142,58 +114,9 @@ extension DBManager {
         return count == 0
     }
 
-    func isJokeUsedWith(jokeId: Int) -> Bool {
-        var count = 0
+    func setJokeUsedAndDeliveredWith(jokeId: Int, deliveryTime: Int) {
         if isDatabaseOpen() {
-            let query = "SELECT count() as count FROM jokes WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId) AND \(ColumnName.JokesTable.isUsed)=0"
-
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
-                while results.next() {
-                    count = Int(results.int(forColumn: "count"))
-                }
-            } catch {
-                print(error.localizedDescription)
-            }
-
-            database.close()
-        }
-
-        return count == 0
-    }
-
-    func setJokeUsedWith(jokeId: Int) {
-        if isDatabaseOpen() {
-            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isUsed)=1 WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
-
-            do {
-                try database.executeUpdate(query, values: nil)
-            } catch {
-                print(error.localizedDescription)
-            }
-
-            database.close()
-        }
-    }
-
-    func setJokeStoredWith(jokeId: Int) {
-        if isDatabaseOpen() {
-            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isStored)=1 WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
-
-            do {
-                try database.executeUpdate(query, values: nil)
-            } catch {
-                print(error.localizedDescription)
-            }
-
-            database.close()
-        }
-    }
-
-    func setJokeUsedAndStoredWith(jokeId: Int) {
-        if isDatabaseOpen() {
-            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isUsed)=1, \(ColumnName.JokesTable.isStored)=1 WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
+            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isUsed)=1, \(ColumnName.JokesTable.deliveryTime)=\(deliveryTime) WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
 
             do {
                 try database.executeUpdate(query, values: nil)
@@ -219,9 +142,9 @@ extension DBManager {
         }
     }
 
-    func removeStoredJokeWith(jokeId: Int) {
+    func removeDeliveredJokeWith(jokeId: Int) {
         if isDatabaseOpen() {
-            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isStored)=0 WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
+            let query = "UPDATE jokes SET \(ColumnName.JokesTable.deliveryTime)=null WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
 
             do {
                 try database.executeUpdate(query, values: nil)
