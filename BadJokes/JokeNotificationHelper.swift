@@ -42,10 +42,10 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         removeAllPendingNotificationRequests()
         dbManager.deleteAllSchedules()
 
-        let notificationTimes = jokeNotificationGenerator.generateNotificationTimes()
+        let notificationTimes = self.jokeNotificationGenerator.generateNotificationTimes()
 
         for i in 0...notificationTimes.count - 1 {
-            addJokeNotificationRequest(on: notificationTimes[i])
+            self.addJokeNotificationRequest(on: notificationTimes[i])
         }
     }
 

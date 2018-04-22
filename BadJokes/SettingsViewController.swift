@@ -9,10 +9,10 @@
 import UIKit
 
 protocol SettingsViewControllerDelegate: class {
-    func settingsDidClose(isSettingsChanged: Bool)
+    func startJokeGeneratingProcess()
 }
 
-class SettingsViewController: UITableViewController, PeriodicityViewControllerDelegate, TimeViewControllerDelegate, RecurrenceViewControllerDelegate {
+class SettingsViewController: UITableViewController {
 
     @IBOutlet weak var swGlobalOff: UISwitch!
 
@@ -78,15 +78,11 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
 
     @IBAction func closeSettings(_ sender: Any) {
         if isEligibleForSave() {
-            savePreferences()
-            delegate?.settingsDidClose(isSettingsChanged: true)
-        } else {
-            delegate?.settingsDidClose(isSettingsChanged: false)
+            saveJokePreferences()
+            delegate?.startJokeGeneratingProcess()
         }
 
-        defaults.set(swGlobalOff.isOn, forKey: UserDefaults.Key.Sw.globalOff)
-        defaults.synchronize()
-
+        saveGeneralPreferences()
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -102,33 +98,29 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         UIApplication.shared.open(URL(string: "App-Prefs:root=NOTIFICATIONS_ID")!, options: [:], completionHandler: nil)
     }
 
-    func getActualPreferences() -> String {
+    private func isEligibleForSave() -> Bool {
+        if isGlobalDisablerSwitchOn() {
+            return false
+        }
+
+        if dbManager.isSchedulesListEmpty() {
+            return true
+        }
+
+        return isPreferencesChanged()
+    }
+
+    private func isPreferencesChanged() -> Bool {
+        return preferencesSnapshot != getActualPreferences()
+    }
+
+    private func getActualPreferences() -> String {
         return """
         \(String(describing: lblPeriodicity.text)) + \(String(describing: lblRecurrence.text))
         + \(String(describing: lblTime.text)) + \(sldAnimal.value) + \(sldRough.value)
         + \(sldIT.value) \(sldAnti.value) \(sldTiring.value)
         + \(sldJean.value) \(sldMoriczka.value) \(sldCop.value) \(sldBlonde.value)
         """
-    }
-
-    func savePeriodicityWith(selectedCellText: String) {
-        lblPeriodicity.text = selectedCellText
-    }
-
-    func saveRecurrenceWith(selectedCellText: String) {
-        lblRecurrence.text = selectedCellText
-    }
-
-    func saveTimeWithSelected(cellText: String) {
-        lblTimeOptionName = cellText
-        lblTime.text = cellText
-    }
-
-    func saveTimeWithSelected(cellText: String, hours: String, minutes: String) {
-        lblTime.text = "Pontosan \(hours):\(minutes)-kor"
-        lblTimeOptionName = cellText
-        pckTimeHours = hours
-        pckTimeMinutes = minutes
     }
 
     private func loadPreferences() {
@@ -158,23 +150,12 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
         }
     }
 
-    private func isEligibleForSave() -> Bool {
-        if isGlobalDisablerSwitchOn() {
-            return false
-        }
-
-        if dbManager.isSchedulesListEmpty() {
-            return true
-        }
-
-        return isPreferencesChanged()
+    private func saveGeneralPreferences() {
+        defaults.set(swGlobalOff.isOn, forKey: UserDefaults.Key.Sw.globalOff)
+        defaults.synchronize()
     }
 
-    private func isPreferencesChanged() -> Bool {
-        return preferencesSnapshot != getActualPreferences()
-    }
-
-    private func savePreferences() {
+    private func saveJokePreferences() {
         defaults.set(lblPeriodicity.text, forKey: UserDefaults.Key.Lbl.periodicity)
         defaults.set(lblRecurrence.text, forKey: UserDefaults.Key.Lbl.recurrence)
         defaults.set(lblTimeOptionName, forKey: UserDefaults.Key.Lbl.time)
@@ -280,4 +261,31 @@ class SettingsViewController: UITableViewController, PeriodicityViewControllerDe
                                                   object: nil)
     }
 
+}
+
+// MARK: Protocol conformances
+extension SettingsViewController: PeriodicityViewControllerDelegate {
+    func savePeriodicityWith(selectedCellText: String) {
+        lblPeriodicity.text = selectedCellText
+    }
+}
+
+extension SettingsViewController: TimeViewControllerDelegate {
+    func saveTimeWithSelected(cellText: String) {
+        lblTimeOptionName = cellText
+        lblTime.text = cellText
+    }
+
+    func saveTimeWithSelected(cellText: String, hours: String, minutes: String) {
+        lblTime.text = "Pontosan \(hours):\(minutes)-kor"
+        lblTimeOptionName = cellText
+        pckTimeHours = hours
+        pckTimeMinutes = minutes
+    }
+}
+
+extension SettingsViewController: RecurrenceViewControllerDelegate {
+    func saveRecurrenceWith(selectedCellText: String) {
+        lblRecurrence.text = selectedCellText
+    }
 }

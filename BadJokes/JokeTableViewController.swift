@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JokeTableViewController: UIViewController, SettingsViewControllerDelegate, JokeNotificationHelperDelegate {
+class JokeTableViewController: UIViewController, JokeNotificationHelperDelegate {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -16,6 +16,7 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
     let dbManager = DBManager()
     let jokeNotificationHelper = JokeNotificationHelper()
     let refreshControl = UIRefreshControl()
+
     let noNotificationScheduledView = Bundle.main.loadNibNamed(UIView.noNotificationScheduledView, owner: nil, options: nil)!.first as! UIView
     let waitingForFirstNotificationView = Bundle.main.loadNibNamed(UIView.waitingForFirstNotificationView, owner: nil, options: nil)?.first as! UIView
 
@@ -66,12 +67,6 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
         tableView.bringSubview(toFront: view)
     }
 
-    func settingsDidClose(isSettingsChanged: Bool) {
-        if isSettingsChanged {
-            jokeNotificationHelper.applyNewNotificationSettings()
-        }
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let segueIdentifier = segue.identifier {
 
@@ -112,8 +107,8 @@ class JokeTableViewController: UIViewController, SettingsViewControllerDelegate,
     }
 }
 
-extension JokeTableViewController {
-    private func configureTableView() {
+private extension JokeTableViewController {
+    func configureTableView() {
         tableView.estimatedRowHeight = 113
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = dataSource
@@ -123,16 +118,23 @@ extension JokeTableViewController {
         tableView.refreshControl = refreshControl
     }
 
-    private func addNotificationObservers() {
+    func addNotificationObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(initTableContent),
                                                name: NSNotification.Name.UIApplicationDidBecomeActive,
                                                object: nil)
     }
 
-    private func didBecomeEmpty() -> DidBecomeEmpty {
+    func didBecomeEmpty() -> DidBecomeEmpty {
         return {
             self.presentEmptyView()
         }
+    }
+}
+
+// MARK: Protocol conformances:
+extension JokeTableViewController: SettingsViewControllerDelegate {
+    func startJokeGeneratingProcess() {
+        jokeNotificationHelper.applyNewNotificationSettings()
     }
 }

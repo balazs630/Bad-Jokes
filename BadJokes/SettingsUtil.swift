@@ -167,10 +167,8 @@ class SettingsUtil {
     }
 
     func isNotificationCanBeSetFor(date: Date) -> Bool {
-        if date.isToday() {
-            if date > getLastNotificationTimeForToday() {
-                return false
-            }
+        if date.isToday() && date > getLastNotificationTimeForToday() {
+            return false
         }
 
         return true
