@@ -10,7 +10,7 @@
 		3BCED003FFE0CF7812EE66D8 /* Pods_BadJokes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946577951C2F75DE8DA6E042 /* Pods_BadJokes.framework */; };
 		AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */; };
 		AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */; };
-		AC100EAC1F548A430069C0DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC100EAB1F548A430069C0DE /* Extensions.swift */; };
+		AC100EAC1F548A430069C0DE /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC100EAB1F548A430069C0DE /* StringExtensions.swift */; };
 		AC128334204B5D3F00FCC19E /* DatePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC128333204B5D3F00FCC19E /* DatePart.swift */; };
 		AC128336204B5F1600FCC19E /* TimePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC128335204B5F1600FCC19E /* TimePart.swift */; };
 		AC1BAF102059D6740047E376 /* RecurrenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */; };
@@ -36,13 +36,19 @@
 		ACEEA9681F1E5FA600BCF905 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9661F1E5FA600BCF905 /* Main.storyboard */; };
 		ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */; };
 		ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */; };
+		ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */; };
+		ACF0EB9D209A7DB300467675 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9C209A7DB300467675 /* ArrayExtensions.swift */; };
+		ACF0EB9F209A7DC700467675 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9E209A7DC700467675 /* IntExtensions.swift */; };
+		ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */; };
+		ACF0EBA3209A7DF300467675 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA2209A7DF300467675 /* DateExtensions.swift */; };
+		ACF0EBA5209A7E0800467675 /* DateComponentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		946577951C2F75DE8DA6E042 /* Pods_BadJokes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadJokes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeCell.swift; sourceTree = "<group>"; };
 		AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesDataSource.swift; sourceTree = "<group>"; };
-		AC100EAB1F548A430069C0DE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AC100EAB1F548A430069C0DE /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		AC128333204B5D3F00FCC19E /* DatePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePart.swift; sourceTree = "<group>"; };
 		AC128335204B5F1600FCC19E /* TimePart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePart.swift; sourceTree = "<group>"; };
 		AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurrenceViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +77,12 @@
 		ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACEEA96C1F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACEEA96E1F1E5FA600BCF905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
+		ACF0EB9C209A7DB300467675 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
+		ACF0EB9E209A7DC700467675 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
+		ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
+		ACF0EBA2209A7DF300467675 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponentExtensions.swift; sourceTree = "<group>"; };
 		C3ED8405DEE9AC1E96F6B644 /* Pods-BadJokes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadJokes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BadJokes/Pods-BadJokes.debug.xcconfig"; sourceTree = "<group>"; };
 		FCE01A74ADE163D939CEB1C5 /* Pods-BadJokes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadJokes.release.xcconfig"; path = "Pods/Target Support Files/Pods-BadJokes/Pods-BadJokes.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,98 +106,6 @@
 				FCE01A74ADE163D939CEB1C5 /* Pods-BadJokes.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		AC2579AD204366D900C1D904 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				ACB7C1E71FDD6106007ED514 /* Constants.swift */,
-				AC100EAB1F548A430069C0DE /* Extensions.swift */,
-			);
-			name = Common;
-			sourceTree = "<group>";
-		};
-		AC2D2B582041C04C0040DD40 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				ACACF6E81F51C93E00F501B1 /* DBManager.swift */,
-				AC385CE02046D71E0070D4A7 /* ColumnNames.swift */,
-				ACECF0A41F60A88F0072367C /* jokesDB.db */,
-				AC976E8A2049B93800B9C611 /* Queries */,
-			);
-			name = Storage;
-			sourceTree = "<group>";
-		};
-		AC2D2B592041C1700040DD40 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				ACEEA96E1F1E5FA600BCF905 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		AC2D2B5A2041C1CF0040DD40 /* App flow */ = {
-			isa = PBXGroup;
-			children = (
-				ACEEA9661F1E5FA600BCF905 /* Main.storyboard */,
-				AC2D2B5B2041C2000040DD40 /* Joke */,
-				AC2D2B5C2041C2310040DD40 /* Settings */,
-			);
-			name = "App flow";
-			sourceTree = "<group>";
-		};
-		AC2D2B5B2041C2000040DD40 /* Joke */ = {
-			isa = PBXGroup;
-			children = (
-				AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */,
-				AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */,
-				ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */,
-				ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */,
-				AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */,
-				AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */,
-			);
-			name = Joke;
-			sourceTree = "<group>";
-		};
-		AC2D2B5C2041C2310040DD40 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				ACE906B21F22A27200A6A082 /* SettingsViewController.swift */,
-				AC2579B020461AAA00C1D904 /* SettingsUtil.swift */,
-				AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */,
-				AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */,
-				AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */,
-			);
-			name = Settings;
-			sourceTree = "<group>";
-		};
-		AC2D2B5D2041C2630040DD40 /* Model and state */ = {
-			isa = PBXGroup;
-			children = (
-				ACECF0A61F60AC230072367C /* Joke.swift */,
-				AC2579B2204628C800C1D904 /* Schedule.swift */,
-				AC128333204B5D3F00FCC19E /* DatePart.swift */,
-				AC128335204B5F1600FCC19E /* TimePart.swift */,
-			);
-			name = "Model and state";
-			sourceTree = "<group>";
-		};
-		AC2D2B5E2041C3A50040DD40 /* Local Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */,
-				AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */,
-			);
-			name = "Local Notifications";
-			sourceTree = "<group>";
-		};
-		AC976E8A2049B93800B9C611 /* Queries */ = {
-			isa = PBXGroup;
-			children = (
-				AC976E862049B41C00B9C611 /* JokesTableQueries.swift */,
-				AC976E882049B48B00B9C611 /* SchedulesTableQueries.swift */,
-			);
-			name = Queries;
 			sourceTree = "<group>";
 		};
 		ACECF0A11F60A47E0072367C /* Frameworks */ = {
@@ -219,16 +139,130 @@
 			isa = PBXGroup;
 			children = (
 				ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */,
-				ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */,
-				ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */,
-				AC2D2B5A2041C1CF0040DD40 /* App flow */,
-				AC2D2B5D2041C2630040DD40 /* Model and state */,
-				AC2D2B582041C04C0040DD40 /* Storage */,
-				AC2D2B5E2041C3A50040DD40 /* Local Notifications */,
-				AC2579AD204366D900C1D904 /* Common */,
-				AC2D2B592041C1700040DD40 /* Supporting Files */,
+				ACB7C1E71FDD6106007ED514 /* Constants.swift */,
+				ACF0EBAB209A7F2100467675 /* App flow */,
+				ACF0EB97209A7CE400467675 /* Storyboards */,
+				ACF0EBAA209A7E9E00467675 /* Model and state */,
+				ACF0EBA7209A7E6400467675 /* Storage */,
+				ACF0EBA6209A7E1E00467675 /* Local Notifications */,
+				ACF0EB99209A7D6600467675 /* Extensions */,
+				ACF0EB98209A7D1600467675 /* Resources */,
+				ACF0EB96209A7CA000467675 /* Supporting Files */,
 			);
 			path = BadJokes;
+			sourceTree = "<group>";
+		};
+		ACF0EB96209A7CA000467675 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				ACEEA96E1F1E5FA600BCF905 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ACF0EB97209A7CE400467675 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */,
+				ACEEA9661F1E5FA600BCF905 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		ACF0EB98209A7D1600467675 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ACF0EB99209A7D6600467675 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AC100EAB1F548A430069C0DE /* StringExtensions.swift */,
+				ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */,
+				ACF0EB9C209A7DB300467675 /* ArrayExtensions.swift */,
+				ACF0EB9E209A7DC700467675 /* IntExtensions.swift */,
+				ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */,
+				ACF0EBA2209A7DF300467675 /* DateExtensions.swift */,
+				ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		ACF0EBA6209A7E1E00467675 /* Local Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */,
+				AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */,
+			);
+			path = "Local Notifications";
+			sourceTree = "<group>";
+		};
+		ACF0EBA7209A7E6400467675 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				ACECF0A41F60A88F0072367C /* jokesDB.db */,
+				ACACF6E81F51C93E00F501B1 /* DBManager.swift */,
+				AC385CE02046D71E0070D4A7 /* ColumnNames.swift */,
+				ACF0EBA8209A7E7300467675 /* Queries */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		ACF0EBA8209A7E7300467675 /* Queries */ = {
+			isa = PBXGroup;
+			children = (
+				AC976E862049B41C00B9C611 /* JokesTableQueries.swift */,
+				AC976E882049B48B00B9C611 /* SchedulesTableQueries.swift */,
+			);
+			path = Queries;
+			sourceTree = "<group>";
+		};
+		ACF0EBAA209A7E9E00467675 /* Model and state */ = {
+			isa = PBXGroup;
+			children = (
+				ACECF0A61F60AC230072367C /* Joke.swift */,
+				AC2579B2204628C800C1D904 /* Schedule.swift */,
+				AC128333204B5D3F00FCC19E /* DatePart.swift */,
+				AC128335204B5F1600FCC19E /* TimePart.swift */,
+			);
+			path = "Model and state";
+			sourceTree = "<group>";
+		};
+		ACF0EBAB209A7F2100467675 /* App flow */ = {
+			isa = PBXGroup;
+			children = (
+				ACF0EBAC209A7F3300467675 /* Joke */,
+				ACF0EBAD209A7F3B00467675 /* Settings */,
+			);
+			path = "App flow";
+			sourceTree = "<group>";
+		};
+		ACF0EBAC209A7F3300467675 /* Joke */ = {
+			isa = PBXGroup;
+			children = (
+				AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */,
+				AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */,
+				ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */,
+				ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */,
+				AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */,
+				AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */,
+			);
+			path = Joke;
+			sourceTree = "<group>";
+		};
+		ACF0EBAD209A7F3B00467675 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				ACE906B21F22A27200A6A082 /* SettingsViewController.swift */,
+				AC2579B020461AAA00C1D904 /* SettingsUtil.swift */,
+				AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */,
+				AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */,
+				AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,20 +424,26 @@
 				AC2579B3204628C800C1D904 /* Schedule.swift in Sources */,
 				AC7A4E341F51F74700E8F438 /* JokeNotificationHelper.swift in Sources */,
 				AC976E892049B48B00B9C611 /* SchedulesTableQueries.swift in Sources */,
+				ACF0EBA3209A7DF300467675 /* DateExtensions.swift in Sources */,
 				AC128336204B5F1600FCC19E /* TimePart.swift in Sources */,
 				AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */,
+				ACF0EB9D209A7DB300467675 /* ArrayExtensions.swift in Sources */,
+				ACF0EBA5209A7E0800467675 /* DateComponentExtensions.swift in Sources */,
 				AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */,
 				AC2579B120461AAA00C1D904 /* SettingsUtil.swift in Sources */,
 				AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */,
 				AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */,
 				AC385CE12046D71E0070D4A7 /* ColumnNames.swift in Sources */,
+				ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */,
 				AC1BAF102059D6740047E376 /* RecurrenceViewController.swift in Sources */,
 				ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */,
 				AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */,
-				AC100EAC1F548A430069C0DE /* Extensions.swift in Sources */,
+				AC100EAC1F548A430069C0DE /* StringExtensions.swift in Sources */,
 				AC976E872049B41C00B9C611 /* JokesTableQueries.swift in Sources */,
 				ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */,
 				ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */,
+				ACF0EB9F209A7DC700467675 /* IntExtensions.swift in Sources */,
+				ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */,
 				AC128334204B5D3F00FCC19E /* DatePart.swift in Sources */,
 				ACACF6E91F51C93E00F501B1 /* DBManager.swift in Sources */,
 				ACECF0A71F60AC230072367C /* Joke.swift in Sources */,
@@ -555,7 +595,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = UW8QF9DSWQ;
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = BadJokes/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BadJokes/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.balazs630.BadJokes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -577,7 +617,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = UW8QF9DSWQ;
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = BadJokes/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BadJokes/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.balazs630.BadJokes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
