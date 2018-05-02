@@ -12,7 +12,6 @@ class JokeNotificationGenerator {
     let defaults = UserDefaults.standard
     let maxLocalNotificationCount = 64
 
-    let dbManager = DBManager()
     let settingsUtil = SettingsUtil()
 
     func generateNotificationTimes() -> [Date] {
@@ -78,7 +77,7 @@ class JokeNotificationGenerator {
         var jokeType = getRandomJokeType()
         var n = 0
         while true {
-            if dbManager.isAllJokeUsedWith(type: jokeType) {
+            if DBManager.shared.isAllJokeUsedWith(type: jokeType) {
                 jokeType = getRandomJokeType()
                 n += 1
             } else {
@@ -87,8 +86,8 @@ class JokeNotificationGenerator {
 
             // If it couldn't find a joke type from 100 tries that has unused jokes
             if n == 100 {
-                if dbManager.isAllJokeUsed() {
-                    dbManager.restoreUsedJokesAsNew()
+                if DBManager.shared.isAllJokeUsed() {
+                    DBManager.shared.restoreUsedJokesAsNew()
                     // Recursion
                     jokeType = generateJokeType()
                 } else {
@@ -130,7 +129,7 @@ class JokeNotificationGenerator {
         var type = String()
 
         for sld in UserDefaults.sldDictionaty.values {
-            if dbManager.isAllJokeUsedWith(type: sld) == false {
+            if DBManager.shared.isAllJokeUsedWith(type: sld) == false {
                 type = sld
                 break
             }

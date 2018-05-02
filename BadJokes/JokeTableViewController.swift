@@ -13,7 +13,6 @@ class JokeTableViewController: UIViewController, JokeNotificationHelperDelegate 
     @IBOutlet weak var tableView: UITableView!
 
     var dataSource: JokesDataSource!
-    let dbManager = DBManager()
     let jokeNotificationHelper = JokeNotificationHelper()
     let refreshControl = UIRefreshControl()
 
@@ -44,14 +43,14 @@ class JokeTableViewController: UIViewController, JokeNotificationHelperDelegate 
     }
 
     func pullDataIntoDataSource() {
-        dataSource = JokesDataSource(jokes: dbManager.getDeliveredJokes(), didBecomeEmpty: didBecomeEmpty())
+        dataSource = JokesDataSource(jokes: DBManager.shared.getDeliveredJokes(), didBecomeEmpty: didBecomeEmpty())
         tableView.dataSource = dataSource
     }
 
     func presentEmptyView() {
         if dataSource.jokes.isEmpty {
             // Display a message instead of an empty table
-            if dbManager.isSchedulesListEmpty() {
+            if DBManager.shared.isSchedulesListEmpty() {
                 displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
             } else {
                 displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)

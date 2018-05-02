@@ -8,9 +8,9 @@
 
 import FMDB
 
-class DBManager: NSObject {
+class DBManager {
 
-    static let shared: DBManager = DBManager()
+    static let shared = DBManager()
 
     let dbFileName = "jokesDB"
     let dbExtension = "db"
@@ -20,9 +20,7 @@ class DBManager: NSObject {
 
     var database: FMDatabase!
 
-    override init() {
-        super.init()
-
+    private init() {
         let documentsDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         documentsDBPath = documentsDirectory.appending("/\(dbFileName).\(dbExtension)")
         resourcesDBPath = Bundle.main.path(forResource: dbFileName, ofType: dbExtension)

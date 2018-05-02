@@ -54,7 +54,6 @@ class SettingsViewController: UITableViewController {
     let defaults = UserDefaults.standard
     weak var delegate: SettingsViewControllerDelegate?
 
-    let dbManager = DBManager()
     let jokeNotificationHelper = JokeNotificationHelper()
     let notificationWarningIndexPath = IndexPath(item: 0, section: 0)
     var isNotificationEnabled: Bool = false
@@ -103,7 +102,7 @@ class SettingsViewController: UITableViewController {
             return false
         }
 
-        if dbManager.isSchedulesListEmpty() {
+        if DBManager.shared.isSchedulesListEmpty() {
             return true
         }
 

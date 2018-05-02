@@ -17,7 +17,6 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     var localTimeZoneName: String { return TimeZone.current.identifier }
     weak var delegate: JokeNotificationHelperDelegate?
 
-    let dbManager = DBManager()
     let jokeNotificationGenerator = JokeNotificationGenerator()
 
     override init() {
@@ -40,7 +39,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
     private func setNewRepeatingNotifications() {
         removeAllPendingNotificationRequests()
-        dbManager.deleteAllSchedules()
+        DBManager.shared.deleteAllSchedules()
 
         let notificationTimes = self.jokeNotificationGenerator.generateNotificationTimes()
 
@@ -60,14 +59,14 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
         }
 
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        dbManager.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())
+        DBManager.shared.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())
     }
 
     func setNotificationContent() -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = "Vicc:"
         let type = jokeNotificationGenerator.generateJokeType()
-        let joke = dbManager.getRandomJokeWith(type: type)
+        let joke = DBManager.shared.getRandomJokeWith(type: type)
         content.body = joke.jokeText.formatLineBreaks()
         content.sound = UNNotificationSound.default()
 
@@ -89,12 +88,12 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     }
 
     func checkForDeliveredJokes() {
-        let scheduledJokesArray = dbManager.getAllSchedules()
+        let scheduledJokesArray = DBManager.shared.getAllSchedules()
 
         for scheduledJoke in scheduledJokesArray {
             if TimeInterval(scheduledJoke.time).isInPast() {
-                dbManager.setJokeUsedAndDeliveredWith(jokeId: scheduledJoke.jokeId, deliveryTime: scheduledJoke.time)
-                dbManager.deleteScheduleWith(jokeId: scheduledJoke.jokeId)
+                DBManager.shared.setJokeUsedAndDeliveredWith(jokeId: scheduledJoke.jokeId, deliveryTime: scheduledJoke.time)
+                DBManager.shared.deleteScheduleWith(jokeId: scheduledJoke.jokeId)
             }
         }
     }
