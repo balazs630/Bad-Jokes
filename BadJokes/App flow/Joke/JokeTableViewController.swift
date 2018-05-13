@@ -16,8 +16,18 @@ class JokeTableViewController: UIViewController, JokeNotificationHelperDelegate 
     let jokeNotificationHelper = JokeNotificationHelper()
     let refreshControl = UIRefreshControl()
 
-    let noNotificationScheduledView = Bundle.main.loadNibNamed(UIView.noNotificationScheduledView, owner: nil, options: nil)!.first as! UIView
-    let waitingForFirstNotificationView = Bundle.main.loadNibNamed(UIView.waitingForFirstNotificationView, owner: nil, options: nil)?.first as! UIView
+    var noNotificationScheduledView: UIView {
+        // swiftlint:disable force_cast
+         return Bundle.main.loadNibNamed(UIView.noNotificationScheduledView,
+                                         owner: nil,
+                                         options: nil)!.first as! UIView
+    }
+
+    var waitingForFirstNotificationView: UIView {
+        return Bundle.main.loadNibNamed(UIView.waitingForFirstNotificationView,
+                                        owner: nil,
+                                        options: nil)?.first as! UIView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,25 +81,19 @@ class JokeTableViewController: UIViewController, JokeNotificationHelperDelegate 
 
             switch segueIdentifier {
             case SegueIdentifier.showSettings:
-                let destVC = segue.destination as! SettingsViewController
+                guard let destVC = segue.destination as? SettingsViewController else { return }
                 destVC.delegate = self
+
             case SegueIdentifier.showJoke:
-                let destVC = segue.destination as! JokeViewController
-                guard let sender = sender as? UITableViewCell else {
-                    return
-                }
+                guard let destVC = segue.destination as? JokeViewController else { return }
+                guard let sender = sender as? UITableViewCell else { return }
+                guard let selectedIndex = tableView.indexPath(for: sender) else { return }
 
-                guard let selectedIndex = tableView.indexPath(for: sender) else {
-                    return
-                }
-
-                guard let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeCell else {
-                    return
-                }
-
+                guard let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeCell else { return }
                 destVC.jokeText = jokeCell.jokeLabel.text!
+
             default:
-                print("Unexpected segue identifier was given in: \(#file), line: \(#line)")
+                debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
             }
         }
     }

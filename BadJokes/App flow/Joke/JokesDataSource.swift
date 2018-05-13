@@ -27,13 +27,17 @@ extension JokesDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: JokeCell.self)) as! JokeCell
+        let cellIdentifier = String(describing: JokeCell.self)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? JokeCell else {
+            fatalError("JokeCell cannot be found")
+        }
         let joke = jokes[indexPath.row]
         cell.jokeText = joke.jokeText.formatLineBreaks()
         return cell
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
+                   forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
             DBManager.shared.removeDeliveredJokeWith(jokeId: jokes[indexPath.row].jokeId)
             jokes.remove(at: indexPath.row)

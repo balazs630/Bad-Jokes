@@ -12,8 +12,8 @@ extension UserDefaults {
     func printAllUserDefaulsKeysAndValues() {
         // For debug purpose
         for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
-            print("\(key) = \(value) \n")
+            debugPrint("\(key) = \(value) \n")
         }
-        print("=========================================================")
+        debugPrint("=========================================================")
     }
 }

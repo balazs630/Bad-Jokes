@@ -26,7 +26,7 @@ extension DBManager {
                     resultsArray.append(schedule)
                 }
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()
@@ -37,12 +37,14 @@ extension DBManager {
 
     func insertNewScheduledJoke(with jokeId: Int, on time: Int) {
         if isDatabaseOpen() {
-            let query = "INSERT INTO schedules (\(ColumnName.SchedulesTable.jokeId), \(ColumnName.SchedulesTable.time)) VALUES(\(jokeId), \(time))"
+            let query = "INSERT INTO schedules (\(ColumnName.SchedulesTable.jokeId), "
+                                            + "\(ColumnName.SchedulesTable.time))"
+                                            + " VALUES(\(jokeId), \(time))"
 
             do {
                 try database.executeUpdate(query, values: nil)
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()
@@ -61,7 +63,7 @@ extension DBManager {
                     count = Int(results.int(forColumn: "count"))
                 }
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()
@@ -77,7 +79,7 @@ extension DBManager {
             do {
                 try database.executeUpdate(query, values: nil)
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()
@@ -91,7 +93,7 @@ extension DBManager {
             do {
                 try database.executeUpdate(query, values: nil)
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()

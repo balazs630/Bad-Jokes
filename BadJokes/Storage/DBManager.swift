@@ -50,10 +50,10 @@ class DBManager {
             do {
                 try FileManager.default.copyItem(atPath: source, toPath: destination)
             } catch {
-                print(error)
+                debugPrint(error)
             }
         } else {
-            print("Database file already exist at: \(destination)")
+            debugPrint("Database file already exist at: \(destination)")
         }
     }
 

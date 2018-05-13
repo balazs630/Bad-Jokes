@@ -14,7 +14,8 @@ extension DBManager {
         var resultsArray = [Joke]()
 
         if isDatabaseOpen() {
-            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.deliveryTime) IS NOT NULL ORDER BY \(ColumnName.JokesTable.deliveryTime) DESC"
+            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.deliveryTime) IS NOT NULL"
+                                            + " ORDER BY \(ColumnName.JokesTable.deliveryTime) DESC"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
@@ -29,7 +30,7 @@ extension DBManager {
                     resultsArray.append(joke)
                 }
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()
@@ -42,7 +43,8 @@ extension DBManager {
         var resultsArray = [Joke]()
 
         if isDatabaseOpen() {
-            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.type)=\"\(type)\" AND \(ColumnName.JokesTable.isUsed)=0"
+            let query = "SELECT * FROM jokes WHERE \(ColumnName.JokesTable.type)=\"\(type)\""
+                                                            + " AND \(ColumnName.JokesTable.isUsed)=0"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
@@ -57,7 +59,7 @@ extension DBManager {
                     resultsArray.append(joke)
                 }
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()
@@ -84,7 +86,7 @@ extension DBManager {
                 }
 
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()
@@ -96,7 +98,8 @@ extension DBManager {
     func isAllJokeUsedWith(type: String) -> Bool {
         var count = 0
         if isDatabaseOpen() {
-            let query = "SELECT count() as count FROM jokes WHERE \(ColumnName.JokesTable.type)=\"\(type)\" AND \(ColumnName.JokesTable.isUsed)=0"
+            let query = "SELECT count() as count FROM jokes WHERE \(ColumnName.JokesTable.type)=\"\(type)\""
+                                                            + " AND \(ColumnName.JokesTable.isUsed)=0"
 
             do {
                 let results = try database.executeQuery(query, values: nil)
@@ -105,7 +108,7 @@ extension DBManager {
                     count = Int(results.int(forColumn: "count"))
                 }
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()
@@ -116,12 +119,14 @@ extension DBManager {
 
     func setJokeUsedAndDeliveredWith(jokeId: Int, deliveryTime: Int) {
         if isDatabaseOpen() {
-            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isUsed)=1, \(ColumnName.JokesTable.deliveryTime)=\(deliveryTime) WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
+            let query = "UPDATE jokes SET \(ColumnName.JokesTable.isUsed)=1," +
+                                        " \(ColumnName.JokesTable.deliveryTime)=\(deliveryTime)"
+                                        + " WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
 
             do {
                 try database.executeUpdate(query, values: nil)
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()
@@ -135,7 +140,7 @@ extension DBManager {
             do {
                 try database.executeUpdate(query, values: nil)
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()
@@ -144,12 +149,13 @@ extension DBManager {
 
     func removeDeliveredJokeWith(jokeId: Int) {
         if isDatabaseOpen() {
-            let query = "UPDATE jokes SET \(ColumnName.JokesTable.deliveryTime)=null WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
+            let query = "UPDATE jokes SET \(ColumnName.JokesTable.deliveryTime)=null"
+                                    + " WHERE \(ColumnName.JokesTable.jokeId)=\(jokeId)"
 
             do {
                 try database.executeUpdate(query, values: nil)
             } catch {
-                print(error.localizedDescription)
+                debugPrint(error.localizedDescription)
             }
 
             database.close()

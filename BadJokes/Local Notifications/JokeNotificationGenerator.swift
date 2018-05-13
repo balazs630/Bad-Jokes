@@ -31,7 +31,8 @@ class JokeNotificationGenerator {
                         break
                     }
 
-                    let notificationTime = settingsUtil.getGeneratedNotificationTimeBetween(startDate: startDate, endDate: endDate)
+                    let notificationTime = settingsUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
+                                                                                            endDate: endDate)
                     if notificationTime.isInFuture() {
                         notificationTimesArray.append(notificationTime)
                         recurranceValue -= 1
@@ -54,7 +55,8 @@ class JokeNotificationGenerator {
                             break
                         }
 
-                        notificationTime = settingsUtil.getGeneratedNotificationTimeBetween(startDate: startDate, endDate: endDate)
+                        notificationTime = settingsUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
+                                                                                            endDate: endDate)
                         if notificationTime.isInFuture() {
                             notificationTimesArray.append(notificationTime)
                             recurranceValue -= 1
@@ -75,17 +77,17 @@ class JokeNotificationGenerator {
     func generateJokeType() -> String {
         // Get a joke type and check if the type has unused joke(s)
         var jokeType = getRandomJokeType()
-        var n = 0
+        var counter = 0
         while true {
             if DBManager.shared.isAllJokeUsedWith(type: jokeType) {
                 jokeType = getRandomJokeType()
-                n += 1
+                counter += 1
             } else {
                 break
             }
 
             // If it couldn't find a joke type from 100 tries that has unused jokes
-            if n == 100 {
+            if counter == 100 {
                 if DBManager.shared.isAllJokeUsed() {
                     DBManager.shared.restoreUsedJokesAsNew()
                     // Recursion

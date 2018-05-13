@@ -60,7 +60,7 @@ class SettingsUtil {
                 hours = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
                 minutes = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
             default:
-                print("Unexpected time identifier was given in: \(#file), line: \(#line)")
+                debugPrint("Unexpected time identifier was given in: \(#file), line: \(#line)")
             }
         }
 
@@ -72,11 +72,11 @@ class SettingsUtil {
     }
 
     func getRecurranceNumber() -> Int {
-        guard let recurranceSetting = defaults.string(forKey: UserDefaults.Key.Lbl.recurrence)?.cutLastCharacter() else {
+        guard let recurrance = defaults.string(forKey: UserDefaults.Key.Lbl.recurrence)?.cutLastCharacter() else {
             return 1
         }
 
-        return recurranceSetting
+        return recurrance
     }
 
     private func getFreeTimeRatio() -> Double {
@@ -132,7 +132,7 @@ class SettingsUtil {
                 dateInterval.start = calendar.date(from: dateComponents)!
                 dateInterval.end = dateInterval.start
             default:
-                print("Unexpected time identifier was given in: \(#file), line: \(#line)")
+                debugPrint("Unexpected time identifier was given in: \(#file), line: \(#line)")
             }
         }
 
@@ -159,7 +159,7 @@ class SettingsUtil {
             case Periodicity.monthly:
                 return date.add(days: 30)
             default:
-                print("Unexpected periodicity identifier was given in: \(#file), line: \(#line)")
+                debugPrint("Unexpected periodicity identifier was given in: \(#file), line: \(#line)")
             }
         }
 
@@ -192,7 +192,7 @@ class SettingsUtil {
                 dateComponents.hour = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
                 dateComponents.minute = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
             default:
-                print("Unexpected time identifier was given in: \(#file), line: \(#line)")
+                debugPrint("Unexpected time identifier was given in: \(#file), line: \(#line)")
             }
         }
         return calendar.date(from: dateComponents)!.add(minutes: -20)

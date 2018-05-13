@@ -22,7 +22,8 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     override init() {
         super.init()
         // Seeking permission of the user to display app notifications
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {_, _ in })
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound],
+                                                                completionHandler: {_, _ in })
         UNUserNotificationCenter.current().delegate = self
     }
 
@@ -43,8 +44,8 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
         let notificationTimes = self.jokeNotificationGenerator.generateNotificationTimes()
 
-        for i in 0...notificationTimes.count - 1 {
-            self.addJokeNotificationRequest(on: notificationTimes[i])
+        for index in 0...notificationTimes.count - 1 {
+            self.addJokeNotificationRequest(on: notificationTimes[index])
         }
     }
 
@@ -92,7 +93,8 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
         for scheduledJoke in scheduledJokesArray {
             if TimeInterval(scheduledJoke.time).isInPast() {
-                DBManager.shared.setJokeUsedAndDeliveredWith(jokeId: scheduledJoke.jokeId, deliveryTime: scheduledJoke.time)
+                DBManager.shared.setJokeUsedAndDeliveredWith(jokeId: scheduledJoke.jokeId,
+                                                             deliveryTime: scheduledJoke.time)
                 DBManager.shared.deleteScheduleWith(jokeId: scheduledJoke.jokeId)
             }
         }
