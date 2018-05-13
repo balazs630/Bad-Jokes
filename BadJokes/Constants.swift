@@ -30,6 +30,7 @@ extension UserDefaults {
     struct Key {
         static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
 
+        // swiftlint:disable type_name
         struct Sw {
             static let globalOff = "swGlobalOff"
         }
@@ -48,7 +49,7 @@ extension UserDefaults {
         struct Sld {
             static let animal = "sldAnimal"
             static let rough = "sldRough"
-            static let IT = "sldIT"
+            static let geek = "sldGeek"
             static let anti = "sldAnti"
             static let tiring = "sldTiring"
             static let jean = "sldJean"
@@ -62,7 +63,7 @@ extension UserDefaults {
         return [
             UserDefaults.Key.Sld.animal: "animal",
             UserDefaults.Key.Sld.rough: "rough",
-            UserDefaults.Key.Sld.IT: "IT",
+            UserDefaults.Key.Sld.geek: "geek",
             UserDefaults.Key.Sld.anti: "anti",
             UserDefaults.Key.Sld.tiring: "tiring",
             UserDefaults.Key.Sld.jean: "jean",

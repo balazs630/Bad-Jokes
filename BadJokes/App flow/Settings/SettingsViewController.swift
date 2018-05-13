@@ -22,7 +22,7 @@ class SettingsViewController: UITableViewController {
 
     @IBOutlet weak var sldAnimal: UISlider!
     @IBOutlet weak var sldRough: UISlider!
-    @IBOutlet weak var sldIT: UISlider!
+    @IBOutlet weak var sldGeek: UISlider!
     @IBOutlet weak var sldAnti: UISlider!
     @IBOutlet weak var sldTiring: UISlider!
     @IBOutlet weak var sldJean: UISlider!
@@ -40,7 +40,7 @@ class SettingsViewController: UITableViewController {
         return [
             sldAnimal: UserDefaults.Key.Sld.animal,
             sldRough: UserDefaults.Key.Sld.rough,
-            sldIT: UserDefaults.Key.Sld.IT,
+            sldGeek: UserDefaults.Key.Sld.geek,
             sldAnti: UserDefaults.Key.Sld.anti,
             sldTiring: UserDefaults.Key.Sld.tiring,
             sldJean: UserDefaults.Key.Sld.jean,
@@ -117,7 +117,7 @@ class SettingsViewController: UITableViewController {
         return """
         \(String(describing: lblPeriodicity.text)) + \(String(describing: lblRecurrence.text))
         + \(String(describing: lblTime.text)) + \(sldAnimal.value) + \(sldRough.value)
-        + \(sldIT.value) \(sldAnti.value) \(sldTiring.value)
+        + \(sldGeek.value) \(sldAnti.value) \(sldTiring.value)
         + \(sldJean.value) \(sldMoriczka.value) \(sldCop.value) \(sldBlonde.value)
         """
     }
@@ -194,7 +194,8 @@ class SettingsViewController: UITableViewController {
         tableView.reloadData()
     }
 
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
+                            forRowAt indexPath: IndexPath) {
         // Hide notification warning cell if the notifications are turned on
         if indexPath.section == notificationWarningIndexPath.section
             && indexPath.row == notificationWarningIndexPath.row {
@@ -224,19 +225,19 @@ class SettingsViewController: UITableViewController {
 
                 switch segueIdentifier {
                 case SegueIdentifier.periodicityDetail:
-                    let destVC = segue.destination as! PeriodicityViewController
+                    guard let destVC = segue.destination as? PeriodicityViewController else { return }
                     if let lblPeriodicityText = lblPeriodicity.text {
                         destVC.lastSelectedOption = lblPeriodicityText
                     }
                     destVC.delegate = self
                 case SegueIdentifier.recurrenceDetail:
-                    let destVC = segue.destination as! RecurrenceViewController
+                    guard let destVC = segue.destination as? RecurrenceViewController else { return }
                     if let lblRecurrenceText = lblRecurrence.text {
                         destVC.lastSelectedOption = lblRecurrenceText
                     }
                     destVC.delegate = self
                 case SegueIdentifier.timeDetail:
-                    let destVC = segue.destination as! TimeViewController
+                    guard let destVC = segue.destination as? TimeViewController else { return }
                     destVC.lastSelectedOption = lblTimeOptionName
 
                     let calendar = Calendar(identifier: .gregorian)
@@ -247,7 +248,7 @@ class SettingsViewController: UITableViewController {
                     destVC.lastSelectedTime = calendar.date(from: timeComponents)!
                     destVC.delegate = self
                 default:
-                    print("Unexpected segue identifier was given in: \(#file), line: \(#line)")
+                    debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
                 }
             }
         }

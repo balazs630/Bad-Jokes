@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 UserDefaults.Key.Sld.animal: 10,
                 UserDefaults.Key.Sld.rough: 0,
-                UserDefaults.Key.Sld.IT: 2,
+                UserDefaults.Key.Sld.geek: 2,
                 UserDefaults.Key.Sld.anti: 6,
                 UserDefaults.Key.Sld.tiring: 10,
                 UserDefaults.Key.Sld.jean: 2,

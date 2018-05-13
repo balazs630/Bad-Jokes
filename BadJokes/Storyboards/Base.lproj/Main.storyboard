@@ -426,7 +426,7 @@
                         <outlet property="sldAnti" destination="1MN-HW-bdj" id="p8h-fX-ZbH"/>
                         <outlet property="sldBlonde" destination="qvY-um-PKv" id="ckX-E2-5eF"/>
                         <outlet property="sldCop" destination="QP1-Jr-u2r" id="HHu-iM-8a9"/>
-                        <outlet property="sldIT" destination="6yP-X6-z7G" id="ihR-Mg-WaI"/>
+                        <outlet property="sldGeek" destination="6yP-X6-z7G" id="624-4t-Oo2"/>
                         <outlet property="sldJean" destination="s7S-3q-PS8" id="iSa-pV-JOA"/>
                         <outlet property="sldMoriczka" destination="F7D-ME-BrY" id="5y1-nD-WYE"/>
                         <outlet property="sldRough" destination="ltb-M6-grK" id="ZUs-RF-pvM"/>
