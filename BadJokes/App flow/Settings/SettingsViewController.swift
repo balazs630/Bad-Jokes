@@ -14,6 +14,35 @@ protocol SettingsViewControllerDelegate: class {
 
 class SettingsViewController: UITableViewController {
 
+    // MARK: Properties
+    var pckTimeHours = String()
+    var pckTimeMinutes = String()
+    var lblTimeOptionName = String()
+
+    var sldCollection: [UISlider: String] {
+        return [
+            sldAnimal: UserDefaults.Key.Sld.animal,
+            sldRough: UserDefaults.Key.Sld.rough,
+            sldGeek: UserDefaults.Key.Sld.geek,
+            sldAnti: UserDefaults.Key.Sld.anti,
+            sldTiring: UserDefaults.Key.Sld.tiring,
+            sldJean: UserDefaults.Key.Sld.jean,
+            sldMoriczka: UserDefaults.Key.Sld.moriczka,
+            sldCop: UserDefaults.Key.Sld.cop,
+            sldBlonde: UserDefaults.Key.Sld.blonde
+        ]
+    }
+
+    let defaults = UserDefaults.standard
+    var preferencesSnapshot = String()
+    weak var delegate: SettingsViewControllerDelegate?
+
+    let jokeNotificationHelper = JokeNotificationHelper()
+    let notificationWarningIndexPath = IndexPath(item: 0, section: 0)
+    let notificationSettingsIndexPath = IndexPath(item: 1, section: 0)
+    var isNotificationEnabled: Bool = false
+
+    // MARK: Outlets
     @IBOutlet weak var swGlobalOff: UISwitch!
 
     @IBOutlet weak var lblPeriodicity: UILabel!
@@ -30,52 +59,28 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var sldCop: UISlider!
     @IBOutlet weak var sldBlonde: UISlider!
 
-    // For time picker components
-    var pckTimeHours = String()
-    var pckTimeMinutes = String()
-    var lblTimeOptionName = String()
-
-    // Slider IBOutlets and it's UserDefault keys
-    var sldCollection: [UISlider: String] {
-        return [
-            sldAnimal: UserDefaults.Key.Sld.animal,
-            sldRough: UserDefaults.Key.Sld.rough,
-            sldGeek: UserDefaults.Key.Sld.geek,
-            sldAnti: UserDefaults.Key.Sld.anti,
-            sldTiring: UserDefaults.Key.Sld.tiring,
-            sldJean: UserDefaults.Key.Sld.jean,
-            sldMoriczka: UserDefaults.Key.Sld.moriczka,
-            sldCop: UserDefaults.Key.Sld.cop,
-            sldBlonde: UserDefaults.Key.Sld.blonde
-        ]
+    // MARK: Initializers
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                                  object: nil)
     }
 
-    var preferencesSnapshot = String()
-    let defaults = UserDefaults.standard
-    weak var delegate: SettingsViewControllerDelegate?
-
-    let jokeNotificationHelper = JokeNotificationHelper()
-    let notificationWarningIndexPath = IndexPath(item: 0, section: 0)
-    let notificationSettingsIndexPath = IndexPath(item: 1, section: 0)
-    var isNotificationEnabled: Bool = false
-
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         loadPreferences()
         updateUIElementsBasedOnGlobalDisablerSwitchState()
         preferencesSnapshot = getActualPreferences()
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkNotificationStatus),
-                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
-                                               object: nil)
+        setObserverForUIApplicationDidBecomeActive()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         checkNotificationStatus()
     }
 
+    // MARK: - Actions
     @IBAction func closeSettings(_ sender: Any) {
         if isEligibleForSave() {
             saveJokePreferences()
@@ -98,12 +103,86 @@ class SettingsViewController: UITableViewController {
         openAppPreferences()
     }
 
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if tableView.indexPathForSelectedRow != nil {
+            if let segueIdentifier = segue.identifier {
+
+                switch segueIdentifier {
+                case SegueIdentifier.periodicityDetail:
+                    guard let destVC = segue.destination as? PeriodicityViewController else { return }
+                    if let lblPeriodicityText = lblPeriodicity.text {
+                        destVC.lastSelectedOption = lblPeriodicityText
+                    }
+                    destVC.delegate = self
+                case SegueIdentifier.recurrenceDetail:
+                    guard let destVC = segue.destination as? RecurrenceViewController else { return }
+                    if let lblRecurrenceText = lblRecurrence.text {
+                        destVC.lastSelectedOption = lblRecurrenceText
+                    }
+                    destVC.delegate = self
+                case SegueIdentifier.timeDetail:
+                    guard let destVC = segue.destination as? TimeViewController else { return }
+                    destVC.lastSelectedOption = lblTimeOptionName
+
+                    let calendar = Calendar(identifier: .gregorian)
+                    var timeComponents = calendar.dateComponents([.hour, .minute], from: Date())
+                    timeComponents.hour = Int(pckTimeHours)
+                    timeComponents.minute = Int(pckTimeMinutes)
+
+                    destVC.lastSelectedTime = calendar.date(from: timeComponents)!
+                    destVC.delegate = self
+                default:
+                    debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
+                }
+            }
+        }
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return !swGlobalOff.isOn
+    }
+}
+
+// MARK: - Setup
+extension SettingsViewController {
+    private func updateUIElementsBasedOnGlobalDisablerSwitchState() {
+        // If this switch is on, all settings are disabled
+        let swGlobalState = !swGlobalOff.isOn
+
+        lblPeriodicity.isEnabled = swGlobalState
+        lblRecurrence.isEnabled = swGlobalState
+        lblTime.isEnabled = swGlobalState
+
+        for item in sldCollection {
+            item.key.isEnabled = swGlobalState
+        }
+    }
+
+    private func setObserverForUIApplicationDidBecomeActive() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkNotificationStatus),
+                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               object: nil)
+    }
+
+    @objc private func checkNotificationStatus() {
+        jokeNotificationHelper.isNotificationsEnabled { state in
+            self.isNotificationEnabled = state
+        }
+
+        tableView.reloadData()
+    }
+
     private func openAppPreferences() {
         UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!)
     }
+}
 
+// MARK: Application preferences read/write
+extension SettingsViewController {
     private func isEligibleForSave() -> Bool {
-        if isGlobalDisablerSwitchOn() {
+        if swGlobalOff.isOn {
             return false
         }
 
@@ -173,32 +252,10 @@ class SettingsViewController: UITableViewController {
             defaults.synchronize()
         }
     }
+}
 
-    private func updateUIElementsBasedOnGlobalDisablerSwitchState() {
-        // If this switch is on, all settings are disabled
-        let swGlobalState = !swGlobalOff.isOn
-
-        lblPeriodicity.isEnabled = swGlobalState
-        lblRecurrence.isEnabled = swGlobalState
-        lblTime.isEnabled = swGlobalState
-
-        for item in sldCollection {
-            item.key.isEnabled = swGlobalState
-        }
-    }
-
-    private func isGlobalDisablerSwitchOn() -> Bool {
-        return swGlobalOff.isOn ? true : false
-    }
-
-    @objc private func checkNotificationStatus() {
-        jokeNotificationHelper.isNotificationsEnabled { state in
-            self.isNotificationEnabled = state
-        }
-
-        tableView.reloadData()
-    }
-
+// MARK: TableViewDelegate
+extension SettingsViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                             forRowAt indexPath: IndexPath) {
         // Hide notification warning cell if the notifications are turned on
@@ -225,62 +282,16 @@ class SettingsViewController: UITableViewController {
             openAppPreferences()
         }
     }
-
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        return isGlobalDisablerSwitchOn() ? false : true
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if tableView.indexPathForSelectedRow != nil {
-            if let segueIdentifier = segue.identifier {
-
-                switch segueIdentifier {
-                case SegueIdentifier.periodicityDetail:
-                    guard let destVC = segue.destination as? PeriodicityViewController else { return }
-                    if let lblPeriodicityText = lblPeriodicity.text {
-                        destVC.lastSelectedOption = lblPeriodicityText
-                    }
-                    destVC.delegate = self
-                case SegueIdentifier.recurrenceDetail:
-                    guard let destVC = segue.destination as? RecurrenceViewController else { return }
-                    if let lblRecurrenceText = lblRecurrence.text {
-                        destVC.lastSelectedOption = lblRecurrenceText
-                    }
-                    destVC.delegate = self
-                case SegueIdentifier.timeDetail:
-                    guard let destVC = segue.destination as? TimeViewController else { return }
-                    destVC.lastSelectedOption = lblTimeOptionName
-
-                    let calendar = Calendar(identifier: .gregorian)
-                    var timeComponents = calendar.dateComponents([.hour, .minute], from: Date())
-                    timeComponents.hour = Int(pckTimeHours)
-                    timeComponents.minute = Int(pckTimeMinutes)
-
-                    destVC.lastSelectedTime = calendar.date(from: timeComponents)!
-                    destVC.delegate = self
-                default:
-                    debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
-                }
-            }
-        }
-    }
-
-    deinit {
-        // Remove the observer when this view controller is dismissed/deallocated
-        NotificationCenter.default.removeObserver(self,
-                                                  name: NSNotification.Name.UIApplicationDidBecomeActive,
-                                                  object: nil)
-    }
-
 }
 
-// MARK: Protocol conformances
+// MARK: PeriodicityViewControllerDelegate
 extension SettingsViewController: PeriodicityViewControllerDelegate {
     func savePeriodicityWith(selectedCellText: String) {
         lblPeriodicity.text = selectedCellText
     }
 }
 
+// MARK: TimeViewControllerDelegate
 extension SettingsViewController: TimeViewControllerDelegate {
     func saveTimeWithSelected(cellText: String) {
         lblTimeOptionName = cellText
@@ -295,6 +306,7 @@ extension SettingsViewController: TimeViewControllerDelegate {
     }
 }
 
+// MARK: RecurrenceViewControllerDelegate
 extension SettingsViewController: RecurrenceViewControllerDelegate {
     func saveRecurrenceWith(selectedCellText: String) {
         lblRecurrence.text = selectedCellText

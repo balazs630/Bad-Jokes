@@ -10,6 +10,7 @@ import FMDB
 
 class DBManager {
 
+    // MARK: Properties
     static let shared = DBManager()
 
     let dbFileName = "jokesDB"
@@ -20,12 +21,14 @@ class DBManager {
 
     var database: FMDatabase!
 
+    // MARK: Initializers
     private init() {
         let documentsDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         documentsDBPath = documentsDirectory.appending("/\(dbFileName).\(dbExtension)")
         resourcesDBPath = Bundle.main.path(forResource: dbFileName, ofType: dbExtension)
     }
 
+    // MARK: - Setup
     func isDatabaseOpen() -> Bool {
         if database == nil {
             initDatabase()

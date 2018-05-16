@@ -13,12 +13,14 @@ protocol JokeNotificationHelperDelegate: class {
 }
 
 class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
+
+    // MARK: Properties
     let defaults = UserDefaults.standard
     var localTimeZoneName: String { return TimeZone.current.identifier }
     weak var delegate: JokeNotificationHelperDelegate?
-
     let jokeNotificationGenerator = JokeNotificationGenerator()
 
+    // MARK: Initializers
     override init() {
         super.init()
         // Seeking permission of the user to display app notifications
@@ -26,14 +28,10 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
                                                                 completionHandler: {_, _ in })
         UNUserNotificationCenter.current().delegate = self
     }
+}
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // To display notifications when app is running in foreground
-        completionHandler([.alert, .sound])
-        delegate?.notificationDidFire()
-    }
-
+// MARK: Notification operations
+extension JokeNotificationHelper {
     func applyNewNotificationSettings() {
         setNewRepeatingNotifications()
     }
@@ -99,6 +97,16 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
             }
         }
     }
+}
+
+// MARK: UNUserNotificationCenter
+extension JokeNotificationHelper {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // To display notifications when app is running in foreground
+        completionHandler([.alert, .sound])
+        delegate?.notificationDidFire()
+    }
 
     func removeAllPendingNotificationRequests() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
@@ -118,5 +126,4 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
             completed(requests.count > 0)
         })
     }
-
 }

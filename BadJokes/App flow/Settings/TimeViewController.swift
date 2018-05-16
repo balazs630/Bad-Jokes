@@ -13,40 +13,9 @@ protocol TimeViewControllerDelegate: class {
     func saveTimeWithSelected(cellText: String, hours: String, minutes: String)
 }
 
-struct Time {
-    static let random = "Véletlen időpontban"
-    static let morning = "Délelőtt"
-    static let afternoon = "Délután"
-    static let evening = "Este"
-    static let atGivenTime = "Pontos időpontban"
-
-    struct Hour {
-        static let morningStart = 9
-        static let morningEnd = 11
-
-        static let afternoonStart = 12
-        static let afternoonEnd = 17
-
-        static let eveningStart = 18
-        static let eveningEnd = 20
-
-        static let nightStart = 21
-        static let nightEnd = 23
-    }
-
-    struct Detail {
-        static let random = "\(Hour.morningStart):00 - \(Hour.nightStart):00 között"
-        static let morning = "\(Hour.morningStart):00 - \(Hour.afternoonStart):00 között"
-        static let afternoon = "\(Hour.afternoonStart):00 - \(Hour.eveningStart):00 között"
-        static let evening = "\(Hour.eveningStart):00 - \(Hour.nightStart):00 között"
-        static let atGivenTime = ""
-    }
-}
-
 class TimeViewController: UITableViewController {
 
-    @IBOutlet weak var timePicker: UIDatePicker!
-
+    // MARK: Properties
     let tableContent = [Time.random,
                         Time.morning,
                         Time.afternoon,
@@ -62,10 +31,13 @@ class TimeViewController: UITableViewController {
     var lastSelectedOption = String()
     var lastSelectedTime = Date()
     var selectedIndexPath = IndexPath(row: 0, section: 0)
-
     let givenTimeIndexPath = IndexPath(item: 4, section: 0)
     weak var delegate: TimeViewControllerDelegate?
 
+    // MARK: - Outlets
+    @IBOutlet weak var timePicker: UIDatePicker!
+
+    // MARK: - View lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -87,7 +59,6 @@ class TimeViewController: UITableViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // When navigating to the previous VC with "back" nav bar button
 
         if selectedIndexPath == givenTimeIndexPath {
             // Time picker is active
@@ -102,8 +73,11 @@ class TimeViewController: UITableViewController {
             delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row])
         }
     }
+}
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+// MARK: - TableViewDelegate
+extension TimeViewController {
+        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
         }
@@ -136,5 +110,4 @@ class TimeViewController: UITableViewController {
 
         return cell
     }
-
 }

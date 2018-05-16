@@ -8,43 +8,49 @@
 
 import UIKit
 
-class JokeTableViewController: UIViewController, JokeNotificationHelperDelegate {
+class JokeTableViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
-
+    // MARK: Properties
     var dataSource: JokesDataSource!
     let jokeNotificationHelper = JokeNotificationHelper()
     let refreshControl = UIRefreshControl()
 
     var noNotificationScheduledView: UIView {
-        // swiftlint:disable force_cast
-         return Bundle.main.loadNibNamed(UIView.noNotificationScheduledView,
-                                         owner: nil,
-                                         options: nil)!.first as! UIView
+        return UIView.makeNoNotificationScheduledView()
     }
 
     var waitingForFirstNotificationView: UIView {
-        return Bundle.main.loadNibNamed(UIView.waitingForFirstNotificationView,
-                                        owner: nil,
-                                        options: nil)?.first as! UIView
+        return UIView.makeWaitingForFirstNotificationView()
     }
 
+    // MARK: Outlets
+    @IBOutlet weak var tableView: UITableView!
+
+    // MARK: Initializers
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                                  object: nil)
+    }
+
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        jokeNotificationHelper.delegate = self
-        addNotificationObservers()
+        setJokeNotificationHelperDelegate()
+        setObserverForUIApplicationDidBecomeActive()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         initTableContent()
     }
 
-    func notificationDidFire() {
-        initTableContent()
-    }
-
-    @objc func initTableContent() {
+    // MARK: - Setup
+    @objc private func initTableContent() {
         jokeNotificationHelper.checkForDeliveredJokes()
         pullDataIntoDataSource()
         tableView.reloadData()
@@ -52,33 +58,14 @@ class JokeTableViewController: UIViewController, JokeNotificationHelperDelegate 
         presentEmptyView()
     }
 
-    func pullDataIntoDataSource() {
+    private func pullDataIntoDataSource() {
         dataSource = JokesDataSource(jokes: DBManager.shared.getDeliveredJokes(), didBecomeEmpty: didBecomeEmpty())
         tableView.dataSource = dataSource
     }
 
-    func presentEmptyView() {
-        if dataSource.jokes.isEmpty {
-            // Display a message instead of an empty table
-            if DBManager.shared.isSchedulesListEmpty() {
-                displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
-            } else {
-                displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)
-            }
-        } else {
-            noNotificationScheduledView.removeFromSuperview()
-            waitingForFirstNotificationView.removeFromSuperview()
-        }
-    }
-
-    func displayViewInFrontOfTableView(frontview view: UIView) {
-        tableView.addSubview(view)
-        tableView.bringSubview(toFront: view)
-    }
-
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let segueIdentifier = segue.identifier {
-
             switch segueIdentifier {
             case SegueIdentifier.showSettings:
                 guard let destVC = segue.destination as? SettingsViewController else { return }
@@ -97,21 +84,11 @@ class JokeTableViewController: UIViewController, JokeNotificationHelperDelegate 
             }
         }
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    deinit {
-        // Remove the observer when this view controller is dismissed/deallocated
-        NotificationCenter.default.removeObserver(self,
-                                                  name: NSNotification.Name.UIApplicationDidBecomeActive,
-                                                  object: nil)
-    }
 }
 
+// MARK: - Screen configuration
 private extension JokeTableViewController {
-    func configureTableView() {
+    private func configureTableView() {
         tableView.estimatedRowHeight = 113
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = dataSource
@@ -121,21 +98,51 @@ private extension JokeTableViewController {
         tableView.refreshControl = refreshControl
     }
 
-    func addNotificationObservers() {
+    private func setObserverForUIApplicationDidBecomeActive() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(initTableContent),
                                                name: NSNotification.Name.UIApplicationDidBecomeActive,
                                                object: nil)
     }
 
-    func didBecomeEmpty() -> DidBecomeEmpty {
+    private func didBecomeEmpty() -> DidBecomeEmpty {
         return {
             self.presentEmptyView()
         }
     }
+
+    private func presentEmptyView() {
+        if dataSource.jokes.isEmpty {
+            // Display a message instead of an empty table
+            if DBManager.shared.isSchedulesListEmpty() {
+                displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
+            } else {
+                displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)
+            }
+        } else {
+            noNotificationScheduledView.removeFromSuperview()
+            waitingForFirstNotificationView.removeFromSuperview()
+        }
+    }
+
+    private func displayViewInFrontOfTableView(frontview view: UIView) {
+        tableView.addSubview(view)
+        tableView.bringSubview(toFront: view)
+    }
 }
 
-// MARK: Protocol conformances:
+// MARK: JokeNotificationHelperDelegate
+extension JokeTableViewController: JokeNotificationHelperDelegate {
+    private func setJokeNotificationHelperDelegate() {
+        jokeNotificationHelper.delegate = self
+    }
+
+    func notificationDidFire() {
+        initTableContent()
+    }
+}
+
+// MARK: SettingsViewControllerDelegate
 extension JokeTableViewController: SettingsViewControllerDelegate {
     func startJokeGeneratingProcess() {
         jokeNotificationHelper.applyNewNotificationSettings()

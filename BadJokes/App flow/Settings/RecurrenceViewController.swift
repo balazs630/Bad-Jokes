@@ -12,16 +12,9 @@ protocol RecurrenceViewControllerDelegate: class {
     func saveRecurrenceWith(selectedCellText: String)
 }
 
-struct Recurrence {
-    static let once = "1x"
-    static let twice = "2x"
-    static let threeTimes = "3x"
-    static let fiveTimes = "5x"
-    static let tenTimes = "10x"
-}
-
 class RecurrenceViewController: UITableViewController {
 
+    // MARK: Properties
     let tableContent = [Recurrence.once,
                         Recurrence.twice,
                         Recurrence.threeTimes,
@@ -30,9 +23,9 @@ class RecurrenceViewController: UITableViewController {
 
     var lastSelectedOption = String()
     var selectedIndexPath = IndexPath(row: 0, section: 0)
-
     weak var delegate: RecurrenceViewControllerDelegate?
 
+    // MARK: - View lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -47,11 +40,12 @@ class RecurrenceViewController: UITableViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
-        // When navigating to the previous VC with "back" nav bar button
         delegate?.saveRecurrenceWith(selectedCellText: tableContent[selectedIndexPath.row])
     }
+}
 
+// MARK: - TableViewDelegate
+extension RecurrenceViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
@@ -75,5 +69,4 @@ class RecurrenceViewController: UITableViewController {
 
         return cell
     }
-
 }

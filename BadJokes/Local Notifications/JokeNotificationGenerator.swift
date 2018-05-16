@@ -9,11 +9,13 @@
 import Foundation
 
 class JokeNotificationGenerator {
+
+    // MARK: Properties
     let defaults = UserDefaults.standard
     let maxLocalNotificationCount = 64
-
     let settingsUtil = SettingsUtil()
 
+    // MARK: Notification generate functions
     func generateNotificationTimes() -> [Date] {
         var notificationTimesArray = [Date]()
 

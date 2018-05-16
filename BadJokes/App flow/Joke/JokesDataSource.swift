@@ -11,15 +11,19 @@ import UIKit
 typealias DidBecomeEmpty = () -> Void
 
 class JokesDataSource: NSObject {
+
+    // MARK: Properties
     var jokes: [Joke]
     let didBecomeEmpty: DidBecomeEmpty
 
+    // MARK: Initializers
     init(jokes: [Joke], didBecomeEmpty: @escaping DidBecomeEmpty) {
         self.jokes = jokes
         self.didBecomeEmpty = didBecomeEmpty
     }
 }
 
+// MARK: - TableViewDataSource
 extension JokesDataSource: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

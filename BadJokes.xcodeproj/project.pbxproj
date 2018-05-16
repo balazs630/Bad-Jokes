@@ -36,6 +36,7 @@
 		ACEEA9681F1E5FA600BCF905 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9661F1E5FA600BCF905 /* Main.storyboard */; };
 		ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */; };
 		ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */; };
+		ACEEF4A920ACE8900088EDB1 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEF4A820ACE8900088EDB1 /* UIViewExtensions.swift */; };
 		ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */; };
 		ACF0EB9D209A7DB300467675 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9C209A7DB300467675 /* ArrayExtensions.swift */; };
 		ACF0EB9F209A7DC700467675 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9E209A7DC700467675 /* IntExtensions.swift */; };
@@ -77,6 +78,7 @@
 		ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACEEA96C1F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACEEA96E1F1E5FA600BCF905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACEEF4A820ACE8900088EDB1 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		ACF0EB9C209A7DB300467675 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		ACF0EB9E209A7DC700467675 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
@@ -152,6 +154,15 @@
 			path = BadJokes;
 			sourceTree = "<group>";
 		};
+		ACEEF4AA20ACEBFB0088EDB1 /* Empty views */ = {
+			isa = PBXGroup;
+			children = (
+				AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */,
+				AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */,
+			);
+			path = "Empty views";
+			sourceTree = "<group>";
+		};
 		ACF0EB96209A7CA000467675 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +198,7 @@
 				ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */,
 				ACF0EBA2209A7DF300467675 /* DateExtensions.swift */,
 				ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */,
+				ACEEF4A820ACE8900088EDB1 /* UIViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -247,8 +259,7 @@
 				AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */,
 				ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */,
 				ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */,
-				AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */,
-				AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */,
+				ACEEF4AA20ACEBFB0088EDB1 /* Empty views */,
 			);
 			path = Joke;
 			sourceTree = "<group>";
@@ -425,6 +436,7 @@
 				AC100EAC1F548A430069C0DE /* StringExtensions.swift in Sources */,
 				AC976E872049B41C00B9C611 /* JokesTableQueries.swift in Sources */,
 				ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */,
+				ACEEF4A920ACE8900088EDB1 /* UIViewExtensions.swift in Sources */,
 				ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */,
 				ACF0EB9F209A7DC700467675 /* IntExtensions.swift in Sources */,
 				ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */,

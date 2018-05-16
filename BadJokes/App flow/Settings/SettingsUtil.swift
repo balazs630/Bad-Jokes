@@ -10,10 +10,12 @@ import Foundation
 
 class SettingsUtil {
 
+    // MARK: Properties
     let defaults = UserDefaults.standard
     var localTimeZoneName: String { return TimeZone.current.identifier }
     let calendar = Calendar(identifier: .gregorian)
 
+    // MARK: - Date/Time operations
     func getGeneratedNotificationTimeBetween(startDate: Date, endDate: Date) -> Date {
         let datePart = randomDatePartBetween(lower: startDate, upper: endDate)
         let timePart = randomTimeFromSettings()

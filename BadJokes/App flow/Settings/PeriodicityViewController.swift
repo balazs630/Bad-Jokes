@@ -12,23 +12,18 @@ protocol PeriodicityViewControllerDelegate: class {
     func savePeriodicityWith(selectedCellText: String)
 }
 
-struct Periodicity {
-    static let daily = "Napi"
-    static let weekly = "Heti"
-    static let monthly = "Havi"
-}
-
 class PeriodicityViewController: UITableViewController {
 
+    // MARK: Properties
     let tableContent = [Periodicity.daily,
                         Periodicity.weekly,
                         Periodicity.monthly]
 
     var lastSelectedOption = String()
     var selectedIndexPath = IndexPath(row: 0, section: 0)
-
     weak var delegate: PeriodicityViewControllerDelegate?
 
+    // MARK: - View lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -43,11 +38,12 @@ class PeriodicityViewController: UITableViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
-        // When navigating to the previous VC with "back" nav bar button
         delegate?.savePeriodicityWith(selectedCellText: tableContent[selectedIndexPath.row])
     }
+}
 
+// MARK: - TableViewDelegate
+extension PeriodicityViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
@@ -71,5 +67,4 @@ class PeriodicityViewController: UITableViewController {
 
         return cell
     }
-
 }
