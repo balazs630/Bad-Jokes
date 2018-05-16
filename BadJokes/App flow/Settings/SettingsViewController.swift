@@ -56,6 +56,7 @@ class SettingsViewController: UITableViewController {
 
     let jokeNotificationHelper = JokeNotificationHelper()
     let notificationWarningIndexPath = IndexPath(item: 0, section: 0)
+    let notificationSettingsIndexPath = IndexPath(item: 1, section: 0)
     var isNotificationEnabled: Bool = false
 
     override func viewDidLoad() {
@@ -93,8 +94,12 @@ class SettingsViewController: UITableViewController {
         }
     }
 
-    @IBAction func openAppNotificationSettings(_ sender: Any) {
-        UIApplication.shared.open(URL(string: "App-Prefs:root=NOTIFICATIONS_ID")!, options: [:], completionHandler: nil)
+    @IBAction func turnOnNotificationButtonDidPress(_ sender: Any) {
+        openAppPreferences()
+    }
+
+    private func openAppPreferences() {
+        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!)
     }
 
     private func isEligibleForSave() -> Bool {
@@ -213,6 +218,12 @@ class SettingsViewController: UITableViewController {
         }
 
         return super.tableView(tableView, heightForRowAt: indexPath)
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath == notificationSettingsIndexPath {
+            openAppPreferences()
+        }
     }
 
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
