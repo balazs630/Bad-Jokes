@@ -5,7 +5,7 @@ Collection of bad Hungarian jokes which will hopefully make your day a little be
 
 Instead: All you can do in this app is set notifications for when you want to get a joke to your homescreen. Set the joke timer to random/daily/weekly for notifications then forget about the app! It will trick you with really bad jokes from the background. :smile:
 
-The app is available to [download](https://itunes.apple.com/hu/app/apple-store/id1360622257?mt=8) from the App Store.
+<a href="https://itunes.apple.com/hu/app/apple-store/id1360622257?mt=8" target="_blank"><img src="https://i.imgur.com/y8YlOOH.png" width="200"></a>
 
 
 **Main app:**
