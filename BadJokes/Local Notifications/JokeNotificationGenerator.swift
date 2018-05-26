@@ -13,67 +13,71 @@ class JokeNotificationGenerator {
     // MARK: Properties
     let defaults = UserDefaults.standard
     let maxLocalNotificationCount = 64
+    var notificationTimes = [Date]()
     let dateUtil = DateUtil()
 
     // MARK: Notification generate functions
     func generateNotificationTimes() -> [Date] {
-        var notificationTimesArray = [Date]()
+        notificationTimes = [Date]()
 
         var startDate = Date()
         var endDate = Date().add(days: -1)
         var cycleCounter = 0
-        while notificationTimesArray.count < maxLocalNotificationCount {
+        while notificationTimes.count < maxLocalNotificationCount {
             startDate = endDate.add(days: 1)
             endDate = dateUtil.incrementDateBasedOnPeriodSetting(date: startDate)
 
             if dateUtil.isPunctualTimeSet() {
-                var recurranceValue = dateUtil.getRecurranceNumber()
-                while recurranceValue > 0 {
-                    if notificationTimesArray.count == maxLocalNotificationCount {
-                        break
-                    }
-
-                    let notificationTime = dateUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
-                                                                                            endDate: endDate)
-                    if notificationTime.isInFuture() {
-                        notificationTimesArray.append(notificationTime)
-                        recurranceValue -= 1
-                    } else {
-                        break
-                    }
-                }
+                addGivenNotificationTime(startDate: startDate, endDate: endDate)
             } else {
-                var recurranceValue = dateUtil.getRecurrenceNumberBasedOnFreeTimeRatio()
-                while recurranceValue > 0 {
-                    if cycleCounter == 0 {
-                        if !dateUtil.isNotificationCanBeSetFor(date: endDate) {
-                            break
-                        }
-                    }
-
-                    var notificationTime = Date(timeIntervalSince1970: 0)
-                    while notificationTime.isInPast() {
-                        if notificationTimesArray.count == maxLocalNotificationCount {
-                            break
-                        }
-
-                        notificationTime = dateUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
-                                                                                            endDate: endDate)
-                        if notificationTime.isInFuture() {
-                            notificationTimesArray.append(notificationTime)
-                            recurranceValue -= 1
-                        }
-                    }
-
-                    if notificationTimesArray.count == maxLocalNotificationCount {
-                        break
-                    }
-                }
+                addRandomNotificationTime(startDate: startDate, endDate: endDate, cycleCounter: cycleCounter)
             }
+
             cycleCounter += 1
         }
 
-        return notificationTimesArray
+        return notificationTimes
+    }
+
+    private func addGivenNotificationTime(startDate: Date, endDate: Date) {
+        var recurranceValue = dateUtil.getRecurranceNumber()
+        while recurranceValue > 0 {
+            if notificationTimes.count == maxLocalNotificationCount {
+                break
+            }
+
+            let notificationTime = dateUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
+                                                                                endDate: endDate)
+            if notificationTime.isInFuture() {
+                notificationTimes.append(notificationTime)
+                recurranceValue -= 1
+            }
+        }
+    }
+
+    private func addRandomNotificationTime(startDate: Date, endDate: Date, cycleCounter: Int) {
+        var recurranceValue = dateUtil.getRecurrenceNumberBasedOnFreeTimeRatio()
+        while recurranceValue > 0 {
+            if cycleCounter == 0 {
+                if !dateUtil.isNotificationCanBeSetFor(date: endDate) {
+                    break
+                }
+            }
+
+            var notificationTime = Date(timeIntervalSince1970: 0)
+            while notificationTime.isInPast() {
+                if notificationTimes.count == maxLocalNotificationCount {
+                    break
+                }
+
+                notificationTime = dateUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
+                                                                                endDate: endDate)
+                if notificationTime.isInFuture() {
+                    notificationTimes.append(notificationTime)
+                    recurranceValue -= 1
+                }
+            }
+        }
     }
 
     func generateJokeType() -> String {
