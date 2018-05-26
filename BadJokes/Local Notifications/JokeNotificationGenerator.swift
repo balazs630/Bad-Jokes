@@ -13,7 +13,7 @@ class JokeNotificationGenerator {
     // MARK: Properties
     let defaults = UserDefaults.standard
     let maxLocalNotificationCount = 64
-    let settingsUtil = SettingsUtil()
+    let dateUtil = DateUtil()
 
     // MARK: Notification generate functions
     func generateNotificationTimes() -> [Date] {
@@ -24,16 +24,16 @@ class JokeNotificationGenerator {
         var cycleCounter = 0
         while notificationTimesArray.count < maxLocalNotificationCount {
             startDate = endDate.add(days: 1)
-            endDate = settingsUtil.incrementDateBasedOnPeriodSetting(date: startDate)
+            endDate = dateUtil.incrementDateBasedOnPeriodSetting(date: startDate)
 
-            if settingsUtil.isPunctualTimeSet() {
-                var recurranceValue = settingsUtil.getRecurranceNumber()
+            if dateUtil.isPunctualTimeSet() {
+                var recurranceValue = dateUtil.getRecurranceNumber()
                 while recurranceValue > 0 {
                     if notificationTimesArray.count == maxLocalNotificationCount {
                         break
                     }
 
-                    let notificationTime = settingsUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
+                    let notificationTime = dateUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
                                                                                             endDate: endDate)
                     if notificationTime.isInFuture() {
                         notificationTimesArray.append(notificationTime)
@@ -43,10 +43,10 @@ class JokeNotificationGenerator {
                     }
                 }
             } else {
-                var recurranceValue = settingsUtil.getRecurrenceNumberBasedOnFreeTimeRatio()
+                var recurranceValue = dateUtil.getRecurrenceNumberBasedOnFreeTimeRatio()
                 while recurranceValue > 0 {
                     if cycleCounter == 0 {
-                        if !settingsUtil.isNotificationCanBeSetFor(date: endDate) {
+                        if !dateUtil.isNotificationCanBeSetFor(date: endDate) {
                             break
                         }
                     }
@@ -57,7 +57,7 @@ class JokeNotificationGenerator {
                             break
                         }
 
-                        notificationTime = settingsUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
+                        notificationTime = dateUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
                                                                                             endDate: endDate)
                         if notificationTime.isInFuture() {
                             notificationTimesArray.append(notificationTime)

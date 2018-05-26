@@ -1,5 +1,5 @@
 //
-//  SettingsUtil.swift
+//  DateUtil.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2018. 02. 28..
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SettingsUtil {
+class DateUtil {
 
     // MARK: Properties
     let defaults = UserDefaults.standard
