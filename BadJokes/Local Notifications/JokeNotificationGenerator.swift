@@ -20,11 +20,10 @@ class JokeNotificationGenerator {
     func generateNotificationTimes() -> [Date] {
         notificationTimes = [Date]()
 
-        var startDate = Date()
         var endDate = Date().add(days: -1)
         var cycleCounter = 0
         while notificationTimes.count < maxLocalNotificationCount {
-            startDate = endDate.add(days: 1)
+            let startDate = endDate.add(days: 1)
             endDate = dateUtil.incrementDateBasedOnPeriodSetting(date: startDate)
 
             if dateUtil.isPunctualTimeSet() {
@@ -58,10 +57,8 @@ class JokeNotificationGenerator {
     private func addRandomNotificationTime(startDate: Date, endDate: Date, cycleCounter: Int) {
         var recurranceValue = dateUtil.getRecurrenceNumberBasedOnFreeTimeRatio()
         while recurranceValue > 0 {
-            if cycleCounter == 0 {
-                if !dateUtil.isNotificationCanBeSetFor(date: endDate) {
-                    break
-                }
+            if cycleCounter == 0 && !dateUtil.isNotificationCanBeSetFor(date: endDate) {
+                break
             }
 
             var notificationTime = Date(timeIntervalSince1970: 0)
@@ -137,7 +134,7 @@ class JokeNotificationGenerator {
         var type = String()
 
         for sld in UserDefaults.sldDictionaty.values {
-            if DBManager.shared.isAllJokeUsedWith(type: sld) == false {
+            if !DBManager.shared.isAllJokeUsedWith(type: sld) {
                 type = sld
                 break
             }

@@ -14,9 +14,6 @@ extension Date {
         var month: Int = 1
         var day: Int = 1
 
-        init() {
-        }
-
         init(year: Int, month: Int, day: Int) {
             self.year = year
             self.month = month

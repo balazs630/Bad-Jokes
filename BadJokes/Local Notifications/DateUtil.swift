@@ -39,7 +39,6 @@ class DateUtil {
         let randomTimeStamp = arc4random_uniform(endTimeStamp - startTimeStamp) + startTimeStamp
         let randomDate = Date(timeIntervalSince1970: TimeInterval(randomTimeStamp))
 
-        let calendar = Calendar(identifier: .gregorian)
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: randomDate)
         return dateComponents.datePart()
     }

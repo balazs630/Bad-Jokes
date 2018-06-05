@@ -11,6 +11,6 @@ import Foundation
 extension TimeInterval {
     func isInPast() -> Bool {
         let date = Date(timeIntervalSince1970: self)
-        return date.timeIntervalSinceNow.sign == .minus ? true : false
+        return date.timeIntervalSinceNow.sign == .minus
     }
 }

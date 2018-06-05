@@ -11,15 +11,15 @@ import Foundation
 extension Date {
     func isToday() -> Bool {
         let calendar = Calendar(identifier: .gregorian)
-        return calendar.isDateInToday(self) ? true : false
+        return calendar.isDateInToday(self)
     }
 
     func isInPast() -> Bool {
-        return self < Date() ? true : false
+        return self < Date()
     }
 
     func isInFuture() -> Bool {
-        return self > Date() ? true : false
+        return self > Date()
     }
 
     func add(minutes: Int) -> Date {

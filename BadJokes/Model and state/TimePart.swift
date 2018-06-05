@@ -13,9 +13,6 @@ extension Date {
         var hour: Int = 0
         var minute: Int = 0
 
-        init() {
-        }
-
         init(hour: Int, minute: Int) {
             self.hour = hour
             self.minute = minute
