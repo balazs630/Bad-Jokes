@@ -22,4 +22,9 @@ extension String {
 
         return number
     }
+
+    func isGreater(than otherVersion: String) -> Bool {
+        let result = self.compare(otherVersion, options: .numeric)
+        return result == .orderedDescending
+    }
 }

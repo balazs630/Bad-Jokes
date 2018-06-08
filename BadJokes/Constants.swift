@@ -9,6 +9,10 @@
 import UIKit
 import Foundation
 
+struct Constant {
+    static let shortVersionString = "CFBundleShortVersionString"
+}
+
 struct Periodicity {
     static let daily = "Napi"
     static let weekly = "Heti"
@@ -69,6 +73,7 @@ extension UIView {
 extension UserDefaults {
     struct Key {
         static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
+        static let appVersion = "appVersion"
 
         // swiftlint:disable type_name
         struct Sw {

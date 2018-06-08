@@ -41,11 +41,19 @@ class DBManager {
     }
 
     private func initDatabase() {
-        if !FileManager.default.fileExists(atPath: documentsDBPath) {
-            // First launch... Copy the db to make a writable database in the app’s Documents directory
+        if isFirstLaunch() {
+            // Copy the db file to make a writable database in the app’s Documents directory
             copyDatabase(from: resourcesDBPath, to: documentsDBPath)
+            database = FMDatabase(path: documentsDBPath)
+        } else {
+            // App already installed or updated to newer version
+            database = FMDatabase(path: documentsDBPath)
+            UpdateService.handleDatabaseMigrationScripts()
         }
-        database = FMDatabase(path: documentsDBPath)
+    }
+
+    private func isFirstLaunch() -> Bool {
+        return !FileManager.default.fileExists(atPath: documentsDBPath)
     }
 
     private func copyDatabase(from source: String, to destination: String) {

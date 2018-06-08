@@ -10,6 +10,7 @@ import FMDB
 
 extension DBManager {
 
+    // MARK: Run SQLite queries
     func getAllSchedules() -> [Schedule] {
         var resultsArray = [Schedule]()
 
