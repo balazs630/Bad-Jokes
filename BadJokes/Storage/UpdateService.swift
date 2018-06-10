@@ -9,27 +9,39 @@
 import Foundation
 
 class UpdateService {
-    class func handleDatabaseMigrationScripts() {
-        let lastVersion = getLastAppVersion()
-        let currentVersion = getCurrentAppVersion()
 
-        if currentVersion != lastVersion {
-            UpdateService.runMigrationScripts(from: lastVersion)
-            syncCurrentAppVersion()
-        }
-    }
+    // MARK: Properties
+    static let migrationScripts = [
+        "1.2": "v1.2.sql"
+    ]
 
-    class func runMigrationScripts(from lastVersion: String) {
-        for script in DBManager.migrationScripts {
-            if script.key.isGreater(than: lastVersion) {
-                DBManager.shared.runMigrationScript(fileNamed: script.value)
+    // MARK: Routines for app updates
+    class func handleDatabaseMigration() {
+        if isAppVersionChangedSinceLastLaunch() {
+            let scripts = UpdateService.collectMigrationScripts(from: getLastAppVersion())
+
+            for script in scripts {
+                DBManager.shared.executeMigrationScript(fileNamed: script)
             }
+
+            syncCurrentAppVersion()
         }
     }
 }
 
 // MARK: Utility methods
 extension UpdateService {
+    class func collectMigrationScripts(from lastVersion: String) -> [String] {
+        var scripts = [String]()
+        for script in migrationScripts {
+            if script.key.isGreater(than: lastVersion) {
+                scripts.append(script.value)
+            }
+        }
+
+        return scripts
+    }
+
     class func readMigrationScript(fileNamed: String) -> String {
         guard let file = Bundle.main.path(forResource: fileNamed, ofType: nil) else {
             fatalError("Script: \(fileNamed) couldn't be found!")
@@ -51,12 +63,8 @@ extension UpdateService {
         defaults.synchronize()
     }
 
-    class func getLastAppVersion() -> String {
-        guard let lastVersion = UserDefaults.standard.string(forKey: UserDefaults.Key.appVersion) else {
-            return "1.1"
-        }
-
-        return lastVersion
+    class func isAppVersionChangedSinceLastLaunch() -> Bool {
+        return getCurrentAppVersion() != getLastAppVersion()
     }
 
     class func getCurrentAppVersion() -> String {
@@ -65,5 +73,13 @@ extension UpdateService {
         }
 
         return currentVersion
+    }
+
+    class func getLastAppVersion() -> String {
+        guard let lastVersion = UserDefaults.standard.string(forKey: UserDefaults.Key.appVersion) else {
+            return "1.1"
+        }
+
+        return lastVersion
     }
 }

@@ -10,18 +10,13 @@ import FMDB
 
 extension DBManager {
 
-    // MARK: Properties
-    static let migrationScripts = [
-        "1.2": "v1.2.sql"
-    ]
-
     // MARK: Run SQLite queries
-    func runMigrationScript(fileNamed: String) {
+    func executeMigrationScript(fileNamed: String) {
         if isDatabaseOpen() {
-            let migrationScript = UpdateService.readMigrationScript(fileNamed: fileNamed)
+            let migrationScriptContent = UpdateService.readMigrationScript(fileNamed: fileNamed)
 
             debugPrint("Run migration script: \(fileNamed)")
-            database.executeStatements(migrationScript)
+            database.executeStatements(migrationScriptContent)
             database.close()
         }
     }

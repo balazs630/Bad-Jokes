@@ -93,7 +93,6 @@ class JokeNotificationGenerator {
             if counter == 100 {
                 if DBManager.shared.isAllJokeUsed() {
                     DBManager.shared.restoreUsedJokesAsNew()
-                    // Recursion
                     jokeType = generateJokeType()
                 } else {
                     jokeType = getLeftOverJokeType()
@@ -121,7 +120,6 @@ class JokeNotificationGenerator {
             }
         }
 
-        // Retuns a random element from the array
         guard let randomItem = sldProbabilities.randomItem() else {
             return "Empty array!"
         }
