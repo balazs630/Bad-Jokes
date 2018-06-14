@@ -48,7 +48,7 @@ class DBManager {
         } else {
             // App already installed or updated to newer version
             database = FMDatabase(path: documentsDBPath)
-            UpdateService.handleDatabaseMigration()
+            UpdateService.handleAppUpdates()
         }
     }
 

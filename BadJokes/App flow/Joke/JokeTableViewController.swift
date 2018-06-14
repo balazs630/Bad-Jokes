@@ -145,6 +145,6 @@ extension JokeTableViewController: JokeNotificationHelperDelegate {
 // MARK: SettingsViewControllerDelegate
 extension JokeTableViewController: SettingsViewControllerDelegate {
     func startJokeGeneratingProcess() {
-        jokeNotificationHelper.applyNewNotificationSettings()
+        jokeNotificationHelper.setNewRepeatingNotifications()
     }
 }

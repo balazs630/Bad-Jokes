@@ -32,11 +32,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 
 // MARK: Notification operations
 extension JokeNotificationHelper {
-    func applyNewNotificationSettings() {
-        setNewRepeatingNotifications()
-    }
-
-    private func setNewRepeatingNotifications() {
+    func setNewRepeatingNotifications() {
         removeAllPendingNotificationRequests()
         DBManager.shared.deleteAllSchedules()
 

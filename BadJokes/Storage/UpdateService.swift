@@ -11,20 +11,45 @@ import Foundation
 class UpdateService {
 
     // MARK: Properties
-    static let migrationScripts = [
+    static let migrationSqlScripts = [
         "1.2": "v1.2.sql"
     ]
 
     // MARK: Routines for app updates
-    class func handleDatabaseMigration() {
-        if isAppVersionChangedSinceLastLaunch() {
-            let scripts = UpdateService.collectMigrationScripts(from: getLastAppVersion())
+    class func handleAppUpdates() {
+        if UpdateService.isAppVersionChangedSinceLastLaunch() {
+            UpdateService.runDatabaseMigration()
+            UpdateService.runApplicationUpdateStatements()
 
-            for script in scripts {
-                DBManager.shared.executeMigrationScript(fileNamed: script)
+            UpdateService.syncCurrentAppVersion()
+        }
+    }
+
+    class func runDatabaseMigration() {
+        let scripts = UpdateService.collectMigrationScripts(from: getLastAppVersion())
+        for script in scripts {
+            DBManager.shared.executeMigrationScript(fileNamed: script)
+        }
+    }
+
+    class func runApplicationUpdateStatements() {
+        let defaults = UserDefaults.standard
+        let lastVersion = UpdateService.getLastAppVersion()
+
+        if "1.2".isGreater(than: lastVersion) {
+            // UserDefaults key name change
+            let oldKey = "sldIT"
+            let oldValue = defaults.integer(forKey: oldKey)
+
+            defaults.set(oldValue, forKey: UserDefaults.Key.Sld.geek)
+            defaults.removeObject(forKey: oldKey)
+            defaults.synchronize()
+
+            // Re-generate joke schedules
+            if defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) {
+                let jokeNotificationHelper = JokeNotificationHelper()
+                jokeNotificationHelper.setNewRepeatingNotifications()
             }
-
-            syncCurrentAppVersion()
         }
     }
 }
@@ -33,7 +58,7 @@ class UpdateService {
 extension UpdateService {
     class func collectMigrationScripts(from lastVersion: String) -> [String] {
         var scripts = [String]()
-        for script in migrationScripts {
+        for script in migrationSqlScripts {
             if script.key.isGreater(than: lastVersion) {
                 scripts.append(script.value)
             }
