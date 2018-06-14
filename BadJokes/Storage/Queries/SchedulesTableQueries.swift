@@ -89,7 +89,7 @@ extension DBManager {
 
     func deleteAllSchedules() {
         if isDatabaseOpen() {
-            let query = "DELETE FROM schedules WHERE \(ColumnName.JokesTable.jokeId)>0"
+            let query = "DELETE FROM schedules"
 
             do {
                 try database.executeUpdate(query, values: nil)

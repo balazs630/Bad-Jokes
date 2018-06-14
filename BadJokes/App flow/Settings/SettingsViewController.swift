@@ -96,6 +96,7 @@ class SettingsViewController: UITableViewController {
 
         if swGlobalOff.isOn {
             jokeNotificationHelper.removeAllPendingNotificationRequests()
+            DBManager.shared.deleteAllSchedules()
         }
     }
 
