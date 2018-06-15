@@ -39,7 +39,7 @@ class UpdateService {
         if "1.2".isGreater(than: lastVersion) {
             // UserDefaults key name change
             let oldKey = "sldIT"
-            let oldValue = defaults.integer(forKey: oldKey)
+            let oldValue = defaults.double(forKey: oldKey)
 
             defaults.set(oldValue, forKey: UserDefaults.Key.Sld.geek)
             defaults.removeObject(forKey: oldKey)

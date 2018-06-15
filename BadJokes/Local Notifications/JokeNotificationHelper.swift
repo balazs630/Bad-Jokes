@@ -33,14 +33,17 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 // MARK: Notification operations
 extension JokeNotificationHelper {
     func setNewRepeatingNotifications() {
-        removeAllPendingNotificationRequests()
-        DBManager.shared.deleteAllSchedules()
-
+        removeAllScheduledNotification()
         let notificationTimes = self.jokeNotificationGenerator.generateNotificationTimes()
 
         for index in 0...notificationTimes.count - 1 {
             self.addJokeNotificationRequest(on: notificationTimes[index])
         }
+    }
+
+    func removeAllScheduledNotification() {
+        removeAllPendingNotificationRequests()
+        DBManager.shared.deleteAllSchedules()
     }
 
     private func addJokeNotificationRequest(on time: Date) {
@@ -57,7 +60,7 @@ extension JokeNotificationHelper {
         DBManager.shared.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())
     }
 
-    func setNotificationContent() -> UNMutableNotificationContent {
+    private func setNotificationContent() -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = "Vicc:"
         let type = jokeNotificationGenerator.generateJokeType()

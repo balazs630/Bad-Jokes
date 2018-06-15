@@ -74,6 +74,10 @@ class JokeNotificationGenerator {
                     recurranceValue -= 1
                 }
             }
+
+            if notificationTimes.count == maxLocalNotificationCount {
+                break
+            }
         }
     }
 

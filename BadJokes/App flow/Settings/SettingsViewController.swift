@@ -95,8 +95,7 @@ class SettingsViewController: UITableViewController {
         updateUIElementsBasedOnGlobalDisablerSwitchState()
 
         if swGlobalOff.isOn {
-            jokeNotificationHelper.removeAllPendingNotificationRequests()
-            DBManager.shared.deleteAllSchedules()
+            jokeNotificationHelper.removeAllScheduledNotification()
         }
     }
 
