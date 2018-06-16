@@ -38,11 +38,11 @@ class SettingsViewController: UITableViewController {
     weak var delegate: SettingsViewControllerDelegate?
 
     let jokeNotificationHelper = JokeNotificationHelper()
-    let notificationWarningIndexPath = IndexPath(item: 0, section: 0)
-    let notificationSettingsIndexPath = IndexPath(item: 1, section: 0)
+    let notificationSettingsIndexPath = IndexPath(item: 0, section: 0)
     var isNotificationEnabled: Bool = false
 
     // MARK: Outlets
+    @IBOutlet weak var notificationWarningImage: UIImageView!
     @IBOutlet weak var swGlobalOff: UISwitch!
 
     @IBOutlet weak var lblPeriodicity: UILabel!
@@ -97,10 +97,6 @@ class SettingsViewController: UITableViewController {
         if swGlobalOff.isOn {
             jokeNotificationHelper.removeAllScheduledNotification()
         }
-    }
-
-    @IBAction func turnOnNotificationButtonDidPress(_ sender: Any) {
-        openAppPreferences()
     }
 
     // MARK: - Navigation
@@ -172,10 +168,6 @@ extension SettingsViewController {
         }
 
         tableView.reloadData()
-    }
-
-    private func openAppPreferences() {
-        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!)
     }
 }
 
@@ -258,28 +250,15 @@ extension SettingsViewController {
 extension SettingsViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                             forRowAt indexPath: IndexPath) {
-        // Hide notification warning cell if the notifications are turned on
-        if indexPath.section == notificationWarningIndexPath.section
-            && indexPath.row == notificationWarningIndexPath.row {
-            cell.isHidden = isNotificationEnabled
+        if indexPath.section == notificationSettingsIndexPath.section
+            && indexPath.row == notificationSettingsIndexPath.row {
+            notificationWarningImage.isHidden = isNotificationEnabled
         }
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // Set notification warning row height to 0 if the notifications are turned on
-        if isNotificationEnabled {
-            if indexPath.section == notificationWarningIndexPath.section
-                && indexPath.row == notificationWarningIndexPath.row {
-                return 0
-            }
-        }
-
-        return super.tableView(tableView, heightForRowAt: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == notificationSettingsIndexPath {
-            openAppPreferences()
+            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!)
         }
     }
 }
