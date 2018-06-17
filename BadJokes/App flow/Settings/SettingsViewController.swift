@@ -19,20 +19,6 @@ class SettingsViewController: UITableViewController {
     var pckTimeMinutes = String()
     var lblTimeOptionName = String()
 
-    var sldCollection: [UISlider: String] {
-        return [
-            sldAnimal: UserDefaults.Key.Sld.animal,
-            sldRough: UserDefaults.Key.Sld.rough,
-            sldGeek: UserDefaults.Key.Sld.geek,
-            sldAnti: UserDefaults.Key.Sld.anti,
-            sldTiring: UserDefaults.Key.Sld.tiring,
-            sldJean: UserDefaults.Key.Sld.jean,
-            sldMoriczka: UserDefaults.Key.Sld.moriczka,
-            sldCop: UserDefaults.Key.Sld.cop,
-            sldBlonde: UserDefaults.Key.Sld.blonde
-        ]
-    }
-
     let defaults = UserDefaults.standard
     var preferencesSnapshot = String()
     weak var delegate: SettingsViewControllerDelegate?
@@ -49,15 +35,7 @@ class SettingsViewController: UITableViewController {
     @IBOutlet weak var lblRecurrence: UILabel!
     @IBOutlet weak var lblTime: UILabel!
 
-    @IBOutlet weak var sldAnimal: UISlider!
-    @IBOutlet weak var sldRough: UISlider!
-    @IBOutlet weak var sldGeek: UISlider!
-    @IBOutlet weak var sldAnti: UISlider!
-    @IBOutlet weak var sldTiring: UISlider!
-    @IBOutlet weak var sldJean: UISlider!
-    @IBOutlet weak var sldMoriczka: UISlider!
-    @IBOutlet weak var sldCop: UISlider!
-    @IBOutlet weak var sldBlonde: UISlider!
+    @IBOutlet var sldJokeTypeCollection: [UISlider]!
 
     // MARK: Initializers
     deinit {
@@ -98,46 +76,6 @@ class SettingsViewController: UITableViewController {
             jokeNotificationHelper.removeAllScheduledNotification()
         }
     }
-
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if tableView.indexPathForSelectedRow != nil {
-            if let segueIdentifier = segue.identifier {
-
-                switch segueIdentifier {
-                case SegueIdentifier.periodicityDetail:
-                    guard let destVC = segue.destination as? PeriodicityViewController else { return }
-                    if let lblPeriodicityText = lblPeriodicity.text {
-                        destVC.lastSelectedOption = lblPeriodicityText
-                    }
-                    destVC.delegate = self
-                case SegueIdentifier.recurrenceDetail:
-                    guard let destVC = segue.destination as? RecurrenceViewController else { return }
-                    if let lblRecurrenceText = lblRecurrence.text {
-                        destVC.lastSelectedOption = lblRecurrenceText
-                    }
-                    destVC.delegate = self
-                case SegueIdentifier.timeDetail:
-                    guard let destVC = segue.destination as? TimeViewController else { return }
-                    destVC.lastSelectedOption = lblTimeOptionName
-
-                    let calendar = Calendar(identifier: .gregorian)
-                    var timeComponents = calendar.dateComponents([.hour, .minute], from: Date())
-                    timeComponents.hour = Int(pckTimeHours)
-                    timeComponents.minute = Int(pckTimeMinutes)
-
-                    destVC.lastSelectedTime = calendar.date(from: timeComponents)!
-                    destVC.delegate = self
-                default:
-                    debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
-                }
-            }
-        }
-    }
-
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        return !swGlobalOff.isOn
-    }
 }
 
 // MARK: - Setup
@@ -150,8 +88,8 @@ extension SettingsViewController {
         lblRecurrence.isEnabled = swGlobalState
         lblTime.isEnabled = swGlobalState
 
-        for item in sldCollection {
-            item.key.isEnabled = swGlobalState
+        for slider in sldJokeTypeCollection {
+            slider.isEnabled = swGlobalState
         }
     }
 
@@ -190,11 +128,14 @@ extension SettingsViewController {
     }
 
     private func getActualPreferences() -> String {
+        var sliderValues  = ""
+        for slider in sldJokeTypeCollection {
+            sliderValues.append(String(slider.value))
+        }
+
         return """
         \(String(describing: lblPeriodicity.text)) + \(String(describing: lblRecurrence.text))
-        + \(String(describing: lblTime.text)) + \(sldAnimal.value) + \(sldRough.value)
-        + \(sldGeek.value) \(sldAnti.value) \(sldTiring.value)
-        + \(sldJean.value) \(sldMoriczka.value) \(sldCop.value) \(sldBlonde.value)
+        + \(String(describing: lblTime.text)) + \(sliderValues)
         """
     }
 
@@ -220,8 +161,8 @@ extension SettingsViewController {
             }
         }
 
-        for item in sldCollection {
-            item.key.value = defaults.float(forKey: item.value)
+        for slider in sldJokeTypeCollection {
+            slider.value = defaults.float(forKey: Constant.sliders[slider.tag]!)
         }
     }
 
@@ -239,10 +180,52 @@ extension SettingsViewController {
         defaults.set(pckTimeMinutes, forKey: UserDefaults.Key.Pck.timeMinutes)
         defaults.synchronize()
 
-        for item in sldCollection {
-            defaults.set(item.key.value, forKey: item.value)
+        for slider in sldJokeTypeCollection {
+            defaults.set(slider.value, forKey: Constant.sliders[slider.tag]!)
             defaults.synchronize()
         }
+    }
+}
+
+extension SettingsViewController {
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if tableView.indexPathForSelectedRow != nil {
+            if let segueIdentifier = segue.identifier {
+
+                switch segueIdentifier {
+                case SegueIdentifier.periodicityDetail:
+                    guard let destVC = segue.destination as? PeriodicityViewController else { return }
+                    if let lblPeriodicityText = lblPeriodicity.text {
+                        destVC.lastSelectedOption = lblPeriodicityText
+                    }
+                    destVC.delegate = self
+                case SegueIdentifier.recurrenceDetail:
+                    guard let destVC = segue.destination as? RecurrenceViewController else { return }
+                    if let lblRecurrenceText = lblRecurrence.text {
+                        destVC.lastSelectedOption = lblRecurrenceText
+                    }
+                    destVC.delegate = self
+                case SegueIdentifier.timeDetail:
+                    guard let destVC = segue.destination as? TimeViewController else { return }
+                    destVC.lastSelectedOption = lblTimeOptionName
+
+                    let calendar = Calendar(identifier: .gregorian)
+                    var timeComponents = calendar.dateComponents([.hour, .minute], from: Date())
+                    timeComponents.hour = Int(pckTimeHours)
+                    timeComponents.minute = Int(pckTimeMinutes)
+
+                    destVC.lastSelectedTime = calendar.date(from: timeComponents)!
+                    destVC.delegate = self
+                default:
+                    debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
+                }
+            }
+        }
+    }
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return !swGlobalOff.isOn
     }
 }
 

@@ -9,10 +9,6 @@
 import UIKit
 import Foundation
 
-struct Constant {
-    static let shortVersionString = "CFBundleShortVersionString"
-}
-
 struct Periodicity {
     static let daily = "Napi"
     static let weekly = "Heti"
@@ -103,8 +99,26 @@ extension UserDefaults {
             static let blonde = "sldBlonde"
         }
     }
+}
 
-    static var sldDictionaty: [String: String] {
+struct Constant {
+    static let shortVersionString = "CFBundleShortVersionString"
+
+    static var sliders: [Int: String] {
+        return [
+            1: UserDefaults.Key.Sld.animal,
+            2: UserDefaults.Key.Sld.rough,
+            3: UserDefaults.Key.Sld.geek,
+            4: UserDefaults.Key.Sld.anti,
+            5: UserDefaults.Key.Sld.tiring,
+            6: UserDefaults.Key.Sld.jean,
+            7: UserDefaults.Key.Sld.moriczka,
+            8: UserDefaults.Key.Sld.cop,
+            9: UserDefaults.Key.Sld.blonde
+        ]
+    }
+
+    static var jokeTypes: [String: String] {
         return [
             UserDefaults.Key.Sld.animal: "animal",
             UserDefaults.Key.Sld.rough: "rough",

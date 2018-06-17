@@ -81,13 +81,13 @@ class JokeNotificationGenerator {
         }
     }
 
-    func generateJokeType() -> String {
+    func generateJokeType(from types: [String]) -> String {
         // Get a joke type and check if the type has unused joke(s)
-        var jokeType = getRandomJokeType()
+        var jokeType = types.randomItem()!
         var counter = 0
         while true {
             if DBManager.shared.isAllJokeUsedWith(type: jokeType) {
-                jokeType = getRandomJokeType()
+                jokeType = types.randomItem()!
                 counter += 1
             } else {
                 break
@@ -97,7 +97,7 @@ class JokeNotificationGenerator {
             if counter == 100 {
                 if DBManager.shared.isAllJokeUsed() {
                     DBManager.shared.restoreUsedJokesAsNew()
-                    jokeType = generateJokeType()
+                    jokeType = generateJokeType(from: types)
                 } else {
                     jokeType = getLeftOverJokeType()
                 }
@@ -108,36 +108,31 @@ class JokeNotificationGenerator {
         return jokeType
     }
 
-    private func getRandomJokeType() -> String {
-        // Generate a joke type based on the sliders from the Settings screen
+    func makeJokeTypeProbabilityArray() -> [String] {
         var sldProbabilities = [String]()
 
-        for slider in UserDefaults.sldDictionaty {
-            let sldValue = defaults.integer(forKey: slider.key)
+        for slider in Constant.sliders {
+            let sldValue = defaults.integer(forKey: Constant.sliders[slider.key]!)
 
             // Skip joke types with value 0
             if sldValue > 0 {
                 for _ in 1...sldValue {
                     // Add the joke type to the array as many times as it's slider value (1-10)
-                    sldProbabilities.append(slider.value)
+                    sldProbabilities.append(Constant.jokeTypes[slider.value]!)
                 }
             }
         }
 
-        guard let randomItem = sldProbabilities.randomItem() else {
-            return "Empty array!"
-        }
-
-        return randomItem
+        return sldProbabilities
     }
 
     private func getLeftOverJokeType() -> String {
         // Goes through each joke type and returns the first joke type that contains unused joke(s)
         var type = String()
 
-        for sld in UserDefaults.sldDictionaty.values {
-            if !DBManager.shared.isAllJokeUsedWith(type: sld) {
-                type = sld
+        for sliderType in Constant.sliders.values {
+            if !DBManager.shared.isAllJokeUsedWith(type: sliderType) {
+                type = sliderType
                 break
             }
         }

@@ -68,7 +68,7 @@ extension DBManager {
 
         guard let randomIndex = resultsArray.randomIndex() else {
             restoreUsedJokesAsNew()
-            return resultsArray[resultsArray.randomIndex()!]
+            return getRandomJokeWith(type: type)
         }
 
         return resultsArray[randomIndex]

@@ -19,6 +19,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     var localTimeZoneName: String { return TimeZone.current.identifier }
     weak var delegate: JokeNotificationHelperDelegate?
     let jokeNotificationGenerator = JokeNotificationGenerator()
+    var jokeTypes = [String]()
 
     // MARK: Initializers
     override init() {
@@ -34,8 +35,9 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 extension JokeNotificationHelper {
     func setNewRepeatingNotifications() {
         removeAllScheduledNotification()
-        let notificationTimes = self.jokeNotificationGenerator.generateNotificationTimes()
+        let notificationTimes = jokeNotificationGenerator.generateNotificationTimes()
 
+        jokeTypes = jokeNotificationGenerator.makeJokeTypeProbabilityArray()
         for index in 0...notificationTimes.count - 1 {
             self.addJokeNotificationRequest(on: notificationTimes[index])
         }
@@ -63,7 +65,7 @@ extension JokeNotificationHelper {
     private func setNotificationContent() -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = "Vicc:"
-        let type = jokeNotificationGenerator.generateJokeType()
+        let type = jokeNotificationGenerator.generateJokeType(from: jokeTypes)
         let joke = DBManager.shared.getRandomJokeWith(type: type)
         content.body = joke.jokeText.formatLineBreaks()
         content.sound = UNNotificationSound.default()

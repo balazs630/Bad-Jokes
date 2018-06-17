@@ -210,7 +210,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9b0-aR-Bg5">
+                                                <slider opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9b0-aR-Bg5">
                                                     <rect key="frame" x="116" y="6" width="242" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </slider>
@@ -231,7 +231,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltb-M6-grK">
+                                                <slider opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ltb-M6-grK">
                                                     <rect key="frame" x="116" y="6" width="242" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </slider>
@@ -252,7 +252,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yP-X6-z7G">
+                                                <slider opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yP-X6-z7G">
                                                     <rect key="frame" x="116" y="6" width="242" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </slider>
@@ -273,7 +273,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="6" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1MN-HW-bdj">
+                                                <slider opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="6" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1MN-HW-bdj">
                                                     <rect key="frame" x="116" y="6" width="242" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </slider>
@@ -294,7 +294,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLu-EA-P3q">
+                                                <slider opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLu-EA-P3q">
                                                     <rect key="frame" x="116" y="6" width="242" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </slider>
@@ -315,7 +315,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7S-3q-PS8">
+                                                <slider opaque="NO" tag="6" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s7S-3q-PS8">
                                                     <rect key="frame" x="116" y="6" width="242" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </slider>
@@ -336,7 +336,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="6" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7D-ME-BrY">
+                                                <slider opaque="NO" tag="7" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="6" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7D-ME-BrY">
                                                     <rect key="frame" x="117" y="6" width="242" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </slider>
@@ -364,7 +364,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP1-Jr-u2r">
+                                                <slider opaque="NO" tag="8" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP1-Jr-u2r">
                                                     <rect key="frame" x="117" y="6" width="242" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </slider>
@@ -385,7 +385,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvY-um-PKv">
+                                                <slider opaque="NO" tag="9" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.0" maxValue="10" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvY-um-PKv">
                                                     <rect key="frame" x="119" y="6" width="242" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </slider>
@@ -414,16 +414,16 @@
                         <outlet property="lblRecurrence" destination="T7q-Bq-Uph" id="ui0-92-yWc"/>
                         <outlet property="lblTime" destination="wA8-Qw-QWd" id="UL1-y0-7ie"/>
                         <outlet property="notificationWarningImage" destination="5fG-Lf-1cE" id="7I7-hq-h0B"/>
-                        <outlet property="sldAnimal" destination="9b0-aR-Bg5" id="K7h-4i-9z6"/>
-                        <outlet property="sldAnti" destination="1MN-HW-bdj" id="p8h-fX-ZbH"/>
-                        <outlet property="sldBlonde" destination="qvY-um-PKv" id="ckX-E2-5eF"/>
-                        <outlet property="sldCop" destination="QP1-Jr-u2r" id="HHu-iM-8a9"/>
-                        <outlet property="sldGeek" destination="6yP-X6-z7G" id="624-4t-Oo2"/>
-                        <outlet property="sldJean" destination="s7S-3q-PS8" id="iSa-pV-JOA"/>
-                        <outlet property="sldMoriczka" destination="F7D-ME-BrY" id="5y1-nD-WYE"/>
-                        <outlet property="sldRough" destination="ltb-M6-grK" id="ZUs-RF-pvM"/>
-                        <outlet property="sldTiring" destination="xLu-EA-P3q" id="qGL-Ll-sJG"/>
                         <outlet property="swGlobalOff" destination="eyN-Qb-WRT" id="E4E-G8-Yha"/>
+                        <outletCollection property="sldJokeTypeCollection" destination="9b0-aR-Bg5" collectionClass="NSMutableArray" id="AhH-77-s8T"/>
+                        <outletCollection property="sldJokeTypeCollection" destination="ltb-M6-grK" collectionClass="NSMutableArray" id="oaV-Jy-AJ3"/>
+                        <outletCollection property="sldJokeTypeCollection" destination="6yP-X6-z7G" collectionClass="NSMutableArray" id="Fg4-Pf-mVT"/>
+                        <outletCollection property="sldJokeTypeCollection" destination="1MN-HW-bdj" collectionClass="NSMutableArray" id="u10-3b-GHv"/>
+                        <outletCollection property="sldJokeTypeCollection" destination="xLu-EA-P3q" collectionClass="NSMutableArray" id="QDl-yO-sHY"/>
+                        <outletCollection property="sldJokeTypeCollection" destination="s7S-3q-PS8" collectionClass="NSMutableArray" id="ZJL-SI-uKO"/>
+                        <outletCollection property="sldJokeTypeCollection" destination="F7D-ME-BrY" collectionClass="NSMutableArray" id="CAd-43-bFj"/>
+                        <outletCollection property="sldJokeTypeCollection" destination="QP1-Jr-u2r" collectionClass="NSMutableArray" id="UQF-pG-Sho"/>
+                        <outletCollection property="sldJokeTypeCollection" destination="qvY-um-PKv" collectionClass="NSMutableArray" id="Pfn-Ct-8pG"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SWc-Zw-lUH" userLabel="First Responder" sceneMemberID="firstResponder"/>
