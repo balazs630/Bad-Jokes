@@ -11,6 +11,7 @@
 		AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */; };
 		AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */; };
 		AC0AF9BD20DC66ED00A52478 /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0AF9BC20DC66ED00A52478 /* UILabelExtensions.swift */; };
+		AC0AF9BF20E1769C00A52478 /* Tables+Fields.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0AF9BE20E1769C00A52478 /* Tables+Fields.swift */; };
 		AC100EAC1F548A430069C0DE /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC100EAB1F548A430069C0DE /* StringExtensions.swift */; };
 		AC128334204B5D3F00FCC19E /* DatePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC128333204B5D3F00FCC19E /* DatePart.swift */; };
 		AC128336204B5F1600FCC19E /* TimePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC128335204B5F1600FCC19E /* TimePart.swift */; };
@@ -20,7 +21,6 @@
 		AC2579B120461AAA00C1D904 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B020461AAA00C1D904 /* DateUtil.swift */; };
 		AC2579B3204628C800C1D904 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B2204628C800C1D904 /* Schedule.swift */; };
 		AC29785820CC80AF00A49689 /* v1.2.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC29785720CC80AF00A49689 /* v1.2.sql */; };
-		AC385CE12046D71E0070D4A7 /* ColumnNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC385CE02046D71E0070D4A7 /* ColumnNames.swift */; };
 		AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */; };
 		AC7A4E341F51F74700E8F438 /* JokeNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */; };
 		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
@@ -54,6 +54,7 @@
 		AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeCell.swift; sourceTree = "<group>"; };
 		AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesDataSource.swift; sourceTree = "<group>"; };
 		AC0AF9BC20DC66ED00A52478 /* UILabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtensions.swift; sourceTree = "<group>"; };
+		AC0AF9BE20E1769C00A52478 /* Tables+Fields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tables+Fields.swift"; sourceTree = "<group>"; };
 		AC100EAB1F548A430069C0DE /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		AC128333204B5D3F00FCC19E /* DatePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePart.swift; sourceTree = "<group>"; };
 		AC128335204B5F1600FCC19E /* TimePart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePart.swift; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		AC2579B020461AAA00C1D904 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		AC2579B2204628C800C1D904 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		AC29785720CC80AF00A49689 /* v1.2.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.2.sql; sourceTree = "<group>"; };
-		AC385CE02046D71E0070D4A7 /* ColumnNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnNames.swift; sourceTree = "<group>"; };
 		AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoNotificationScheduledView.xib; sourceTree = "<group>"; };
 		AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeNotificationHelper.swift; sourceTree = "<group>"; };
 		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +116,14 @@
 				FCE01A74ADE163D939CEB1C5 /* Pods-BadJokes.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		AC0AF9C020E176A100A52478 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AC0AF9BE20E1769C00A52478 /* Tables+Fields.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		AC29785620CC807100A49689 /* Migration Scripts */ = {
@@ -237,7 +245,7 @@
 				ACECF0A41F60A88F0072367C /* jokesDB.db */,
 				ACD7E85C20C8763F00A8F105 /* UpdateService.swift */,
 				ACACF6E81F51C93E00F501B1 /* DBManager.swift */,
-				AC385CE02046D71E0070D4A7 /* ColumnNames.swift */,
+				AC0AF9C020E176A100A52478 /* Model */,
 				ACF0EBA8209A7E7300467675 /* Queries */,
 				AC29785620CC807100A49689 /* Migration Scripts */,
 			);
@@ -446,13 +454,13 @@
 				ACD7E85B20C8751F00A8F105 /* DBMigrationHelper.swift in Sources */,
 				AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */,
 				ACF0EB9D209A7DB300467675 /* ArrayExtensions.swift in Sources */,
+				AC0AF9BF20E1769C00A52478 /* Tables+Fields.swift in Sources */,
 				ACF0EBA5209A7E0800467675 /* DateComponentExtensions.swift in Sources */,
 				AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */,
 				ACD7E85D20C8763F00A8F105 /* UpdateService.swift in Sources */,
 				AC2579B120461AAA00C1D904 /* DateUtil.swift in Sources */,
 				AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */,
 				AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */,
-				AC385CE12046D71E0070D4A7 /* ColumnNames.swift in Sources */,
 				ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */,
 				AC1BAF102059D6740047E376 /* RecurrenceViewController.swift in Sources */,
 				ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */,

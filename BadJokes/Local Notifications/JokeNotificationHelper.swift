@@ -34,6 +34,10 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 // MARK: Notification operations
 extension JokeNotificationHelper {
     func setNewRepeatingNotifications() {
+        guard DBManager.shared.unusedJokesCount() > 0 else {
+            return
+        }
+
         removeAllScheduledNotification()
         let notificationTimes = jokeNotificationGenerator.generateNotificationTimes()
 
@@ -65,7 +69,7 @@ extension JokeNotificationHelper {
     private func setNotificationContent() -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = "Vicc:"
-        let type = jokeNotificationGenerator.generateJokeType(from: jokeTypes)
+        let type = jokeNotificationGenerator.generateAvailableJokeType(from: jokeTypes)
         let joke = DBManager.shared.getRandomJokeWith(type: type)
         content.body = joke.jokeText.formatLineBreaks()
         content.sound = UNNotificationSound.default()
@@ -87,15 +91,12 @@ extension JokeNotificationHelper {
         return trigger
     }
 
-    func checkForDeliveredJokes() {
-        let scheduledJokesArray = DBManager.shared.getAllSchedules()
+    func moveDeliveredJokesToJokeCollection() {
+        let deliveredJokes = DBManager.shared.getAllDeliveredSchedules()
 
-        for scheduledJoke in scheduledJokesArray {
-            if TimeInterval(scheduledJoke.time).isInPast() {
-                DBManager.shared.setJokeUsedAndDeliveredWith(jokeId: scheduledJoke.jokeId,
-                                                             deliveryTime: scheduledJoke.time)
-                DBManager.shared.deleteScheduleWith(jokeId: scheduledJoke.jokeId)
-            }
+        for joke in deliveredJokes {
+            DBManager.shared.setJokeUsedAndDeliveredWith(jokeId: joke.jokeId, deliveryTime: joke.time)
+            DBManager.shared.deleteScheduleWith(jokeId: joke.jokeId)
         }
     }
 }
@@ -121,7 +122,7 @@ extension JokeNotificationHelper {
         })
     }
 
-    func isNotificationsPending(completed: @escaping (Bool) -> Void) {
+    func areNotificationsPending(completed: @escaping (Bool) -> Void) {
         let center = UNUserNotificationCenter.current()
         center.getPendingNotificationRequests(completionHandler: { requests in
             completed(requests.count > 0)

@@ -68,10 +68,6 @@ class DateUtil {
         return Date.TimePart(hour: hours, minute: minutes)
     }
 
-    func getRecurrenceNumberBasedOnFreeTimeRatio() -> Int {
-        return Int((Double(getRecurranceNumber()) * getFreeTimeRatio()).rounded(.up))
-    }
-
     func getRecurranceNumber() -> Int {
         guard let recurrance = defaults.string(forKey: UserDefaults.Key.Lbl.recurrence)?.cutLastCharacter() else {
             return 1
@@ -80,95 +76,30 @@ class DateUtil {
         return recurrance
     }
 
-    private func getFreeTimeRatio() -> Double {
-        let dateNow = Date()
-        let dateInterval = getDateIntervalForPartOfDaySettings()
-        var freeTimeRatio = Double()
-
-        if dateNow > dateInterval.end || dateNow < dateInterval.start {
-            freeTimeRatio = 1.0
-        } else {
-            let now = dateNow.timeIntervalSince1970
-            let start = dateInterval.start.timeIntervalSince1970
-            let end = dateInterval.end.timeIntervalSince1970
-            freeTimeRatio = (end - now) / (end - start)
-        }
-
-        return freeTimeRatio
-    }
-
-    private func getDateIntervalForPartOfDaySettings() -> DateInterval {
-        let dateNow = Date()
-        var dateComponents = calendar.dateComponents([.year, .month, .day, .hour], from: dateNow)
-        var dateInterval = DateInterval()
-
-        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
-            switch timeSetting {
-            case Time.random:
-                dateComponents.hour = Time.Hour.morningStart
-                dateInterval.start = calendar.date(from: dateComponents)!
-
-                dateComponents.hour = Time.Hour.eveningEnd
-                dateInterval.end = calendar.date(from: dateComponents)!
-            case Time.morning:
-                dateComponents.hour = Time.Hour.morningStart
-                dateInterval.start = calendar.date(from: dateComponents)!
-
-                dateComponents.hour = Time.Hour.morningEnd
-                dateInterval.end = calendar.date(from: dateComponents)!
-            case Time.afternoon:
-                dateComponents.hour = Time.Hour.afternoonStart
-                dateInterval.start = calendar.date(from: dateComponents)!
-
-                dateComponents.hour = Time.Hour.afternoonEnd
-                dateInterval.end = calendar.date(from: dateComponents)!
-            case Time.evening:
-                dateComponents.hour = Time.Hour.eveningStart
-                dateInterval.start = calendar.date(from: dateComponents)!
-
-                dateComponents.hour = Time.Hour.eveningEnd
-                dateInterval.end = calendar.date(from: dateComponents)!
-            case Time.atGivenTime:
-                dateComponents.hour = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
-                dateInterval.start = calendar.date(from: dateComponents)!
-                dateInterval.end = dateInterval.start
-            default:
-                debugPrint("Unexpected time identifier was given in: \(#file), line: \(#line)")
-            }
-        }
-
-        return dateInterval
-    }
-
     func isPunctualTimeSet() -> Bool {
-        if let timeSetting =  defaults.string(forKey: UserDefaults.Key.Lbl.time) {
-            if timeSetting == Time.atGivenTime {
-                return true
-            }
-        }
-
-        return false
+        let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time)
+        return timeSetting == Time.atGivenTime
     }
 
     func incrementDateBasedOnPeriodSetting(date: Date) -> Date {
-        if let periodicitySetting =  defaults.string(forKey: UserDefaults.Key.Lbl.periodicity) {
-            switch periodicitySetting {
-            case Periodicity.daily:
-                return date
-            case Periodicity.weekly:
-                return date.add(days: 6)
-            case Periodicity.monthly:
-                return date.add(days: 30)
-            default:
-                debugPrint("Unexpected periodicity identifier was given in: \(#file), line: \(#line)")
-            }
+        let periodicitySetting = defaults.string(forKey: UserDefaults.Key.Lbl.periodicity)
+
+        switch periodicitySetting {
+        case Periodicity.daily:
+            return date
+        case Periodicity.weekly:
+            return date.add(days: 6)
+        case Periodicity.monthly:
+            return date.add(days: 30)
+        default:
+            debugPrint("Unexpected periodicity identifier was given in: \(#file), line: \(#line)")
         }
 
         return date
     }
 
     func isNotificationCanBeSetFor(date: Date) -> Bool {
-        if date.isToday() && date > getLastNotificationTimeForToday() {
+        if date.isToday() && (date > getLastNotificationTimeForToday()) {
             return false
         }
 
@@ -196,7 +127,8 @@ class DateUtil {
                 debugPrint("Unexpected time identifier was given in: \(#file), line: \(#line)")
             }
         }
-        return calendar.date(from: dateComponents)!.add(minutes: -20)
+
+        return calendar.date(from: dateComponents)!
     }
 
 }

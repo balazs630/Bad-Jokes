@@ -51,7 +51,7 @@ class JokeTableViewController: UIViewController {
 
     // MARK: - Setup
     @objc private func initTableContent() {
-        jokeNotificationHelper.checkForDeliveredJokes()
+        jokeNotificationHelper.moveDeliveredJokesToJokeCollection()
         pullDataIntoDataSource()
         tableView.reloadData()
         refreshControl.endRefreshing()

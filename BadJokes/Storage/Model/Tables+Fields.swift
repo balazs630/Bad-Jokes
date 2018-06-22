@@ -1,13 +1,20 @@
 //
-//  ColumnNames.swift
+//  Tables+Fields.swift
 //  BadJokes
 //
-//  Created by Horváth Balázs on 2018. 02. 28..
+//  Created by Horváth Balázs on 2018. 06. 25..
 //  Copyright © 2018. Horváth Balázs. All rights reserved.
 //
 
-struct ColumnName {
-    struct JokesTable {
+struct Table {
+    // Table names
+    static let jokes = "jokes"
+    static let schedules = "schedules"
+}
+
+extension Table {
+    // Fields in tables
+    struct Jokes {
         static let jokeId = "jokeId"
         static let isUsed = "isUsed"
         static let deliveryTime = "deliveryTime"
@@ -15,7 +22,7 @@ struct ColumnName {
         static let jokeText = "jokeText"
     }
 
-    struct SchedulesTable {
+    struct Schedules {
         static let jokeId = "jokeId"
         static let time = "time"
     }
