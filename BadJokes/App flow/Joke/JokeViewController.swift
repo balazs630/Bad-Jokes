@@ -10,12 +10,16 @@ import UIKit
 
 class JokeViewController: UIViewController {
 
-    @IBOutlet weak var txtJoke: UITextView!
+    // MARK: Properties
     var jokeText = ""
 
+    // MARK: Outlets
+    @IBOutlet weak var lblJoke: CopyableLabel!
+
+    // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtJoke.text = jokeText
+        lblJoke.text = jokeText
     }
 
 }

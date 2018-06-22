@@ -10,6 +10,7 @@
 		3BCED003FFE0CF7812EE66D8 /* Pods_BadJokes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946577951C2F75DE8DA6E042 /* Pods_BadJokes.framework */; };
 		AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */; };
 		AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */; };
+		AC0AF9BD20DC66ED00A52478 /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0AF9BC20DC66ED00A52478 /* UILabelExtensions.swift */; };
 		AC100EAC1F548A430069C0DE /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC100EAB1F548A430069C0DE /* StringExtensions.swift */; };
 		AC128334204B5D3F00FCC19E /* DatePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC128333204B5D3F00FCC19E /* DatePart.swift */; };
 		AC128336204B5F1600FCC19E /* TimePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC128335204B5F1600FCC19E /* TimePart.swift */; };
@@ -52,6 +53,7 @@
 		946577951C2F75DE8DA6E042 /* Pods_BadJokes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadJokes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeCell.swift; sourceTree = "<group>"; };
 		AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesDataSource.swift; sourceTree = "<group>"; };
+		AC0AF9BC20DC66ED00A52478 /* UILabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtensions.swift; sourceTree = "<group>"; };
 		AC100EAB1F548A430069C0DE /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		AC128333204B5D3F00FCC19E /* DatePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePart.swift; sourceTree = "<group>"; };
 		AC128335204B5F1600FCC19E /* TimePart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePart.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */,
 				ACF0EBA2209A7DF300467675 /* DateExtensions.swift */,
 				ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */,
+				AC0AF9BC20DC66ED00A52478 /* UILabelExtensions.swift */,
 				ACEEF4A820ACE8900088EDB1 /* UIViewExtensions.swift */,
 			);
 			path = Extensions;
@@ -432,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC0AF9BD20DC66ED00A52478 /* UILabelExtensions.swift in Sources */,
 				ACEEA9651F1E5FA600BCF905 /* JokeTableViewController.swift in Sources */,
 				ACB5A2931FE7FFA4006DD51E /* JokeViewController.swift in Sources */,
 				AC2579B3204628C800C1D904 /* Schedule.swift in Sources */,
