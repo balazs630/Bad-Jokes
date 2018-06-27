@@ -14,7 +14,7 @@ extension UIView {
     static func makeNoNotificationScheduledView() -> UIView {
         return Bundle.main.loadNibNamed(UIView.noNotificationScheduledView,
                                         owner: nil,
-                                        options: nil)!.first as! UIView
+                                        options: nil)?.first as! UIView
     }
 
     static func makeWaitingForFirstNotificationView() -> UIView {

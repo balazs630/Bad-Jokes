@@ -89,8 +89,6 @@ class JokeTableViewController: UIViewController {
 // MARK: - Screen configuration
 private extension JokeTableViewController {
     private func configureTableView() {
-        tableView.estimatedRowHeight = 113
-        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.dataSource = dataSource
         tableView.reloadData()
 
@@ -126,6 +124,7 @@ private extension JokeTableViewController {
     }
 
     private func displayViewInFrontOfTableView(frontview view: UIView) {
+        view.frame = self.view.bounds
         tableView.addSubview(view)
         tableView.bringSubview(toFront: view)
     }
