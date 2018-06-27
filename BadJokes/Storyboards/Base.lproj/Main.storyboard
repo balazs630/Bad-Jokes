@@ -460,7 +460,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="lblPeriodicity" destination="Msi-36-SAa" id="z4w-rT-vi7"/>
@@ -517,7 +516,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Rendszeresség" id="79T-KZ-Js1"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1E-xJ-vUc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -558,7 +556,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Gyakoriság" id="7ST-jO-dpB"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pwz-FC-IxN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -700,7 +697,6 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Időpont" id="Wt3-DR-yip"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="timePicker" destination="M0s-iL-OcW" id="X9f-Og-4Z4"/>

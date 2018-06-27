@@ -126,6 +126,7 @@ private extension JokeTableViewController {
     }
 
     private func displayViewInFrontOfTableView(frontview view: UIView) {
+        view.frame = self.view.bounds
         tableView.addSubview(view)
         tableView.bringSubview(toFront: view)
     }
