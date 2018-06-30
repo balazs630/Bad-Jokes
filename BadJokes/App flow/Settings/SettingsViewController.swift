@@ -52,10 +52,12 @@ class SettingsViewController: UITableViewController {
         updateUIElementsBasedOnGlobalDisablerSwitchState()
         preferencesSnapshot = getActualPreferences()
         setObserverForUIApplicationDidBecomeActive()
+        updateTableHeaderView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        checkNotificationStatus()
+        checkAppNotificationEnabledStatus()
+        tableView.reloadData()
     }
 
     // MARK: - Actions
@@ -95,17 +97,21 @@ extension SettingsViewController {
 
     private func setObserverForUIApplicationDidBecomeActive() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkNotificationStatus),
+                                               selector: #selector(checkAppNotificationEnabledStatus),
                                                name: NSNotification.Name.UIApplicationDidBecomeActive,
                                                object: nil)
     }
 
-    @objc private func checkNotificationStatus() {
+    @objc private func checkAppNotificationEnabledStatus() {
         jokeNotificationHelper.isNotificationsEnabled { state in
             self.isNotificationEnabled = state
         }
+    }
 
-        tableView.reloadData()
+    private func updateTableHeaderView() {
+        if DBManager.shared.unusedJokesCount() == 0 {
+            tableView.tableHeaderView = UIView.makeWarningTableHeaderView()
+        }
     }
 }
 

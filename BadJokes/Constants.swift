@@ -64,6 +64,7 @@ struct SegueIdentifier {
 extension UIView {
     static let noNotificationScheduledView = "NoNotificationScheduledView"
     static let waitingForFirstNotificationView = "WaitingForFirstNotificationView"
+    static let warningTableHeaderView = "WarningTableHeaderView"
 }
 
 extension UserDefaults {

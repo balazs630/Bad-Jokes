@@ -23,4 +23,9 @@ extension UIView {
                                                options: nil)?.first as! UIView
     }
 
+    static func makeWarningTableHeaderView() -> UIView {
+        return Bundle.main.loadNibNamed(UIView.warningTableHeaderView,
+                                        owner: nil,
+                                        options: nil)?.first as! UIView
+    }
 }

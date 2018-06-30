@@ -22,6 +22,7 @@
 		AC2579B3204628C800C1D904 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B2204628C800C1D904 /* Schedule.swift */; };
 		AC29785820CC80AF00A49689 /* v1.2.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC29785720CC80AF00A49689 /* v1.2.sql */; };
 		AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */; };
+		AC66A3D320E79B0600BF53E3 /* WarningTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */; };
 		AC7A4E341F51F74700E8F438 /* JokeNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */; };
 		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
 		AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */; };
@@ -65,6 +66,7 @@
 		AC2579B2204628C800C1D904 /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		AC29785720CC80AF00A49689 /* v1.2.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.2.sql; sourceTree = "<group>"; };
 		AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoNotificationScheduledView.xib; sourceTree = "<group>"; };
+		AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WarningTableHeaderView.xib; sourceTree = "<group>"; };
 		AC7A4E331F51F74700E8F438 /* JokeNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeNotificationHelper.swift; sourceTree = "<group>"; };
 		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
 		AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				ACE906B21F22A27200A6A082 /* SettingsViewController.swift */,
+				AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */,
 				AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */,
 				AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */,
 				AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */,
@@ -373,6 +376,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC66A3D320E79B0600BF53E3 /* WarningTableHeaderView.xib in Resources */,
 				ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */,
 				AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */,
 				AC29785820CC80AF00A49689 /* v1.2.sql in Resources */,
