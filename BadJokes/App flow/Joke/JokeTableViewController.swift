@@ -40,13 +40,10 @@ class JokeTableViewController: UIViewController {
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
-        setJokeNotificationHelperDelegate()
-        setObserverForUIApplicationDidBecomeActive()
-    }
+        jokeNotificationHelper.delegate = self
 
-    override func viewWillAppear(_ animated: Bool) {
-        initTableContent()
+        configureTableView()
+        setObserverForUIApplicationDidBecomeActive()
     }
 
     // MARK: - Setup
@@ -86,12 +83,10 @@ class JokeTableViewController: UIViewController {
     }
 }
 
-// MARK: - Screen configuration
+// MARK: - Screen configurationss
 private extension JokeTableViewController {
     private func configureTableView() {
         tableView.dataSource = dataSource
-        tableView.reloadData()
-
         refreshControl.addTarget(self, action: #selector(initTableContent), for: UIControlEvents.valueChanged)
         tableView.refreshControl = refreshControl
     }
@@ -132,10 +127,6 @@ private extension JokeTableViewController {
 
 // MARK: JokeNotificationHelperDelegate
 extension JokeTableViewController: JokeNotificationHelperDelegate {
-    private func setJokeNotificationHelperDelegate() {
-        jokeNotificationHelper.delegate = self
-    }
-
     func notificationDidFire() {
         initTableContent()
     }

@@ -103,13 +103,6 @@ extension JokeNotificationHelper {
 
 // MARK: UNUserNotificationCenter
 extension JokeNotificationHelper {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // To display notifications when app is running in foreground
-        completionHandler([.alert, .sound])
-        delegate?.notificationDidFire()
-    }
-
     func removeAllPendingNotificationRequests() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }

@@ -193,40 +193,38 @@ extension SettingsViewController {
     }
 }
 
+// MARK: - Navigation
 extension SettingsViewController {
-    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if tableView.indexPathForSelectedRow != nil {
-            if let segueIdentifier = segue.identifier {
+        guard tableView.indexPathForSelectedRow != nil else { return }
+        guard segue.identifier != nil else { return }
 
-                switch segueIdentifier {
-                case SegueIdentifier.periodicityDetail:
-                    guard let destVC = segue.destination as? PeriodicityViewController else { return }
-                    if let lblPeriodicityText = lblPeriodicity.text {
-                        destVC.lastSelectedOption = lblPeriodicityText
-                    }
-                    destVC.delegate = self
-                case SegueIdentifier.recurrenceDetail:
-                    guard let destVC = segue.destination as? RecurrenceViewController else { return }
-                    if let lblRecurrenceText = lblRecurrence.text {
-                        destVC.lastSelectedOption = lblRecurrenceText
-                    }
-                    destVC.delegate = self
-                case SegueIdentifier.timeDetail:
-                    guard let destVC = segue.destination as? TimeViewController else { return }
-                    destVC.lastSelectedOption = lblTimeOptionName
-
-                    let calendar = Calendar(identifier: .gregorian)
-                    var timeComponents = calendar.dateComponents([.hour, .minute], from: Date())
-                    timeComponents.hour = Int(pckTimeHours)
-                    timeComponents.minute = Int(pckTimeMinutes)
-
-                    destVC.lastSelectedTime = calendar.date(from: timeComponents)!
-                    destVC.delegate = self
-                default:
-                    debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
-                }
+        switch segue.identifier {
+        case SegueIdentifier.periodicityDetail:
+            guard let destVC = segue.destination as? PeriodicityViewController else { return }
+            if let lblPeriodicityText = lblPeriodicity.text {
+                destVC.lastSelectedOption = lblPeriodicityText
             }
+            destVC.delegate = self
+        case SegueIdentifier.recurrenceDetail:
+            guard let destVC = segue.destination as? RecurrenceViewController else { return }
+            if let lblRecurrenceText = lblRecurrence.text {
+                destVC.lastSelectedOption = lblRecurrenceText
+            }
+            destVC.delegate = self
+        case SegueIdentifier.timeDetail:
+            guard let destVC = segue.destination as? TimeViewController else { return }
+            destVC.lastSelectedOption = lblTimeOptionName
+
+            let calendar = Calendar(identifier: .gregorian)
+            var timeComponents = calendar.dateComponents([.hour, .minute], from: Date())
+            timeComponents.hour = Int(pckTimeHours)
+            timeComponents.minute = Int(pckTimeMinutes)
+
+            destVC.lastSelectedTime = calendar.date(from: timeComponents)!
+            destVC.delegate = self
+        default:
+            debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
         }
     }
 

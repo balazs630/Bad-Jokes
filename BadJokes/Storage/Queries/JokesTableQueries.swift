@@ -46,7 +46,7 @@ extension DBManager {
     }
 
     func getRandomJokeWith(type: String) -> Joke {
-        var randomJoke: Joke!
+        var randomJoke: Joke?
 
         if isDatabaseOpen() {
             let query =
@@ -80,7 +80,7 @@ extension DBManager {
             database.close()
         }
 
-        return randomJoke
+        return randomJoke!
     }
 
     func unusedJokesCount() -> Int {
