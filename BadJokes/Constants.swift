@@ -9,6 +9,12 @@
 import UIKit
 import Foundation
 
+struct Theme {
+    struct Color {
+        static let lightBlue = UIColor.color(red: 46, green: 122, blue: 246)
+    }
+}
+
 struct Periodicity {
     static let daily = "Napi"
     static let weekly = "Heti"

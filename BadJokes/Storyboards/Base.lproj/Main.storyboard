@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="330"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Joke text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lp4-DH-kN7" customClass="CopyableLabel" customModule="BadJokes" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="330"/>
+                                                <rect key="frame" x="15" y="15" width="305" height="300"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -37,23 +37,33 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Lp4-DH-kN7" secondAttribute="trailing" id="5Xd-fl-OA3"/>
-                                            <constraint firstAttribute="bottom" secondItem="Lp4-DH-kN7" secondAttribute="bottom" id="DqI-AI-fQd"/>
-                                            <constraint firstItem="Lp4-DH-kN7" firstAttribute="top" secondItem="MiB-aZ-e8a" secondAttribute="top" id="SsE-Gz-yuw"/>
-                                            <constraint firstItem="Lp4-DH-kN7" firstAttribute="leading" secondItem="MiB-aZ-e8a" secondAttribute="leading" id="yI4-WD-yJE"/>
+                                            <constraint firstAttribute="trailing" secondItem="Lp4-DH-kN7" secondAttribute="trailing" constant="15" id="5Xd-fl-OA3"/>
+                                            <constraint firstAttribute="bottom" secondItem="Lp4-DH-kN7" secondAttribute="bottom" constant="15" id="DqI-AI-fQd"/>
+                                            <constraint firstItem="Lp4-DH-kN7" firstAttribute="top" secondItem="MiB-aZ-e8a" secondAttribute="top" constant="15" id="SsE-Gz-yuw"/>
+                                            <constraint firstItem="Lp4-DH-kN7" firstAttribute="leading" secondItem="MiB-aZ-e8a" secondAttribute="leading" constant="15" id="yI4-WD-yJE"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dig-SA-Tqu">
+                                <rect key="frame" x="311" y="399" width="28" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ZsJ-nE-e1N" secondAttribute="trailing" constant="20" id="DY4-Do-Nn6"/>
+                            <constraint firstItem="dig-SA-Tqu" firstAttribute="top" secondItem="ZsJ-nE-e1N" secondAttribute="bottom" constant="-15" id="eDW-cG-t5g"/>
                             <constraint firstItem="ZsJ-nE-e1N" firstAttribute="leading" secondItem="a0L-gs-I94" secondAttribute="leading" constant="20" id="lpC-wd-ujT"/>
                             <constraint firstItem="ZsJ-nE-e1N" firstAttribute="top" secondItem="t8Q-sL-mHU" secondAttribute="bottom" constant="20" id="mNW-op-Ubj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dig-SA-Tqu" secondAttribute="trailing" constant="20" id="yN2-Mm-ajg"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerView" destination="MiB-aZ-e8a" id="ha1-Qh-zZV"/>
+                        <outlet property="lblEmoji" destination="dig-SA-Tqu" id="UO4-Ss-7Jp"/>
                         <outlet property="lblJoke" destination="Lp4-DH-kN7" id="QZy-C2-XK6"/>
                     </connections>
                 </viewController>
@@ -586,7 +596,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JokeText" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PIb-wP-oOq">
-                                                    <rect key="frame" x="16" y="11" width="343" height="21"/>
+                                                    <rect key="frame" x="16" y="17" width="343" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

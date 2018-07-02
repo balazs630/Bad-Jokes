@@ -31,6 +31,7 @@
 		ACACF6E91F51C93E00F501B1 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACF6E81F51C93E00F501B1 /* DBManager.swift */; };
 		ACB5A2931FE7FFA4006DD51E /* JokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */; };
 		ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB7C1E71FDD6106007ED514 /* Constants.swift */; };
+		ACBDC24A20EAD26300CDB54F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24920EAD26300CDB54F /* UIColorExtension.swift */; };
 		ACD7E85B20C8751F00A8F105 /* DBMigrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85A20C8751F00A8F105 /* DBMigrationHelper.swift */; };
 		ACD7E85D20C8763F00A8F105 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85C20C8763F00A8F105 /* UpdateService.swift */; };
 		ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE906B21F22A27200A6A082 /* SettingsViewController.swift */; };
@@ -75,6 +76,7 @@
 		ACACF6E81F51C93E00F501B1 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeViewController.swift; sourceTree = "<group>"; };
 		ACB7C1E71FDD6106007ED514 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ACBDC24920EAD26300CDB54F /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		ACD7E85A20C8751F00A8F105 /* DBMigrationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBMigrationHelper.swift; sourceTree = "<group>"; };
 		ACD7E85C20C8763F00A8F105 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
 		ACE906B21F22A27200A6A082 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */,
 				AC0AF9BC20DC66ED00A52478 /* UILabelExtensions.swift */,
 				ACEEF4A820ACE8900088EDB1 /* UIViewExtensions.swift */,
+				ACBDC24920EAD26300CDB54F /* UIColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				AC976E892049B48B00B9C611 /* SchedulesTableQueries.swift in Sources */,
 				ACF0EBA3209A7DF300467675 /* DateExtensions.swift in Sources */,
 				AC128336204B5F1600FCC19E /* TimePart.swift in Sources */,
+				ACBDC24A20EAD26300CDB54F /* UIColorExtension.swift in Sources */,
 				ACD7E85B20C8751F00A8F105 /* DBMigrationHelper.swift in Sources */,
 				AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */,
 				ACF0EB9D209A7DB300467675 /* ArrayExtensions.swift in Sources */,

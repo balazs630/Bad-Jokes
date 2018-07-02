@@ -14,12 +14,24 @@ class JokeViewController: UIViewController {
     var jokeText = ""
 
     // MARK: Outlets
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var lblJoke: CopyableLabel!
+    @IBOutlet weak var lblEmoji: UILabel!
 
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblJoke.text = jokeText
+        configureView()
     }
 
+    // MARK: - Screen configuration
+    private func configureView() {
+        containerView.layer.backgroundColor = Theme.Color.lightBlue.cgColor
+        containerView.layer.cornerRadius = 8.0
+
+        lblJoke.text = jokeText
+        lblJoke.textColor = .white
+
+        lblEmoji.text = ["😃", "😝", "🤣", "😆", "😄", "😅", "😄", "😁"].randomItem()
+    }
 }
