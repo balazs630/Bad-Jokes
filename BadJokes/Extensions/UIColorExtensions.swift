@@ -1,5 +1,5 @@
 //
-//  UIColorExtension.swift
+//  UIColorExtensions.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2018. 07. 02..

@@ -31,7 +31,8 @@
 		ACACF6E91F51C93E00F501B1 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACF6E81F51C93E00F501B1 /* DBManager.swift */; };
 		ACB5A2931FE7FFA4006DD51E /* JokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */; };
 		ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB7C1E71FDD6106007ED514 /* Constants.swift */; };
-		ACBDC24A20EAD26300CDB54F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24920EAD26300CDB54F /* UIColorExtension.swift */; };
+		ACBDC24A20EAD26300CDB54F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */; };
+		ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */; };
 		ACD7E85B20C8751F00A8F105 /* DBMigrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85A20C8751F00A8F105 /* DBMigrationHelper.swift */; };
 		ACD7E85D20C8763F00A8F105 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85C20C8763F00A8F105 /* UpdateService.swift */; };
 		ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE906B21F22A27200A6A082 /* SettingsViewController.swift */; };
@@ -76,7 +77,8 @@
 		ACACF6E81F51C93E00F501B1 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeViewController.swift; sourceTree = "<group>"; };
 		ACB7C1E71FDD6106007ED514 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		ACBDC24920EAD26300CDB54F /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		ACD7E85A20C8751F00A8F105 /* DBMigrationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBMigrationHelper.swift; sourceTree = "<group>"; };
 		ACD7E85C20C8763F00A8F105 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
 		ACE906B21F22A27200A6A082 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -172,7 +174,6 @@
 				ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */,
 				ACB7C1E71FDD6106007ED514 /* Constants.swift */,
 				ACF0EBAB209A7F2100467675 /* App flow */,
-				ACF0EB97209A7CE400467675 /* Storyboards */,
 				ACF0EBAA209A7E9E00467675 /* Model and state */,
 				ACF0EBA7209A7E6400467675 /* Storage */,
 				ACF0EBA6209A7E1E00467675 /* Local Notifications */,
@@ -200,15 +201,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		ACF0EB97209A7CE400467675 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */,
-				ACEEA9661F1E5FA600BCF905 /* Main.storyboard */,
-			);
-			path = Storyboards;
-			sourceTree = "<group>";
-		};
 		ACF0EB98209A7D1600467675 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,7 +221,7 @@
 				ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */,
 				AC0AF9BC20DC66ED00A52478 /* UILabelExtensions.swift */,
 				ACEEF4A820ACE8900088EDB1 /* UIViewExtensions.swift */,
-				ACBDC24920EAD26300CDB54F /* UIColorExtension.swift */,
+				ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -289,6 +281,8 @@
 		ACF0EBAC209A7F3300467675 /* Joke */ = {
 			isa = PBXGroup;
 			children = (
+				ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */,
+				ACEEA9661F1E5FA600BCF905 /* Main.storyboard */,
 				ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */,
 				AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */,
 				AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */,
@@ -301,6 +295,7 @@
 		ACF0EBAD209A7F3B00467675 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */,
 				ACE906B21F22A27200A6A082 /* SettingsViewController.swift */,
 				AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */,
 				AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */,
@@ -385,6 +380,7 @@
 				AC29785820CC80AF00A49689 /* v1.2.sql in Resources */,
 				AC23A4B82068505F008BED6C /* WaitingForFirstNotificationView.xib in Resources */,
 				ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */,
+				ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */,
 				ACECF0A51F60A88F0072367C /* jokesDB.db in Resources */,
 				ACEEA9681F1E5FA600BCF905 /* Main.storyboard in Resources */,
 			);
@@ -458,7 +454,7 @@
 				AC976E892049B48B00B9C611 /* SchedulesTableQueries.swift in Sources */,
 				ACF0EBA3209A7DF300467675 /* DateExtensions.swift in Sources */,
 				AC128336204B5F1600FCC19E /* TimePart.swift in Sources */,
-				ACBDC24A20EAD26300CDB54F /* UIColorExtension.swift in Sources */,
+				ACBDC24A20EAD26300CDB54F /* UIColorExtensions.swift in Sources */,
 				ACD7E85B20C8751F00A8F105 /* DBMigrationHelper.swift in Sources */,
 				AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */,
 				ACF0EB9D209A7DB300467675 /* ArrayExtensions.swift in Sources */,
