@@ -53,6 +53,7 @@ class JokeTableViewController: UIViewController {
         tableView.reloadData()
         refreshControl.endRefreshing()
         presentEmptyView()
+        clearNotificationBadgeNumber()
     }
 
     private func pullDataIntoDataSource() {
@@ -96,6 +97,11 @@ private extension JokeTableViewController {
                                                selector: #selector(initTableContent),
                                                name: NSNotification.Name.UIApplicationDidBecomeActive,
                                                object: nil)
+    }
+
+    private func clearNotificationBadgeNumber() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        UserDefaults.standard.set(0, forKey: UserDefaults.Key.badgeNumber)
     }
 
     private func didBecomeEmpty() -> DidBecomeEmpty {

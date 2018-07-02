@@ -286,9 +286,9 @@
 		ACF0EBAC209A7F3300467675 /* Joke */ = {
 			isa = PBXGroup;
 			children = (
-				AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */,
-				AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */,
 				ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */,
+				AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */,
+				AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */,
 				ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */,
 				ACEEF4AA20ACEBFB0088EDB1 /* Empty views */,
 			);

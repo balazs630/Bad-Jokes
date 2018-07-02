@@ -6,6 +6,7 @@
 //  Copyright © 2017. Horváth Balázs. All rights reserved.
 //
 
+import UIKit
 import UserNotifications
 
 protocol JokeNotificationHelperDelegate: class {
@@ -25,8 +26,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
     override init() {
         super.init()
         // Seeking permission of the user to display app notifications
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound],
-                                                                completionHandler: {_, _ in })
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (_, _) in }
         UNUserNotificationCenter.current().delegate = self
     }
 }
@@ -73,6 +73,7 @@ extension JokeNotificationHelper {
         let joke = DBManager.shared.getRandomJokeWith(type: type)
         content.body = joke.jokeText.formatLineBreaks()
         content.sound = UNNotificationSound.default()
+        content.badge = incrementNotificationBadgeNumber(by: 1)
 
         var userInfo = [String: Int]()
         userInfo["jokeId"] = joke.jokeId
@@ -98,6 +99,12 @@ extension JokeNotificationHelper {
             DBManager.shared.setJokeUsedAndDeliveredWith(jokeId: joke.jokeId, deliveryTime: joke.time)
             DBManager.shared.deleteScheduleWith(jokeId: joke.jokeId)
         }
+    }
+
+    private func incrementNotificationBadgeNumber(by value: Int) -> NSNumber {
+        let actualBadgeNumber = defaults.integer(forKey: UserDefaults.Key.badgeNumber)
+        defaults.set(actualBadgeNumber + value, forKey: UserDefaults.Key.badgeNumber)
+        return NSNumber(value: actualBadgeNumber + value)
     }
 }
 
