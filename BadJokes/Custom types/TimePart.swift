@@ -10,10 +10,10 @@ import Foundation
 
 extension Date {
     class TimePart {
-        var hour: Int = 0
-        var minute: Int = 0
+        var hour: Int
+        var minute: Int
 
-        init(hour: Int, minute: Int) {
+        init(hour: Int = 0, minute: Int = 0) {
             self.hour = hour
             self.minute = minute
         }

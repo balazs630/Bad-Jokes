@@ -84,7 +84,7 @@ class JokeNotificationGenerator {
         var jokeType = types.randomItem()!
         var counter = 0
         while true {
-            if DBManager.shared.isAllJokeUsedWith(type: jokeType) {
+            if DBService.shared.isAllJokeUsedWith(type: jokeType) {
                 jokeType = types.randomItem()!
                 counter += 1
             } else {
@@ -124,7 +124,7 @@ class JokeNotificationGenerator {
         var type = String()
 
         for sliderType in Constant.jokeTypes.values {
-            if !DBManager.shared.isAllJokeUsedWith(type: sliderType) {
+            if !DBService.shared.isAllJokeUsedWith(type: sliderType) {
                 type = sliderType
                 break
             }
@@ -141,7 +141,7 @@ class JokeNotificationGenerator {
     }
 
     private func setJokeTimesToGenerateCount() {
-        let unusedJokeCount = DBManager.shared.unusedJokesCount()
+        let unusedJokeCount = DBService.shared.unusedJokesCount()
 
         if unusedJokeCount > maxLocalNotificationCount {
             jokeTimesToGenerateCount = maxLocalNotificationCount

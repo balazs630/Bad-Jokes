@@ -28,7 +28,7 @@ class UpdateService {
     class func runDatabaseMigration() {
         let scripts = UpdateService.collectMigrationScripts(from: getLastAppVersion())
         for script in scripts {
-            DBManager.shared.executeMigrationScript(fileNamed: script)
+            DBService.shared.executeMigrationScript(fileNamed: script)
         }
     }
 

@@ -1,5 +1,5 @@
 //
-//  DBManager.swift
+//  DBService.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2017. 08. 26..
@@ -8,10 +8,10 @@
 
 import FMDB
 
-class DBManager {
+class DBService {
 
     // MARK: Properties
-    static let shared = DBManager()
+    static let shared = DBService()
 
     let dbFileName = "jokesDB"
     let dbExtension = "db"

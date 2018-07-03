@@ -8,7 +8,7 @@
 
 import FMDB
 
-extension DBManager {
+extension DBService {
 
     // MARK: Run SQLite queries
     func executeMigrationScript(fileNamed: String) {

@@ -1,5 +1,5 @@
 //
-//  SchedulesTableQueries - DBManager Extension
+//  SchedulesTableQueries - DBService Extension
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2018. 03. 02..
@@ -8,7 +8,7 @@
 
 import FMDB
 
-extension DBManager {
+extension DBService {
 
     // MARK: Run SQLite queries
     func getAllDeliveredSchedules() -> [Schedule] {

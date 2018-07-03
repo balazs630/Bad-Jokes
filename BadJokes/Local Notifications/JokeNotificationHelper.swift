@@ -34,7 +34,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 // MARK: Notification operations
 extension JokeNotificationHelper {
     func setNewRepeatingNotifications() {
-        guard DBManager.shared.unusedJokesCount() > 0 else {
+        guard DBService.shared.unusedJokesCount() > 0 else {
             return
         }
 
@@ -49,7 +49,7 @@ extension JokeNotificationHelper {
 
     func removeAllScheduledNotification() {
         removeAllPendingNotificationRequests()
-        DBManager.shared.deleteAllSchedules()
+        DBService.shared.deleteAllSchedules()
     }
 
     private func addJokeNotificationRequest(on time: Date) {
@@ -63,14 +63,14 @@ extension JokeNotificationHelper {
         }
 
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        DBManager.shared.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())
+        DBService.shared.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())
     }
 
     private func setNotificationContent() -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = "Vicc:"
         let type = jokeNotificationGenerator.generateAvailableJokeType(from: jokeTypes)
-        let joke = DBManager.shared.getRandomJokeWith(type: type)
+        let joke = DBService.shared.getRandomJokeWith(type: type)
         content.body = joke.jokeText.formatLineBreaks()
         content.sound = UNNotificationSound.default()
         content.badge = incrementNotificationBadgeNumber(by: 1)
@@ -93,11 +93,11 @@ extension JokeNotificationHelper {
     }
 
     func moveDeliveredJokesToJokeCollection() {
-        let deliveredJokes = DBManager.shared.getAllDeliveredSchedules()
+        let deliveredJokes = DBService.shared.getAllDeliveredSchedules()
 
         for joke in deliveredJokes {
-            DBManager.shared.setJokeUsedAndDeliveredWith(jokeId: joke.jokeId, deliveryTime: joke.time)
-            DBManager.shared.deleteScheduleWith(jokeId: joke.jokeId)
+            DBService.shared.setJokeUsedAndDeliveredWith(jokeId: joke.jokeId, deliveryTime: joke.time)
+            DBService.shared.deleteScheduleWith(jokeId: joke.jokeId)
         }
     }
 

@@ -10,11 +10,11 @@ import Foundation
 
 extension Date {
     class DatePart {
-        var year: Int = 1970
-        var month: Int = 1
-        var day: Int = 1
+        var year: Int
+        var month: Int
+        var day: Int
 
-        init(year: Int, month: Int, day: Int) {
+        init(year: Int = 1970, month: Int = 1, day: Int = 1) {
             self.year = year
             self.month = month
             self.day = day

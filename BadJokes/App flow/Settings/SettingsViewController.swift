@@ -109,7 +109,7 @@ extension SettingsViewController {
     }
 
     private func updateTableHeaderView() {
-        if DBManager.shared.unusedJokesCount() == 0 {
+        if DBService.shared.unusedJokesCount() == 0 {
             tableView.tableHeaderView = UIView.makeWarningTableHeaderView()
         }
     }
@@ -122,7 +122,7 @@ extension SettingsViewController {
             return false
         }
 
-        if DBManager.shared.isSchedulesListEmpty() {
+        if DBService.shared.isSchedulesListEmpty() {
             return true
         }
 

@@ -1,5 +1,5 @@
 //
-//  UILabelExtensions.swift
+//  CopyableLabel.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2018. 06. 22..
@@ -9,7 +9,6 @@
 import UIKit
 
 class CopyableLabel: UILabel {
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         sharedInit()

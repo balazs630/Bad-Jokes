@@ -43,7 +43,7 @@ extension JokesDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            DBManager.shared.removeDeliveredJokeWith(jokeId: jokes[indexPath.row].jokeId)
+            DBService.shared.removeDeliveredJokeWith(jokeId: jokes[indexPath.row].jokeId)
             jokes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
 

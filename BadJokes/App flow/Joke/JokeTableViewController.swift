@@ -49,15 +49,15 @@ class JokeTableViewController: UIViewController {
     // MARK: - Setup
     @objc private func initTableContent() {
         jokeNotificationHelper.moveDeliveredJokesToJokeCollection()
-        pullDataIntoDataSource()
+        fetchDeliveredJokes()
         tableView.reloadData()
         refreshControl.endRefreshing()
         presentEmptyView()
         clearNotificationBadgeNumber()
     }
 
-    private func pullDataIntoDataSource() {
-        dataSource = JokesDataSource(jokes: DBManager.shared.getDeliveredJokes(), didBecomeEmpty: didBecomeEmpty())
+    private func fetchDeliveredJokes() {
+        dataSource = JokesDataSource(jokes: DBService.shared.getDeliveredJokes(), didBecomeEmpty: didBecomeEmpty())
         tableView.dataSource = dataSource
     }
 
@@ -113,7 +113,7 @@ private extension JokeTableViewController {
     private func presentEmptyView() {
         if dataSource.jokes.isEmpty {
             // Display a message instead of an empty table
-            if DBManager.shared.isSchedulesListEmpty() {
+            if DBService.shared.isSchedulesListEmpty() {
                 displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
             } else {
                 displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)

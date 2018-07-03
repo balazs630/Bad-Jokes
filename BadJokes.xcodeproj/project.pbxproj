@@ -10,7 +10,7 @@
 		3BCED003FFE0CF7812EE66D8 /* Pods_BadJokes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946577951C2F75DE8DA6E042 /* Pods_BadJokes.framework */; };
 		AC08EEE01F757BCD000E5B53 /* JokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */; };
 		AC08EEE21F757BEF000E5B53 /* JokesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */; };
-		AC0AF9BD20DC66ED00A52478 /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0AF9BC20DC66ED00A52478 /* UILabelExtensions.swift */; };
+		AC0AF9BD20DC66ED00A52478 /* CopyableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0AF9BC20DC66ED00A52478 /* CopyableLabel.swift */; };
 		AC0AF9BF20E1769C00A52478 /* Tables+Fields.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0AF9BE20E1769C00A52478 /* Tables+Fields.swift */; };
 		AC100EAC1F548A430069C0DE /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC100EAB1F548A430069C0DE /* StringExtensions.swift */; };
 		AC128334204B5D3F00FCC19E /* DatePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC128333204B5D3F00FCC19E /* DatePart.swift */; };
@@ -28,7 +28,7 @@
 		AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */; };
 		AC976E872049B41C00B9C611 /* JokesTableQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC976E862049B41C00B9C611 /* JokesTableQueries.swift */; };
 		AC976E892049B48B00B9C611 /* SchedulesTableQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC976E882049B48B00B9C611 /* SchedulesTableQueries.swift */; };
-		ACACF6E91F51C93E00F501B1 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACF6E81F51C93E00F501B1 /* DBManager.swift */; };
+		ACACF6E91F51C93E00F501B1 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACF6E81F51C93E00F501B1 /* DBService.swift */; };
 		ACB5A2931FE7FFA4006DD51E /* JokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */; };
 		ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB7C1E71FDD6106007ED514 /* Constants.swift */; };
 		ACBDC24A20EAD26300CDB54F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */; };
@@ -56,7 +56,7 @@
 		946577951C2F75DE8DA6E042 /* Pods_BadJokes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadJokes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC08EEDF1F757BCD000E5B53 /* JokeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeCell.swift; sourceTree = "<group>"; };
 		AC08EEE11F757BEF000E5B53 /* JokesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesDataSource.swift; sourceTree = "<group>"; };
-		AC0AF9BC20DC66ED00A52478 /* UILabelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtensions.swift; sourceTree = "<group>"; };
+		AC0AF9BC20DC66ED00A52478 /* CopyableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableLabel.swift; sourceTree = "<group>"; };
 		AC0AF9BE20E1769C00A52478 /* Tables+Fields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tables+Fields.swift"; sourceTree = "<group>"; };
 		AC100EAB1F548A430069C0DE /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		AC128333204B5D3F00FCC19E /* DatePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePart.swift; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 		AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
 		AC976E862049B41C00B9C611 /* JokesTableQueries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesTableQueries.swift; sourceTree = "<group>"; };
 		AC976E882049B48B00B9C611 /* SchedulesTableQueries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesTableQueries.swift; sourceTree = "<group>"; };
-		ACACF6E81F51C93E00F501B1 /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		ACACF6E81F51C93E00F501B1 /* DBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		ACB5A2921FE7FFA4006DD51E /* JokeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeViewController.swift; sourceTree = "<group>"; };
 		ACB7C1E71FDD6106007ED514 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
@@ -141,6 +141,16 @@
 			path = "Migration Scripts";
 			sourceTree = "<group>";
 		};
+		ACBDC24D20EC050400CDB54F /* Custom types */ = {
+			isa = PBXGroup;
+			children = (
+				AC128333204B5D3F00FCC19E /* DatePart.swift */,
+				AC128335204B5F1600FCC19E /* TimePart.swift */,
+				AC0AF9BC20DC66ED00A52478 /* CopyableLabel.swift */,
+			);
+			path = "Custom types";
+			sourceTree = "<group>";
+		};
 		ACECF0A11F60A47E0072367C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,9 +184,10 @@
 				ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */,
 				ACB7C1E71FDD6106007ED514 /* Constants.swift */,
 				ACF0EBAB209A7F2100467675 /* App flow */,
-				ACF0EBAA209A7E9E00467675 /* Model and state */,
+				ACF0EBAA209A7E9E00467675 /* Model */,
 				ACF0EBA7209A7E6400467675 /* Storage */,
 				ACF0EBA6209A7E1E00467675 /* Local Notifications */,
+				ACBDC24D20EC050400CDB54F /* Custom types */,
 				ACF0EB99209A7D6600467675 /* Extensions */,
 				ACF0EB98209A7D1600467675 /* Resources */,
 				ACF0EB96209A7CA000467675 /* Supporting Files */,
@@ -219,7 +230,6 @@
 				ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */,
 				ACF0EBA2209A7DF300467675 /* DateExtensions.swift */,
 				ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */,
-				AC0AF9BC20DC66ED00A52478 /* UILabelExtensions.swift */,
 				ACEEF4A820ACE8900088EDB1 /* UIViewExtensions.swift */,
 				ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */,
 			);
@@ -241,7 +251,7 @@
 			children = (
 				ACECF0A41F60A88F0072367C /* jokesDB.db */,
 				ACD7E85C20C8763F00A8F105 /* UpdateService.swift */,
-				ACACF6E81F51C93E00F501B1 /* DBManager.swift */,
+				ACACF6E81F51C93E00F501B1 /* DBService.swift */,
 				AC0AF9C020E176A100A52478 /* Model */,
 				ACF0EBA8209A7E7300467675 /* Queries */,
 				AC29785620CC807100A49689 /* Migration Scripts */,
@@ -258,15 +268,13 @@
 			path = Queries;
 			sourceTree = "<group>";
 		};
-		ACF0EBAA209A7E9E00467675 /* Model and state */ = {
+		ACF0EBAA209A7E9E00467675 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				ACECF0A61F60AC230072367C /* Joke.swift */,
 				AC2579B2204628C800C1D904 /* Schedule.swift */,
-				AC128333204B5D3F00FCC19E /* DatePart.swift */,
-				AC128335204B5F1600FCC19E /* TimePart.swift */,
 			);
-			path = "Model and state";
+			path = Model;
 			sourceTree = "<group>";
 		};
 		ACF0EBAB209A7F2100467675 /* App flow */ = {
@@ -446,7 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC0AF9BD20DC66ED00A52478 /* UILabelExtensions.swift in Sources */,
+				AC0AF9BD20DC66ED00A52478 /* CopyableLabel.swift in Sources */,
 				ACEEA9651F1E5FA600BCF905 /* JokeTableViewController.swift in Sources */,
 				ACB5A2931FE7FFA4006DD51E /* JokeViewController.swift in Sources */,
 				AC2579B3204628C800C1D904 /* Schedule.swift in Sources */,
@@ -477,7 +485,7 @@
 				ACF0EB9F209A7DC700467675 /* IntExtensions.swift in Sources */,
 				ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */,
 				AC128334204B5D3F00FCC19E /* DatePart.swift in Sources */,
-				ACACF6E91F51C93E00F501B1 /* DBManager.swift in Sources */,
+				ACACF6E91F51C93E00F501B1 /* DBService.swift in Sources */,
 				ACECF0A71F60AC230072367C /* Joke.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
