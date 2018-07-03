@@ -33,6 +33,7 @@
 		ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB7C1E71FDD6106007ED514 /* Constants.swift */; };
 		ACBDC24A20EAD26300CDB54F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */; };
 		ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */; };
+		ACBDC24F20EC213D00CDB54F /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */; };
 		ACD7E85B20C8751F00A8F105 /* DBMigrationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85A20C8751F00A8F105 /* DBMigrationHelper.swift */; };
 		ACD7E85D20C8763F00A8F105 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85C20C8763F00A8F105 /* UpdateService.swift */; };
 		ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE906B21F22A27200A6A082 /* SettingsViewController.swift */; };
@@ -43,7 +44,6 @@
 		ACEEA9681F1E5FA600BCF905 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9661F1E5FA600BCF905 /* Main.storyboard */; };
 		ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */; };
 		ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */; };
-		ACEEF4A920ACE8900088EDB1 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEF4A820ACE8900088EDB1 /* UIViewExtensions.swift */; };
 		ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */; };
 		ACF0EB9D209A7DB300467675 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9C209A7DB300467675 /* ArrayExtensions.swift */; };
 		ACF0EB9F209A7DC700467675 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9E209A7DC700467675 /* IntExtensions.swift */; };
@@ -79,6 +79,7 @@
 		ACB7C1E71FDD6106007ED514 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		ACD7E85A20C8751F00A8F105 /* DBMigrationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBMigrationHelper.swift; sourceTree = "<group>"; };
 		ACD7E85C20C8763F00A8F105 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
 		ACE906B21F22A27200A6A082 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -92,7 +93,6 @@
 		ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACEEA96C1F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACEEA96E1F1E5FA600BCF905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ACEEF4A820ACE8900088EDB1 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		ACF0EB9C209A7DB300467675 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		ACF0EB9E209A7DC700467675 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
@@ -230,8 +230,8 @@
 				ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */,
 				ACF0EBA2209A7DF300467675 /* DateExtensions.swift */,
 				ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */,
-				ACEEF4A820ACE8900088EDB1 /* UIViewExtensions.swift */,
 				ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */,
+				ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -476,11 +476,11 @@
 				ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */,
 				AC1BAF102059D6740047E376 /* RecurrenceViewController.swift in Sources */,
 				ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */,
+				ACBDC24F20EC213D00CDB54F /* UIViewExtensions.swift in Sources */,
 				AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */,
 				AC100EAC1F548A430069C0DE /* StringExtensions.swift in Sources */,
 				AC976E872049B41C00B9C611 /* JokesTableQueries.swift in Sources */,
 				ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */,
-				ACEEF4A920ACE8900088EDB1 /* UIViewExtensions.swift in Sources */,
 				ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */,
 				ACF0EB9F209A7DC700467675 /* IntExtensions.swift in Sources */,
 				ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */,

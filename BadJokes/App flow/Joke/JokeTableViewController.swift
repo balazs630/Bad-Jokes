@@ -15,22 +15,13 @@ class JokeTableViewController: UIViewController {
     let jokeNotificationHelper = JokeNotificationHelper()
     let refreshControl = UIRefreshControl()
 
-    var noNotificationScheduledView: UIView {
-        return UIView.makeNoNotificationScheduledView()
-    }
-
-    var waitingForFirstNotificationView: UIView {
-        return UIView.makeWaitingForFirstNotificationView()
-    }
+    let noNotificationScheduledView = UIView.loadFromNib(named: UIView.noNotificationScheduledView)
+    let waitingForFirstNotificationView = UIView.loadFromNib(named: UIView.waitingForFirstNotificationView)
 
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
 
     // MARK: Initializers
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
     deinit {
         NotificationCenter.default.removeObserver(self,
                                                   name: NSNotification.Name.UIApplicationDidBecomeActive,
@@ -46,8 +37,12 @@ class JokeTableViewController: UIViewController {
         setObserverForUIApplicationDidBecomeActive()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        refreshTableContent()
+    }
+
     // MARK: - Setup
-    @objc private func initTableContent() {
+    @objc private func refreshTableContent() {
         jokeNotificationHelper.moveDeliveredJokesToJokeCollection()
         fetchDeliveredJokes()
         tableView.reloadData()
@@ -88,13 +83,13 @@ class JokeTableViewController: UIViewController {
 private extension JokeTableViewController {
     private func configureTableView() {
         tableView.dataSource = dataSource
-        refreshControl.addTarget(self, action: #selector(initTableContent), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshTableContent), for: UIControlEvents.valueChanged)
         tableView.refreshControl = refreshControl
     }
 
     private func setObserverForUIApplicationDidBecomeActive() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(initTableContent),
+                                               selector: #selector(refreshTableContent),
                                                name: NSNotification.Name.UIApplicationDidBecomeActive,
                                                object: nil)
     }
@@ -134,7 +129,7 @@ private extension JokeTableViewController {
 // MARK: JokeNotificationHelperDelegate
 extension JokeTableViewController: JokeNotificationHelperDelegate {
     func notificationDidFire() {
-        initTableContent()
+        refreshTableContent()
     }
 }
 
