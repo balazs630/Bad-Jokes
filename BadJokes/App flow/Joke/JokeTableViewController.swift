@@ -84,6 +84,9 @@ private extension JokeTableViewController {
     private func configureTableView() {
         tableView.dataSource = dataSource
         refreshControl.addTarget(self, action: #selector(refreshTableContent), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.white
+        refreshControl.backgroundColor = Theme.Color.lightBlue
+
         tableView.refreshControl = refreshControl
     }
 
