@@ -121,11 +121,4 @@ extension JokeNotificationHelper {
             completed(settings.authorizationStatus == .authorized)
         })
     }
-
-    func areNotificationsPending(completed: @escaping (Bool) -> Void) {
-        let center = UNUserNotificationCenter.current()
-        center.getPendingNotificationRequests(completionHandler: { requests in
-            completed(requests.count > 0)
-        })
-    }
 }

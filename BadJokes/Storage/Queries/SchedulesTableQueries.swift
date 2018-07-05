@@ -85,6 +85,31 @@ extension DBService {
         return count == 0
     }
 
+    func schedulesCount() -> Int {
+        var count = 0
+        if isDatabaseOpen() {
+            let query =
+            """
+            SELECT count() as count
+            FROM \(Table.schedules)
+            """
+
+            do {
+                let results = try database.executeQuery(query, values: nil)
+
+                while results.next() {
+                    count = Int(results.int(forColumn: "count"))
+                }
+            } catch {
+                debugPrint(error.localizedDescription)
+            }
+
+            database.close()
+        }
+
+        return count
+    }
+
     func deleteScheduleWith(jokeId: Int) {
         if isDatabaseOpen() {
             let query =

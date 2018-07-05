@@ -38,22 +38,37 @@ class JokeTableViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        refreshTableContent()
+        refreshData()
     }
 
     // MARK: - Setup
-    @objc private func refreshTableContent() {
+    @objc private func applicationDidBecomeActive() {
+        refreshData()
+        clearNotificationBadgeNumber()
+        refreshNotificationSchedules()
+    }
+
+    @objc private func refreshData() {
         jokeNotificationHelper.moveDeliveredJokesToJokeCollection()
         fetchDeliveredJokes()
         tableView.reloadData()
         refreshControl.endRefreshing()
         presentEmptyView()
-        clearNotificationBadgeNumber()
     }
 
     private func fetchDeliveredJokes() {
         dataSource = JokesDataSource(jokes: DBService.shared.getDeliveredJokes(), didBecomeEmpty: didBecomeEmpty())
         tableView.dataSource = dataSource
+    }
+
+    private func refreshNotificationSchedules() {
+        let generateNewJokesThreshold = 32
+        let pendingSchedulesCount = DBService.shared.schedulesCount()
+
+        if pendingSchedulesCount <= generateNewJokesThreshold && pendingSchedulesCount != 0 {
+            guard DBService.shared.unusedJokesCount() >= generateNewJokesThreshold else { return }
+            jokeNotificationHelper.setNewRepeatingNotifications()
+        }
     }
 
     // MARK: - Navigation
@@ -83,7 +98,7 @@ class JokeTableViewController: UIViewController {
 private extension JokeTableViewController {
     private func configureTableView() {
         tableView.dataSource = dataSource
-        refreshControl.addTarget(self, action: #selector(refreshTableContent), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
         refreshControl.tintColor = UIColor.white
         refreshControl.backgroundColor = Theme.Color.lightBlue
 
@@ -92,7 +107,7 @@ private extension JokeTableViewController {
 
     private func setObserverForUIApplicationDidBecomeActive() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(refreshTableContent),
+                                               selector: #selector(applicationDidBecomeActive),
                                                name: NSNotification.Name.UIApplicationDidBecomeActive,
                                                object: nil)
     }
@@ -132,7 +147,7 @@ private extension JokeTableViewController {
 // MARK: JokeNotificationHelperDelegate
 extension JokeTableViewController: JokeNotificationHelperDelegate {
     func notificationDidFire() {
-        refreshTableContent()
+        refreshData()
     }
 }
 
