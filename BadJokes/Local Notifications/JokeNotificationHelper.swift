@@ -70,7 +70,7 @@ extension JokeNotificationHelper {
         let content = UNMutableNotificationContent()
         content.title = "Vicc:"
         let type = jokeNotificationGenerator.generateAvailableJokeType(from: jokeTypes)
-        let joke = DBService.shared.getRandomJokeWith(type: type)
+        let joke = generateRandomJoke(with: type)
         content.body = joke.jokeText.formatLineBreaks()
         content.sound = UNNotificationSound.default()
         content.badge = incrementNotificationBadgeNumber(by: 1)
@@ -105,6 +105,15 @@ extension JokeNotificationHelper {
         let actualBadgeNumber = defaults.integer(forKey: UserDefaults.Key.badgeNumber)
         defaults.set(actualBadgeNumber + value, forKey: UserDefaults.Key.badgeNumber)
         return NSNumber(value: actualBadgeNumber + value)
+    }
+
+    private func generateRandomJoke(with type: String) -> Joke {
+        if let joke = DBService.shared.getRandomJokeWith(type: type) {
+            return joke
+        }
+
+        let anyType = "%"
+        return DBService.shared.getRandomJokeWith(type: anyType)!
     }
 }
 

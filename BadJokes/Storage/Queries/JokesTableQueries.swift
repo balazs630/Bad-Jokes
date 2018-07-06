@@ -45,7 +45,7 @@ extension DBService {
         return resultSet
     }
 
-    func getRandomJokeWith(type: String) -> Joke {
+    func getRandomJokeWith(type: String) -> Joke? {
         var randomJoke: Joke?
 
         if isDatabaseOpen() {
@@ -53,12 +53,12 @@ extension DBService {
             """
             SELECT *
             FROM \(Table.jokes)
-            WHERE \(Table.Jokes.type) = \"\(type)\"
+            WHERE \(Table.Jokes.type) LIKE \"\(type)\"
                 AND \(Table.Jokes.isUsed) = 0
                 AND NOT EXISTS (SELECT *
                                 FROM \(Table.schedules)
                                 WHERE \(Table.schedules).\(Table.Schedules.jokeId)
-                                = \(Table.jokes).\(Table.Jokes.jokeId))
+                                        = \(Table.jokes).\(Table.Jokes.jokeId))
             ORDER BY RANDOM()
             LIMIT 1
             """
@@ -80,7 +80,7 @@ extension DBService {
             database.close()
         }
 
-        return randomJoke!
+        return randomJoke
     }
 
     func unusedJokesCount() -> Int {
