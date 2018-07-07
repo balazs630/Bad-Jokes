@@ -1,5 +1,5 @@
 //
-//  JokesDataSource.swift
+//  JokeDataSource.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2017. 09. 22..
@@ -10,7 +10,7 @@ import UIKit
 
 typealias DidBecomeEmpty = () -> Void
 
-class JokesDataSource: NSObject {
+class JokeDataSource: NSObject {
 
     // MARK: Properties
     var jokes: [Joke]
@@ -24,15 +24,15 @@ class JokesDataSource: NSObject {
 }
 
 // MARK: - TableViewDataSource
-extension JokesDataSource: UITableViewDataSource {
+extension JokeDataSource: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jokes.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = String(describing: JokeCell.self)
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? JokeCell else {
+        let cellIdentifier = String(describing: JokeTableViewCell.self)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? JokeTableViewCell else {
             fatalError("JokeCell cannot be found")
         }
         let joke = jokes[indexPath.row]

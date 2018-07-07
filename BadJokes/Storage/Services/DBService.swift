@@ -67,5 +67,17 @@ class DBService {
             debugPrint("Database file already exist at: \(destination)")
         }
     }
+}
 
+// MARK: Execute SQLite queries from file
+extension DBService {
+    func executeMigrationScript(fileNamed: String) {
+        if isDatabaseOpen() {
+            let migrationScriptContent = UpdateService.readMigrationScript(fileNamed: fileNamed)
+
+            debugPrint("Run migration script: \(fileNamed)")
+            database.executeStatements(migrationScriptContent)
+            database.close()
+        }
+    }
 }

@@ -1,5 +1,5 @@
 //
-//  JokeViewController.swift
+//  JokeReaderViewController.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2017. 12. 18..
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JokeViewController: UIViewController {
+class JokeReaderViewController: UIViewController {
 
     // MARK: Properties
     var jokeText = ""

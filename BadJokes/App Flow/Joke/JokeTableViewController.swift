@@ -11,7 +11,7 @@ import UIKit
 class JokeTableViewController: UIViewController {
 
     // MARK: Properties
-    var dataSource: JokesDataSource!
+    var dataSource: JokeDataSource!
     let jokeNotificationService = JokeNotificationService()
     let refreshControl = UIRefreshControl()
 
@@ -57,7 +57,7 @@ class JokeTableViewController: UIViewController {
     }
 
     private func fetchDeliveredJokes() {
-        dataSource = JokesDataSource(jokes: DBService.shared.getDeliveredJokes(), didBecomeEmpty: didBecomeEmpty())
+        dataSource = JokeDataSource(jokes: DBService.shared.getDeliveredJokes(), didBecomeEmpty: didBecomeEmpty())
         tableView.dataSource = dataSource
     }
 
@@ -80,11 +80,11 @@ class JokeTableViewController: UIViewController {
                 destVC.delegate = self
 
             case SegueIdentifier.showJoke:
-                guard let destVC = segue.destination as? JokeViewController else { return }
+                guard let destVC = segue.destination as? JokeReaderViewController else { return }
                 guard let sender = sender as? UITableViewCell else { return }
                 guard let selectedIndex = tableView.indexPath(for: sender) else { return }
 
-                guard let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeCell else { return }
+                guard let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeTableViewCell else { return }
                 destVC.jokeText = jokeCell.jokeLabel.text!
 
             default:

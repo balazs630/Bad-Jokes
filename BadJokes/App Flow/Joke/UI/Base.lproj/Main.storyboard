@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Joke View Controller-->
+        <!--Joke Reader View Controller-->
         <scene sceneID="7mj-rx-Dzx">
             <objects>
-                <viewController id="3Ob-uI-jJr" customClass="JokeViewController" customModule="BadJokes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3Ob-uI-jJr" customClass="JokeReaderViewController" customModule="BadJokes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t8Q-sL-mHU"/>
                         <viewControllerLayoutGuide type="bottom" id="Ix9-C4-afH"/>
@@ -87,7 +87,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="JokeCell" id="XK4-Zi-ehe" customClass="JokeCell" customModule="BadJokes">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="JokeCell" id="XK4-Zi-ehe" customClass="JokeTableViewCell" customModule="BadJokes">
                                         <rect key="frame" x="0.0" y="28" width="375" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XK4-Zi-ehe" id="JOl-rq-n45">

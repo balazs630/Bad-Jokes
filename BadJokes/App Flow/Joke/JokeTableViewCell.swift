@@ -1,5 +1,5 @@
 //
-//  JokeCell.swift
+//  JokeTableViewCell.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2017. 09. 22..
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JokeCell: UITableViewCell {
+class JokeTableViewCell: UITableViewCell {
     @IBOutlet weak var jokeLabel: UILabel!
 
     var jokeText: String? {
