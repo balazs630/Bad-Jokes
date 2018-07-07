@@ -12,7 +12,7 @@ class JokeTableViewController: UIViewController {
 
     // MARK: Properties
     var dataSource: JokesDataSource!
-    let jokeNotificationHelper = JokeNotificationHelper()
+    let jokeNotificationService = JokeNotificationService()
     let refreshControl = UIRefreshControl()
 
     let noNotificationScheduledView = UIView.loadFromNib(named: UIView.noNotificationScheduledView)
@@ -31,7 +31,7 @@ class JokeTableViewController: UIViewController {
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        jokeNotificationHelper.delegate = self
+        jokeNotificationService.delegate = self
 
         configureTableView()
         setObserverForUIApplicationDidBecomeActive()
@@ -49,7 +49,7 @@ class JokeTableViewController: UIViewController {
     }
 
     @objc private func refreshData() {
-        jokeNotificationHelper.moveDeliveredJokesToJokeCollection()
+        jokeNotificationService.moveDeliveredJokesToJokeCollection()
         fetchDeliveredJokes()
         tableView.reloadData()
         refreshControl.endRefreshing()
@@ -67,7 +67,7 @@ class JokeTableViewController: UIViewController {
 
         if pendingSchedulesCount <= generateNewJokesThreshold && pendingSchedulesCount != 0 {
             guard DBService.shared.unusedJokesCount() >= generateNewJokesThreshold else { return }
-            jokeNotificationHelper.setNewRepeatingNotifications()
+            jokeNotificationService.setNewRepeatingNotifications()
         }
     }
 
@@ -144,8 +144,8 @@ private extension JokeTableViewController {
     }
 }
 
-// MARK: JokeNotificationHelperDelegate
-extension JokeTableViewController: JokeNotificationHelperDelegate {
+// MARK: JokeNotificationServiceDelegate
+extension JokeTableViewController: JokeNotificationServiceDelegate {
     func notificationDidFire() {
         refreshData()
     }
@@ -154,6 +154,6 @@ extension JokeTableViewController: JokeNotificationHelperDelegate {
 // MARK: SettingsViewControllerDelegate
 extension JokeTableViewController: SettingsViewControllerDelegate {
     func startJokeGeneratingProcess() {
-        jokeNotificationHelper.setNewRepeatingNotifications()
+        jokeNotificationService.setNewRepeatingNotifications()
     }
 }

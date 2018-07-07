@@ -23,7 +23,7 @@ class SettingsViewController: UITableViewController {
     var preferencesSnapshot = String()
     weak var delegate: SettingsViewControllerDelegate?
 
-    let jokeNotificationHelper = JokeNotificationHelper()
+    let jokeNotificationService = JokeNotificationService()
     let notificationSettingsIndexPath = IndexPath(item: 0, section: 0)
     var isNotificationEnabled: Bool = false
 
@@ -75,7 +75,7 @@ class SettingsViewController: UITableViewController {
         updateUIElementsBasedOnGlobalDisablerSwitchState()
 
         if swGlobalOff.isOn {
-            jokeNotificationHelper.removeAllScheduledNotification()
+            jokeNotificationService.removeAllScheduledNotification()
         }
     }
 }
@@ -103,7 +103,7 @@ extension SettingsViewController {
     }
 
     @objc private func checkAppNotificationEnabledStatus() {
-        jokeNotificationHelper.isNotificationsEnabled { state in
+        jokeNotificationService.isNotificationsEnabled { state in
             self.isNotificationEnabled = state
         }
     }

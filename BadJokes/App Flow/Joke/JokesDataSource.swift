@@ -40,7 +40,8 @@ extension JokesDataSource: UITableViewDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle,
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCellEditingStyle,
                    forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
             DBService.shared.removeDeliveredJokeWith(jokeId: jokes[indexPath.row].jokeId)

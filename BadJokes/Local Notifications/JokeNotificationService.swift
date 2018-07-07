@@ -1,5 +1,5 @@
 //
-//  JokeNotificationHelper.swift
+//  JokeNotificationService.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2017. 08. 26..
@@ -9,16 +9,16 @@
 import UIKit
 import UserNotifications
 
-protocol JokeNotificationHelperDelegate: class {
+protocol JokeNotificationServiceDelegate: class {
     func notificationDidFire()
 }
 
-class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
+class JokeNotificationService: NSObject, UNUserNotificationCenterDelegate {
 
     // MARK: Properties
     let defaults = UserDefaults.standard
     var localTimeZoneName: String { return TimeZone.current.identifier }
-    weak var delegate: JokeNotificationHelperDelegate?
+    weak var delegate: JokeNotificationServiceDelegate?
     let jokeNotificationGenerator = JokeNotificationGenerator()
     var jokeTypes = [String]()
 
@@ -32,7 +32,7 @@ class JokeNotificationHelper: NSObject, UNUserNotificationCenterDelegate {
 }
 
 // MARK: Notification operations
-extension JokeNotificationHelper {
+extension JokeNotificationService {
     func setNewRepeatingNotifications() {
         guard DBService.shared.unusedJokesCount() > 0 else {
             return
@@ -118,7 +118,7 @@ extension JokeNotificationHelper {
 }
 
 // MARK: UNUserNotificationCenter
-extension JokeNotificationHelper {
+extension JokeNotificationService {
     func removeAllPendingNotificationRequests() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }

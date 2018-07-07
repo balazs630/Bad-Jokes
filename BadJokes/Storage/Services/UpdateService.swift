@@ -47,8 +47,8 @@ class UpdateService {
 
             // Re-generate joke schedules
             if defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) {
-                let jokeNotificationHelper = JokeNotificationHelper()
-                jokeNotificationHelper.setNewRepeatingNotifications()
+                let jokeNotificationService = JokeNotificationService()
+                jokeNotificationService.setNewRepeatingNotifications()
             }
         }
     }
