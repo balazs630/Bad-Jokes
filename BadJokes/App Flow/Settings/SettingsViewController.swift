@@ -85,6 +85,7 @@ extension SettingsViewController {
     private func updateUIElementsBasedOnGlobalDisablerSwitchState() {
         // If this switch is on, all settings are disabled
         let swGlobalState = !swGlobalOff.isOn
+        tableView.allowsSelection = !swGlobalOff.isOn
 
         lblPeriodicity.isEnabled = swGlobalState
         lblRecurrence.isEnabled = swGlobalState
