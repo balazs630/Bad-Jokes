@@ -57,7 +57,6 @@ class SettingsViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         checkAppNotificationEnabledStatus()
-        tableView.reloadData()
     }
 
     // MARK: - Actions
@@ -106,6 +105,9 @@ extension SettingsViewController {
     @objc private func checkAppNotificationEnabledStatus() {
         jokeNotificationService.isNotificationsEnabled { state in
             self.isNotificationEnabled = state
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 
