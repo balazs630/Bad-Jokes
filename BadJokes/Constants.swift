@@ -77,7 +77,6 @@ extension UserDefaults {
     struct Key {
         static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
         static let appVersion = "appVersion"
-        static let badgeNumber = "badgeNumber"
 
         // swiftlint:disable type_name
         struct Sw {

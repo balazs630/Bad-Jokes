@@ -26,7 +26,7 @@ class JokeNotificationService: NSObject, UNUserNotificationCenterDelegate {
     override init() {
         super.init()
         // Seeking permission of the user to display app notifications
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { (_, _) in }
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (_, _) in }
         UNUserNotificationCenter.current().delegate = self
     }
 }
@@ -73,7 +73,6 @@ extension JokeNotificationService {
         let joke = generateRandomJoke(with: type)
         content.body = joke.jokeText.formatLineBreaks()
         content.sound = UNNotificationSound.default()
-        content.badge = incrementNotificationBadgeNumber(by: 1)
 
         var userInfo = [String: Int]()
         userInfo["jokeId"] = joke.jokeId
@@ -99,12 +98,6 @@ extension JokeNotificationService {
             DBService.shared.setJokeUsedAndDeliveredWith(jokeId: joke.jokeId, deliveryTime: joke.time)
             DBService.shared.deleteScheduleWith(jokeId: joke.jokeId)
         }
-    }
-
-    private func incrementNotificationBadgeNumber(by value: Int) -> NSNumber {
-        let actualBadgeNumber = defaults.integer(forKey: UserDefaults.Key.badgeNumber)
-        defaults.set(actualBadgeNumber + value, forKey: UserDefaults.Key.badgeNumber)
-        return NSNumber(value: actualBadgeNumber + value)
     }
 
     private func generateRandomJoke(with type: String) -> Joke {

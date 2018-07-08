@@ -44,7 +44,6 @@ class JokeTableViewController: UIViewController {
     // MARK: - Setup
     @objc private func applicationDidBecomeActive() {
         refreshData()
-        clearNotificationBadgeNumber()
         refreshNotificationSchedules()
     }
 
@@ -110,11 +109,6 @@ private extension JokeTableViewController {
                                                selector: #selector(applicationDidBecomeActive),
                                                name: NSNotification.Name.UIApplicationDidBecomeActive,
                                                object: nil)
-    }
-
-    private func clearNotificationBadgeNumber() {
-        UIApplication.shared.applicationIconBadgeNumber = 0
-        UserDefaults.standard.set(0, forKey: UserDefaults.Key.badgeNumber)
     }
 
     private func didBecomeEmpty() -> DidBecomeEmpty {
