@@ -33,7 +33,7 @@ extension JokeDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = String(describing: JokeTableViewCell.self)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? JokeTableViewCell else {
-            fatalError("JokeCell cannot be found")
+            fatalError("JokeTableViewCell cannot be found")
         }
         let joke = jokes[indexPath.row]
         cell.jokeText = joke.jokeText.formatLineBreaks()
