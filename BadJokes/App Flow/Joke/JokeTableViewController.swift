@@ -65,7 +65,6 @@ class JokeTableViewController: UIViewController {
         let pendingSchedulesCount = DBService.shared.schedulesCount()
 
         if pendingSchedulesCount <= generateNewJokesThreshold && pendingSchedulesCount != 0 {
-            guard DBService.shared.unusedJokesCount() >= generateNewJokesThreshold else { return }
             jokeNotificationService.setNewRepeatingNotifications()
         }
     }
