@@ -10,24 +10,27 @@ Instead: All you can do in this app is set notifications for when you want to ge
 
 **Main app:**
 
-<img src="https://i.imgur.com/UlozJua.png" width="900px" />
+<img src="https://i.imgur.com/plsRr5Q.jpg" width="900px" />
 
 ___
 **Done:**
 
-- [x] Over 150 jokes
-- [x] Jokes stored using SQLite database with FMDB wrapper
-- [x] Ability to display an alert if the notifications are turned off for the app
+- [x] Over 150 jokes in the collection
+- [x] Jokes are stored in a local SQLite database
 - [x] Settings screen with detailed preferences regarding the joke notifications
-- [x] App settings are read/write using UserDefaults
-- [x] Ability to set a local Notification based on the given timing paramaters
-- [x] Logic to handle recurring joke notifications
-- [x] Store already sent jokes in a table, view or delete a single joke, refresh tableview content
+- [x] Display a warning icon if the notifications are turned off for the app
+- [x] Set local notifications based on the given timing paramaters
+- [x] Logic to handle recurring joke notifications in a custom way
+- [x] Store delivered joke notifications in a tableview
+- [x] View or delete a single joke, refresh tableview content
 - [x] Show custom empty views if the tableview is empty
+- [x] Show a warning view if there is no more unused joke in the database
+- [x] Copy joke text to clipboard with long press
+- [x] iPad screen support
+
 
 ___
 **Backlog:**
 
 
-- [ ] Ability to share stored jokes with Mail or custom apps
-- [ ] Major UI redesign
+- [ ] Add more jokes...
