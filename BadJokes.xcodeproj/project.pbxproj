@@ -23,6 +23,7 @@
 		AC29785820CC80AF00A49689 /* v1.2.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC29785720CC80AF00A49689 /* v1.2.sql */; };
 		AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */; };
 		AC66A3D320E79B0600BF53E3 /* WarningTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */; };
+		AC674B74214401B6009F8B46 /* v1.3.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC674B73214401B6009F8B46 /* v1.3.sql */; };
 		AC7A4E341F51F74700E8F438 /* JokeNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationService.swift */; };
 		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
 		AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */; };
@@ -40,7 +41,7 @@
 		ACECF0A71F60AC230072367C /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACECF0A61F60AC230072367C /* Joke.swift */; };
 		ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */; };
 		ACEEA9651F1E5FA600BCF905 /* JokeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */; };
-		ACEEA9681F1E5FA600BCF905 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9661F1E5FA600BCF905 /* Main.storyboard */; };
+		ACEEA9681F1E5FA600BCF905 /* Jokes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9661F1E5FA600BCF905 /* Jokes.storyboard */; };
 		ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */; };
 		ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */; };
 		ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */; };
@@ -68,6 +69,7 @@
 		AC29785720CC80AF00A49689 /* v1.2.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.2.sql; sourceTree = "<group>"; };
 		AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoNotificationScheduledView.xib; sourceTree = "<group>"; };
 		AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WarningTableHeaderView.xib; sourceTree = "<group>"; };
+		AC674B73214401B6009F8B46 /* v1.3.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.3.sql; sourceTree = "<group>"; };
 		AC7A4E331F51F74700E8F438 /* JokeNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeNotificationService.swift; sourceTree = "<group>"; };
 		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
 		AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +89,7 @@
 		ACEEA95F1F1E5FA600BCF905 /* BadJokes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadJokes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeTableViewController.swift; sourceTree = "<group>"; };
-		ACEEA9671F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ACEEA9671F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Jokes.storyboard; sourceTree = "<group>"; };
 		ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACEEA96C1F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACEEA96E1F1E5FA600BCF905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -143,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */,
-				ACEEA9661F1E5FA600BCF905 /* Main.storyboard */,
+				ACEEA9661F1E5FA600BCF905 /* Jokes.storyboard */,
 				AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */,
 				AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */,
 			);
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				AC29785720CC80AF00A49689 /* v1.2.sql */,
+				AC674B73214401B6009F8B46 /* v1.3.sql */,
 			);
 			path = "Migration Scripts";
 			sourceTree = "<group>";
@@ -397,13 +400,14 @@
 			files = (
 				AC66A3D320E79B0600BF53E3 /* WarningTableHeaderView.xib in Resources */,
 				ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */,
+				AC674B74214401B6009F8B46 /* v1.3.sql in Resources */,
 				AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */,
 				AC29785820CC80AF00A49689 /* v1.2.sql in Resources */,
 				AC23A4B82068505F008BED6C /* WaitingForFirstNotificationView.xib in Resources */,
 				ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */,
 				ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */,
 				ACECF0A51F60A88F0072367C /* jokesDB.db in Resources */,
-				ACEEA9681F1E5FA600BCF905 /* Main.storyboard in Resources */,
+				ACEEA9681F1E5FA600BCF905 /* Jokes.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,12 +509,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		ACEEA9661F1E5FA600BCF905 /* Main.storyboard */ = {
+		ACEEA9661F1E5FA600BCF905 /* Jokes.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				ACEEA9671F1E5FA600BCF905 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Jokes.storyboard;
 			sourceTree = "<group>";
 		};
 		ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */ = {

@@ -12,7 +12,8 @@ class UpdateService {
 
     // MARK: Properties
     static let migrationSqlScripts = [
-        "1.2": "v1.2.sql"
+        "1.2": "v1.2.sql",
+        "1.3": "v1.3.sql"
     ]
 
     // MARK: Routines for app updates
@@ -44,9 +45,11 @@ class UpdateService {
             defaults.set(oldValue, forKey: UserDefaults.Key.Sld.geek)
             defaults.removeObject(forKey: oldKey)
             defaults.synchronize()
+        }
 
+        if "1.3".isGreater(than: lastVersion) {
             // Re-generate joke schedules
-            if defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) {
+            if !defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) {
                 let jokeNotificationService = JokeNotificationService()
                 jokeNotificationService.setNewRepeatingNotifications()
             }
