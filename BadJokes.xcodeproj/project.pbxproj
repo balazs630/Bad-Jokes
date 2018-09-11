@@ -36,6 +36,7 @@
 		ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */; };
 		ACBDC24F20EC213D00CDB54F /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */; };
 		ACD7E85D20C8763F00A8F105 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85C20C8763F00A8F105 /* UpdateService.swift */; };
+		ACE689C421484F8B00754221 /* v1.1-base.sql in Resources */ = {isa = PBXBuildFile; fileRef = ACE689C321484F8B00754221 /* v1.1-base.sql */; };
 		ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE906B21F22A27200A6A082 /* SettingsViewController.swift */; };
 		ACECF0A51F60A88F0072367C /* jokesDB.db in Resources */ = {isa = PBXBuildFile; fileRef = ACECF0A41F60A88F0072367C /* jokesDB.db */; };
 		ACECF0A71F60AC230072367C /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACECF0A61F60AC230072367C /* Joke.swift */; };
@@ -82,6 +83,7 @@
 		ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		ACD7E85C20C8763F00A8F105 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
+		ACE689C321484F8B00754221 /* v1.1-base.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "v1.1-base.sql"; sourceTree = "<group>"; };
 		ACE906B21F22A27200A6A082 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ACECF0A21F60A47E0072367C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		ACECF0A41F60A88F0072367C /* jokesDB.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = jokesDB.db; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		AC29785620CC807100A49689 /* Migration Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				ACE689C321484F8B00754221 /* v1.1-base.sql */,
 				AC29785720CC80AF00A49689 /* v1.2.sql */,
 				AC674B73214401B6009F8B46 /* v1.3.sql */,
 			);
@@ -404,6 +407,7 @@
 				AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */,
 				AC29785820CC80AF00A49689 /* v1.2.sql in Resources */,
 				AC23A4B82068505F008BED6C /* WaitingForFirstNotificationView.xib in Resources */,
+				ACE689C421484F8B00754221 /* v1.1-base.sql in Resources */,
 				ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */,
 				ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */,
 				ACECF0A51F60A88F0072367C /* jokesDB.db in Resources */,
