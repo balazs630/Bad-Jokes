@@ -34,7 +34,7 @@ class RecurrenceViewController: UITableViewController {
             selectedIndexPath.row = index
         }
 
-        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
+        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: UITableView.ScrollPosition.none)
         tableView.cellForRow(at: selectedIndexPath)?.accessoryType = .checkmark
     }
 
@@ -64,7 +64,7 @@ extension RecurrenceViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "prototypeCell")
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "prototypeCell")
         cell.textLabel?.text = tableContent[indexPath.row]
 
         return cell

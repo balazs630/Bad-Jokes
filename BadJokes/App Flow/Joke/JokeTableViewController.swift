@@ -24,7 +24,7 @@ class JokeTableViewController: UIViewController {
     // MARK: Initializers
     deinit {
         NotificationCenter.default.removeObserver(self,
-                                                  name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                                  name: UIApplication.didBecomeActiveNotification,
                                                   object: nil)
     }
 
@@ -96,7 +96,7 @@ class JokeTableViewController: UIViewController {
 private extension JokeTableViewController {
     private func configureTableView() {
         tableView.dataSource = dataSource
-        refreshControl.addTarget(self, action: #selector(refreshData), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshData), for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.white
         refreshControl.backgroundColor = Theme.Color.lightBlue
 
@@ -106,7 +106,7 @@ private extension JokeTableViewController {
     private func setObserverForUIApplicationDidBecomeActive() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(applicationDidBecomeActive),
-                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               name: UIApplication.didBecomeActiveNotification,
                                                object: nil)
     }
 
@@ -133,7 +133,7 @@ private extension JokeTableViewController {
     private func displayViewInFrontOfTableView(frontview view: UIView) {
         view.frame = self.view.bounds
         tableView.addSubview(view)
-        tableView.bringSubview(toFront: view)
+        tableView.bringSubviewToFront(view)
     }
 }
 

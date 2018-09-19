@@ -40,7 +40,7 @@ class SettingsViewController: UITableViewController {
     // MARK: Initializers
     deinit {
         NotificationCenter.default.removeObserver(self,
-                                                  name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                                  name: UIApplication.didBecomeActiveNotification,
                                                   object: nil)
     }
 
@@ -98,7 +98,7 @@ extension SettingsViewController {
     private func setObserverForUIApplicationDidBecomeActive() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkAppNotificationEnabledStatus),
-                                               name: NSNotification.Name.UIApplicationDidBecomeActive,
+                                               name: UIApplication.didBecomeActiveNotification,
                                                object: nil)
     }
 
@@ -248,7 +248,7 @@ extension SettingsViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == notificationSettingsIndexPath {
-            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!)
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         }
     }
 }

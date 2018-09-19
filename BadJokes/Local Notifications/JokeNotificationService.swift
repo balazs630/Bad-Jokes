@@ -72,7 +72,7 @@ extension JokeNotificationService {
         let type = jokeNotificationGenerator.generateAvailableJokeType(from: jokeTypes)
         let joke = generateRandomJoke(with: type)
         content.body = joke.jokeText.formatLineBreaks()
-        content.sound = UNNotificationSound.default()
+        content.sound = UNNotificationSound.default
 
         var userInfo = [String: Int]()
         userInfo["jokeId"] = joke.jokeId

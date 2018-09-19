@@ -41,9 +41,9 @@ extension JokeDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView,
-                   commit editingStyle: UITableViewCellEditingStyle,
+                   commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
             DBService.shared.removeDeliveredJokeWith(jokeId: jokes[indexPath.row].jokeId)
             jokes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)

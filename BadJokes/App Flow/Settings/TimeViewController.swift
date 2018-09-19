@@ -53,7 +53,7 @@ class TimeViewController: UITableViewController {
             timePicker.isHidden = true
         }
 
-        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
+        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: UITableView.ScrollPosition.none)
         tableView.cellForRow(at: selectedIndexPath)?.accessoryType = .checkmark
     }
 
@@ -104,7 +104,7 @@ extension TimeViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "prototypeCell")
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "prototypeCell")
         cell.textLabel?.text = tableContent[indexPath.row]
         cell.detailTextLabel?.text = tableDetailContent[indexPath.row]
 
