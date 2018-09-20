@@ -46,7 +46,6 @@
 		ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */; };
 		ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */; };
 		ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */; };
-		ACF0EB9D209A7DB300467675 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9C209A7DB300467675 /* ArrayExtensions.swift */; };
 		ACF0EB9F209A7DC700467675 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9E209A7DC700467675 /* IntExtensions.swift */; };
 		ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */; };
 		ACF0EBA3209A7DF300467675 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA2209A7DF300467675 /* DateExtensions.swift */; };
@@ -96,7 +95,6 @@
 		ACEEA96C1F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACEEA96E1F1E5FA600BCF905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
-		ACF0EB9C209A7DB300467675 /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		ACF0EB9E209A7DC700467675 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
 		ACF0EBA2209A7DF300467675 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
@@ -248,7 +246,6 @@
 			children = (
 				AC100EAB1F548A430069C0DE /* StringExtensions.swift */,
 				ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */,
-				ACF0EB9C209A7DB300467675 /* ArrayExtensions.swift */,
 				ACF0EB9E209A7DC700467675 /* IntExtensions.swift */,
 				ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */,
 				ACF0EBA2209A7DF300467675 /* DateExtensions.swift */,
@@ -484,7 +481,6 @@
 				AC128336204B5F1600FCC19E /* TimePart.swift in Sources */,
 				ACBDC24A20EAD26300CDB54F /* UIColorExtensions.swift in Sources */,
 				AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */,
-				ACF0EB9D209A7DB300467675 /* ArrayExtensions.swift in Sources */,
 				AC0AF9BF20E1769C00A52478 /* DBModel.swift in Sources */,
 				ACF0EBA5209A7E0800467675 /* DateComponentExtensions.swift in Sources */,
 				AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */,

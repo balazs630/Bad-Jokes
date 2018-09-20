@@ -81,11 +81,11 @@ class JokeNotificationGenerator {
 
     func generateAvailableJokeType(from types: [String]) -> String {
         // Get a joke type and check if the type has unused joke(s)
-        var jokeType = types.randomItem()!
+        var jokeType = types.randomElement()!
         var counter = 0
         while true {
             if DBService.shared.isAllJokeUsedWith(type: jokeType) {
-                jokeType = types.randomItem()!
+                jokeType = types.randomElement()!
                 counter += 1
             } else {
                 break

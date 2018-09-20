@@ -36,7 +36,7 @@ class DateUtil {
         let startTimeStamp = UInt32(lower.timeIntervalSince1970)
         let endTimeStamp = UInt32(upper.timeIntervalSince1970)
 
-        let randomTimeStamp = arc4random_uniform(endTimeStamp - startTimeStamp) + startTimeStamp
+        let randomTimeStamp = UInt32.random(in: startTimeStamp...endTimeStamp)
         let randomDate = Date(timeIntervalSince1970: TimeInterval(randomTimeStamp))
 
         let dateComponents = calendar.dateComponents([.year, .month, .day], from: randomDate)

@@ -32,6 +32,6 @@ class JokeReaderViewController: UIViewController {
         lblJoke.text = jokeText
         lblJoke.textColor = .white
 
-        lblEmoji.text = ["😃", "😝", "🤣", "😆", "😄", "😅", "😄", "😁"].randomItem()
+        lblEmoji.text = ["😃", "😝", "🤣", "😆", "😄", "😅", "😄", "😁"].randomElement()
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 extension Int {
     func randomNumberBetween(lower: Int, upper: Int) -> Int {
-        let result = Int(arc4random_uniform(UInt32(upper - lower)) + UInt32(lower))
+        let result = Int.random(in: lower...upper)
         return result
     }
 }
