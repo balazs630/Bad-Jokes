@@ -1,15 +1,15 @@
 -- Database init
 
 -- Create tables from scratch
-DROP TABLE IF EXISTS "jokes";
-CREATE TABLE "jokes" (`jokeId` INTEGER PRIMARY KEY AUTOINCREMENT,
+DROP TABLE IF EXISTS 'jokes';
+CREATE TABLE 'jokes' (`jokeId` INTEGER PRIMARY KEY AUTOINCREMENT,
                       `isUsed` INTEGER NOT NULL,
                       `deliveryTime` INTEGER,
                       `type` TEXT NOT NULL,
                       `jokeText` TEXT NOT NULL);
 
-DROP TABLE IF EXISTS "schedules";
-CREATE TABLE "schedules" (`jokeId` INTEGER,
+DROP TABLE IF EXISTS 'schedules';
+CREATE TABLE 'schedules' (`jokeId` INTEGER,
                           `time` INTEGER,
                           FOREIGN KEY(`jokeId`) REFERENCES `jokes`(`jokeId`) );
 
