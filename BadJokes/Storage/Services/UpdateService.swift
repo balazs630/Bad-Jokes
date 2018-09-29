@@ -34,25 +34,15 @@ class UpdateService {
     }
 
     class func runApplicationUpdateStatements() {
-        let defaults = UserDefaults.standard
         let lastVersion = UpdateService.getLastAppVersion()
 
         if "1.2".isGreater(than: lastVersion) {
-            // UserDefaults key name change
-            let oldKey = "sldIT"
-            let oldValue = defaults.double(forKey: oldKey)
-
-            defaults.set(oldValue, forKey: UserDefaults.Key.Sld.geek)
-            defaults.removeObject(forKey: oldKey)
-            defaults.synchronize()
+            renameUserDefaultsKey(from: "sldIT", to: "sldGeek")
         }
 
         if "1.3".isGreater(than: lastVersion) {
-            // Re-generate joke schedules
-            if !defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) {
-                let jokeNotificationService = JokeNotificationService()
-                jokeNotificationService.setNewRepeatingNotifications()
-            }
+            renameUserDefaultsKey(from: "sldMoriczka", to: "sldMoricka")
+            regenerateJokeSchedules()
         }
     }
 }
@@ -109,5 +99,23 @@ extension UpdateService {
         }
 
         return lastVersion
+    }
+
+    class func renameUserDefaultsKey(from oldKey: String, to newKey: String) {
+        let defaults = UserDefaults.standard
+        let oldValue = defaults.double(forKey: oldKey)
+
+        defaults.set(oldValue, forKey: newKey)
+        defaults.removeObject(forKey: oldKey)
+        defaults.synchronize()
+    }
+
+    class func regenerateJokeSchedules() {
+        let defaults = UserDefaults.standard
+
+        if !defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) {
+            let jokeNotificationService = JokeNotificationService()
+            jokeNotificationService.setNewRepeatingNotifications()
+        }
     }
 }

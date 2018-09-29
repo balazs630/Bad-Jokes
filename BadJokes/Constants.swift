@@ -101,7 +101,7 @@ extension UserDefaults {
             static let anti = "sldAnti"
             static let tiring = "sldTiring"
             static let jean = "sldJean"
-            static let moriczka = "sldMoriczka"
+            static let moricka = "sldMoricka"
             static let cop = "sldCop"
             static let blonde = "sldBlonde"
         }
@@ -119,7 +119,7 @@ struct Constant {
             4: UserDefaults.Key.Sld.anti,
             5: UserDefaults.Key.Sld.tiring,
             6: UserDefaults.Key.Sld.jean,
-            7: UserDefaults.Key.Sld.moriczka,
+            7: UserDefaults.Key.Sld.moricka,
             8: UserDefaults.Key.Sld.cop,
             9: UserDefaults.Key.Sld.blonde
         ]
@@ -133,7 +133,7 @@ struct Constant {
             UserDefaults.Key.Sld.anti: "anti",
             UserDefaults.Key.Sld.tiring: "tiring",
             UserDefaults.Key.Sld.jean: "jean",
-            UserDefaults.Key.Sld.moriczka: "moriczka",
+            UserDefaults.Key.Sld.moricka: "moricka",
             UserDefaults.Key.Sld.cop: "cop",
             UserDefaults.Key.Sld.blonde: "blonde"
         ]

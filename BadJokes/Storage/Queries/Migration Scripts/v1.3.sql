@@ -1,5 +1,8 @@
 -- Database changes for app version: 1.3
 
+-- Rename a joke type
+UPDATE jokes SET type='moricka' WHERE type='móricka';
+
 -- Fix typos in joke texts
 UPDATE jokes SET jokeText='- A sivatagban él és látszólag semmi dolga nincs, mi az?\n- ???\n- Ücsörgőkígyó.' WHERE jokeText='- A sivatagban él és látszólag semm dolga nincs, mi az?\n- ???\n- Ücsörgőkígyó.';
 UPDATE jokes SET jokeText='- Rendőr a másiknak:\n- Ha kitalálod hány fánkot vettem, tiéd lehet mind a kettő!' WHERE jokeText='- Rendőr a másiknak:\n- HA kitalálod hány fánkot vettem, tiéd lehet mind a kettő!';
@@ -7,6 +10,10 @@ UPDATE jokes SET jokeText='- Mit csinál az űrhajós ha megszomjazik?\n- ???\n-
 UPDATE jokes SET jokeText='- Mi a közös a nőben és a gyufában?\n- ???\n- Ha benedvesedik, akkor baszhatod!' WHERE jokeText='- Mi a közös a nőben és a gyufában?\n- ???\n-  Ha benedvesedik, akkor baszhatod!';
 UPDATE jokes SET jokeText='- Hogy hívják a számítógépet használó szerzetest?\n- ???\n- Felhasználó barát.' WHERE jokeText='- Hogy hívják az számítógépet használó szerzetest?\n- ???\n- Felhasználó barát.';
 UPDATE jokes SET jokeText='- Jean, mi ez a dübörgés a szekrényben?\n- ???\n- Csak a ruhák mennek ki a divatból uram!' WHERE jokeText='- Jean, mi ez a dubörgés a szekrényben?\n- ???\n- Csak a ruhák mennek ki a divatból uram!';
+UPDATE jokes SET jokeText='- Móricka, mondj egy téli zöldséget!\n- Síparadicsom!' WHERE jokeText='- Móriczka, mondj egy téli zöldséget!\n- Síparadicsom!';
+UPDATE jokes SET jokeText='- Móricka, mit eszik az orángután?\n- ???\n- Még sosem ettem orangot, és tessék inkább tegezni Tanárnő!' WHERE jokeText='- Móriczka, mit eszik az orángután?\n- ???\n- Még sosem ettem orangot, és tessék inkább tegezni Tanárnő!';
+UPDATE jokes SET jokeText='- Móricka, ilyen piszkosan nem mehetsz az olimpiára!\n- De anyu, ez csak díszkosz.' WHERE jokeText='- Móriczka, ilyen piszkosan nem mehetsz az olimpiára!\n- De anyu, ez csak díszkosz.';
+UPDATE jokes SET jokeText='- Miért nem tanult meg Móricka vízisízni?\n- ???\n- Mert nem talált lejtős tavat.' WHERE jokeText='- Miért nem tanult meg Móriczka vízisízni?\n- ???\n- Mert nem talált lejtős tavat.';
 
 -- Add more jokes to the collection
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'cop','- Miért fényesíti ki a rendőr a sakkfigurát?\n- ???\n- Nehogy matt legyen.');
@@ -67,11 +74,11 @@ INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'cop','A
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'cop','- Miért vágja a rendőr felesége a küszöbön a fát?\n- ???\n- Mert a tuskó szolgálatba ment.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'cop','Két rendőr beszélget:\n- Mit eszel?\n- Szendvicset.\n- Mivel?\n- Mivel éhes vagyok.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'tiring','- Miért gyűlölik a politikusok a Trabantot?\n- ???\n- Mert kormányváltós.');
-INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moriczka','Tanárnő a gyerekhez:\n- Móricka, van házid?\n- Van. Töltsek?');
-INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moriczka','- Hány órát alszol egy nap Móricka? - kérdezi az iskolaorvos.\n- Két-három órát.\n- Jajj, de hát ez nagyon kevés!\n- Mind az öt órán nem merek aludni.');
-INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moriczka','Móricka hatalmas c betűket rajzol kishugára, mikor bejön az anyukája.\n- Hát te mit csinálsz Móricka a kishugoddal?\n- Én semmit csak becézem!');
-INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moriczka','A tanárnő kérdezi a diákokat:\n- Csabi. Te mért szereted Szandit?\n- Mert olyan szép!\n- Pistike. Te mért szereted Szandit?\n- Mert annyira jól énekel!\n- És te Móricka miért szereted Szandit?\n- Mert nyáron nem izzad benne a lábam!');
-INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moriczka','Móricka elmegy a zöldségeshez:\n- Kérnék pár szilvát.\n- Na jó, de hányat.\n- Igen? Akkor inkább nem kérek.');
+INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moricka','Tanárnő a gyerekhez:\n- Móricka, van házid?\n- Van. Töltsek?');
+INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moricka','- Hány órát alszol egy nap Móricka? - kérdezi az iskolaorvos.\n- Két-három órát.\n- Jajj, de hát ez nagyon kevés!\n- Mind az öt órán nem merek aludni.');
+INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moricka','Móricka hatalmas c betűket rajzol kishugára, mikor bejön az anyukája.\n- Hát te mit csinálsz Móricka a kishugoddal?\n- Én semmit csak becézem!');
+INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moricka','A tanárnő kérdezi a diákokat:\n- Csabi. Te mért szereted Szandit?\n- Mert olyan szép!\n- Pistike. Te mért szereted Szandit?\n- Mert annyira jól énekel!\n- És te Móricka miért szereted Szandit?\n- Mert nyáron nem izzad benne a lábam!');
+INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moricka','Móricka elmegy a zöldségeshez:\n- Kérnék pár szilvát.\n- Na jó, de hányat.\n- Igen? Akkor inkább nem kérek.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'rough','- Mi a sebész kedvenc étele?\n- ???\n- Sebesült.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'tiring','- Tudtad, hogy Indonéziában a sok földrengés hatására két új áruház is megnyitott?\n- ???- A Richter Skála meg az Epi Centrum.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'rough','- Képzeld, tegnap 20 percig ültem egy villamosszékben.\n- Huhh, és hogy maradtál életben?\n- Leszálltam a végállomáson.');
@@ -120,10 +127,10 @@ INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'jean','
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'jean','- Jean, mit tárcsáz a telefonon?\n- Semmit uram, csak a figyelmét akarom felhívni.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'jean','- Jean, ma vendégek jönnek. Vágjunk jó képet hozzájuk.\n- A falon lévő Picasso jó lesz, uram?');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'jean','- Jean, kóstolja meg ezt a konyakot! Mit talál benne furcsának?\n- Azt, hogy megkínált vele uram!');
-INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moriczka','- Móricka, sorolj fel néhány állatot! - mondja a tanárnő az iskolában.\n- Kutyuska, tehénke, disznóka.\n- Jó, de nem kell mindig utána mondani a kicsinyítőképzőt!\n- Macs, kecs, csir, puly, szar.');
-INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moriczka','Móricka kérdezi a tanárnőtől:\n- Tanárnő, hogyan esik a hó visszafelé?\n- Sehogy, miért kérdezel ilyen hülyeségeket?\n- Mert anya azt mondta, hogy vigyek magammal kabátot, mert lehet, hogy visszafelé esni fog a hó!');
-INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moriczka','A fizika tanár felelteti Mórickát:\n- Na, Móricka, légyszíves mutasd be nekem az ampermérőt!\nMire Móricka:\n- Tanár úr, bemutatom az ampermérőt, ampermérő-tanár úr... Kérem ismerjék meg egymást.');
-INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moriczka','Mórickát a suliról faggatja a szomszéd néni:\n- És melyik a kedvenc tárgyad az iskolában?\n- A csengő.');
+INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moricka','- Móricka, sorolj fel néhány állatot! - mondja a tanárnő az iskolában.\n- Kutyuska, tehénke, disznóka.\n- Jó, de nem kell mindig utána mondani a kicsinyítőképzőt!\n- Macs, kecs, csir, puly, szar.');
+INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moricka','Móricka kérdezi a tanárnőtől:\n- Tanárnő, hogyan esik a hó visszafelé?\n- Sehogy, miért kérdezel ilyen hülyeségeket?\n- Mert anya azt mondta, hogy vigyek magammal kabátot, mert lehet, hogy visszafelé esni fog a hó!');
+INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moricka','A fizika tanár felelteti Mórickát:\n- Na, Móricka, légyszíves mutasd be nekem az ampermérőt!\nMire Móricka:\n- Tanár úr, bemutatom az ampermérőt, ampermérő-tanár úr... Kérem ismerjék meg egymást.');
+INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'moricka','Mórickát a suliról faggatja a szomszéd néni:\n- És melyik a kedvenc tárgyad az iskolában?\n- A csengő.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'tiring','- Mit mond az egyetemista november elején?\n- ???\n- De jó! Karácsonyig már csak kettőt alszunk!');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'tiring','A férj megy haza, és a feleségét egy idegen férfival találja!\nA férj mérgében ráüvölt:\n- Tudtam!\nMire a feleség:\n- Ő viszont még mindig tud!');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'tiring','- Te, már megint nem hagy minket sörözni a feleséged, miért hivogat folyton telefonon?\n- Tudod, a nő olyan mint az olimpiai érem:\nRengeteget küzdesz érte, aztán egy életen át lóg a nyakadon...');

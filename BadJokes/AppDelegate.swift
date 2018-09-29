@@ -46,7 +46,7 @@ extension AppDelegate {
                 UserDefaults.Key.Sld.anti: 6,
                 UserDefaults.Key.Sld.tiring: 10,
                 UserDefaults.Key.Sld.jean: 2,
-                UserDefaults.Key.Sld.moriczka: 6,
+                UserDefaults.Key.Sld.moricka: 6,
                 UserDefaults.Key.Sld.cop: 4,
                 UserDefaults.Key.Sld.blonde: 2
             ]
