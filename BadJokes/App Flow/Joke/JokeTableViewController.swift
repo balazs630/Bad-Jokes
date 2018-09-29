@@ -61,10 +61,9 @@ class JokeTableViewController: UIViewController {
     }
 
     private func refreshNotificationSchedules() {
-        let generateNewJokesThreshold = 32
         let pendingSchedulesCount = DBService.shared.schedulesCount()
 
-        if pendingSchedulesCount <= generateNewJokesThreshold && pendingSchedulesCount != 0 {
+        if pendingSchedulesCount <= Constant.generateNewJokesThreshold && pendingSchedulesCount != 0 {
             jokeNotificationService.setNewRepeatingNotifications()
         }
     }

@@ -110,6 +110,7 @@ extension UserDefaults {
 
 struct Constant {
     static let shortVersionString = "CFBundleShortVersionString"
+    static let generateNewJokesThreshold = 32
 
     static var sliders: [Int: String] {
         return [
