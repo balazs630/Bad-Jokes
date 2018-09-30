@@ -45,6 +45,34 @@ extension DBService {
         return resultSet
     }
 
+    func isAllJokeUnused() -> Bool {
+        var count = 0
+
+        if isDatabaseOpen() {
+            let query =
+            """
+            SELECT count() as count
+            FROM \(Table.jokes)
+            WHERE \(Table.Jokes.isUsed) IS NOT NULL
+            """
+
+            do {
+                let results = try database.executeQuery(query, values: nil)
+
+                while results.next() {
+                    count = Int(results.int(forColumn: "count"))
+                }
+
+            } catch {
+                debugPrint(error.localizedDescription)
+            }
+
+            database.close()
+        }
+
+        return count == 0
+    }
+
     func getRandomJokeWith(type: String) -> Joke? {
         var randomJoke: Joke?
 
