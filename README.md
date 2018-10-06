@@ -15,7 +15,7 @@ Instead: All you can do in this app is set notifications for when you want to ge
 ___
 **Done:**
 
-- [x] Over 150 jokes in the collection
+- [x] Over 300 jokes in the collection
 - [x] Jokes are stored in a local SQLite database
 - [x] Settings screen with detailed preferences regarding the joke notifications
 - [x] Display a warning icon if the notifications are turned off for the app
