@@ -46,7 +46,6 @@
 		ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */; };
 		ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */; };
 		ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */; };
-		ACF0EB9F209A7DC700467675 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9E209A7DC700467675 /* IntExtensions.swift */; };
 		ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */; };
 		ACF0EBA3209A7DF300467675 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA2209A7DF300467675 /* DateExtensions.swift */; };
 		ACF0EBA5209A7E0800467675 /* DateComponentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */; };
@@ -95,7 +94,6 @@
 		ACEEA96C1F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACEEA96E1F1E5FA600BCF905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
-		ACF0EB9E209A7DC700467675 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
 		ACF0EBA2209A7DF300467675 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponentExtensions.swift; sourceTree = "<group>"; };
@@ -246,7 +244,6 @@
 			children = (
 				AC100EAB1F548A430069C0DE /* StringExtensions.swift */,
 				ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */,
-				ACF0EB9E209A7DC700467675 /* IntExtensions.swift */,
 				ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */,
 				ACF0EBA2209A7DF300467675 /* DateExtensions.swift */,
 				ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */,
@@ -498,7 +495,6 @@
 				AC976E872049B41C00B9C611 /* JokesTableQueries.swift in Sources */,
 				ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */,
 				ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */,
-				ACF0EB9F209A7DC700467675 /* IntExtensions.swift in Sources */,
 				ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */,
 				AC128334204B5D3F00FCC19E /* DatePart.swift in Sources */,
 				ACACF6E91F51C93E00F501B1 /* DBService.swift in Sources */,

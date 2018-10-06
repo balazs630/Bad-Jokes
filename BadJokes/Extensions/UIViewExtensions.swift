@@ -12,7 +12,8 @@ extension UIView {
     class func loadFromNib(named name: String, bundle: Bundle? = nil) -> UIView {
         // swiftlint:disable force_cast
         return UINib(nibName: name, bundle: bundle)
-            .instantiate(withOwner: nil, options: nil).first as! UIView
+            .instantiate(withOwner: nil, options: nil)
+            .first as! UIView
     }
 
 }

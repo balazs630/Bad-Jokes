@@ -45,18 +45,18 @@ class DateUtil {
 
     private func randomTimeFromSettings() -> Date.TimePart {
         var hours = Int()
-        var minutes = Int().randomNumberBetween(lower: 0, upper: 59)
+        var minutes = Int.random(in: 0...59)
 
         if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
             switch timeSetting {
             case Time.random:
-                hours = Int().randomNumberBetween(lower: Time.Hour.morningStart, upper: Time.Hour.eveningEnd)
+                hours = Int.random(in: Time.Hour.morningStart...Time.Hour.eveningEnd)
             case Time.morning:
-                hours = Int().randomNumberBetween(lower: Time.Hour.morningStart, upper: Time.Hour.morningEnd)
+                hours = Int.random(in: Time.Hour.morningStart...Time.Hour.morningEnd)
             case Time.afternoon:
-                hours = Int().randomNumberBetween(lower: Time.Hour.afternoonStart, upper: Time.Hour.afternoonEnd)
+                hours = Int.random(in: Time.Hour.afternoonStart...Time.Hour.afternoonEnd)
             case Time.evening:
-                hours = Int().randomNumberBetween(lower: Time.Hour.eveningStart, upper: Time.Hour.eveningEnd)
+                hours = Int.random(in: Time.Hour.eveningStart...Time.Hour.eveningEnd)
             case Time.atGivenTime:
                 hours = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
                 minutes = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
