@@ -28,8 +28,8 @@ class UpdateService {
 
     class func runDatabaseMigration() {
         let scripts = UpdateService.collectMigrationScripts(from: getLastAppVersion())
-        for script in scripts {
-            DBService.shared.executeMigrationScript(fileNamed: script)
+        scripts.forEach {
+            DBService.shared.executeMigrationScript(fileNamed: $0)
         }
     }
 
@@ -51,7 +51,7 @@ class UpdateService {
 extension UpdateService {
     class func collectMigrationScripts(from lastVersion: String) -> [String] {
         var scripts = [String]()
-        for script in migrationSqlScripts {
+        migrationSqlScripts.forEach { script in
             if script.key.isGreater(than: lastVersion) {
                 scripts.append(script.value)
             }

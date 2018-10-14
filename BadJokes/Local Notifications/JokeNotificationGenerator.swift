@@ -104,7 +104,7 @@ class JokeNotificationGenerator {
     func makeJokeTypeProbabilityArray() -> [String] {
         var sldProbabilities = [String]()
 
-        for slider in Constant.sliders {
+        Constant.sliders.forEach { slider in
             let sldValue = defaults.integer(forKey: Constant.sliders[slider.key]!)
 
             // Skip joke types with value 0

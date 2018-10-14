@@ -94,7 +94,7 @@ extension JokeNotificationService {
     func moveDeliveredJokesToJokeCollection() {
         let deliveredJokes = DBService.shared.getAllDeliveredSchedules()
 
-        for joke in deliveredJokes {
+        deliveredJokes.forEach { joke in
             DBService.shared.setJokeUsedAndDeliveredWith(jokeId: joke.jokeId, deliveryTime: joke.time)
             DBService.shared.deleteScheduleWith(jokeId: joke.jokeId)
         }

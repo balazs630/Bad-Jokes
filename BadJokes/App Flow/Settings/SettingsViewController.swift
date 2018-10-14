@@ -90,8 +90,8 @@ extension SettingsViewController {
         lblRecurrence.isEnabled = swGlobalState
         lblTime.isEnabled = swGlobalState
 
-        for slider in sldJokeTypeCollection {
-            slider.isEnabled = swGlobalState
+        sldJokeTypeCollection.forEach {
+            $0.isEnabled = swGlobalState
         }
     }
 
@@ -138,8 +138,8 @@ extension SettingsViewController {
 
     private func getActualPreferences() -> String {
         var sliderValues  = ""
-        for slider in sldJokeTypeCollection {
-            sliderValues.append(String(slider.value))
+        sldJokeTypeCollection.forEach {
+            sliderValues.append(String($0.value))
         }
 
         return """
@@ -170,8 +170,8 @@ extension SettingsViewController {
             }
         }
 
-        for slider in sldJokeTypeCollection {
-            slider.value = defaults.float(forKey: Constant.sliders[slider.tag]!)
+        sldJokeTypeCollection.forEach {
+            $0.value = defaults.float(forKey: Constant.sliders[$0.tag]!)
         }
     }
 
@@ -189,8 +189,8 @@ extension SettingsViewController {
         defaults.set(pckTimeMinutes, forKey: UserDefaults.Key.Pck.timeMinutes)
         defaults.synchronize()
 
-        for slider in sldJokeTypeCollection {
-            defaults.set(slider.value, forKey: Constant.sliders[slider.tag]!)
+        sldJokeTypeCollection.forEach {
+            defaults.set($0.value, forKey: Constant.sliders[$0.tag]!)
             defaults.synchronize()
         }
     }
