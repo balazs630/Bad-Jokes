@@ -35,6 +35,8 @@
 		ACBDC24A20EAD26300CDB54F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */; };
 		ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */; };
 		ACBDC24F20EC213D00CDB54F /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */; };
+		ACBF5CBE21961FC500DCE6CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */; };
+		ACBF5CC021961FF200DCE6CC /* Jokes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */; };
 		ACD7E85D20C8763F00A8F105 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85C20C8763F00A8F105 /* UpdateService.swift */; };
 		ACE689C421484F8B00754221 /* v1.1-base.sql in Resources */ = {isa = PBXBuildFile; fileRef = ACE689C321484F8B00754221 /* v1.1-base.sql */; };
 		ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE906B21F22A27200A6A082 /* SettingsViewController.swift */; };
@@ -42,9 +44,7 @@
 		ACECF0A71F60AC230072367C /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACECF0A61F60AC230072367C /* Joke.swift */; };
 		ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */; };
 		ACEEA9651F1E5FA600BCF905 /* JokeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */; };
-		ACEEA9681F1E5FA600BCF905 /* Jokes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9661F1E5FA600BCF905 /* Jokes.storyboard */; };
 		ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */; };
-		ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */; };
 		ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */; };
 		ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */; };
 		ACF0EBA3209A7DF300467675 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA2209A7DF300467675 /* DateExtensions.swift */; };
@@ -80,6 +80,8 @@
 		ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Jokes.storyboard; sourceTree = "<group>"; };
 		ACD7E85C20C8763F00A8F105 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
 		ACE689C321484F8B00754221 /* v1.1-base.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "v1.1-base.sql"; sourceTree = "<group>"; };
 		ACE906B21F22A27200A6A082 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -89,9 +91,7 @@
 		ACEEA95F1F1E5FA600BCF905 /* BadJokes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BadJokes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeTableViewController.swift; sourceTree = "<group>"; };
-		ACEEA9671F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Jokes.storyboard; sourceTree = "<group>"; };
 		ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		ACEEA96C1F1E5FA600BCF905 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACEEA96E1F1E5FA600BCF905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
@@ -142,9 +142,8 @@
 		AC05CBD920F0F0E8009A7A82 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */,
-				ACEEA9661F1E5FA600BCF905 /* Jokes.storyboard */,
 				AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */,
+				ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */,
 				AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */,
 			);
 			path = UI;
@@ -211,6 +210,7 @@
 			children = (
 				ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */,
 				ACB7C1E71FDD6106007ED514 /* Constants.swift */,
+				ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */,
 				ACF0EBAB209A7F2100467675 /* App Flow */,
 				ACF0EBAA209A7E9E00467675 /* Model */,
 				ACF0EBA7209A7E6400467675 /* Storage */,
@@ -396,7 +396,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC66A3D320E79B0600BF53E3 /* WarningTableHeaderView.xib in Resources */,
-				ACEEA96D1F1E5FA600BCF905 /* LaunchScreen.storyboard in Resources */,
 				AC674B74214401B6009F8B46 /* v1.3.sql in Resources */,
 				AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */,
 				AC29785820CC80AF00A49689 /* v1.2.sql in Resources */,
@@ -404,8 +403,9 @@
 				ACE689C421484F8B00754221 /* v1.1-base.sql in Resources */,
 				ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */,
 				ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */,
+				ACBF5CBE21961FC500DCE6CC /* LaunchScreen.storyboard in Resources */,
+				ACBF5CC021961FF200DCE6CC /* Jokes.storyboard in Resources */,
 				ACECF0A51F60A88F0072367C /* jokesDB.db in Resources */,
-				ACEEA9681F1E5FA600BCF905 /* Jokes.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,25 +503,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		ACEEA9661F1E5FA600BCF905 /* Jokes.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ACEEA9671F1E5FA600BCF905 /* Base */,
-			);
-			name = Jokes.storyboard;
-			sourceTree = "<group>";
-		};
-		ACEEA96B1F1E5FA600BCF905 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ACEEA96C1F1E5FA600BCF905 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		ACEEA96F1F1E5FA600BCF905 /* Debug */ = {
