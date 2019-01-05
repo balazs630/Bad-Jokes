@@ -34,14 +34,14 @@ class JokeNotificationService: NSObject, UNUserNotificationCenterDelegate {
 // MARK: Notification operations
 extension JokeNotificationService {
     func setNewRepeatingNotifications() {
-        guard DBService.shared.unusedJokesCount() > 0 else {
-            return
-        }
+        guard DBService.shared.unusedJokesCount() > 0 else { return }
 
         removeAllScheduledNotification()
         let notificationTimes = jokeNotificationGenerator.generateNotificationTimes()
 
         jokeTypes = jokeNotificationGenerator.makeJokeTypeProbabilityArray()
+        guard !jokeTypes.isEmpty else { return }
+
         for index in 0...notificationTimes.count - 1 {
             self.addJokeNotificationRequest(on: notificationTimes[index])
         }
