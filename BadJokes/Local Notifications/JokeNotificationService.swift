@@ -20,7 +20,7 @@ class JokeNotificationService: NSObject, UNUserNotificationCenterDelegate {
     var localTimeZoneName: String { return TimeZone.current.identifier }
     weak var delegate: JokeNotificationServiceDelegate?
     let jokeNotificationGenerator = JokeNotificationGenerator()
-    var jokeTypes = [String]()
+    var jokeTypes: [String] = []
 
     // MARK: Initializers
     override init() {
@@ -74,7 +74,7 @@ extension JokeNotificationService {
         content.body = joke.jokeText.formatLineBreaks()
         content.sound = UNNotificationSound.default
 
-        var userInfo = [String: Int]()
+        var userInfo: [String: Int] = [:]
         userInfo["jokeId"] = joke.jokeId
         content.userInfo = userInfo
 

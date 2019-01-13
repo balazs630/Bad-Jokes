@@ -15,10 +15,10 @@ class JokeNotificationGenerator {
     let defaults = UserDefaults.standard
 
     let maxLocalNotificationCount = 64
-    var jokeTimesToGenerateCount = Int()
-    var recurranceSetting = Int()
-    var isPunctualTimeSet = Bool()
-    var notificationTimes = [Date]()
+    var jokeTimesToGenerateCount = 0
+    var recurranceSetting = 0
+    var isPunctualTimeSet = false
+    var notificationTimes: [Date] = []
 
     // MARK: Notification generate functions
     func generateNotificationTimes() -> [Date] {
@@ -30,24 +30,23 @@ class JokeNotificationGenerator {
             endDate = dateUtil.incrementDateBasedOnPeriodSetting(date: startDate)
 
             if isPunctualTimeSet {
-                addGivenNotificationTime(startDate: startDate, endDate: endDate)
+                addGivenNotificationTimeBetween(startDate, endDate)
             } else {
-                addRandomNotificationTime(startDate: startDate, endDate: endDate)
+                addRandomNotificationTimeBetween(startDate, endDate)
             }
         }
 
         return notificationTimes
     }
 
-    private func addGivenNotificationTime(startDate: Date, endDate: Date) {
+    private func addGivenNotificationTimeBetween(_ startDate: Date, _ endDate: Date) {
         var recurranceIterator = recurranceSetting
         while recurranceIterator > 0 {
             if notificationTimes.count == jokeTimesToGenerateCount {
                 break
             }
 
-            let notificationTime = dateUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
-                                                                                endDate: endDate)
+            let notificationTime = dateUtil.getGeneratedNotificationTimeBetween(startDate, endDate)
             if notificationTime.isInFuture() {
                 notificationTimes.append(notificationTime)
                 recurranceIterator -= 1
@@ -57,7 +56,7 @@ class JokeNotificationGenerator {
         }
     }
 
-    private func addRandomNotificationTime(startDate: Date, endDate: Date) {
+    private func addRandomNotificationTimeBetween(_ startDate: Date, _ endDate: Date) {
         var recurranceIterator = recurranceSetting
         while recurranceIterator > 0 {
             if !dateUtil.isNotificationCanBeSetFor(date: endDate) {
@@ -66,8 +65,7 @@ class JokeNotificationGenerator {
 
             var notificationTime = Date()
             repeat {
-                notificationTime = dateUtil.getGeneratedNotificationTimeBetween(startDate: startDate,
-                                                                                endDate: endDate)
+                notificationTime = dateUtil.getGeneratedNotificationTimeBetween(startDate, endDate)
             } while notificationTime.isInPast()
 
             notificationTimes.append(notificationTime)
@@ -102,7 +100,7 @@ class JokeNotificationGenerator {
     }
 
     func makeJokeTypeProbabilityArray() -> [String] {
-        var sldProbabilities = [String]()
+        var sldProbabilities: [String] = []
 
         Constant.sliders.forEach { slider in
             let sldValue = defaults.integer(forKey: Constant.sliders[slider.key]!)
@@ -121,7 +119,7 @@ class JokeNotificationGenerator {
 
     private func getLeftOverJokeType() -> String {
         // Goes through each joke type and returns the first joke type that contains unused joke(s)
-        var type = String()
+        var type = ""
 
         for sliderType in Constant.jokeTypes.values {
             if !DBService.shared.isAllJokeUsedWith(type: sliderType) {
@@ -134,7 +132,7 @@ class JokeNotificationGenerator {
     }
 
     private func initBaseVariables() {
-        notificationTimes = [Date]()
+        notificationTimes = []
         isPunctualTimeSet = dateUtil.isPunctualTimeSet()
         recurranceSetting = dateUtil.getRecurranceNumber()
         setJokeTimesToGenerateCount()

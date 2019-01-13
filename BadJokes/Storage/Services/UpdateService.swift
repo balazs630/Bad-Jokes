@@ -50,7 +50,7 @@ class UpdateService {
 // MARK: Utility methods
 extension UpdateService {
     class func collectMigrationScripts(from lastVersion: String) -> [String] {
-        var scripts = [String]()
+        var scripts: [String] = []
         migrationSqlScripts.forEach { script in
             if script.key.isGreater(than: lastVersion) {
                 scripts.append(script.value)

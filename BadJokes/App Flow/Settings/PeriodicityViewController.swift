@@ -13,31 +13,41 @@ protocol PeriodicityViewControllerDelegate: class {
 }
 
 class PeriodicityViewController: UITableViewController {
-
     // MARK: Properties
-    let tableContent = [Periodicity.daily,
-                        Periodicity.weekly,
-                        Periodicity.monthly]
+    let tableContent = [
+        Periodicity.daily,
+        Periodicity.weekly,
+        Periodicity.monthly
+    ]
 
-    var lastSelectedOption = String()
+    var lastSelectedOption = ""
     var selectedIndexPath = IndexPath(row: 0, section: 0)
     weak var delegate: PeriodicityViewControllerDelegate?
 
     // MARK: - View lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        // Set the row index of the last selected option
-        if let index = tableContent.index(of: lastSelectedOption) {
-            selectedIndexPath.row = index
-        }
-
-        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: UITableView.ScrollPosition.none)
-        tableView.cellForRow(at: selectedIndexPath)?.accessoryType = .checkmark
+        restoreTableViewSelection()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        saveTableViewSelection()
+    }
+}
+
+// MARK: Setup view
+extension PeriodicityViewController {
+    func restoreTableViewSelection() {
+        if let index = tableContent.index(of: lastSelectedOption) {
+            selectedIndexPath.row = index
+        }
+
+        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .none)
+        tableView.cellForRow(at: selectedIndexPath)?.accessoryType = .checkmark
+    }
+
+    func saveTableViewSelection() {
         delegate?.savePeriodicityWith(selectedCellText: tableContent[selectedIndexPath.row])
     }
 }
@@ -62,7 +72,7 @@ extension PeriodicityViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "prototypeCell")
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "prototypeCell")
         cell.textLabel?.text = tableContent[indexPath.row]
 
         return cell

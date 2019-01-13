@@ -13,33 +13,44 @@ protocol RecurrenceViewControllerDelegate: class {
 }
 
 class RecurrenceViewController: UITableViewController {
-
     // MARK: Properties
-    let tableContent = [Recurrence.once,
-                        Recurrence.twice,
-                        Recurrence.threeTimes,
-                        Recurrence.fiveTimes,
-                        Recurrence.tenTimes]
+    let tableContent = [
+        Recurrence.once,
+        Recurrence.twice,
+        Recurrence.threeTimes,
+        Recurrence.fiveTimes,
+        Recurrence.tenTimes
+    ]
 
-    var lastSelectedOption = String()
+    var lastSelectedOption = ""
     var selectedIndexPath = IndexPath(row: 0, section: 0)
     weak var delegate: RecurrenceViewControllerDelegate?
 
     // MARK: - View lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        restoreTableViewSelection()
 
-        // Set the row index of the last selected option
-        if let index = tableContent.index(of: lastSelectedOption) {
-            selectedIndexPath.row = index
-        }
-
-        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: UITableView.ScrollPosition.none)
-        tableView.cellForRow(at: selectedIndexPath)?.accessoryType = .checkmark
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        saveTableViewSelection()
+    }
+}
+
+// MARK: Setup view
+extension RecurrenceViewController {
+    func restoreTableViewSelection() {
+        if let index = tableContent.index(of: lastSelectedOption) {
+            selectedIndexPath.row = index
+        }
+
+        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .none)
+        tableView.cellForRow(at: selectedIndexPath)?.accessoryType = .checkmark
+    }
+
+    func saveTableViewSelection() {
         delegate?.saveRecurrenceWith(selectedCellText: tableContent[selectedIndexPath.row])
     }
 }
@@ -64,7 +75,7 @@ extension RecurrenceViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "prototypeCell")
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "prototypeCell")
         cell.textLabel?.text = tableContent[indexPath.row]
 
         return cell

@@ -16,7 +16,7 @@ class DateUtil {
     let calendar = Calendar(identifier: .gregorian)
 
     // MARK: - Date/Time operations
-    func getGeneratedNotificationTimeBetween(startDate: Date, endDate: Date) -> Date {
+    func getGeneratedNotificationTimeBetween(_ startDate: Date, _ endDate: Date) -> Date {
         let datePart = randomDatePartBetween(lower: startDate, upper: endDate)
         let timePart = randomTimeFromSettings()
 
@@ -44,7 +44,7 @@ class DateUtil {
     }
 
     private func randomTimeFromSettings() -> Date.TimePart {
-        var hours = Int()
+        var hours = 0
         var minutes = Int.random(in: 0...59)
 
         if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time) {

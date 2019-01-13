@@ -12,7 +12,7 @@ extension DBService {
 
     // MARK: Run SQLite queries
     func getAllDeliveredSchedules() -> [Schedule] {
-        var resultSet = [Schedule]()
+        var resultSet: [Schedule] = []
 
         if isDatabaseOpen() {
             let query =

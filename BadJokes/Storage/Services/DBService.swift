@@ -34,19 +34,14 @@ class DBService {
             initDatabase()
         }
 
-        if database != nil && database.open() {
-            return true
-        }
-        return false
+        return database != nil && database.open()
     }
 
     private func initDatabase() {
         if isFirstLaunch() {
-            // Copy the db file to make a writable database in the app’s Documents directory
             copyDatabase(from: resourcesDBPath, to: documentsDBPath)
             database = FMDatabase(path: documentsDBPath)
         } else {
-            // App already installed or updated to newer version
             database = FMDatabase(path: documentsDBPath)
             UpdateService.handleAppUpdates()
         }

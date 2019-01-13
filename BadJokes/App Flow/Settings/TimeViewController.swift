@@ -14,21 +14,24 @@ protocol TimeViewControllerDelegate: class {
 }
 
 class TimeViewController: UITableViewController {
-
     // MARK: Properties
-    let tableContent = [Time.random,
-                        Time.morning,
-                        Time.afternoon,
-                        Time.evening,
-                        Time.atGivenTime]
+    let tableContent = [
+        Time.random,
+        Time.morning,
+        Time.afternoon,
+        Time.evening,
+        Time.atGivenTime
+    ]
 
-    let tableDetailContent = [Time.Detail.random,
-                              Time.Detail.morning,
-                              Time.Detail.afternoon,
-                              Time.Detail.evening,
-                              Time.Detail.atGivenTime]
+    let tableDetailContent = [
+        Time.Detail.random,
+        Time.Detail.morning,
+        Time.Detail.afternoon,
+        Time.Detail.evening,
+        Time.Detail.atGivenTime
+    ]
 
-    var lastSelectedOption = String()
+    var lastSelectedOption = ""
     var lastSelectedTime = Date()
     var selectedIndexPath = IndexPath(row: 0, section: 0)
     let givenTimeIndexPath = IndexPath(item: 4, section: 0)
@@ -40,28 +43,33 @@ class TimeViewController: UITableViewController {
     // MARK: - View lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        restoreTableViewSelection()
+    }
 
-        // Set the row index of the last selected option
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        saveTableViewSelection()
+    }
+}
+
+// MARK: Setup view
+extension TimeViewController {
+    func restoreTableViewSelection() {
         if let index = tableContent.index(of: lastSelectedOption) {
             selectedIndexPath.row = index
         }
 
         timePicker.date = lastSelectedTime
-
-        // Hide time picker if not the last choice is selected
         if selectedIndexPath != givenTimeIndexPath {
             timePicker.isHidden = true
         }
 
-        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: UITableView.ScrollPosition.none)
+        tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .none)
         tableView.cellForRow(at: selectedIndexPath)?.accessoryType = .checkmark
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
+    func saveTableViewSelection() {
         if selectedIndexPath == givenTimeIndexPath {
-            // Time picker is active
             let timeComponents = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
             if let hourComponent = timeComponents.hour, let minuteComponent = timeComponents.minute {
                 delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row],
@@ -104,7 +112,7 @@ extension TimeViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "prototypeCell")
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "prototypeCell")
         cell.textLabel?.text = tableContent[indexPath.row]
         cell.detailTextLabel?.text = tableDetailContent[indexPath.row]
 

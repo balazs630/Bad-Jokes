@@ -12,7 +12,7 @@ extension DBService {
 
     // MARK: Run SQLite queries
     func getDeliveredJokes() -> [Joke] {
-        var resultSet = [Joke]()
+        var resultSet: [Joke] = []
 
         if isDatabaseOpen() {
             let query =

@@ -11,7 +11,6 @@ import UIKit
 typealias DidBecomeEmpty = () -> Void
 
 class JokeDataSource: NSObject {
-
     // MARK: Properties
     var jokes: [Joke]
     let didBecomeEmpty: DidBecomeEmpty
@@ -25,7 +24,6 @@ class JokeDataSource: NSObject {
 
 // MARK: - TableViewDataSource
 extension JokeDataSource: UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jokes.count
     }
@@ -43,7 +41,7 @@ extension JokeDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCell.EditingStyle.delete {
+        if editingStyle == .delete {
             DBService.shared.removeDeliveredJokeWith(jokeId: jokes[indexPath.row].jokeId)
             jokes.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)

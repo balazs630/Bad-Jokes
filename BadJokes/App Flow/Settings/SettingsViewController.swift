@@ -13,14 +13,13 @@ protocol SettingsViewControllerDelegate: class {
 }
 
 class SettingsViewController: UITableViewController {
-
     // MARK: Properties
-    var pckTimeHours = String()
-    var pckTimeMinutes = String()
-    var lblTimeOptionName = String()
+    var pckTimeHours = ""
+    var pckTimeMinutes = ""
+    var lblTimeOptionName = ""
 
     let defaults = UserDefaults.standard
-    var preferencesSnapshot = String()
+    var preferencesSnapshot = ""
     weak var delegate: SettingsViewControllerDelegate?
 
     let jokeNotificationService = JokeNotificationService()
