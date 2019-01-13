@@ -110,6 +110,33 @@ extension DBService {
         return count
     }
 
+    func storedJokesCount() -> Int {
+        var count = 0
+        if isDatabaseOpen() {
+            let query =
+            """
+            SELECT count() as count
+            FROM \(Table.jokes)
+            WHERE \(Table.Jokes.deliveryTime) IS NOT NULL
+            """
+
+            do {
+                let results = try database.executeQuery(query, values: nil)
+
+                while results.next() {
+                    count = Int(results.int(forColumn: "count"))
+                }
+
+            } catch {
+                debugPrint(error.localizedDescription)
+            }
+
+            database.close()
+        }
+
+        return count
+    }
+
     func hasUsedJoke() -> Bool {
         var count = 0
         if isDatabaseOpen() {

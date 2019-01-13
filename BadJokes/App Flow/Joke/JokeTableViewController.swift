@@ -9,7 +9,6 @@
 import UIKit
 
 class JokeTableViewController: UIViewController {
-
     // MARK: Properties
     var dataSource: JokeDataSource!
     let jokeNotificationService = JokeNotificationService()
@@ -40,11 +39,15 @@ class JokeTableViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         refreshData()
     }
+}
 
-    // MARK: - Setup
+// MARK: - Utility
+extension JokeTableViewController {
     @objc private func applicationDidBecomeActive() {
+        StoreReviewService.incrementAppRuns()
         refreshData()
         refreshNotificationSchedules()
+        requestStoreReview()
     }
 
     @objc private func refreshData() {
@@ -69,26 +72,15 @@ class JokeTableViewController: UIViewController {
         }
     }
 
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let segueIdentifier = segue.identifier {
-            switch segueIdentifier {
-            case SegueIdentifier.showSettings:
-                guard let destVC = segue.destination as? SettingsViewController else { return }
-                destVC.delegate = self
+    private func requestStoreReview() {
+        let triggers = [
+            StoreReviewTrigger(name: UserDefaults.Key.StoreReviewTrigger.newUser,
+                               rules: [.launchCount(3), .storedJokeCount(10)]),
+            StoreReviewTrigger(name: UserDefaults.Key.StoreReviewTrigger.oldUser,
+                               rules: [.storedJokeCount(50)])
+        ]
 
-            case SegueIdentifier.showJoke:
-                guard let destVC = segue.destination as? JokeReaderViewController else { return }
-                guard let sender = sender as? UITableViewCell else { return }
-                guard let selectedIndex = tableView.indexPath(for: sender) else { return }
-
-                guard let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeTableViewCell else { return }
-                destVC.jokeText = jokeCell.jokeLabel.text!
-
-            default:
-                debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
-            }
-        }
+        triggers.forEach { trigger in StoreReviewService.requestTimedReview(for: trigger)}
     }
 }
 
@@ -134,6 +126,30 @@ private extension JokeTableViewController {
         view.frame = self.view.bounds
         tableView.addSubview(view)
         tableView.bringSubviewToFront(view)
+    }
+}
+
+// MARK: - Navigation
+extension JokeTableViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let segueIdentifier = segue.identifier {
+            switch segueIdentifier {
+            case SegueIdentifier.showSettings:
+                guard let destVC = segue.destination as? SettingsViewController else { return }
+                destVC.delegate = self
+
+            case SegueIdentifier.showJoke:
+                guard let destVC = segue.destination as? JokeReaderViewController else { return }
+                guard let sender = sender as? UITableViewCell else { return }
+                guard let selectedIndex = tableView.indexPath(for: sender) else { return }
+
+                guard let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeTableViewCell else { return }
+                destVC.jokeText = jokeCell.jokeLabel.text!
+
+            default:
+                debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
+            }
+        }
     }
 }
 

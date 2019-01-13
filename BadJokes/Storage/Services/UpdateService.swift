@@ -44,6 +44,13 @@ class UpdateService {
             renameUserDefaultsKey(from: "sldMoriczka", to: "sldMoricka")
             regenerateJokeSchedules()
         }
+
+        if "1.3.1".isGreater(than: lastVersion) {
+            let isActive = true
+            UserDefaults.standard.set(isActive, forKey: UserDefaults.Key.StoreReviewTrigger.newUser)
+            UserDefaults.standard.set(isActive, forKey: UserDefaults.Key.StoreReviewTrigger.oldUser)
+            UserDefaults.standard.set(isActive, forKey: UserDefaults.Key.StoreReviewTrigger.copyJoke)
+        }
     }
 }
 

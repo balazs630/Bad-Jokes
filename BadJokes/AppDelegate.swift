@@ -29,6 +29,10 @@ extension AppDelegate {
                 UserDefaults.Key.isAppAlreadyLaunchedOnce: true,
                 UserDefaults.Key.appVersion: UpdateService.getCurrentAppVersion(),
 
+                UserDefaults.Key.StoreReviewTrigger.newUser: true,
+                UserDefaults.Key.StoreReviewTrigger.oldUser: true,
+                UserDefaults.Key.StoreReviewTrigger.copyJoke: true,
+
                 UserDefaults.Key.Sw.globalOff: false,
 
                 UserDefaults.Key.Lbl.periodicity: "Napi",

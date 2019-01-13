@@ -45,5 +45,11 @@ class CopyableLabel: UILabel {
     override func copy(_ sender: Any?) {
         UIPasteboard.general.string = self.text
         UIMenuController.shared.setMenuVisible(false, animated: true)
+        requestStoreReview()
+    }
+
+    private func requestStoreReview() {
+        let trigger = StoreReviewTrigger(name: UserDefaults.Key.StoreReviewTrigger.copyJoke, rules: [])
+        StoreReviewService.requestTimedReview(for: trigger)
     }
 }

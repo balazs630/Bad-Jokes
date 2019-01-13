@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Foundation
 
 struct Theme {
     struct Color {
@@ -77,6 +76,7 @@ extension UserDefaults {
     struct Key {
         static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
         static let appVersion = "appVersion"
+        static let numberOfAppRuns = "numberOfAppRuns"
 
         // swiftlint:disable type_name
         struct Sw {
@@ -104,6 +104,12 @@ extension UserDefaults {
             static let moricka = "sldMoricka"
             static let cop = "sldCop"
             static let blonde = "sldBlonde"
+        }
+
+        struct StoreReviewTrigger {
+            static let copyJoke = "copyJokeTextTrigger"
+            static let newUser = "newUserTrigger"
+            static let oldUser = "oldUserTrigger"
         }
     }
 }

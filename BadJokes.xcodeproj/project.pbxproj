@@ -18,12 +18,15 @@
 		AC128336204B5F1600FCC19E /* TimePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC128335204B5F1600FCC19E /* TimePart.swift */; };
 		AC1BAF102059D6740047E376 /* RecurrenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */; };
 		AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */; };
+		AC237A0421EB4BC8004EEC2C /* StoreReviewTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC237A0321EB4BC8004EEC2C /* StoreReviewTrigger.swift */; };
+		AC237A0621EB4E25004EEC2C /* StoreReviewRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC237A0521EB4E25004EEC2C /* StoreReviewRule.swift */; };
 		AC23A4B82068505F008BED6C /* WaitingForFirstNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */; };
 		AC2579B120461AAA00C1D904 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B020461AAA00C1D904 /* DateUtil.swift */; };
 		AC29785820CC80AF00A49689 /* v1.2.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC29785720CC80AF00A49689 /* v1.2.sql */; };
 		AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */; };
 		AC66A3D320E79B0600BF53E3 /* WarningTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */; };
 		AC674B74214401B6009F8B46 /* v1.3.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC674B73214401B6009F8B46 /* v1.3.sql */; };
+		AC72CAA321E7E659005EBDED /* StoreReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC72CAA221E7E659005EBDED /* StoreReviewService.swift */; };
 		AC7A4E341F51F74700E8F438 /* JokeNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationService.swift */; };
 		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
 		AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */; };
@@ -63,12 +66,15 @@
 		AC128335204B5F1600FCC19E /* TimePart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePart.swift; sourceTree = "<group>"; };
 		AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurrenceViewController.swift; sourceTree = "<group>"; };
 		AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeNotificationGenerator.swift; sourceTree = "<group>"; };
+		AC237A0321EB4BC8004EEC2C /* StoreReviewTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewTrigger.swift; sourceTree = "<group>"; };
+		AC237A0521EB4E25004EEC2C /* StoreReviewRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewRule.swift; sourceTree = "<group>"; };
 		AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitingForFirstNotificationView.xib; sourceTree = "<group>"; };
 		AC2579B020461AAA00C1D904 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		AC29785720CC80AF00A49689 /* v1.2.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.2.sql; sourceTree = "<group>"; };
 		AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoNotificationScheduledView.xib; sourceTree = "<group>"; };
 		AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WarningTableHeaderView.xib; sourceTree = "<group>"; };
 		AC674B73214401B6009F8B46 /* v1.3.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.3.sql; sourceTree = "<group>"; };
+		AC72CAA221E7E659005EBDED /* StoreReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewService.swift; sourceTree = "<group>"; };
 		AC7A4E331F51F74700E8F438 /* JokeNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeNotificationService.swift; sourceTree = "<group>"; };
 		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
 		AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +174,16 @@
 			path = "Migration Scripts";
 			sourceTree = "<group>";
 		};
+		AC72CAA121E7E639005EBDED /* Store Ratings */ = {
+			isa = PBXGroup;
+			children = (
+				AC72CAA221E7E659005EBDED /* StoreReviewService.swift */,
+				AC237A0321EB4BC8004EEC2C /* StoreReviewTrigger.swift */,
+				AC237A0521EB4E25004EEC2C /* StoreReviewRule.swift */,
+			);
+			path = "Store Ratings";
+			sourceTree = "<group>";
+		};
 		ACBDC24D20EC050400CDB54F /* Custom Types */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +231,7 @@
 				ACF0EBAA209A7E9E00467675 /* Model */,
 				ACF0EBA7209A7E6400467675 /* Storage */,
 				ACF0EBA6209A7E1E00467675 /* Local Notifications */,
+				AC72CAA121E7E639005EBDED /* Store Ratings */,
 				ACBDC24D20EC050400CDB54F /* Custom Types */,
 				ACF0EB99209A7D6600467675 /* Extensions */,
 				ACF0EB98209A7D1600467675 /* Resources */,
@@ -477,6 +494,7 @@
 				ACF0EBA3209A7DF300467675 /* DateExtensions.swift in Sources */,
 				AC128336204B5F1600FCC19E /* TimePart.swift in Sources */,
 				ACBDC24A20EAD26300CDB54F /* UIColorExtensions.swift in Sources */,
+				AC237A0621EB4E25004EEC2C /* StoreReviewRule.swift in Sources */,
 				AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */,
 				AC0AF9BF20E1769C00A52478 /* DBModel.swift in Sources */,
 				ACF0EBA5209A7E0800467675 /* DateComponentExtensions.swift in Sources */,
@@ -485,6 +503,7 @@
 				AC2579B120461AAA00C1D904 /* DateUtil.swift in Sources */,
 				AC08EEE21F757BEF000E5B53 /* JokeDataSource.swift in Sources */,
 				AC08EEE01F757BCD000E5B53 /* JokeTableViewCell.swift in Sources */,
+				AC72CAA321E7E659005EBDED /* StoreReviewService.swift in Sources */,
 				ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */,
 				AC1BAF102059D6740047E376 /* RecurrenceViewController.swift in Sources */,
 				ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */,
@@ -493,6 +512,7 @@
 				AC100EAC1F548A430069C0DE /* StringExtensions.swift in Sources */,
 				AC05CBD620F0F019009A7A82 /* Schedule.swift in Sources */,
 				AC976E872049B41C00B9C611 /* JokesTableQueries.swift in Sources */,
+				AC237A0421EB4BC8004EEC2C /* StoreReviewTrigger.swift in Sources */,
 				ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */,
 				ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */,
 				ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */,
