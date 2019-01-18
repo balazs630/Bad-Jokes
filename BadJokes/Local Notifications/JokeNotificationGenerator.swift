@@ -9,16 +9,15 @@
 import Foundation
 
 class JokeNotificationGenerator {
-
     // MARK: Properties
-    let dateUtil = DateUtil()
-    let defaults = UserDefaults.standard
+    private let dateUtil = DateUtil()
+    private let defaults = UserDefaults.standard
 
-    let maxLocalNotificationCount = 64
-    var jokeTimesToGenerateCount = 0
-    var recurranceSetting = 0
-    var isPunctualTimeSet = false
-    var notificationTimes: [Date] = []
+    private let maxLocalNotificationCount = 64
+    private var jokeTimesToGenerateCount = 0
+    private var recurranceSetting = 0
+    private var isPunctualTimeSet = false
+    private var notificationTimes: [Date] = []
 
     // MARK: Notification generate functions
     func generateNotificationTimes() -> [Date] {
@@ -37,6 +36,23 @@ class JokeNotificationGenerator {
         }
 
         return notificationTimes
+    }
+
+    private func initBaseVariables() {
+        notificationTimes = []
+        isPunctualTimeSet = dateUtil.isPunctualTimeSet()
+        recurranceSetting = dateUtil.getRecurranceNumber()
+        setJokeTimesToGenerateCount()
+    }
+
+    private func setJokeTimesToGenerateCount() {
+        let unusedJokeCount = DBService.shared.unusedJokesCount()
+
+        if unusedJokeCount > maxLocalNotificationCount {
+            jokeTimesToGenerateCount = maxLocalNotificationCount
+        } else {
+            jokeTimesToGenerateCount = unusedJokeCount
+        }
     }
 
     private func addGivenNotificationTimeBetween(_ startDate: Date, _ endDate: Date) {
@@ -78,9 +94,10 @@ class JokeNotificationGenerator {
     }
 
     func generateAvailableJokeType(from types: [String]) -> String {
-        // Get a joke type and check if the type has unused joke(s)
         var jokeType = types.randomElement()!
         var counter = 0
+        let maxTrials = 20
+
         while true {
             if DBService.shared.isAllJokeUsedWith(type: jokeType) {
                 jokeType = types.randomElement()!
@@ -89,8 +106,7 @@ class JokeNotificationGenerator {
                 break
             }
 
-            // If it couldn't find a joke type from 20 tries that has unused jokes
-            if counter == 20 {
+            if counter == maxTrials {
                 jokeType = getLeftOverJokeType()
                 break
             }
@@ -103,12 +119,10 @@ class JokeNotificationGenerator {
         var sldProbabilities: [String] = []
 
         Constant.sliders.forEach { slider in
-            let sldValue = defaults.integer(forKey: Constant.sliders[slider.key]!)
+            let sliderValue = defaults.integer(forKey: Constant.sliders[slider.key]!)
 
-            // Skip joke types with value 0
-            if sldValue > 0 {
-                for _ in 1...sldValue {
-                    // Add the joke type to the array as many times as it's slider value (1-10)
+            if sliderValue > 0 {
+                (1...sliderValue).forEach { _ in
                     sldProbabilities.append(Constant.jokeTypes[slider.value]!)
                 }
             }
@@ -118,7 +132,6 @@ class JokeNotificationGenerator {
     }
 
     private func getLeftOverJokeType() -> String {
-        // Goes through each joke type and returns the first joke type that contains unused joke(s)
         var type = ""
 
         for sliderType in Constant.jokeTypes.values {
@@ -129,22 +142,5 @@ class JokeNotificationGenerator {
         }
 
         return type
-    }
-
-    private func initBaseVariables() {
-        notificationTimes = []
-        isPunctualTimeSet = dateUtil.isPunctualTimeSet()
-        recurranceSetting = dateUtil.getRecurranceNumber()
-        setJokeTimesToGenerateCount()
-    }
-
-    private func setJokeTimesToGenerateCount() {
-        let unusedJokeCount = DBService.shared.unusedJokesCount()
-
-        if unusedJokeCount > maxLocalNotificationCount {
-            jokeTimesToGenerateCount = maxLocalNotificationCount
-        } else {
-            jokeTimesToGenerateCount = unusedJokeCount
-        }
     }
 }

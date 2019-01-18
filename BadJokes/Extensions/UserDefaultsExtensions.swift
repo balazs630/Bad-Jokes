@@ -10,8 +10,7 @@ import Foundation
 
 extension UserDefaults {
     func printAllUserDefaulsKeysAndValues() {
-        // For debug purpose
-        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
+        UserDefaults.standard.dictionaryRepresentation().forEach { key, value in
             debugPrint("\(key) = \(value) \n")
         }
         debugPrint("=========================================================")

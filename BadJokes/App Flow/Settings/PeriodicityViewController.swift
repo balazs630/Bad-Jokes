@@ -14,7 +14,7 @@ protocol PeriodicityViewControllerDelegate: class {
 
 class PeriodicityViewController: UITableViewController {
     // MARK: Properties
-    let tableContent = [
+    private let tableContent = [
         Periodicity.daily,
         Periodicity.weekly,
         Periodicity.monthly
@@ -38,7 +38,7 @@ class PeriodicityViewController: UITableViewController {
 
 // MARK: Setup view
 extension PeriodicityViewController {
-    func restoreTableViewSelection() {
+    private func restoreTableViewSelection() {
         if let index = tableContent.index(of: lastSelectedOption) {
             selectedIndexPath.row = index
         }
@@ -47,7 +47,7 @@ extension PeriodicityViewController {
         tableView.cellForRow(at: selectedIndexPath)?.accessoryType = .checkmark
     }
 
-    func saveTableViewSelection() {
+    private func saveTableViewSelection() {
         delegate?.savePeriodicityWith(selectedCellText: tableContent[selectedIndexPath.row])
     }
 }

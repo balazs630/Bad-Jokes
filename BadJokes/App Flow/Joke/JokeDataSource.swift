@@ -12,8 +12,8 @@ typealias DidBecomeEmpty = () -> Void
 
 class JokeDataSource: NSObject {
     // MARK: Properties
-    var jokes: [Joke]
-    let didBecomeEmpty: DidBecomeEmpty
+    public var jokes: [Joke]
+    private let didBecomeEmpty: DidBecomeEmpty
 
     // MARK: Initializers
     init(jokes: [Joke], didBecomeEmpty: @escaping DidBecomeEmpty) {
@@ -33,8 +33,10 @@ extension JokeDataSource: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? JokeTableViewCell else {
             fatalError("JokeTableViewCell cannot be found")
         }
+
         let joke = jokes[indexPath.row]
         cell.jokeText = joke.jokeText.formatLineBreaks()
+
         return cell
     }
 

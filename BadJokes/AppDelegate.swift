@@ -27,7 +27,7 @@ extension AppDelegate {
         if defaults.object(forKey: UserDefaults.Key.isAppAlreadyLaunchedOnce) == nil {
             let firstTimeLaunchDefaults: [String: Any] = [
                 UserDefaults.Key.isAppAlreadyLaunchedOnce: true,
-                UserDefaults.Key.appVersion: UpdateService.getCurrentAppVersion(),
+                UserDefaults.Key.appVersion: AppUpdateService.currentAppVersion,
 
                 UserDefaults.Key.StoreReviewTrigger.newUser: true,
                 UserDefaults.Key.StoreReviewTrigger.oldUser: true,

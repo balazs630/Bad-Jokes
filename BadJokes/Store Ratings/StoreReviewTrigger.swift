@@ -9,19 +9,22 @@
 import Foundation
 
 class StoreReviewTrigger {
-    var name: String
-    var rules: [StoreReviewRule]
+    // MARK: Properties
+    private var name: String
+    private var rules: [StoreReviewRule]
 
+    public var isActive: Bool {
+        return UserDefaults.standard.value(forKey: name) as? Bool ?? false
+    }
+
+    // MARK: Initializers
     init(name: String, rules: [StoreReviewRule]) {
         self.name = name
         self.rules = rules
     }
 
-    var isActive: Bool {
-        return UserDefaults.standard.value(forKey: name) as? Bool ?? false
-    }
-
-    var areRulesFulfilled: Bool {
+    // MARK: Utility methods
+    func areRulesFulfilled() -> Bool {
         for rule in rules {
             switch rule {
             case let .storedJokeCount(threshold):

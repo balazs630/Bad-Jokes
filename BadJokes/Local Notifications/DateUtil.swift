@@ -9,11 +9,10 @@
 import Foundation
 
 class DateUtil {
-
     // MARK: Properties
-    let defaults = UserDefaults.standard
-    var localTimeZoneName: String { return TimeZone.current.identifier }
-    let calendar = Calendar(identifier: .gregorian)
+    private let defaults = UserDefaults.standard
+    private var localTimeZoneName: String { return TimeZone.current.identifier }
+    private let calendar = Calendar(identifier: .gregorian)
 
     // MARK: - Date/Time operations
     func getGeneratedNotificationTimeBetween(_ startDate: Date, _ endDate: Date) -> Date {
@@ -69,11 +68,7 @@ class DateUtil {
     }
 
     func getRecurranceNumber() -> Int {
-        guard let recurrance = defaults.string(forKey: UserDefaults.Key.Lbl.recurrence)?.cutLastCharacter() else {
-            return 1
-        }
-
-        return recurrance
+        return defaults.string(forKey: UserDefaults.Key.Lbl.recurrence)?.digits() ?? 1
     }
 
     func isPunctualTimeSet() -> Bool {
@@ -130,5 +125,4 @@ class DateUtil {
 
         return calendar.date(from: dateComponents)!
     }
-
 }

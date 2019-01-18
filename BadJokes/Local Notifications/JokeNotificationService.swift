@@ -14,25 +14,27 @@ protocol JokeNotificationServiceDelegate: class {
 }
 
 class JokeNotificationService: NSObject, UNUserNotificationCenterDelegate {
-
     // MARK: Properties
-    let defaults = UserDefaults.standard
-    var localTimeZoneName: String { return TimeZone.current.identifier }
     weak var delegate: JokeNotificationServiceDelegate?
-    let jokeNotificationGenerator = JokeNotificationGenerator()
-    var jokeTypes: [String] = []
+    private var currentTimeZoneName: String { return TimeZone.current.identifier }
+    private let jokeNotificationGenerator = JokeNotificationGenerator()
+    private var jokeTypes: [String] = []
+    private let notificationCenter = UNUserNotificationCenter.current()
 
     // MARK: Initializers
     override init() {
         super.init()
-        // Seeking permission of the user to display app notifications
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (_, _) in }
-        UNUserNotificationCenter.current().delegate = self
+        requestNotificationCenterPermission()
     }
 }
 
 // MARK: Notification operations
 extension JokeNotificationService {
+    private func requestNotificationCenterPermission() {
+        notificationCenter.requestAuthorization(options: [.alert, .sound]) { (_, _) in }
+        notificationCenter.delegate = self
+    }
+
     func setNewRepeatingNotifications() {
         guard DBService.shared.unusedJokesCount() > 0 else { return }
 
@@ -42,8 +44,8 @@ extension JokeNotificationService {
         jokeTypes = jokeNotificationGenerator.makeJokeTypeProbabilityArray()
         guard !jokeTypes.isEmpty else { return }
 
-        for index in 0...notificationTimes.count - 1 {
-            self.addJokeNotificationRequest(on: notificationTimes[index])
+        (0...notificationTimes.count - 1).forEach { index in
+            addJokeNotificationRequest(on: notificationTimes[index])
         }
     }
 
@@ -62,7 +64,7 @@ extension JokeNotificationService {
             return
         }
 
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        notificationCenter.add(request, withCompletionHandler: nil)
         DBService.shared.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())
     }
 
@@ -72,7 +74,7 @@ extension JokeNotificationService {
         let type = jokeNotificationGenerator.generateAvailableJokeType(from: jokeTypes)
         let joke = generateRandomJoke(with: type)
         content.body = joke.jokeText.formatLineBreaks()
-        content.sound = UNNotificationSound.default
+        content.sound = .default
 
         var userInfo: [String: Int] = [:]
         userInfo["jokeId"] = joke.jokeId
@@ -82,9 +84,8 @@ extension JokeNotificationService {
     }
 
     private func setNotificationTrigger(on time: Date) -> UNCalendarNotificationTrigger {
-        // Setting time for notification trigger
         var dateCompenents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: time)
-        dateCompenents.timeZone = TimeZone(identifier: localTimeZoneName)
+        dateCompenents.timeZone = TimeZone(identifier: currentTimeZoneName)
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateCompenents, repeats: false)
 
@@ -101,25 +102,23 @@ extension JokeNotificationService {
     }
 
     private func generateRandomJoke(with type: String) -> Joke {
-        if let joke = DBService.shared.getRandomJokeWith(type: type) {
+        if let joke = DBService.shared.getRandomJoke(for: type) {
             return joke
         }
 
         let anyType = "%"
-        return DBService.shared.getRandomJokeWith(type: anyType)!
+        return DBService.shared.getRandomJoke(for: anyType)!
     }
 }
 
 // MARK: UNUserNotificationCenter
 extension JokeNotificationService {
     func removeAllPendingNotificationRequests() {
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        notificationCenter.removeAllPendingNotificationRequests()
     }
 
     func isNotificationsEnabled(completed: @escaping (Bool) -> Void) {
-        let current = UNUserNotificationCenter.current()
-
-        current.getNotificationSettings(completionHandler: { settings in
+        notificationCenter.getNotificationSettings(completionHandler: { settings in
             completed(settings.authorizationStatus == .authorized)
         })
     }

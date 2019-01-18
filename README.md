@@ -25,7 +25,8 @@ ___
 - [x] View or delete a single joke, refresh tableview content
 - [x] Show custom empty views if the tableview is empty
 - [x] Show a warning view if there is no more unused joke in the database
-- [x] Copy joke text to clipboard with long press
+- [x] Copy joke text to clipboard with long tap gesture
+- [x] In app rating/review triggers for specific rules
 - [x] iPad screen support
 
 

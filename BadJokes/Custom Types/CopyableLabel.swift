@@ -20,8 +20,8 @@ class CopyableLabel: UILabel {
     }
 
     func sharedInit() {
-        self.isUserInteractionEnabled = true
-        self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.showMenu)))
+        isUserInteractionEnabled = true
+        addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(self.showMenu)))
     }
 
     @objc func showMenu(sender: AnyObject?) {

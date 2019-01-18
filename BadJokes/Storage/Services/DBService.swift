@@ -6,26 +6,29 @@
 //  Copyright © 2017. Horváth Balázs. All rights reserved.
 //
 
+// swiftlint:disable next force_try
+
 import FMDB
 
 class DBService {
-
     // MARK: Properties
     static let shared = DBService()
-
-    let dbFileName = "jokesDB"
-    let dbExtension = "db"
-
-    var documentsDBPath: String!
-    var resourcesDBPath: String!
-
     var database: FMDatabase!
+
+    private let fileManager = FileManager.default
+    private var documentsDBPath: String
+    private var resourcesDBPath: String
 
     // MARK: Initializers
     private init() {
-        let documentsDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        documentsDBPath = documentsDirectory.appending("/\(dbFileName).\(dbExtension)")
-        resourcesDBPath = Bundle.main.path(forResource: dbFileName, ofType: dbExtension)
+        documentsDBPath = try! fileManager
+            .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            .appendingPathComponent(Constant.databaseFileName)
+            .appendingPathExtension(Constant.databaseFileExtension)
+            .path
+
+        resourcesDBPath = Bundle.main.path(forResource: Constant.databaseFileName,
+                                           ofType: Constant.databaseFileExtension)!
     }
 
     // MARK: - Setup
@@ -34,7 +37,7 @@ class DBService {
             initDatabase()
         }
 
-        return database != nil && database.open()
+        return database.open()
     }
 
     private func initDatabase() {
@@ -43,35 +46,31 @@ class DBService {
             database = FMDatabase(path: documentsDBPath)
         } else {
             database = FMDatabase(path: documentsDBPath)
-            UpdateService.handleAppUpdates()
+            AppUpdateService.checkUpdates()
         }
     }
 
     private func isFirstLaunch() -> Bool {
-        return !FileManager.default.fileExists(atPath: documentsDBPath)
+        return !fileManager.fileExists(atPath: documentsDBPath)
     }
 
     private func copyDatabase(from source: String, to destination: String) {
-        if !FileManager.default.fileExists(atPath: destination) {
-            do {
-                try FileManager.default.copyItem(atPath: source, toPath: destination)
-            } catch {
-                debugPrint(error)
-            }
-        } else {
-            debugPrint("Database file already exist at: \(destination)")
+        do {
+            try fileManager.copyItem(atPath: source, toPath: destination)
+        } catch {
+            debugPrint(error)
         }
     }
 }
 
 // MARK: Execute SQLite queries from file
 extension DBService {
-    func executeMigrationScript(fileNamed: String) {
+    func executeScript(fileNamed: String) {
         if isDatabaseOpen() {
-            let migrationScriptContent = UpdateService.readMigrationScript(fileNamed: fileNamed)
+            let scriptContent = AppUpdateService.readScript(fileNamed: fileNamed)
 
-            debugPrint("Run migration script: \(fileNamed)")
-            database.executeStatements(migrationScriptContent)
+            debugPrint("Run script: \(fileNamed)")
+            database.executeStatements(scriptContent)
             database.close()
         }
     }

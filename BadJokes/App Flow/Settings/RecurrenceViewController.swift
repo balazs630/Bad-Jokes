@@ -14,7 +14,7 @@ protocol RecurrenceViewControllerDelegate: class {
 
 class RecurrenceViewController: UITableViewController {
     // MARK: Properties
-    let tableContent = [
+    private let tableContent = [
         Recurrence.once,
         Recurrence.twice,
         Recurrence.threeTimes,
@@ -22,9 +22,9 @@ class RecurrenceViewController: UITableViewController {
         Recurrence.tenTimes
     ]
 
+    weak var delegate: RecurrenceViewControllerDelegate?
     var lastSelectedOption = ""
     var selectedIndexPath = IndexPath(row: 0, section: 0)
-    weak var delegate: RecurrenceViewControllerDelegate?
 
     // MARK: - View lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +41,7 @@ class RecurrenceViewController: UITableViewController {
 
 // MARK: Setup view
 extension RecurrenceViewController {
-    func restoreTableViewSelection() {
+    private func restoreTableViewSelection() {
         if let index = tableContent.index(of: lastSelectedOption) {
             selectedIndexPath.row = index
         }
@@ -50,7 +50,7 @@ extension RecurrenceViewController {
         tableView.cellForRow(at: selectedIndexPath)?.accessoryType = .checkmark
     }
 
-    func saveTableViewSelection() {
+    private func saveTableViewSelection() {
         delegate?.saveRecurrenceWith(selectedCellText: tableContent[selectedIndexPath.row])
     }
 }

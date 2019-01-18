@@ -10,12 +10,12 @@ import UIKit
 
 class JokeTableViewController: UIViewController {
     // MARK: Properties
-    var dataSource: JokeDataSource!
-    let jokeNotificationService = JokeNotificationService()
-    let refreshControl = UIRefreshControl()
+    private var dataSource: JokeDataSource!
+    private let jokeNotificationService = JokeNotificationService()
+    private let refreshControl = UIRefreshControl()
 
-    let noNotificationScheduledView = UIView.loadFromNib(named: UIView.noNotificationScheduledView)
-    let waitingForFirstNotificationView = UIView.loadFromNib(named: UIView.waitingForFirstNotificationView)
+    private let noNotificationScheduledView = UIView.loadFromNib(named: UIView.noNotificationScheduledView)
+    private let waitingForFirstNotificationView = UIView.loadFromNib(named: UIView.waitingForFirstNotificationView)
 
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -44,7 +44,7 @@ class JokeTableViewController: UIViewController {
 // MARK: - Utility
 extension JokeTableViewController {
     @objc private func applicationDidBecomeActive() {
-        StoreReviewService.incrementAppRuns()
+        StoreReviewService.runCount += 1
         refreshData()
         refreshNotificationSchedules()
         requestStoreReview()
@@ -80,7 +80,9 @@ extension JokeTableViewController {
                                rules: [.storedJokeCount(50)])
         ]
 
-        triggers.forEach { trigger in StoreReviewService.requestTimedReview(for: trigger)}
+        triggers.forEach {
+            StoreReviewService.requestTimedReview(for: $0)
+        }
     }
 }
 
@@ -88,7 +90,7 @@ extension JokeTableViewController {
 private extension JokeTableViewController {
     private func configureTableView() {
         tableView.dataSource = dataSource
-        refreshControl.addTarget(self, action: #selector(refreshData), for: UIControl.Event.valueChanged)
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         refreshControl.tintColor = UIColor.white
         refreshControl.backgroundColor = Theme.Color.lightBlue
 
@@ -110,7 +112,6 @@ private extension JokeTableViewController {
 
     private func presentEmptyView() {
         if dataSource.jokes.isEmpty {
-            // Display a message instead of an empty table
             if DBService.shared.isSchedulesListEmpty() {
                 displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
             } else {

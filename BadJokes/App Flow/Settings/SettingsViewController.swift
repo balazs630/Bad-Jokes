@@ -14,17 +14,18 @@ protocol SettingsViewControllerDelegate: class {
 
 class SettingsViewController: UITableViewController {
     // MARK: Properties
-    var pckTimeHours = ""
-    var pckTimeMinutes = ""
-    var lblTimeOptionName = ""
-
-    let defaults = UserDefaults.standard
-    var preferencesSnapshot = ""
     weak var delegate: SettingsViewControllerDelegate?
 
-    let jokeNotificationService = JokeNotificationService()
-    let notificationSettingsIndexPath = IndexPath(item: 0, section: 0)
-    var isNotificationEnabled: Bool = false
+    private var pckTimeHours = ""
+    private var pckTimeMinutes = ""
+    private var lblTimeOptionName = ""
+
+    private let defaults = UserDefaults.standard
+    private var preferencesSnapshot = ""
+
+    private let jokeNotificationService = JokeNotificationService()
+    private let notificationSettingsIndexPath = IndexPath(item: 0, section: 0)
+    private var isNotificationEnabled: Bool = false
 
     // MARK: Outlets
     @IBOutlet weak var notificationWarningImage: UIImageView!

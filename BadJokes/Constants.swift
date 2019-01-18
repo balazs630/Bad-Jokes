@@ -118,6 +118,9 @@ struct Constant {
     static let shortVersionString = "CFBundleShortVersionString"
     static let generateNewJokesThreshold = 32
 
+    static let databaseFileName = "jokesDB"
+    static let databaseFileExtension = "db"
+
     static var sliders: [Int: String] {
         return [
             1: UserDefaults.Key.Sld.animal,

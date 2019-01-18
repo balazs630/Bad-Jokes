@@ -9,7 +9,6 @@
 import FMDB
 
 extension DBService {
-
     // MARK: Run SQLite queries
     func getAllDeliveredSchedules() -> [Schedule] {
         var resultSet: [Schedule] = []

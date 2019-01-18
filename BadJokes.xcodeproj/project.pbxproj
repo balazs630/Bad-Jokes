@@ -40,7 +40,7 @@
 		ACBDC24F20EC213D00CDB54F /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */; };
 		ACBF5CBE21961FC500DCE6CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */; };
 		ACBF5CC021961FF200DCE6CC /* Jokes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */; };
-		ACD7E85D20C8763F00A8F105 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85C20C8763F00A8F105 /* UpdateService.swift */; };
+		ACD7E85D20C8763F00A8F105 /* AppUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85C20C8763F00A8F105 /* AppUpdateService.swift */; };
 		ACE689C421484F8B00754221 /* v1.1-base.sql in Resources */ = {isa = PBXBuildFile; fileRef = ACE689C321484F8B00754221 /* v1.1-base.sql */; };
 		ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE906B21F22A27200A6A082 /* SettingsViewController.swift */; };
 		ACECF0A51F60A88F0072367C /* jokesDB.db in Resources */ = {isa = PBXBuildFile; fileRef = ACECF0A41F60A88F0072367C /* jokesDB.db */; };
@@ -88,7 +88,7 @@
 		ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Jokes.storyboard; sourceTree = "<group>"; };
-		ACD7E85C20C8763F00A8F105 /* UpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
+		ACD7E85C20C8763F00A8F105 /* AppUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateService.swift; sourceTree = "<group>"; };
 		ACE689C321484F8B00754221 /* v1.1-base.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "v1.1-base.sql"; sourceTree = "<group>"; };
 		ACE906B21F22A27200A6A082 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ACECF0A21F60A47E0072367C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -132,7 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				ACACF6E81F51C93E00F501B1 /* DBService.swift */,
-				ACD7E85C20C8763F00A8F105 /* UpdateService.swift */,
+				ACD7E85C20C8763F00A8F105 /* AppUpdateService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -499,7 +499,7 @@
 				AC0AF9BF20E1769C00A52478 /* DBModel.swift in Sources */,
 				ACF0EBA5209A7E0800467675 /* DateComponentExtensions.swift in Sources */,
 				AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */,
-				ACD7E85D20C8763F00A8F105 /* UpdateService.swift in Sources */,
+				ACD7E85D20C8763F00A8F105 /* AppUpdateService.swift in Sources */,
 				AC2579B120461AAA00C1D904 /* DateUtil.swift in Sources */,
 				AC08EEE21F757BEF000E5B53 /* JokeDataSource.swift in Sources */,
 				AC08EEE01F757BCD000E5B53 /* JokeTableViewCell.swift in Sources */,

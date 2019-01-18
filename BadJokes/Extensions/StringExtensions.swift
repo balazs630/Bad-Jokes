@@ -13,14 +13,8 @@ extension String {
         return self.replacingOccurrences(of: "\\n", with: "\n")
     }
 
-    func cutLastCharacter() -> Int {
-        // Cut down the last letter, e.x. 10x -> 10 and returns as an Int
-        let splitIndex = index(before: endIndex)
-        guard let number = Int(self.prefix(upTo: splitIndex)) else {
-            return 1
-        }
-
-        return number
+    func digits() -> Int? {
+        return Int(self.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())
     }
 
     func isGreater(than otherVersion: String) -> Bool {

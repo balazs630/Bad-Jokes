@@ -6,8 +6,6 @@
 //  Copyright © 2017. Horváth Balázs. All rights reserved.
 //
 
-import Foundation
-
 struct Joke {
     let jokeId: Int
     let isUsed: Int

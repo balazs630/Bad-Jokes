@@ -9,7 +9,6 @@
 import FMDB
 
 extension DBService {
-
     // MARK: Run SQLite queries
     func getDeliveredJokes() -> [Joke] {
         var resultSet: [Joke] = []
@@ -45,7 +44,7 @@ extension DBService {
         return resultSet
     }
 
-    func getRandomJokeWith(type: String) -> Joke? {
+    func getRandomJoke(for type: String) -> Joke? {
         var randomJoke: Joke?
 
         if isDatabaseOpen() {

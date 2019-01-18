@@ -9,7 +9,6 @@
 import UIKit
 
 class JokeReaderViewController: UIViewController {
-
     // MARK: Properties
     var jokeText = ""
 

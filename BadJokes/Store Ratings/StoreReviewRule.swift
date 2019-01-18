@@ -6,8 +6,6 @@
 //  Copyright © 2019. Horváth Balázs. All rights reserved.
 //
 
-import Foundation
-
 enum StoreReviewRule {
     case storedJokeCount(Int)
     case launchCount(Int)

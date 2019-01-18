@@ -15,7 +15,7 @@ protocol TimeViewControllerDelegate: class {
 
 class TimeViewController: UITableViewController {
     // MARK: Properties
-    let tableContent = [
+    private let tableContent = [
         Time.random,
         Time.morning,
         Time.afternoon,
@@ -23,7 +23,7 @@ class TimeViewController: UITableViewController {
         Time.atGivenTime
     ]
 
-    let tableDetailContent = [
+    private let tableDetailContent = [
         Time.Detail.random,
         Time.Detail.morning,
         Time.Detail.afternoon,
@@ -31,11 +31,12 @@ class TimeViewController: UITableViewController {
         Time.Detail.atGivenTime
     ]
 
+    private var selectedIndexPath = IndexPath(row: 0, section: 0)
+    private let givenTimeIndexPath = IndexPath(item: 4, section: 0)
+
+    weak var delegate: TimeViewControllerDelegate?
     var lastSelectedOption = ""
     var lastSelectedTime = Date()
-    var selectedIndexPath = IndexPath(row: 0, section: 0)
-    let givenTimeIndexPath = IndexPath(item: 4, section: 0)
-    weak var delegate: TimeViewControllerDelegate?
 
     // MARK: - Outlets
     @IBOutlet weak var timePicker: UIDatePicker!
@@ -54,7 +55,7 @@ class TimeViewController: UITableViewController {
 
 // MARK: Setup view
 extension TimeViewController {
-    func restoreTableViewSelection() {
+    private func restoreTableViewSelection() {
         if let index = tableContent.index(of: lastSelectedOption) {
             selectedIndexPath.row = index
         }
@@ -68,7 +69,7 @@ extension TimeViewController {
         tableView.cellForRow(at: selectedIndexPath)?.accessoryType = .checkmark
     }
 
-    func saveTableViewSelection() {
+    private func saveTableViewSelection() {
         if selectedIndexPath == givenTimeIndexPath {
             let timeComponents = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
             if let hourComponent = timeComponents.hour, let minuteComponent = timeComponents.minute {
@@ -85,7 +86,7 @@ extension TimeViewController {
 
 // MARK: - TableViewDelegate
 extension TimeViewController {
-        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
         }
