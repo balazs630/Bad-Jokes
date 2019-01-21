@@ -9,18 +9,18 @@
 import UIKit
 
 protocol PeriodicityViewControllerDelegate: class {
-    func savePeriodicityWith(selectedCellText: String)
+    func savePeriodicity(with selectedOption: Periodicity)
 }
 
 class PeriodicityViewController: UITableViewController {
     // MARK: Properties
-    private let tableContent = [
-        Periodicity.daily,
-        Periodicity.weekly,
-        Periodicity.monthly
+    private let tableContent: [Periodicity] = [
+        .daily,
+        .weekly,
+        .monthly
     ]
 
-    var lastSelectedOption = ""
+    var lastSelectedOption: Periodicity!
     var selectedIndexPath = IndexPath(row: 0, section: 0)
     weak var delegate: PeriodicityViewControllerDelegate?
 
@@ -48,7 +48,7 @@ extension PeriodicityViewController {
     }
 
     private func saveTableViewSelection() {
-        delegate?.savePeriodicityWith(selectedCellText: tableContent[selectedIndexPath.row])
+        delegate?.savePeriodicity(with: tableContent[selectedIndexPath.row])
     }
 }
 
@@ -73,7 +73,7 @@ extension PeriodicityViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "prototypeCell")
-        cell.textLabel?.text = tableContent[indexPath.row]
+        cell.textLabel?.text = tableContent[indexPath.row].rawValue
 
         return cell
     }

@@ -29,7 +29,7 @@
 		AC72CAA321E7E659005EBDED /* StoreReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC72CAA221E7E659005EBDED /* StoreReviewService.swift */; };
 		AC7A4E341F51F74700E8F438 /* JokeNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationService.swift */; };
 		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
-		AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */; };
+		AC88F9EC1F2BEB2A00ACD4B5 /* TimeRangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeRangeViewController.swift */; };
 		AC976E872049B41C00B9C611 /* JokesTableQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC976E862049B41C00B9C611 /* JokesTableQueries.swift */; };
 		AC976E892049B48B00B9C611 /* SchedulesTableQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC976E882049B48B00B9C611 /* SchedulesTableQueries.swift */; };
 		ACACF6E91F51C93E00F501B1 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACF6E81F51C93E00F501B1 /* DBService.swift */; };
@@ -77,7 +77,7 @@
 		AC72CAA221E7E659005EBDED /* StoreReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewService.swift; sourceTree = "<group>"; };
 		AC7A4E331F51F74700E8F438 /* JokeNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeNotificationService.swift; sourceTree = "<group>"; };
 		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
-		AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeViewController.swift; sourceTree = "<group>"; };
+		AC88F9EB1F2BEB2A00ACD4B5 /* TimeRangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRangeViewController.swift; sourceTree = "<group>"; };
 		AC976E862049B41C00B9C611 /* JokesTableQueries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesTableQueries.swift; sourceTree = "<group>"; };
 		AC976E882049B48B00B9C611 /* SchedulesTableQueries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesTableQueries.swift; sourceTree = "<group>"; };
 		ACACF6E81F51C93E00F501B1 /* DBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
@@ -338,7 +338,7 @@
 				ACE906B21F22A27200A6A082 /* SettingsViewController.swift */,
 				AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */,
 				AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */,
-				AC88F9EB1F2BEB2A00ACD4B5 /* TimeViewController.swift */,
+				AC88F9EB1F2BEB2A00ACD4B5 /* TimeRangeViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -495,7 +495,7 @@
 				AC128336204B5F1600FCC19E /* TimePart.swift in Sources */,
 				ACBDC24A20EAD26300CDB54F /* UIColorExtensions.swift in Sources */,
 				AC237A0621EB4E25004EEC2C /* StoreReviewRule.swift in Sources */,
-				AC88F9EC1F2BEB2A00ACD4B5 /* TimeViewController.swift in Sources */,
+				AC88F9EC1F2BEB2A00ACD4B5 /* TimeRangeViewController.swift in Sources */,
 				AC0AF9BF20E1769C00A52478 /* DBModel.swift in Sources */,
 				ACF0EBA5209A7E0800467675 /* DateComponentExtensions.swift in Sources */,
 				AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */,

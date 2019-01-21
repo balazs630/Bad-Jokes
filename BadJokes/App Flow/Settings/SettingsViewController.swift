@@ -16,16 +16,15 @@ class SettingsViewController: UITableViewController {
     // MARK: Properties
     weak var delegate: SettingsViewControllerDelegate?
 
-    private var pckTimeHours = ""
-    private var pckTimeMinutes = ""
-    private var lblTimeOptionName = ""
-
-    private let defaults = UserDefaults.standard
+    private var selectedTimeRange: TimeRange!
+    private var selectedHours = ""
+    private var selectedMinutes = ""
     private var preferencesSnapshot = ""
 
+    private let defaults = UserDefaults.standard
     private let jokeNotificationService = JokeNotificationService()
     private let notificationSettingsIndexPath = IndexPath(item: 0, section: 0)
-    private var isNotificationEnabled: Bool = false
+    private var isNotificationEnabled = false
 
     // MARK: Outlets
     @IBOutlet weak var notificationWarningImage: UIImageView!
@@ -156,17 +155,19 @@ extension SettingsViewController {
 
         if let hours = defaults.string(forKey: UserDefaults.Key.Pck.timeHours),
             let minutes = defaults.string(forKey: UserDefaults.Key.Pck.timeMinutes) {
-            pckTimeHours = hours
-            pckTimeMinutes = minutes
+            selectedHours = hours
+            selectedMinutes = minutes
         }
 
-        if defaults.string(forKey: UserDefaults.Key.Lbl.time) == Time.atGivenTime {
-            lblTime.text = "Pontosan \(pckTimeHours):\(pckTimeMinutes)-kor"
-            lblTimeOptionName = Time.atGivenTime
-        } else {
-            lblTime.text = defaults.string(forKey: UserDefaults.Key.Lbl.time)
-            if let text = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
-                lblTimeOptionName = text
+        if let timeRange = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
+            if case .atGivenTime? = TimeRange(rawValue: timeRange) {
+                lblTime.text = "Pontosan \(selectedHours):\(selectedMinutes)-kor"
+                selectedTimeRange = .atGivenTime
+            } else {
+                if let text = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
+                    lblTime.text = text
+                    selectedTimeRange = TimeRange(rawValue: text)
+                }
             }
         }
 
@@ -183,10 +184,10 @@ extension SettingsViewController {
     private func saveJokePreferences() {
         defaults.set(lblPeriodicity.text, forKey: UserDefaults.Key.Lbl.periodicity)
         defaults.set(lblRecurrence.text, forKey: UserDefaults.Key.Lbl.recurrence)
-        defaults.set(lblTimeOptionName, forKey: UserDefaults.Key.Lbl.time)
+        defaults.set(selectedTimeRange.rawValue, forKey: UserDefaults.Key.Lbl.time)
 
-        defaults.set(pckTimeHours, forKey: UserDefaults.Key.Pck.timeHours)
-        defaults.set(pckTimeMinutes, forKey: UserDefaults.Key.Pck.timeMinutes)
+        defaults.set(selectedHours, forKey: UserDefaults.Key.Pck.timeHours)
+        defaults.set(selectedMinutes, forKey: UserDefaults.Key.Pck.timeMinutes)
         defaults.synchronize()
 
         sldJokeTypeCollection.forEach {
@@ -205,24 +206,24 @@ extension SettingsViewController {
         switch segue.identifier {
         case SegueIdentifier.periodicityDetail:
             guard let destVC = segue.destination as? PeriodicityViewController else { return }
-            if let lblPeriodicityText = lblPeriodicity.text {
-                destVC.lastSelectedOption = lblPeriodicityText
+            if let periodicity = lblPeriodicity.text {
+                destVC.lastSelectedOption = Periodicity(rawValue: periodicity)
             }
             destVC.delegate = self
         case SegueIdentifier.recurrenceDetail:
             guard let destVC = segue.destination as? RecurrenceViewController else { return }
-            if let lblRecurrenceText = lblRecurrence.text {
-                destVC.lastSelectedOption = lblRecurrenceText
+            if let recurrence = lblRecurrence.text {
+                destVC.lastSelectedOption = Recurrence(rawValue: recurrence)
             }
             destVC.delegate = self
         case SegueIdentifier.timeDetail:
-            guard let destVC = segue.destination as? TimeViewController else { return }
-            destVC.lastSelectedOption = lblTimeOptionName
+            guard let destVC = segue.destination as? TimeRangeViewController else { return }
+            destVC.lastSelectedOption = selectedTimeRange
 
             let calendar = Calendar(identifier: .gregorian)
             var timeComponents = calendar.dateComponents([.hour, .minute], from: Date())
-            timeComponents.hour = Int(pckTimeHours)
-            timeComponents.minute = Int(pckTimeMinutes)
+            timeComponents.hour = Int(selectedHours)
+            timeComponents.minute = Int(selectedMinutes)
 
             destVC.lastSelectedTime = calendar.date(from: timeComponents)!
             destVC.delegate = self
@@ -255,29 +256,29 @@ extension SettingsViewController {
 
 // MARK: PeriodicityViewControllerDelegate
 extension SettingsViewController: PeriodicityViewControllerDelegate {
-    func savePeriodicityWith(selectedCellText: String) {
-        lblPeriodicity.text = selectedCellText
+    func savePeriodicity(with selectedOption: Periodicity) {
+        lblPeriodicity.text = selectedOption.rawValue
     }
 }
 
 // MARK: TimeViewControllerDelegate
-extension SettingsViewController: TimeViewControllerDelegate {
-    func saveTimeWithSelected(cellText: String) {
-        lblTimeOptionName = cellText
-        lblTime.text = cellText
+extension SettingsViewController: TimeRangeViewControllerDelegate {
+    func saveTimeRange(with selectedOption: TimeRange) {
+        selectedTimeRange = selectedOption
+        lblTime.text = selectedOption.rawValue
     }
 
-    func saveTimeWithSelected(cellText: String, hours: String, minutes: String) {
+    func saveTimeRange(with selectedOption: TimeRange, hours: String, minutes: String) {
         lblTime.text = "Pontosan \(hours):\(minutes)-kor"
-        lblTimeOptionName = cellText
-        pckTimeHours = hours
-        pckTimeMinutes = minutes
+        selectedTimeRange = selectedOption
+        selectedHours = hours
+        selectedMinutes = minutes
     }
 }
 
 // MARK: RecurrenceViewControllerDelegate
 extension SettingsViewController: RecurrenceViewControllerDelegate {
-    func saveRecurrenceWith(selectedCellText: String) {
-        lblRecurrence.text = selectedCellText
+    func saveRecurrence(with selectedOption: Recurrence) {
+        lblRecurrence.text = selectedOption.rawValue
     }
 }

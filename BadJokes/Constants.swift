@@ -6,6 +6,8 @@
 //  Copyright © 2017. Horváth Balázs. All rights reserved.
 //
 
+// swiftlint:disable next type_name
+
 import UIKit
 
 struct Theme {
@@ -14,47 +16,49 @@ struct Theme {
     }
 }
 
-struct Periodicity {
-    static let daily = "Napi"
-    static let weekly = "Heti"
-    static let monthly = "Havi"
+enum Periodicity: String {
+    case daily = "Napi"
+    case weekly = "Heti"
+    case monthly = "Havi"
 }
 
-struct Recurrence {
-    static let once = "1x"
-    static let twice = "2x"
-    static let threeTimes = "3x"
-    static let fiveTimes = "5x"
-    static let tenTimes = "10x"
+enum Recurrence: String {
+    case once = "1x"
+    case twice = "2x"
+    case threeTimes = "3x"
+    case fiveTimes = "5x"
+    case tenTimes = "10x"
 }
 
-struct Time {
-    static let random = "Véletlen időpontban"
-    static let morning = "Délelőtt"
-    static let afternoon = "Délután"
-    static let evening = "Este"
-    static let atGivenTime = "Pontos időpontban"
+enum TimeRange: String {
+    case random = "Véletlen időpontban"
+    case morning = "Délelőtt"
+    case afternoon = "Délután"
+    case evening = "Este"
+    case atGivenTime = "Pontos időpontban"
 
-    struct Hour {
-        static let morningStart = 9
-        static let morningEnd = 11
-
-        static let afternoonStart = 12
-        static let afternoonEnd = 17
-
-        static let eveningStart = 18
-        static let eveningEnd = 20
-
-        static let nightStart = 21
-        static let nightEnd = 23
+    var intervallum: ClosedRange<Int> {
+        switch self {
+        case .random:
+            return 9...20
+        case .morning:
+            return 9...11
+        case .afternoon:
+            return 12...17
+        case .evening:
+            return 18...20
+        case .atGivenTime:
+            fatalError("Given time doesn't have an intervallum")
+        }
     }
 
-    struct Detail {
-        static let random = "\(Hour.morningStart):00 - \(Hour.nightStart):00 között"
-        static let morning = "\(Hour.morningStart):00 - \(Hour.afternoonStart):00 között"
-        static let afternoon = "\(Hour.afternoonStart):00 - \(Hour.eveningStart):00 között"
-        static let evening = "\(Hour.eveningStart):00 - \(Hour.nightStart):00 között"
-        static let atGivenTime = ""
+    func textualRepresentation() -> String {
+        switch self {
+        case .random, .morning, .afternoon, .evening:
+            return "\(intervallum.lowerBound):00 - \(intervallum.upperBound + 1):00 között"
+        case .atGivenTime:
+            return ""
+        }
     }
 }
 
@@ -78,7 +82,6 @@ extension UserDefaults {
         static let appVersion = "appVersion"
         static let numberOfAppRuns = "numberOfAppRuns"
 
-        // swiftlint:disable type_name
         struct Sw {
             static let globalOff = "swGlobalOff"
         }

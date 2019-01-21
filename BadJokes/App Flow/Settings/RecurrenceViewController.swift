@@ -9,21 +9,21 @@
 import UIKit
 
 protocol RecurrenceViewControllerDelegate: class {
-    func saveRecurrenceWith(selectedCellText: String)
+    func saveRecurrence(with selectedOption: Recurrence)
 }
 
 class RecurrenceViewController: UITableViewController {
     // MARK: Properties
-    private let tableContent = [
-        Recurrence.once,
-        Recurrence.twice,
-        Recurrence.threeTimes,
-        Recurrence.fiveTimes,
-        Recurrence.tenTimes
+    private let tableContent: [Recurrence] = [
+        .once,
+        .twice,
+        .threeTimes,
+        .fiveTimes,
+        .tenTimes
     ]
 
     weak var delegate: RecurrenceViewControllerDelegate?
-    var lastSelectedOption = ""
+    var lastSelectedOption: Recurrence!
     var selectedIndexPath = IndexPath(row: 0, section: 0)
 
     // MARK: - View lifecycle
@@ -51,7 +51,7 @@ extension RecurrenceViewController {
     }
 
     private func saveTableViewSelection() {
-        delegate?.saveRecurrenceWith(selectedCellText: tableContent[selectedIndexPath.row])
+        delegate?.saveRecurrence(with: tableContent[selectedIndexPath.row])
     }
 }
 
@@ -76,7 +76,7 @@ extension RecurrenceViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "prototypeCell")
-        cell.textLabel?.text = tableContent[indexPath.row]
+        cell.textLabel?.text = tableContent[indexPath.row].rawValue
 
         return cell
     }

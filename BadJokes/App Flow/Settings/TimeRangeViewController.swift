@@ -1,5 +1,5 @@
 //
-//  TimeViewController.swift
+//  TimeRangeViewController.swift
 //  BadJokes
 //
 //  Created by Horváth Balázs on 2017. 07. 28..
@@ -8,34 +8,26 @@
 
 import UIKit
 
-protocol TimeViewControllerDelegate: class {
-    func saveTimeWithSelected(cellText: String)
-    func saveTimeWithSelected(cellText: String, hours: String, minutes: String)
+protocol TimeRangeViewControllerDelegate: class {
+    func saveTimeRange(with selectedOption: TimeRange)
+    func saveTimeRange(with selectedOption: TimeRange, hours: String, minutes: String)
 }
 
-class TimeViewController: UITableViewController {
+class TimeRangeViewController: UITableViewController {
     // MARK: Properties
-    private let tableContent = [
-        Time.random,
-        Time.morning,
-        Time.afternoon,
-        Time.evening,
-        Time.atGivenTime
-    ]
-
-    private let tableDetailContent = [
-        Time.Detail.random,
-        Time.Detail.morning,
-        Time.Detail.afternoon,
-        Time.Detail.evening,
-        Time.Detail.atGivenTime
+    private let tableContent: [TimeRange] = [
+        .random,
+        .morning,
+        .afternoon,
+        .evening,
+        .atGivenTime
     ]
 
     private var selectedIndexPath = IndexPath(row: 0, section: 0)
     private let givenTimeIndexPath = IndexPath(item: 4, section: 0)
 
-    weak var delegate: TimeViewControllerDelegate?
-    var lastSelectedOption = ""
+    weak var delegate: TimeRangeViewControllerDelegate?
+    var lastSelectedOption: TimeRange!
     var lastSelectedTime = Date()
 
     // MARK: - Outlets
@@ -54,7 +46,7 @@ class TimeViewController: UITableViewController {
 }
 
 // MARK: Setup view
-extension TimeViewController {
+extension TimeRangeViewController {
     private func restoreTableViewSelection() {
         if let index = tableContent.index(of: lastSelectedOption) {
             selectedIndexPath.row = index
@@ -73,19 +65,19 @@ extension TimeViewController {
         if selectedIndexPath == givenTimeIndexPath {
             let timeComponents = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
             if let hourComponent = timeComponents.hour, let minuteComponent = timeComponents.minute {
-                delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row],
-                                               hours: String(format: "%02d", hourComponent),
-                                               minutes: String(format: "%02d", minuteComponent)
+                delegate?.saveTimeRange(with: tableContent[selectedIndexPath.row],
+                                        hours: String(format: "%02d", hourComponent),
+                                        minutes: String(format: "%02d", minuteComponent)
                 )
             }
         } else {
-            delegate?.saveTimeWithSelected(cellText: tableContent[selectedIndexPath.row])
+            delegate?.saveTimeRange(with: tableContent[selectedIndexPath.row])
         }
     }
 }
 
 // MARK: - TableViewDelegate
-extension TimeViewController {
+extension TimeRangeViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
@@ -114,8 +106,8 @@ extension TimeViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "prototypeCell")
-        cell.textLabel?.text = tableContent[indexPath.row]
-        cell.detailTextLabel?.text = tableDetailContent[indexPath.row]
+        cell.textLabel?.text = tableContent[indexPath.row].rawValue
+        cell.detailTextLabel?.text = tableContent[indexPath.row].textualRepresentation()
 
         return cell
     }

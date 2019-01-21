@@ -46,21 +46,15 @@ class DateUtil {
         var hours = 0
         var minutes = Int.random(in: 0...59)
 
-        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
-            switch timeSetting {
-            case Time.random:
-                hours = Int.random(in: Time.Hour.morningStart...Time.Hour.eveningEnd)
-            case Time.morning:
-                hours = Int.random(in: Time.Hour.morningStart...Time.Hour.morningEnd)
-            case Time.afternoon:
-                hours = Int.random(in: Time.Hour.afternoonStart...Time.Hour.afternoonEnd)
-            case Time.evening:
-                hours = Int.random(in: Time.Hour.eveningStart...Time.Hour.eveningEnd)
-            case Time.atGivenTime:
+        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time),
+            let timeRange = TimeRange(rawValue: timeSetting) {
+
+            switch timeRange {
+            case .random, .morning, .afternoon, .evening:
+                hours = Int.random(in: timeRange.intervallum)
+            case .atGivenTime:
                 hours = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
                 minutes = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
-            default:
-                debugPrint("Unexpected time identifier was given in: \(#file), line: \(#line)")
             }
         }
 
@@ -72,25 +66,26 @@ class DateUtil {
     }
 
     func isPunctualTimeSet() -> Bool {
-        let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time)
-        return timeSetting == Time.atGivenTime
+        guard let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time),
+            let timeRange = TimeRange(rawValue: timeSetting) else { return false }
+
+        return timeRange == .atGivenTime
     }
 
     func incrementDateBasedOnPeriodSetting(date: Date) -> Date {
-        let periodicitySetting = defaults.string(forKey: UserDefaults.Key.Lbl.periodicity)
-
-        switch periodicitySetting {
-        case Periodicity.daily:
-            return date
-        case Periodicity.weekly:
-            return date.add(days: 6)
-        case Periodicity.monthly:
-            return date.add(days: 30)
-        default:
-            debugPrint("Unexpected periodicity identifier was given in: \(#file), line: \(#line)")
+        guard let periodicitySetting = defaults.string(forKey: UserDefaults.Key.Lbl.periodicity),
+            let periodicity = Periodicity(rawValue: periodicitySetting) else {
+                return date
         }
 
-        return date
+        switch periodicity {
+        case .daily:
+            return date
+        case .weekly:
+            return date.add(days: 6)
+        case .monthly:
+            return date.add(days: 30)
+        }
     }
 
     func isNotificationCanBeSetFor(date: Date) -> Bool {
@@ -105,21 +100,15 @@ class DateUtil {
         var dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
         dateComponents.minute = 0
 
-        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
-            switch timeSetting {
-            case Time.random:
-                dateComponents.hour = Time.Hour.eveningEnd
-            case Time.morning:
-                dateComponents.hour = Time.Hour.morningEnd
-            case Time.afternoon:
-                dateComponents.hour = Time.Hour.afternoonEnd
-            case Time.evening:
-                dateComponents.hour = Time.Hour.eveningEnd
-            case Time.atGivenTime:
+        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time),
+            let timeRange = TimeRange(rawValue: timeSetting) {
+
+            switch timeRange {
+            case .random, .morning, .afternoon, .evening:
+                dateComponents.hour = timeRange.intervallum.upperBound
+            case .atGivenTime:
                 dateComponents.hour = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
                 dateComponents.minute = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
-            default:
-                debugPrint("Unexpected time identifier was given in: \(#file), line: \(#line)")
             }
         }
 
