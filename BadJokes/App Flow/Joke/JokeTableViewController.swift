@@ -37,6 +37,7 @@ class JokeTableViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         refreshData()
     }
 }
@@ -91,7 +92,7 @@ private extension JokeTableViewController {
     private func configureTableView() {
         tableView.dataSource = dataSource
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        refreshControl.tintColor = UIColor.white
+        refreshControl.tintColor = .white
         refreshControl.backgroundColor = Theme.Color.lightBlue
 
         tableView.refreshControl = refreshControl
@@ -118,6 +119,7 @@ private extension JokeTableViewController {
                 displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)
             }
         } else {
+            tableView.separatorStyle = .singleLine
             noNotificationScheduledView.removeFromSuperview()
             waitingForFirstNotificationView.removeFromSuperview()
         }
@@ -133,23 +135,20 @@ private extension JokeTableViewController {
 // MARK: - Navigation
 extension JokeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let segueIdentifier = segue.identifier {
-            switch segueIdentifier {
-            case SegueIdentifier.showSettings:
-                guard let destVC = segue.destination as? SettingsViewController else { return }
-                destVC.delegate = self
+        guard let segueIdentifier = segue.identifier else { return }
 
-            case SegueIdentifier.showJoke:
-                guard let destVC = segue.destination as? JokeReaderViewController else { return }
-                guard let sender = sender as? UITableViewCell else { return }
-                guard let selectedIndex = tableView.indexPath(for: sender) else { return }
-
-                guard let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeTableViewCell else { return }
-                destVC.jokeText = jokeCell.jokeLabel.text!
-
-            default:
-                debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
-            }
+        switch segueIdentifier {
+        case SegueIdentifier.showSettings:
+            guard let destVC = segue.destination as? SettingsViewController else { return }
+            destVC.delegate = self
+        case SegueIdentifier.showJoke:
+            guard let destVC = segue.destination as? JokeReaderViewController,
+                let sender = sender as? UITableViewCell,
+                let selectedIndex = tableView.indexPath(for: sender),
+                let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeTableViewCell else { return }
+            destVC.jokeText = jokeCell.jokeLabel.text!
+        default:
+            debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
         }
     }
 }
