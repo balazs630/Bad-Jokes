@@ -117,6 +117,7 @@ private extension JokeTableViewController {
                 displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
             } else {
                 displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)
+                waitingForFirstNotificationView.center.y = self.tableView.frame.height / 2
             }
         } else {
             tableView.separatorStyle = .singleLine

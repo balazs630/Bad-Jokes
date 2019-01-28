@@ -148,8 +148,8 @@
 		AC05CBD920F0F0E8009A7A82 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */,
 				ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */,
+				AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */,
 				AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */,
 			);
 			path = UI;
