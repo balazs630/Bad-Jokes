@@ -39,7 +39,7 @@ class PeriodicityViewController: UITableViewController {
 // MARK: Setup view
 extension PeriodicityViewController {
     private func restoreTableViewSelection() {
-        if let index = tableContent.index(of: lastSelectedOption) {
+        if let index = tableContent.firstIndex(of: lastSelectedOption) {
             selectedIndexPath.row = index
         }
 
