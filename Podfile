@@ -13,5 +13,5 @@ workspace 'BadJokes.xcworkspace'
 
 ## Inject pods
 target 'BadJokes' do
-  pod 'FMDB'
+  pod 'FMDB', '~> 2.7.5'
 end
