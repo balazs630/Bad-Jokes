@@ -6,8 +6,6 @@
 //  Copyright © 2017. Horváth Balázs. All rights reserved.
 //
 
-// swiftlint:disable next force_try
-
 import FMDB
 
 class DBService {
@@ -21,11 +19,15 @@ class DBService {
 
     // MARK: Initializers
     private init() {
-        documentsDBPath = try! fileManager
-            .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            .appendingPathComponent(Constant.databaseFileName)
-            .appendingPathExtension(Constant.databaseFileExtension)
-            .path
+        do {
+            documentsDBPath = try fileManager
+                .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+                .appendingPathComponent(Constant.databaseFileName)
+                .appendingPathExtension(Constant.databaseFileExtension)
+                .path
+        } catch {
+            fatalError("Couldn't find documents directory!")
+        }
 
         resourcesDBPath = Bundle.main.path(forResource: Constant.databaseFileName,
                                            ofType: Constant.databaseFileExtension)!

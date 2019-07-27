@@ -6,8 +6,6 @@
 //  Copyright © 2017. Horváth Balázs. All rights reserved.
 //
 
-// swiftlint:disable next type_name
-
 import UIKit
 
 struct Theme {
@@ -76,6 +74,7 @@ extension UIView {
     static let warningTableHeaderView = "WarningTableHeaderView"
 }
 
+// swiftlint:disable type_name
 extension UserDefaults {
     struct Key {
         static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
@@ -116,6 +115,7 @@ extension UserDefaults {
         }
     }
 }
+// swiftlint:enable type_name
 
 struct Constant {
     static let shortVersionString = "CFBundleShortVersionString"

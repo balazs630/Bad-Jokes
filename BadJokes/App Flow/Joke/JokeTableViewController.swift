@@ -32,7 +32,7 @@ class JokeTableViewController: UIViewController {
         super.viewDidLoad()
         jokeNotificationService.delegate = self
 
-        configureTableView()
+        configureRefreshControl()
         setObserverForUIApplicationDidBecomeActive()
     }
 
@@ -89,8 +89,7 @@ extension JokeTableViewController {
 
 // MARK: - Screen configurationss
 private extension JokeTableViewController {
-    private func configureTableView() {
-        tableView.dataSource = dataSource
+    private func configureRefreshControl() {
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         refreshControl.tintColor = .white
         refreshControl.backgroundColor = Theme.Color.lightBlue
