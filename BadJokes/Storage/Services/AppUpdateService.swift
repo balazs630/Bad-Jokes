@@ -12,7 +12,8 @@ class AppUpdateService {
     // MARK: Properties
     private static let migrationSqlScripts = [
         "1.2": "v1.2.sql",
-        "1.3": "v1.3.sql"
+        "1.3": "v1.3.sql",
+        "1.4": "v1.4.sql"
     ]
 
     public static var currentAppVersion: String {
@@ -96,6 +97,10 @@ extension AppUpdateService {
             UserDefaults.standard.set(isActive, forKey: UserDefaults.Key.StoreReviewTrigger.newUser)
             UserDefaults.standard.set(isActive, forKey: UserDefaults.Key.StoreReviewTrigger.oldUser)
             UserDefaults.standard.set(isActive, forKey: UserDefaults.Key.StoreReviewTrigger.copyJoke)
+        }
+
+        if "1.4".isGreater(than: lastAppVersion) {
+            regenerateJokeSchedules()
         }
     }
 
