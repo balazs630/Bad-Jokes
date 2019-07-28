@@ -15,6 +15,7 @@ class JokeNotificationService: NSObject, UNUserNotificationCenterDelegate {
     private let jokeNotificationGenerator = JokeNotificationGenerator()
     private var jokeTypes: [String] = []
     private let notificationCenter = UNUserNotificationCenter.current()
+    private let defaults = UserDefaults.standard
 
     // MARK: Initializers
     override init() {
@@ -31,7 +32,8 @@ extension JokeNotificationService {
     }
 
     func setNewRepeatingNotifications() {
-        guard DBService.shared.unusedJokesCount() > 0 else { return }
+        guard DBService.shared.unusedJokesCount() > 0,
+            !defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) else { return }
 
         removeAllScheduledNotification()
         let notificationTimes = jokeNotificationGenerator.generateNotificationTimes()

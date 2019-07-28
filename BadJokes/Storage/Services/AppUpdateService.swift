@@ -111,11 +111,7 @@ extension AppUpdateService {
     }
 
     private static func regenerateJokeSchedules() {
-        let defaults = UserDefaults.standard
-
-        if !defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) {
-            let jokeNotificationService = JokeNotificationService()
-            jokeNotificationService.setNewRepeatingNotifications()
-        }
+        let jokeNotificationService = JokeNotificationService()
+        jokeNotificationService.setNewRepeatingNotifications()
     }
 }
