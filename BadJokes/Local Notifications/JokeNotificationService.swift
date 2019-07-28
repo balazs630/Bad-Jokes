@@ -9,13 +9,8 @@
 import UIKit
 import UserNotifications
 
-protocol JokeNotificationServiceDelegate: class {
-    func notificationDidFire()
-}
-
 class JokeNotificationService: NSObject, UNUserNotificationCenterDelegate {
     // MARK: Properties
-    weak var delegate: JokeNotificationServiceDelegate?
     private var currentTimeZoneName: String { return TimeZone.current.identifier }
     private let jokeNotificationGenerator = JokeNotificationGenerator()
     private var jokeTypes: [String] = []
@@ -44,8 +39,8 @@ extension JokeNotificationService {
         jokeTypes = jokeNotificationGenerator.makeJokeTypeProbabilityArray()
         guard !jokeTypes.isEmpty else { return }
 
-        (0...notificationTimes.count - 1).forEach { index in
-            addJokeNotificationRequest(on: notificationTimes[index])
+        notificationTimes.forEach {
+            addJokeNotificationRequest(on: $0)
         }
     }
 
@@ -57,12 +52,11 @@ extension JokeNotificationService {
     private func addJokeNotificationRequest(on time: Date) {
         let content = setNotificationContent()
         let trigger = setNotificationTrigger(on: time)
+        let request = UNNotificationRequest(identifier: UUID().uuidString,
+                                            content: content,
+                                            trigger: trigger)
 
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-        guard let jokeId = content.userInfo["jokeId"] as? Int else {
-            return
-        }
+        guard let jokeId = content.userInfo["jokeId"] as? Int else { return }
 
         notificationCenter.add(request, withCompletionHandler: nil)
         DBService.shared.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())

@@ -69,7 +69,7 @@ class DBService {
 extension DBService {
     func executeScript(fileNamed: String) {
         if isDatabaseOpen() {
-            let scriptContent = AppUpdateService.readScript(fileNamed: fileNamed)
+            guard let scriptContent = AppUpdateService.readScript(fileNamed: fileNamed) else { return }
 
             debugPrint("Run script: \(fileNamed)")
             database.executeStatements(scriptContent)

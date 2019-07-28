@@ -30,8 +30,6 @@ class JokeTableViewController: UIViewController {
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        jokeNotificationService.delegate = self
-
         configureRefreshControl()
         setObserverForUIApplicationDidBecomeActive()
     }
@@ -145,18 +143,12 @@ extension JokeTableViewController {
             guard let destVC = segue.destination as? JokeReaderViewController,
                 let sender = sender as? UITableViewCell,
                 let selectedIndex = tableView.indexPath(for: sender),
-                let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeTableViewCell else { return }
-            destVC.jokeText = jokeCell.jokeLabel.text!
+                let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeTableViewCell,
+                let jokeText = jokeCell.jokeLabel.text else { return }
+            destVC.jokeText = jokeText
         default:
             debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
         }
-    }
-}
-
-// MARK: JokeNotificationServiceDelegate
-extension JokeTableViewController: JokeNotificationServiceDelegate {
-    func notificationDidFire() {
-        refreshData()
     }
 }
 

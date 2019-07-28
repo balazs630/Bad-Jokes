@@ -46,7 +46,7 @@ class SettingsViewController: UITableViewController {
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.hidesBackButton = true
+        navigationItem.hidesBackButton = true
         loadPreferences()
         updateUIElementsBasedOnGlobalDisablerSwitchState()
         preferencesSnapshot = getActualPreferences()
@@ -172,7 +172,8 @@ extension SettingsViewController {
         }
 
         sldJokeTypeCollection.forEach {
-            $0.value = defaults.float(forKey: Constant.sliders[$0.tag]!)
+            guard let slider = Constant.sliders[$0.tag] else { return }
+            $0.value = defaults.float(forKey: slider)
         }
     }
 
@@ -191,7 +192,8 @@ extension SettingsViewController {
         defaults.synchronize()
 
         sldJokeTypeCollection.forEach {
-            defaults.set($0.value, forKey: Constant.sliders[$0.tag]!)
+            guard let slider = Constant.sliders[$0.tag] else { return }
+            defaults.set($0.value, forKey: slider)
             defaults.synchronize()
         }
     }
@@ -242,14 +244,14 @@ extension SettingsViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                             forRowAt indexPath: IndexPath) {
         if indexPath.section == notificationSettingsIndexPath.section
-            && indexPath.row == notificationSettingsIndexPath.row {
+                && indexPath.row == notificationSettingsIndexPath.row {
             notificationWarningImage.isHidden = isNotificationEnabled
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath == notificationSettingsIndexPath {
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            UIApplication.openSettings()
         }
     }
 }

@@ -119,12 +119,11 @@ class JokeNotificationGenerator {
         var sldProbabilities: [String] = []
 
         Constant.sliders.forEach { slider in
-            let sliderValue = defaults.integer(forKey: Constant.sliders[slider.key]!)
+            let sliderValue = defaults.integer(forKey: slider.value)
+            guard sliderValue > 0, let jokeType = Constant.jokeTypes[slider.value] else { return }
 
-            if sliderValue > 0 {
-                (1...sliderValue).forEach { _ in
-                    sldProbabilities.append(Constant.jokeTypes[slider.value]!)
-                }
+            (1...sliderValue).forEach { _ in
+                sldProbabilities.append(jokeType)
             }
         }
 
@@ -132,15 +131,12 @@ class JokeNotificationGenerator {
     }
 
     private func getLeftOverJokeType() -> String {
-        var type = ""
-
-        for sliderType in Constant.jokeTypes.values {
-            if !DBService.shared.isAllJokeUsedWith(type: sliderType) {
-                type = sliderType
-                break
+        for jokeType in Constant.jokeTypes.values {
+            if !DBService.shared.isAllJokeUsedWith(type: jokeType) {
+                return jokeType
             }
         }
 
-        return type
+        return ""
     }
 }

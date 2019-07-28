@@ -10,6 +10,6 @@ struct Joke {
     let jokeId: Int
     let isUsed: Int
     let deliveryTime: Int
-    let type: String!
-    let jokeText: String!
+    let type: String
+    let jokeText: String
 }

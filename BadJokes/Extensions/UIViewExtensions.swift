@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIView {
-    class func loadFromNib(named name: String, bundle: Bundle? = nil) -> UIView {
+    static func loadFromNib(named name: String, bundle: Bundle? = nil) -> UIView {
         guard let nib = UINib(nibName: name, bundle: bundle)
             .instantiate(withOwner: nil, options: nil)
             .first as? UIView else {

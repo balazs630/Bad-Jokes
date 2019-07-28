@@ -22,11 +22,11 @@ class StoreReviewService {
     }
 
     // MARK: Request App Store review
-    class func requestImmadiateReview() {
+    static func requestImmadiateReview() {
         SKStoreReviewController.requestReview()
     }
 
-    class func requestTimedReview(for trigger: StoreReviewTrigger) {
+    static func requestTimedReview(for trigger: StoreReviewTrigger) {
         if trigger.isActive && trigger.areRulesFulfilled() {
             SKStoreReviewController.requestReview()
             trigger.invalidate()

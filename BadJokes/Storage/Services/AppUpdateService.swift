@@ -33,7 +33,7 @@ class AppUpdateService {
     }
 
     // MARK: Routines for app updates
-    class func checkUpdates() {
+    static func checkUpdates() {
         if isAppVersionChangedSinceLastLaunch() {
             runDatabaseMigration()
             runApplicationUpdateStatements()
@@ -42,47 +42,38 @@ class AppUpdateService {
         }
     }
 
-    class func readScript(fileNamed: String) -> String {
-        guard let file = Bundle.main.path(forResource: fileNamed, ofType: nil) else {
-            fatalError("Script: \(fileNamed) couldn't be found!")
+    static func readScript(fileNamed: String) -> String? {
+        if let file = Bundle.main.path(forResource: fileNamed, ofType: nil) {
+            return try? String(contentsOfFile: file, encoding: .utf8)
         }
 
-        var sqlContent = ""
-        do {
-            sqlContent = try String(contentsOfFile: file, encoding: .utf8)
-        } catch {
-            fatalError("Unexpected error: \(error) on parsing: \(fileNamed)")
-        }
-
-        return sqlContent
+        return nil
     }
 }
 
 // MARK: Utility methods
 extension AppUpdateService {
-    private class func isAppVersionChangedSinceLastLaunch() -> Bool {
+    private static func isAppVersionChangedSinceLastLaunch() -> Bool {
         return currentAppVersion != lastAppVersion
     }
 
-    private class func runDatabaseMigration() {
+    private static func runDatabaseMigration() {
         let scripts = collectMigrationScripts()
         scripts.forEach {
             DBService.shared.executeScript(fileNamed: $0)
         }
     }
 
-    private class func collectMigrationScripts() -> [String] {
-        var scripts: [String] = []
-        migrationSqlScripts.forEach { script in
-            if script.key.isGreater(than: lastAppVersion) {
-                scripts.append(script.value)
-            }
+    private static func collectMigrationScripts() -> [String] {
+        return migrationSqlScripts
+            .filter {
+                $0.key.isGreater(than: lastAppVersion)
+            }.map {
+                $0.value
         }
-
-        return scripts
     }
 
-    private class func runApplicationUpdateStatements() {
+    private static func runApplicationUpdateStatements() {
         if "1.2".isGreater(than: lastAppVersion) {
             renameUserDefaultsKey(from: "sldIT", to: "sldGeek")
         }
@@ -104,13 +95,13 @@ extension AppUpdateService {
         }
     }
 
-    private class func syncCurrentAppVersion() {
+    private static func syncCurrentAppVersion() {
         let defaults = UserDefaults.standard
         defaults.set(currentAppVersion, forKey: UserDefaults.Key.appVersion)
         defaults.synchronize()
     }
 
-    private class func renameUserDefaultsKey(from oldKey: String, to newKey: String) {
+    private static func renameUserDefaultsKey(from oldKey: String, to newKey: String) {
         let defaults = UserDefaults.standard
         let oldValue = defaults.double(forKey: oldKey)
 
@@ -119,7 +110,7 @@ extension AppUpdateService {
         defaults.synchronize()
     }
 
-    private class func regenerateJokeSchedules() {
+    private static func regenerateJokeSchedules() {
         let defaults = UserDefaults.standard
 
         if !defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) {

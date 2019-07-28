@@ -29,8 +29,8 @@ extension DBService {
                     let joke = Joke(jokeId: Int(results.int(forColumn: Table.Jokes.jokeId)),
                                     isUsed: Int(results.int(forColumn: Table.Jokes.isUsed)),
                                     deliveryTime: Int(results.int(forColumn: Table.Jokes.deliveryTime)),
-                                    type: results.string(forColumn: Table.Jokes.type),
-                                    jokeText: results.string(forColumn: Table.Jokes.jokeText))
+                                    type: results.string(forColumn: Table.Jokes.type)!,
+                                    jokeText: results.string(forColumn: Table.Jokes.jokeText)!)
 
                     resultSet.append(joke)
                 }
@@ -69,8 +69,8 @@ extension DBService {
                     randomJoke = Joke(jokeId: Int(results.int(forColumn: Table.Jokes.jokeId)),
                                       isUsed: Int(results.int(forColumn: Table.Jokes.isUsed)),
                                       deliveryTime: Int(results.int(forColumn: Table.Jokes.deliveryTime)),
-                                      type: results.string(forColumn: Table.Jokes.type),
-                                      jokeText: results.string(forColumn: Table.Jokes.jokeText))
+                                      type: results.string(forColumn: Table.Jokes.type)!,
+                                      jokeText: results.string(forColumn: Table.Jokes.jokeText)!)
                 }
             } catch {
                 debugPrint(error.localizedDescription)
