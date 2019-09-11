@@ -18,6 +18,7 @@
 		AC100EAC1F548A430069C0DE /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC100EAB1F548A430069C0DE /* StringExtensions.swift */; };
 		AC128334204B5D3F00FCC19E /* DatePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC128333204B5D3F00FCC19E /* DatePart.swift */; };
 		AC128336204B5F1600FCC19E /* TimePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC128335204B5F1600FCC19E /* TimePart.swift */; };
+		AC182C052329830400CF3A4F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AC182C042329830400CF3A4F /* README.md */; };
 		AC1BAF102059D6740047E376 /* RecurrenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */; };
 		AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */; };
 		AC237A0421EB4BC8004EEC2C /* StoreReviewTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC237A0321EB4BC8004EEC2C /* StoreReviewTrigger.swift */; };
@@ -68,6 +69,7 @@
 		AC100EAB1F548A430069C0DE /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		AC128333204B5D3F00FCC19E /* DatePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePart.swift; sourceTree = "<group>"; };
 		AC128335204B5F1600FCC19E /* TimePart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePart.swift; sourceTree = "<group>"; };
+		AC182C042329830400CF3A4F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		AC1BAF0F2059D6740047E376 /* RecurrenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurrenceViewController.swift; sourceTree = "<group>"; };
 		AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeNotificationGenerator.swift; sourceTree = "<group>"; };
 		AC237A0321EB4BC8004EEC2C /* StoreReviewTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewTrigger.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				ACEEA96E1F1E5FA600BCF905 /* Info.plist */,
+				AC182C042329830400CF3A4F /* README.md */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				AC674B74214401B6009F8B46 /* v1.3.sql in Resources */,
 				AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */,
 				AC05B3D722ECF51200CF2711 /* v1.4.sql in Resources */,
+				AC182C052329830400CF3A4F /* README.md in Resources */,
 				AC29785820CC80AF00A49689 /* v1.2.sql in Resources */,
 				AC23A4B82068505F008BED6C /* WaitingForFirstNotificationView.xib in Resources */,
 				ACE689C421484F8B00754221 /* v1.1-base.sql in Resources */,

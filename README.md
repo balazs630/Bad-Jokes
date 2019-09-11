@@ -15,7 +15,7 @@ Instead: All you can do in this app is set notifications for when you want to ge
 ___
 **Done:**
 
-- [x] Over 300 jokes in the collection
+- [x] 400 joke in the collection
 - [x] Jokes are stored in a local SQLite database
 - [x] Settings screen with detailed preferences regarding the joke notifications
 - [x] Display a warning icon if the notifications are turned off for the app
@@ -28,10 +28,3 @@ ___
 - [x] Copy joke text to clipboard with long tap gesture
 - [x] In app rating/review triggers for specific rules
 - [x] iPad screen support
-
-
-___
-**Backlog:**
-
-
-- [ ] Add more jokes...
