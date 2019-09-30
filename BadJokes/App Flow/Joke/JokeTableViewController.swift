@@ -137,7 +137,8 @@ extension JokeTableViewController {
 
         switch segueIdentifier {
         case SegueIdentifier.showSettings:
-            guard let destVC = segue.destination as? SettingsViewController else { return }
+            guard let navigationController = segue.destination as? UINavigationController,
+                let destVC = navigationController.viewControllers.first as? SettingsViewController else { return }
             destVC.delegate = self
         case SegueIdentifier.showJoke:
             guard let destVC = segue.destination as? JokeReaderViewController,
@@ -156,5 +157,6 @@ extension JokeTableViewController {
 extension JokeTableViewController: SettingsViewControllerDelegate {
     func startJokeGeneratingProcess() {
         jokeNotificationService.setNewRepeatingNotifications()
+        presentEmptyView()
     }
 }

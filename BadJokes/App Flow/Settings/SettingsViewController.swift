@@ -46,7 +46,9 @@ class SettingsViewController: UITableViewController {
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = true
+        }
         loadPreferences()
         updateUIElementsBasedOnGlobalDisablerSwitchState()
         preferencesSnapshot = getActualPreferences()
@@ -55,6 +57,7 @@ class SettingsViewController: UITableViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         checkAppNotificationEnabledStatus()
     }
 
@@ -66,7 +69,7 @@ class SettingsViewController: UITableViewController {
         }
 
         saveGeneralPreferences()
-        self.navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
     }
 
     @IBAction func swGlobalOnOffDidChange(_ sender: Any) {
