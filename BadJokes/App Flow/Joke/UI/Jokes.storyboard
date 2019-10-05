@@ -124,7 +124,7 @@
                         <viewLayoutGuide key="safeArea" id="WKQ-C6-bmk"/>
                     </view>
                     <navigationItem key="navigationItem" title="Vicctár" id="G0r-lg-WNM">
-                        <barButtonItem key="leftBarButtonItem" image="settings" id="8BM-v9-mFd">
+                        <barButtonItem key="leftBarButtonItem" title="Beállítások" image="settings" id="8BM-v9-mFd">
                             <connections>
                                 <segue destination="JNR-fF-PoI" kind="presentation" identifier="showSettingsSegue" id="ICQ-Ci-Tqd"/>
                             </connections>
