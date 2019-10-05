@@ -40,7 +40,7 @@
 		ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB7C1E71FDD6106007ED514 /* Constants.swift */; };
 		ACBDC24A20EAD26300CDB54F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */; };
 		ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */; };
-		ACBDC24F20EC213D00CDB54F /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */; };
+		ACBDC24F20EC213D00CDB54F /* UINibExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24E20EC213D00CDB54F /* UINibExtensions.swift */; };
 		ACBF5CBE21961FC500DCE6CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */; };
 		ACBF5CC021961FF200DCE6CC /* Jokes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */; };
 		ACD7E85D20C8763F00A8F105 /* AppUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85C20C8763F00A8F105 /* AppUpdateService.swift */; };
@@ -91,7 +91,7 @@
 		ACB7C1E71FDD6106007ED514 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		ACBDC24E20EC213D00CDB54F /* UINibExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINibExtensions.swift; sourceTree = "<group>"; };
 		ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Jokes.storyboard; sourceTree = "<group>"; };
 		ACD7E85C20C8763F00A8F105 /* AppUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateService.swift; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 				ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */,
 				AC07F8A822ED0FCB00399934 /* UIApplicationExtensions.swift */,
 				ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */,
-				ACBDC24E20EC213D00CDB54F /* UIViewExtensions.swift */,
+				ACBDC24E20EC213D00CDB54F /* UINibExtensions.swift */,
 				ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */,
 			);
 			path = Extensions;
@@ -519,7 +519,7 @@
 				ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */,
 				AC1BAF102059D6740047E376 /* RecurrenceViewController.swift in Sources */,
 				ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */,
-				ACBDC24F20EC213D00CDB54F /* UIViewExtensions.swift in Sources */,
+				ACBDC24F20EC213D00CDB54F /* UINibExtensions.swift in Sources */,
 				AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */,
 				AC100EAC1F548A430069C0DE /* StringExtensions.swift in Sources */,
 				AC05CBD620F0F019009A7A82 /* Schedule.swift in Sources */,

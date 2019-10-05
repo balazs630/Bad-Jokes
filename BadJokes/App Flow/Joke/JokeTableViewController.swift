@@ -14,8 +14,8 @@ class JokeTableViewController: UIViewController {
     private let jokeNotificationService = JokeNotificationService()
     private let refreshControl = UIRefreshControl()
 
-    private let noNotificationScheduledView = UIView.loadFromNib(named: UIView.noNotificationScheduledView)
-    private let waitingForFirstNotificationView = UIView.loadFromNib(named: UIView.waitingForFirstNotificationView)
+    private let noNotificationScheduledView = UINib.loadView(named: .noNotificationScheduledView)
+    private let waitingForFirstNotificationView = UINib.loadView(named: .waitingForFirstNotificationView)
 
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -109,24 +109,29 @@ private extension JokeTableViewController {
     }
 
     private func presentEmptyView() {
+        removeEmptyViews()
+
         if dataSource.jokes.isEmpty {
             if DBService.shared.isSchedulesListEmpty() {
                 displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
             } else {
                 displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)
-                waitingForFirstNotificationView.center.y = self.tableView.frame.height / 2
+                waitingForFirstNotificationView.center.y = tableView.frame.height / 2
             }
         } else {
             tableView.separatorStyle = .singleLine
-            noNotificationScheduledView.removeFromSuperview()
-            waitingForFirstNotificationView.removeFromSuperview()
         }
     }
 
     private func displayViewInFrontOfTableView(frontview view: UIView) {
-        view.frame = self.view.bounds
+        view.frame = view.bounds
         tableView.addSubview(view)
         tableView.bringSubviewToFront(view)
+    }
+
+    private func removeEmptyViews() {
+        noNotificationScheduledView.removeFromSuperview()
+        waitingForFirstNotificationView.removeFromSuperview()
     }
 }
 

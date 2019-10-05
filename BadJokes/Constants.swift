@@ -68,10 +68,10 @@ struct SegueIdentifier {
     static let showJoke = "showJokeSegue"
 }
 
-extension UIView {
-    static let noNotificationScheduledView = "NoNotificationScheduledView"
-    static let waitingForFirstNotificationView = "WaitingForFirstNotificationView"
-    static let warningTableHeaderView = "WarningTableHeaderView"
+enum NibName: String {
+    case noNotificationScheduledView = "NoNotificationScheduledView"
+    case waitingForFirstNotificationView = "WaitingForFirstNotificationView"
+    case warningTableHeaderView = "WarningTableHeaderView"
 }
 
 // swiftlint:disable type_name

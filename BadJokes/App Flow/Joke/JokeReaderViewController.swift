@@ -23,6 +23,11 @@ class JokeReaderViewController: UIViewController {
         configureView()
     }
 
+    // MARK: Actions
+    @IBAction func viewDidDrag(_ sender: UIPanGestureRecognizer) {
+        dismiss(animated: true)
+    }
+
     // MARK: - Screen configuration
     private func configureView() {
         containerView.layer.backgroundColor = Theme.Color.lightBlue.cgColor
