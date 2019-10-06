@@ -25,7 +25,7 @@ class JokeReaderViewController: UIViewController {
 
     // MARK: Actions
     @IBAction func viewDidDrag(_ sender: UIPanGestureRecognizer) {
-        dismiss(animated: true)
+        popModalScreen()
     }
 
     // MARK: - Screen configuration
@@ -37,5 +37,11 @@ class JokeReaderViewController: UIViewController {
         lblJoke.textColor = .white
 
         lblEmoji.text = ["😃", "😝", "🤣", "😆", "😄", "😅", "😄", "😁"].randomElement()
+    }
+
+    // MARK: - Navigation
+    private func popModalScreen() {
+        dismiss(animated: true)
+        performSegue(withIdentifier: SegueIdentifier.dismissJoke, sender: self)
     }
 }

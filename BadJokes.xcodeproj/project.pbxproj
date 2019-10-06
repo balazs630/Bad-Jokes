@@ -51,6 +51,7 @@
 		ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEA9621F1E5FA600BCF905 /* AppDelegate.swift */; };
 		ACEEA9651F1E5FA600BCF905 /* JokeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */; };
 		ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */; };
+		ACF0B9312349E01D005A75A9 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B9302349E01D005A75A9 /* UITableViewExtensions.swift */; };
 		ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */; };
 		ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */; };
 		ACF0EBA3209A7DF300467675 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0EBA2209A7DF300467675 /* DateExtensions.swift */; };
@@ -105,6 +106,7 @@
 		ACEEA9641F1E5FA600BCF905 /* JokeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeTableViewController.swift; sourceTree = "<group>"; };
 		ACEEA9691F1E5FA600BCF905 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACEEA96E1F1E5FA600BCF905 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACF0B9302349E01D005A75A9 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
 		ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
 		ACF0EBA2209A7DF300467675 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				AC07F8A822ED0FCB00399934 /* UIApplicationExtensions.swift */,
 				ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */,
 				ACBDC24E20EC213D00CDB54F /* UINibExtensions.swift */,
+				ACF0B9302349E01D005A75A9 /* UITableViewExtensions.swift */,
 				ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */,
 			);
 			path = Extensions;
@@ -497,6 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACF0B9312349E01D005A75A9 /* UITableViewExtensions.swift in Sources */,
 				AC0AF9BD20DC66ED00A52478 /* CopyableLabel.swift in Sources */,
 				ACEEA9651F1E5FA600BCF905 /* JokeTableViewController.swift in Sources */,
 				ACB5A2931FE7FFA4006DD51E /* JokeReaderViewController.swift in Sources */,

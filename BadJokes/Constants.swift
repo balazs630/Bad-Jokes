@@ -66,6 +66,7 @@ struct SegueIdentifier {
     static let recurrenceDetail = "recurrenceDetailSegue"
     static let timeDetail = "timeDetailSegue"
     static let showJoke = "showJokeSegue"
+    static let dismissJoke = "dismissJokeSegue"
 }
 
 enum NibName: String {

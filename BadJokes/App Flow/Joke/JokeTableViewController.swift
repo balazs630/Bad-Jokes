@@ -156,6 +156,10 @@ extension JokeTableViewController {
             debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
         }
     }
+
+    @IBAction func jokeReaderDidDismiss(segue: UIStoryboardSegue) {
+        tableView.removeRowSelections()
+    }
 }
 
 // MARK: SettingsViewControllerDelegate
