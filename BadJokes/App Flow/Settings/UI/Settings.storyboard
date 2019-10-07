@@ -25,8 +25,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamation-mark" translatesAutoresizingMaskIntoConstraints="NO" id="TPd-Kd-w1m">
-                                                    <rect key="frame" x="322.5" y="9.5" width="25" height="25"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamation-mark" translatesAutoresizingMaskIntoConstraints="NO" id="TPd-Kd-w1m">
+                                                    <rect key="frame" x="312" y="9.5" width="25" height="25.000000000000014"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="Usf-Gr-DzV"/>
                                                         <constraint firstAttribute="height" constant="25" id="aUz-fe-IKG"/>
@@ -41,12 +41,14 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="TPd-Kd-w1m" firstAttribute="centerY" secondItem="1t8-6I-7vF" secondAttribute="centerY" id="Jbw-yh-YJf"/>
-                                                <constraint firstAttribute="trailing" secondItem="TPd-Kd-w1m" secondAttribute="trailing" id="VEX-IU-FfT"/>
                                                 <constraint firstItem="PMv-Xa-wIQ" firstAttribute="centerY" secondItem="1t8-6I-7vF" secondAttribute="centerY" id="Z5f-f4-VQS"/>
                                                 <constraint firstItem="PMv-Xa-wIQ" firstAttribute="leading" secondItem="1t8-6I-7vF" secondAttribute="leadingMargin" id="ogU-ih-WlC"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PMv-Xa-wIQ" secondAttribute="trailingMargin" id="yS7-UF-xyk"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="TPd-Kd-w1m" secondAttribute="trailing" constant="38" id="W8y-CT-vCK"/>
+                                        </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="tgh-EX-tsl">
                                         <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
@@ -587,6 +589,6 @@
     </scenes>
     <resources>
         <image name="close" width="22" height="22"/>
-        <image name="exclamation-mark" width="150" height="150"/>
+        <image name="exclamation-mark" width="53.5" height="53.5"/>
     </resources>
 </document>
