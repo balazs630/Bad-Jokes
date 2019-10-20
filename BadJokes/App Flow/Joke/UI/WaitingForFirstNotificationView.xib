@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="iN0-l3-epB">
+        <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -32,10 +32,10 @@
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ccL-9h-tBC" secondAttribute="trailing" id="PW5-YE-2pX"/>
-                <constraint firstItem="ccL-9h-tBC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="d12-xl-TSB"/>
-                <constraint firstItem="ccL-9h-tBC" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="oYn-8C-cA5"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ccL-9h-tBC" secondAttribute="bottom" id="oxS-UC-gIB"/>
+                <constraint firstAttribute="trailing" secondItem="ccL-9h-tBC" secondAttribute="trailing" id="PW5-YE-2pX"/>
+                <constraint firstItem="ccL-9h-tBC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="d12-xl-TSB"/>
+                <constraint firstItem="ccL-9h-tBC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oYn-8C-cA5"/>
+                <constraint firstAttribute="bottom" secondItem="ccL-9h-tBC" secondAttribute="bottom" id="oxS-UC-gIB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="12.5" y="60.5"/>
