@@ -153,3 +153,5 @@ INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'cop','-
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'cop','- Miért megy a rendőr a fal mellett?\n- ???\n- Hogy körbe ne röhögjék.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'cop','- Két rendőr közül melyik pisil távolabb?\n- ???\n- Amelyik előtte lehúzza a sliccét.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'blonde','- Hogy csinál a szőke nő lekvárt?\n- ???\n- Kinyomja a buktából.');
+
+-- EOF

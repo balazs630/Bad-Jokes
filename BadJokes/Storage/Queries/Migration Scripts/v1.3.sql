@@ -156,3 +156,5 @@ INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'animal'
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'rough','- Ki az abszolút tuskó?\n- ???\n- Akinek a fejében lefullad a láncfűrész!');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'anti','- Mi az abszolút lehetetlen?\n- ???\n- Az égboltban vásárolni.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'tiring','Csönget a postás:\n- Fűtésszámlát hoztam Rózsika néni!\nErre az öregasszony:\nA fűt csúsztasd a zsebembe Béluskám, a számlát meg dob el a fenébe!');
+
+-- EOF

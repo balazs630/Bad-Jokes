@@ -32,3 +32,5 @@ INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'blonde'
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'blonde','- Hogyan öli meg a szőke nő a vakondot?\n- ???\n- Élve eltemeti.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'blonde','- Miért nyitja ki a szőke nő a szülészeten az ablakot?\n- ???\n- Mert várja a gólyát.');
 INSERT INTO jokes (isUsed, deliveryTime, type, jokeText) VALUES (0,null,'blonde','- Mit vár a szőke nő a kád mellett?\n- ???\n- Hogy a melegvízes csap jelzése végre zöldre váltson.');
+
+-- EOF
