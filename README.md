@@ -10,7 +10,7 @@ Instead: All you can do in this app is set notifications for when you want to ge
 
 **Main app:**
 
-<img src="https://i.imgur.com/plsRr5Q.jpg" width="900px" />
+<img src="https://i.imgur.com/waoW3cD.jpg" width="900px" />
 
 ___
 **Done:**
@@ -28,3 +28,4 @@ ___
 - [x] Copy joke text to clipboard with long tap gesture
 - [x] In app rating/review triggers for specific rules
 - [x] iPad screen support
+- [x] Dark mode support
