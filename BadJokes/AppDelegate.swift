@@ -25,35 +25,7 @@ extension AppDelegate {
         let defaults = UserDefaults.standard
 
         if defaults.object(forKey: UserDefaults.Key.isAppAlreadyLaunchedOnce) == nil {
-            let firstTimeLaunchDefaults: [String: Any] = [
-                UserDefaults.Key.isAppAlreadyLaunchedOnce: true,
-                UserDefaults.Key.appVersion: AppUpdateService.currentAppVersion,
-
-                UserDefaults.Key.StoreReviewTrigger.newUser: true,
-                UserDefaults.Key.StoreReviewTrigger.oldUser: true,
-                UserDefaults.Key.StoreReviewTrigger.copyJoke: true,
-
-                UserDefaults.Key.Sw.globalOff: false,
-
-                UserDefaults.Key.Lbl.periodicity: "Napi",
-                UserDefaults.Key.Lbl.recurrence: "1x",
-                UserDefaults.Key.Lbl.time: "Véletlen időpontban",
-
-                UserDefaults.Key.Pck.timeHours: "12",
-                UserDefaults.Key.Pck.timeMinutes: "00",
-
-                UserDefaults.Key.Sld.animal: 10,
-                UserDefaults.Key.Sld.rough: 0,
-                UserDefaults.Key.Sld.geek: 2,
-                UserDefaults.Key.Sld.anti: 6,
-                UserDefaults.Key.Sld.tiring: 10,
-                UserDefaults.Key.Sld.jean: 2,
-                UserDefaults.Key.Sld.moricka: 6,
-                UserDefaults.Key.Sld.cop: 4,
-                UserDefaults.Key.Sld.blonde: 2
-            ]
-
-            firstTimeLaunchDefaults.forEach {
+            DefaultSettings.firstTimeLaunchDefaults.forEach {
                 defaults.set($0.value, forKey: $0.key)
             }
 

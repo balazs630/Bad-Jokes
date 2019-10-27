@@ -14,6 +14,129 @@ struct Theme {
     }
 }
 
+enum SegueIdentifier: String {
+    case showSettingsSegue
+    case periodicityDetailSegue
+    case recurrenceDetailSegue
+    case timeDetailSegue
+    case showJokeSegue
+    case dismissJokeSegue
+}
+
+enum NibName: String {
+    case noNotificationScheduledView = "NoNotificationScheduledView"
+    case waitingForFirstNotificationView = "WaitingForFirstNotificationView"
+    case warningTableHeaderView = "WarningTableHeaderView"
+}
+
+struct DefaultSettings {
+    static let firstTimeLaunchDefaults: [String: Any] = [
+        UserDefaults.Key.isAppAlreadyLaunchedOnce: true,
+        UserDefaults.Key.appVersion: AppUpdateService.currentAppVersion,
+
+        UserDefaults.Key.StoreReviewTrigger.newUser: true,
+        UserDefaults.Key.StoreReviewTrigger.oldUser: true,
+        UserDefaults.Key.StoreReviewTrigger.copyJoke: true,
+
+        UserDefaults.Key.Sw.globalOff: false,
+
+        UserDefaults.Key.Lbl.periodicity: "Napi",
+        UserDefaults.Key.Lbl.recurrence: "1x",
+        UserDefaults.Key.Lbl.time: "Véletlen időpontban",
+
+        UserDefaults.Key.Pck.timeHours: "12",
+        UserDefaults.Key.Pck.timeMinutes: "00",
+
+        UserDefaults.Key.Sld.animal: 10,
+        UserDefaults.Key.Sld.rough: 0,
+        UserDefaults.Key.Sld.geek: 2,
+        UserDefaults.Key.Sld.anti: 6,
+        UserDefaults.Key.Sld.tiring: 10,
+        UserDefaults.Key.Sld.jean: 2,
+        UserDefaults.Key.Sld.moricka: 6,
+        UserDefaults.Key.Sld.cop: 4,
+        UserDefaults.Key.Sld.blonde: 2
+    ]
+}
+
+extension UserDefaults {
+    struct Key {
+        static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
+        static let appVersion = "appVersion"
+        static let numberOfAppRuns = "numberOfAppRuns"
+
+        // swiftlint:disable:next type_name
+        struct Sw {
+            static let globalOff = "swGlobalOff"
+        }
+
+        struct Lbl {
+            static let periodicity = "lblPeriodicity"
+            static let time = "lblTime"
+            static let recurrence = "lblRecurrence"
+        }
+
+        struct Pck {
+            static let timeHours = "pckTimeHours"
+            static let timeMinutes = "pckTimeMinutes"
+        }
+
+        struct Sld {
+            static let animal = "sldAnimal"
+            static let rough = "sldRough"
+            static let geek = "sldGeek"
+            static let anti = "sldAnti"
+            static let tiring = "sldTiring"
+            static let jean = "sldJean"
+            static let moricka = "sldMoricka"
+            static let cop = "sldCop"
+            static let blonde = "sldBlonde"
+        }
+
+        struct StoreReviewTrigger {
+            static let copyJoke = "copyJokeTextTrigger"
+            static let newUser = "newUserTrigger"
+            static let oldUser = "oldUserTrigger"
+        }
+    }
+}
+
+struct Constant {
+    static let shortVersionString = "CFBundleShortVersionString"
+    static let generateNewJokesThreshold = 32
+
+    static let databaseFileName = "jokesDB"
+    static let databaseFileExtension = "db"
+
+    static var sliders: [Int: String] {
+        return [
+            1: UserDefaults.Key.Sld.animal,
+            2: UserDefaults.Key.Sld.rough,
+            3: UserDefaults.Key.Sld.geek,
+            4: UserDefaults.Key.Sld.anti,
+            5: UserDefaults.Key.Sld.tiring,
+            6: UserDefaults.Key.Sld.jean,
+            7: UserDefaults.Key.Sld.moricka,
+            8: UserDefaults.Key.Sld.cop,
+            9: UserDefaults.Key.Sld.blonde
+        ]
+    }
+
+    static var jokeTypes: [String: String] {
+        return [
+            UserDefaults.Key.Sld.animal: "animal",
+            UserDefaults.Key.Sld.rough: "rough",
+            UserDefaults.Key.Sld.geek: "geek",
+            UserDefaults.Key.Sld.anti: "anti",
+            UserDefaults.Key.Sld.tiring: "tiring",
+            UserDefaults.Key.Sld.jean: "jean",
+            UserDefaults.Key.Sld.moricka: "moricka",
+            UserDefaults.Key.Sld.cop: "cop",
+            UserDefaults.Key.Sld.blonde: "blonde"
+        ]
+    }
+}
+
 enum Periodicity: String {
     case daily = "Napi"
     case weekly = "Heti"
@@ -57,99 +180,5 @@ enum TimeRange: String {
         case .atGivenTime:
             return ""
         }
-    }
-}
-
-struct SegueIdentifier {
-    static let showSettings = "showSettingsSegue"
-    static let periodicityDetail = "periodicityDetailSegue"
-    static let recurrenceDetail = "recurrenceDetailSegue"
-    static let timeDetail = "timeDetailSegue"
-    static let showJoke = "showJokeSegue"
-    static let dismissJoke = "dismissJokeSegue"
-}
-
-enum NibName: String {
-    case noNotificationScheduledView = "NoNotificationScheduledView"
-    case waitingForFirstNotificationView = "WaitingForFirstNotificationView"
-    case warningTableHeaderView = "WarningTableHeaderView"
-}
-
-// swiftlint:disable type_name
-extension UserDefaults {
-    struct Key {
-        static let isAppAlreadyLaunchedOnce = "isAppAlreadyLaunchedOnce"
-        static let appVersion = "appVersion"
-        static let numberOfAppRuns = "numberOfAppRuns"
-
-        struct Sw {
-            static let globalOff = "swGlobalOff"
-        }
-
-        struct Lbl {
-            static let periodicity = "lblPeriodicity"
-            static let time = "lblTime"
-            static let recurrence = "lblRecurrence"
-        }
-
-        struct Pck {
-            static let timeHours = "pckTimeHours"
-            static let timeMinutes = "pckTimeMinutes"
-        }
-
-        struct Sld {
-            static let animal = "sldAnimal"
-            static let rough = "sldRough"
-            static let geek = "sldGeek"
-            static let anti = "sldAnti"
-            static let tiring = "sldTiring"
-            static let jean = "sldJean"
-            static let moricka = "sldMoricka"
-            static let cop = "sldCop"
-            static let blonde = "sldBlonde"
-        }
-
-        struct StoreReviewTrigger {
-            static let copyJoke = "copyJokeTextTrigger"
-            static let newUser = "newUserTrigger"
-            static let oldUser = "oldUserTrigger"
-        }
-    }
-}
-// swiftlint:enable type_name
-
-struct Constant {
-    static let shortVersionString = "CFBundleShortVersionString"
-    static let generateNewJokesThreshold = 32
-
-    static let databaseFileName = "jokesDB"
-    static let databaseFileExtension = "db"
-
-    static var sliders: [Int: String] {
-        return [
-            1: UserDefaults.Key.Sld.animal,
-            2: UserDefaults.Key.Sld.rough,
-            3: UserDefaults.Key.Sld.geek,
-            4: UserDefaults.Key.Sld.anti,
-            5: UserDefaults.Key.Sld.tiring,
-            6: UserDefaults.Key.Sld.jean,
-            7: UserDefaults.Key.Sld.moricka,
-            8: UserDefaults.Key.Sld.cop,
-            9: UserDefaults.Key.Sld.blonde
-        ]
-    }
-
-    static var jokeTypes: [String: String] {
-        return [
-            UserDefaults.Key.Sld.animal: "animal",
-            UserDefaults.Key.Sld.rough: "rough",
-            UserDefaults.Key.Sld.geek: "geek",
-            UserDefaults.Key.Sld.anti: "anti",
-            UserDefaults.Key.Sld.tiring: "tiring",
-            UserDefaults.Key.Sld.jean: "jean",
-            UserDefaults.Key.Sld.moricka: "moricka",
-            UserDefaults.Key.Sld.cop: "cop",
-            UserDefaults.Key.Sld.blonde: "blonde"
-        ]
     }
 }

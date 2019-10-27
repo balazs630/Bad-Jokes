@@ -140,14 +140,15 @@ private extension JokeTableViewController {
 // MARK: - Navigation
 extension JokeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let segueIdentifier = segue.identifier else { return }
+        guard let rawIdentifier = segue.identifier,
+            let segueIdentifier = SegueIdentifier(rawValue: rawIdentifier) else { return }
 
         switch segueIdentifier {
-        case SegueIdentifier.showSettings:
+        case .showSettingsSegue:
             guard let navigationController = segue.destination as? UINavigationController,
                 let destVC = navigationController.viewControllers.first as? SettingsViewController else { return }
             destVC.delegate = self
-        case SegueIdentifier.showJoke:
+        case .showJokeSegue:
             guard let destVC = segue.destination as? JokeReaderViewController,
                 let sender = sender as? UITableViewCell,
                 let selectedIndex = tableView.indexPath(for: sender),

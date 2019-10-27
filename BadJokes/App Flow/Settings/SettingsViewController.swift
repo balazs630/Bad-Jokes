@@ -205,23 +205,23 @@ extension SettingsViewController {
 // MARK: - Navigation
 extension SettingsViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard tableView.indexPathForSelectedRow != nil else { return }
-        guard segue.identifier != nil else { return }
+        guard let rawIdentifier = segue.identifier,
+            let segueIdentifier = SegueIdentifier(rawValue: rawIdentifier) else { return }
 
-        switch segue.identifier {
-        case SegueIdentifier.periodicityDetail:
+        switch segueIdentifier {
+        case .periodicityDetailSegue:
             guard let destVC = segue.destination as? PeriodicityViewController else { return }
             if let periodicity = lblPeriodicity.text {
                 destVC.lastSelectedOption = Periodicity(rawValue: periodicity)
             }
             destVC.delegate = self
-        case SegueIdentifier.recurrenceDetail:
+        case .recurrenceDetailSegue:
             guard let destVC = segue.destination as? RecurrenceViewController else { return }
             if let recurrence = lblRecurrence.text {
                 destVC.lastSelectedOption = Recurrence(rawValue: recurrence)
             }
             destVC.delegate = self
-        case SegueIdentifier.timeDetail:
+        case .timeDetailSegue:
             guard let destVC = segue.destination as? TimeRangeViewController else { return }
             destVC.lastSelectedOption = selectedTimeRange
 

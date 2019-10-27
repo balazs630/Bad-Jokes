@@ -6,12 +6,5 @@ disabled_rules:
   - valid_docs
   - nesting
 
-custom_rules:
-    force_print:
-        name: "Force disable 'print()' logger."
-        message: "Use 'log.debug()' instead of 'print()'"
-        regex: '(print\()'
-        severity: error
-
 excluded:
   - Pods

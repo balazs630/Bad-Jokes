@@ -26,6 +26,7 @@
 		AC23A4B82068505F008BED6C /* WaitingForFirstNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */; };
 		AC2579B120461AAA00C1D904 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B020461AAA00C1D904 /* DateUtil.swift */; };
 		AC29785820CC80AF00A49689 /* v1.2.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC29785720CC80AF00A49689 /* v1.2.sql */; };
+		AC4C1BE923664BB500052A12 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4C1BE823664BB500052A12 /* UIViewControllerExtension.swift */; };
 		AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */; };
 		AC66A3D320E79B0600BF53E3 /* WarningTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */; };
 		AC674B74214401B6009F8B46 /* v1.3.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC674B73214401B6009F8B46 /* v1.3.sql */; };
@@ -78,6 +79,7 @@
 		AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitingForFirstNotificationView.xib; sourceTree = "<group>"; };
 		AC2579B020461AAA00C1D904 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		AC29785720CC80AF00A49689 /* v1.2.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.2.sql; sourceTree = "<group>"; };
+		AC4C1BE823664BB500052A12 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoNotificationScheduledView.xib; sourceTree = "<group>"; };
 		AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WarningTableHeaderView.xib; sourceTree = "<group>"; };
 		AC674B73214401B6009F8B46 /* v1.3.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.3.sql; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */,
 				ACBDC24E20EC213D00CDB54F /* UINibExtensions.swift */,
 				ACF0B9302349E01D005A75A9 /* UITableViewExtensions.swift */,
+				AC4C1BE823664BB500052A12 /* UIViewControllerExtension.swift */,
 				ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */,
 			);
 			path = Extensions;
@@ -520,6 +523,7 @@
 				AC08EEE21F757BEF000E5B53 /* JokeDataSource.swift in Sources */,
 				AC08EEE01F757BCD000E5B53 /* JokeTableViewCell.swift in Sources */,
 				AC72CAA321E7E659005EBDED /* StoreReviewService.swift in Sources */,
+				AC4C1BE923664BB500052A12 /* UIViewControllerExtension.swift in Sources */,
 				ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */,
 				AC1BAF102059D6740047E376 /* RecurrenceViewController.swift in Sources */,
 				ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */,
