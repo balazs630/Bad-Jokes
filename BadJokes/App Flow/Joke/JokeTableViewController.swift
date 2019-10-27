@@ -112,6 +112,8 @@ private extension JokeTableViewController {
         removeEmptyViews()
 
         if dataSource.jokes.isEmpty {
+            tableView.separatorStyle = .none
+
             if DBService.shared.isSchedulesListEmpty() {
                 displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
             } else {
