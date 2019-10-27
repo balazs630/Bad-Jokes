@@ -34,6 +34,11 @@ class JokeTableViewController: UIViewController {
         setObserverForUIApplicationDidBecomeActive()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateEmptyViewFrames()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refreshData()
@@ -110,23 +115,18 @@ private extension JokeTableViewController {
 
     private func presentEmptyView() {
         removeEmptyViews()
+        tableView.separatorStyle = dataSource.jokes.isEmpty ? .none : .singleLine
 
         if dataSource.jokes.isEmpty {
-            tableView.separatorStyle = .none
-
             if DBService.shared.isSchedulesListEmpty() {
                 displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
             } else {
                 displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)
-                waitingForFirstNotificationView.frame = UIScreen.main.bounds
             }
-        } else {
-            tableView.separatorStyle = .singleLine
         }
     }
 
     private func displayViewInFrontOfTableView(frontview view: UIView) {
-        view.frame = view.bounds
         tableView.addSubview(view)
         tableView.bringSubviewToFront(view)
     }
@@ -134,6 +134,11 @@ private extension JokeTableViewController {
     private func removeEmptyViews() {
         noNotificationScheduledView.removeFromSuperview()
         waitingForFirstNotificationView.removeFromSuperview()
+    }
+
+    private func updateEmptyViewFrames() {
+        noNotificationScheduledView.frame = UIScreen.main.bounds
+        waitingForFirstNotificationView.frame = UIScreen.main.bounds
     }
 }
 
