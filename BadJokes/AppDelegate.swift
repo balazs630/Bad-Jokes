@@ -28,8 +28,6 @@ extension AppDelegate {
             DefaultSettings.firstTimeLaunchDefaults.forEach {
                 defaults.set($0.value, forKey: $0.key)
             }
-
-            defaults.synchronize()
         }
     }
 }

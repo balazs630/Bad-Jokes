@@ -182,7 +182,6 @@ extension SettingsViewController {
 
     private func saveGeneralPreferences() {
         defaults.set(swGlobalOff.isOn, forKey: UserDefaults.Key.Sw.globalOff)
-        defaults.synchronize()
     }
 
     private func saveJokePreferences() {
@@ -192,12 +191,10 @@ extension SettingsViewController {
 
         defaults.set(selectedHours, forKey: UserDefaults.Key.Pck.timeHours)
         defaults.set(selectedMinutes, forKey: UserDefaults.Key.Pck.timeMinutes)
-        defaults.synchronize()
 
         sldJokeTypeCollection.forEach {
             guard let slider = Constant.sliders[$0.tag] else { return }
             defaults.set($0.value, forKey: slider)
-            defaults.synchronize()
         }
     }
 }

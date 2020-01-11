@@ -98,7 +98,6 @@ extension AppUpdateService {
     private static func syncCurrentAppVersion() {
         let defaults = UserDefaults.standard
         defaults.set(currentAppVersion, forKey: UserDefaults.Key.appVersion)
-        defaults.synchronize()
     }
 
     private static func renameUserDefaultsKey(from oldKey: String, to newKey: String) {
@@ -107,7 +106,6 @@ extension AppUpdateService {
 
         defaults.set(oldValue, forKey: newKey)
         defaults.removeObject(forKey: oldKey)
-        defaults.synchronize()
     }
 
     private static func regenerateJokeSchedules() {

@@ -16,7 +16,6 @@ class StoreReviewService {
         }
         set(newValue) {
             UserDefaults.standard.set(newValue, forKey: UserDefaults.Key.numberOfAppRuns)
-            UserDefaults.standard.synchronize()
         }
 
     }
