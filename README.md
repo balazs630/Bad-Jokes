@@ -27,5 +27,7 @@ ___
 - [x] Show a warning view if there is no more unused joke in the database
 - [x] Copy joke text to clipboard with long tap gesture
 - [x] In app rating/review triggers for specific rules
+- [x] Deeplink from the notification banner to the joke reader
 - [x] iPad screen support
-- [x] Dark mode support
+- [x] Dark Mode support
+- [x] Dynamic Type support
