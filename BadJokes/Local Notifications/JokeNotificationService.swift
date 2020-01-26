@@ -9,28 +9,20 @@
 import UIKit
 import UserNotifications
 
-class JokeNotificationService: NSObject, UNUserNotificationCenterDelegate {
+class JokeNotificationService {
     // MARK: Properties
-    private var currentTimeZoneName: String { return TimeZone.current.identifier }
-    private let jokeNotificationGenerator = JokeNotificationGenerator()
-    private var jokeTypes: [String] = []
     private let notificationCenter = UNUserNotificationCenter.current()
+    private let jokeNotificationGenerator = JokeNotificationGenerator()
     private let defaults = UserDefaults.standard
 
-    // MARK: Initializers
-    override init() {
-        super.init()
-        requestNotificationCenterPermission()
+    private var jokeTypes: [String] = []
+    private var currentTimeZoneName: String {
+        return TimeZone.current.identifier
     }
 }
 
 // MARK: Notification operations
 extension JokeNotificationService {
-    private func requestNotificationCenterPermission() {
-        notificationCenter.requestAuthorization(options: [.alert, .sound]) { (_, _) in }
-        notificationCenter.delegate = self
-    }
-
     func setNewRepeatingNotifications() {
         guard DBService.shared.hasUnusedJoke(),
             !defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) else { return }
@@ -58,7 +50,7 @@ extension JokeNotificationService {
                                             content: content,
                                             trigger: trigger)
 
-        guard let jokeId = content.userInfo["jokeId"] as? Int else { return }
+        guard let jokeId = content.userInfo[Constant.notificationJokeIdKey] as? Int else { return }
 
         notificationCenter.add(request, withCompletionHandler: nil)
         DBService.shared.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())
@@ -73,7 +65,7 @@ extension JokeNotificationService {
         content.sound = .default
 
         var userInfo: [String: Int] = [:]
-        userInfo["jokeId"] = joke.jokeId
+        userInfo[Constant.notificationJokeIdKey] = joke.jokeId
         content.userInfo = userInfo
 
         return content

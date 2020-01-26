@@ -6,6 +6,8 @@
 //  Copyright © 2017. Horváth Balázs. All rights reserved.
 //
 
+// swiftlint:disable line_length
+
 import UIKit
 
 @UIApplicationMain
@@ -15,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         initUserDefaults()
+        requestNotificationCenterPermission()
         return true
     }
 }
@@ -29,5 +32,30 @@ extension AppDelegate {
                 defaults.set($0.value, forKey: $0.key)
             }
         }
+    }
+}
+
+// MARK: UNUserNotificationCenterDelegate
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    private func requestNotificationCenterPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in }
+        UNUserNotificationCenter.current().delegate = self
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        guard let jokeId = response.notification.request.content.userInfo[Constant.notificationJokeIdKey] else {
+            return
+        }
+        debugPrint("didReceive joke with id: \(jokeId)")
+
+        completionHandler()
     }
 }

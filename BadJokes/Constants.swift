@@ -104,6 +104,7 @@ extension UserDefaults {
 struct Constant {
     static let shortVersionString = "CFBundleShortVersionString"
     static let generateNewJokesThreshold = 32
+    static let notificationJokeIdKey = "jokeId"
 
     static let databaseFileName = "jokesDB"
     static let databaseFileExtension = "db"
