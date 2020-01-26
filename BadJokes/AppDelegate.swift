@@ -51,11 +51,21 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        guard let jokeId = response.notification.request.content.userInfo[Constant.notificationJokeIdKey] else {
-            return
-        }
-        debugPrint("didReceive joke with id: \(jokeId)")
+        let jokeText = response.notification.request.content.body
+        deeplinkToJokeReader(with: jokeText)
 
         completionHandler()
+    }
+}
+
+// MARK: Deeplinking
+extension AppDelegate {
+    private func deeplinkToJokeReader(with jokeText: String) {
+        guard let jokeReaderViewController = JokeReaderViewController.instantiate(with: jokeText),
+            let navigationController = (window?.rootViewController as? UINavigationController) else {
+                return
+        }
+
+        navigationController.present(jokeReaderViewController, animated: true)
     }
 }

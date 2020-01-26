@@ -44,4 +44,14 @@ class JokeReaderViewController: UIViewController {
         dismiss(animated: true)
         performSegue(withIdentifier: .dismissJokeSegue, sender: self)
     }
+
+    static func instantiate(with jokeText: String) -> JokeReaderViewController? {
+        let storyboard = UIStoryboard(name: StoryboardIdentifier.jokes, bundle: nil)
+        let identifier = String(describing: JokeReaderViewController.self)
+
+        let jokeReader = storyboard.instantiateViewController(withIdentifier: identifier) as? JokeReaderViewController
+        jokeReader?.jokeText = jokeText
+
+        return jokeReader
+    }
 }

@@ -11,7 +11,7 @@
         <!--Joke Reader View Controller-->
         <scene sceneID="8Bq-KK-SdV">
             <objects>
-                <viewController id="zWi-hy-3CO" customClass="JokeReaderViewController" customModule="BadJokes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JokeReaderViewController" id="zWi-hy-3CO" customClass="JokeReaderViewController" customModule="BadJokes" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="V10-wX-OWv"/>
                         <viewControllerLayoutGuide type="bottom" id="YX3-v6-FyK"/>

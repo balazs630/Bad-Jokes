@@ -23,6 +23,10 @@ enum SegueIdentifier: String {
     case dismissJokeSegue
 }
 
+struct StoryboardIdentifier {
+    static let jokes = "Jokes"
+}
+
 enum NibName: String {
     case noNotificationScheduledView = "NoNotificationScheduledView"
     case waitingForFirstNotificationView = "WaitingForFirstNotificationView"
