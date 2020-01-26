@@ -32,7 +32,7 @@ extension JokeNotificationService {
     }
 
     func setNewRepeatingNotifications() {
-        guard DBService.shared.unusedJokesCount() > 0,
+        guard DBService.shared.hasUnusedJoke(),
             !defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) else { return }
 
         removeAllScheduledNotification()
