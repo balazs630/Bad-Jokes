@@ -90,12 +90,12 @@ extension JokeNotificationService {
     }
 
     private func generateRandomJoke(with type: String) -> Joke {
-        if let joke = DBService.shared.getRandomJoke(for: type) {
+        if let joke = DBService.shared.randomJoke(for: type) {
             return joke
         }
 
         let anyType = "%"
-        return DBService.shared.getRandomJoke(for: anyType)!
+        return DBService.shared.randomJoke(for: anyType)!
     }
 }
 

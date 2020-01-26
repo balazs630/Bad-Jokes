@@ -63,7 +63,7 @@ extension JokeTableViewController {
     }
 
     private func fetchDeliveredJokes() {
-        dataSource = JokeDataSource(jokes: DBService.shared.getDeliveredJokes(), didBecomeEmpty: didBecomeEmpty())
+        dataSource = JokeDataSource(jokes: DBService.shared.deliveredJokes(), didBecomeEmpty: didBecomeEmpty())
         tableView.dataSource = dataSource
     }
 
