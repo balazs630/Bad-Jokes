@@ -61,11 +61,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 // MARK: Deeplinking
 extension AppDelegate {
     private func deeplinkToJokeReader(with jokeText: String) {
-        guard let jokeReaderViewController = JokeReaderViewController.instantiate(with: jokeText),
-            let navigationController = (window?.rootViewController as? UINavigationController) else {
-                return
+        guard let jokeReaderViewController = JokeReaderViewController.instantiate(with: jokeText) else {
+            return
         }
 
-        navigationController.present(jokeReaderViewController, animated: true)
+        UIApplication.topMostViewController()?.present(jokeReaderViewController, animated: true)
     }
 }

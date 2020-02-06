@@ -9,12 +9,27 @@
 import UIKit
 
 extension UIApplication {
-    public static func openSettings() {
+    static func openSettings() {
         guard let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) else {
             debugPrint("Cannot open 'UIApplication.openSettingsURLString'")
             return
         }
 
         UIApplication.shared.open(url)
+    }
+
+    // swiftlint:disable line_length
+    class func topMostViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = base as? UINavigationController {
+            return topMostViewController(base: navigationController.visibleViewController)
+
+        } else if let tabBarController = base as? UITabBarController, let selected = tabBarController.selectedViewController {
+            return topMostViewController(base: selected)
+
+        } else if let presented = base?.presentedViewController {
+            return topMostViewController(base: presented)
+        }
+
+        return base
     }
 }
