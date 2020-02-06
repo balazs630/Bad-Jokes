@@ -76,11 +76,9 @@
                         <outlet property="containerView" destination="TT3-a6-z64" id="s4n-L0-GFP"/>
                         <outlet property="lblEmoji" destination="x8g-vH-cuO" id="XBj-KD-lLO"/>
                         <outlet property="lblJoke" destination="6Ed-cc-NpV" id="g8o-9a-PAd"/>
-                        <segue destination="Beb-D4-xmH" kind="unwind" identifier="dismissJokeSegue" unwindAction="jokeReaderDidDismissWithSegue:" id="wqi-Ms-jw6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ACo-eL-uDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Beb-D4-xmH" userLabel="Exit" sceneMemberID="exit"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="IhL-0t-MGK">
                     <connections>
                         <action selector="viewDidDrag:" destination="zWi-hy-3CO" id="94d-OK-sHW"/>

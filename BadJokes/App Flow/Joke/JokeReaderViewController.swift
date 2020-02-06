@@ -42,7 +42,6 @@ class JokeReaderViewController: UIViewController {
     // MARK: - Navigation
     private func popModalScreen() {
         dismiss(animated: true)
-        performSegue(withIdentifier: .dismissJokeSegue, sender: self)
     }
 
     static func instantiate(with jokeText: String) -> JokeReaderViewController? {

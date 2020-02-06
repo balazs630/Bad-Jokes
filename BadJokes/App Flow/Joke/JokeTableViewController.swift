@@ -160,13 +160,10 @@ extension JokeTableViewController {
                 let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeTableViewCell,
                 let jokeText = jokeCell.jokeLabel.text else { return }
             destVC.jokeText = jokeText
+            tableView.removeRowSelections()
         default:
             debugPrint("Unexpected segue identifier was given in: \(#file), line: \(#line)")
         }
-    }
-
-    @IBAction func jokeReaderDidDismiss(segue: UIStoryboardSegue) {
-        tableView.removeRowSelections()
     }
 }
 

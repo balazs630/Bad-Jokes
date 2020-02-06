@@ -20,7 +20,6 @@ enum SegueIdentifier: String {
     case recurrenceDetailSegue
     case timeDetailSegue
     case showJokeSegue
-    case dismissJokeSegue
 }
 
 struct StoryboardIdentifier {
