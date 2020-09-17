@@ -7,12 +7,12 @@ DEPENDENCIES:
   - FMDB (~> 2.7.5)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - FMDB
 
 SPEC CHECKSUMS:
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
 
-PODFILE CHECKSUM: 61e82baaf1bca11c7de06ee084826c45119c90f9
+PODFILE CHECKSUM: 7bbd7da8f70fd690eb2da32bfdc9fbe6adcc8c8f
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.9.3
