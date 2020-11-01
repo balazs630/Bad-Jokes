@@ -13,72 +13,52 @@ extension DBService {
     func getAllDeliveredSchedules() -> [Schedule] {
         var resultSet: [Schedule] = []
 
-        if isDatabaseOpen() {
-            let query =
-            """
+        let query = """
             SELECT *
             FROM \(Table.schedules)
             WHERE datetime(\(Table.Schedules.time), 'unixepoch') < datetime('now')
-            """
+        """
 
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
+        databaseQueue.inTransaction { database, _ in
+            if let results = database.executeQuery(query, withArgumentsIn: []) {
                 while results.next() {
                     let schedule = Schedule(jokeId: Int(results.int(forColumn: Table.Schedules.jokeId)),
                                             time: Int(results.int(forColumn: Table.Schedules.time)))
 
                     resultSet.append(schedule)
                 }
-            } catch {
-                debugPrint(error.localizedDescription)
             }
-
-            database.close()
         }
 
         return resultSet
     }
 
     func insertNewScheduledJoke(with jokeId: Int, on time: Int) {
-        if isDatabaseOpen() {
-            let query =
-            """
+        let query = """
             INSERT INTO \(Table.schedules)
                 (\(Table.Schedules.jokeId), \(Table.Schedules.time))
             VALUES(\(jokeId), \(time))
-            """
+        """
 
-            do {
-                try database.executeUpdate(query, values: nil)
-            } catch {
-                debugPrint(error.localizedDescription)
-            }
-
-            database.close()
+        databaseQueue.inTransaction { database, _ in
+            database.executeUpdate(query, withArgumentsIn: [])
         }
     }
 
     func isSchedulesListEmpty() -> Bool {
         var count = 0
-        if isDatabaseOpen() {
-            let query =
-            """
+
+        let query = """
             SELECT count() as count
             FROM \(Table.schedules)
-            """
+        """
 
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
+        databaseQueue.inTransaction { database, _ in
+            if let results = database.executeQuery(query, withArgumentsIn: []) {
                 while results.next() {
                     count = Int(results.int(forColumn: "count"))
                 }
-            } catch {
-                debugPrint(error.localizedDescription)
             }
-
-            database.close()
         }
 
         return count == 0
@@ -86,63 +66,43 @@ extension DBService {
 
     func schedulesCount() -> Int {
         var count = 0
-        if isDatabaseOpen() {
-            let query =
-            """
+
+        let query = """
             SELECT count() as count
             FROM \(Table.schedules)
-            """
+        """
 
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
+        databaseQueue.inTransaction { database, _ in
+            if let results = database.executeQuery(query, withArgumentsIn: []) {
                 while results.next() {
                     count = Int(results.int(forColumn: "count"))
                 }
-            } catch {
-                debugPrint(error.localizedDescription)
             }
-
-            database.close()
         }
 
         return count
     }
 
     func deleteScheduleWith(jokeId: Int) {
-        if isDatabaseOpen() {
-            let query =
-            """
+        let query = """
             DELETE
             FROM \(Table.schedules)
             WHERE \(Table.Schedules.jokeId) = \(jokeId)
-            """
+        """
 
-            do {
-                try database.executeUpdate(query, values: nil)
-            } catch {
-                debugPrint(error.localizedDescription)
-            }
-
-            database.close()
+        databaseQueue.inTransaction { database, _ in
+            database.executeUpdate(query, withArgumentsIn: [])
         }
     }
 
     func deleteAllSchedules() {
-        if isDatabaseOpen() {
-            let query =
-            """
+        let query = """
             DELETE
             FROM \(Table.schedules)
-            """
+        """
 
-            do {
-                try database.executeUpdate(query, values: nil)
-            } catch {
-                debugPrint(error.localizedDescription)
-            }
-
-            database.close()
+        databaseQueue.inTransaction { database, _ in
+            database.executeUpdate(query, withArgumentsIn: [])
         }
     }
 }

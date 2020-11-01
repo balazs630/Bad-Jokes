@@ -13,18 +13,15 @@ extension DBService {
     func deliveredJokes() -> [Joke] {
         var resultSet: [Joke] = []
 
-        if isDatabaseOpen() {
-            let query =
-            """
+        let query = """
             SELECT *
             FROM \(Table.jokes)
             WHERE \(Table.Jokes.deliveryTime) IS NOT NULL
             ORDER BY \(Table.Jokes.deliveryTime) DESC
-            """
+        """
 
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
+        databaseQueue.inTransaction { database, _ in
+            if let results = database.executeQuery(query, withArgumentsIn: []) {
                 while results.next() {
                     let joke = Joke(jokeId: Int(results.int(forColumn: Table.Jokes.jokeId)),
                                     isUsed: Int(results.int(forColumn: Table.Jokes.isUsed)),
@@ -34,11 +31,7 @@ extension DBService {
 
                     resultSet.append(joke)
                 }
-            } catch {
-                debugPrint(error.localizedDescription)
             }
-
-            database.close()
         }
 
         return resultSet
@@ -47,9 +40,7 @@ extension DBService {
     func randomJoke(for type: String) -> Joke? {
         var randomJoke: Joke?
 
-        if isDatabaseOpen() {
-            let query =
-            """
+        let query = """
             SELECT *
             FROM \(Table.jokes)
             WHERE \(Table.Jokes.type) LIKE \"\(type)\"
@@ -60,11 +51,10 @@ extension DBService {
                                         = \(Table.jokes).\(Table.Jokes.jokeId))
             ORDER BY RANDOM()
             LIMIT 1
-            """
+        """
 
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
+        databaseQueue.inTransaction { database, _ in
+            if let results = database.executeQuery(query, withArgumentsIn: []) {
                 while results.next() {
                     randomJoke = Joke(jokeId: Int(results.int(forColumn: Table.Jokes.jokeId)),
                                       isUsed: Int(results.int(forColumn: Table.Jokes.isUsed)),
@@ -72,11 +62,7 @@ extension DBService {
                                       type: results.string(forColumn: Table.Jokes.type)!,
                                       jokeText: results.string(forColumn: Table.Jokes.jokeText)!)
                 }
-            } catch {
-                debugPrint(error.localizedDescription)
             }
-
-            database.close()
         }
 
         return randomJoke
@@ -84,26 +70,19 @@ extension DBService {
 
     func unusedJokesCount() -> Int {
         var count = 0
-        if isDatabaseOpen() {
-            let query =
-            """
+
+        let query = """
             SELECT count() as count
             FROM \(Table.jokes)
             WHERE \(Table.Jokes.isUsed) = 0
-            """
+        """
 
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
+        databaseQueue.inTransaction { database, _ in
+            if let results = database.executeQuery(query, withArgumentsIn: []) {
                 while results.next() {
                     count = Int(results.int(forColumn: "count"))
                 }
-
-            } catch {
-                debugPrint(error.localizedDescription)
             }
-
-            database.close()
         }
 
         return count
@@ -111,26 +90,19 @@ extension DBService {
 
     func storedJokesCount() -> Int {
         var count = 0
-        if isDatabaseOpen() {
-            let query =
-            """
+
+        let query = """
             SELECT count() as count
             FROM \(Table.jokes)
             WHERE \(Table.Jokes.deliveryTime) IS NOT NULL
-            """
+        """
 
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
+        databaseQueue.inTransaction { database, _ in
+            if let results = database.executeQuery(query, withArgumentsIn: []) {
                 while results.next() {
                     count = Int(results.int(forColumn: "count"))
                 }
-
-            } catch {
-                debugPrint(error.localizedDescription)
             }
-
-            database.close()
         }
 
         return count
@@ -138,26 +110,19 @@ extension DBService {
 
     func hasUsedJoke() -> Bool {
         var count = 0
-        if isDatabaseOpen() {
-            let query =
-            """
+
+        let query = """
             SELECT count() as count
             FROM \(Table.jokes)
             WHERE \(Table.Jokes.isUsed) = 1
-            """
+        """
 
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
+        databaseQueue.inTransaction { database, _ in
+            if let results = database.executeQuery(query, withArgumentsIn: []) {
                 while results.next() {
                     count = Int(results.int(forColumn: "count"))
                 }
-
-            } catch {
-                debugPrint(error.localizedDescription)
             }
-
-            database.close()
         }
 
         return count != 0
@@ -165,26 +130,19 @@ extension DBService {
 
     func hasUnusedJoke() -> Bool {
         var count = 0
-        if isDatabaseOpen() {
-            let query =
-            """
+
+        let query = """
             SELECT count() as count
             FROM \(Table.jokes)
             WHERE \(Table.Jokes.isUsed) = 0
-            """
+        """
 
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
+        databaseQueue.inTransaction { database, _ in
+            if let results = database.executeQuery(query, withArgumentsIn: []) {
                 while results.next() {
                     count = Int(results.int(forColumn: "count"))
                 }
-
-            } catch {
-                debugPrint(error.localizedDescription)
             }
-
-            database.close()
         }
 
         return count != 0
@@ -192,26 +150,20 @@ extension DBService {
 
     func isAllJokeUsedWith(type: String) -> Bool {
         var count = 0
-        if isDatabaseOpen() {
-            let query =
-            """
+
+        let query = """
             SELECT count() as count
             FROM \(Table.jokes)
             WHERE \(Table.Jokes.type) = \"\(type)\"
                 AND \(Table.Jokes.isUsed) = 0
-            """
+        """
 
-            do {
-                let results = try database.executeQuery(query, values: nil)
-
+        databaseQueue.inTransaction { database, _ in
+            if let results = database.executeQuery(query, withArgumentsIn: []) {
                 while results.next() {
                     count = Int(results.int(forColumn: "count"))
                 }
-            } catch {
-                debugPrint(error.localizedDescription)
             }
-
-            database.close()
         }
 
         return count == 0
@@ -221,41 +173,26 @@ extension DBService {
 // MARK: Update queries
 extension DBService {
     func setJokeUsedAndDeliveredWith(jokeId: Int, deliveryTime: Int) {
-        if isDatabaseOpen() {
-            let query =
-            """
+        let query = """
             UPDATE \(Table.jokes)
             SET \(Table.Jokes.isUsed) = 1, \(Table.Jokes.deliveryTime) = \(deliveryTime)
             WHERE \(Table.Jokes.jokeId) = \(jokeId)
-            """
+        """
 
-            do {
-                try database.executeUpdate(query, values: nil)
-            } catch {
-                debugPrint(error.localizedDescription)
-            }
-
-            database.close()
+        databaseQueue.inTransaction { database, _ in
+            database.executeUpdate(query, withArgumentsIn: [])
         }
     }
 
     func removeDeliveredJokeWith(jokeId: Int) {
-        if isDatabaseOpen() {
-            let query =
-            """
+        let query = """
             UPDATE \(Table.jokes)
             SET \(Table.Jokes.deliveryTime) = null
             WHERE \(Table.Jokes.jokeId) = \(jokeId)
-            """
+        """
 
-            do {
-                try database.executeUpdate(query, values: nil)
-            } catch {
-                debugPrint(error.localizedDescription)
-            }
-
-            database.close()
+        databaseQueue.inTransaction { database, _ in
+            database.executeUpdate(query, withArgumentsIn: [])
         }
     }
-
 }

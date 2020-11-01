@@ -11,7 +11,7 @@ import FMDB
 class DBService {
     // MARK: Properties
     static let shared = DBService()
-    var database: FMDatabase!
+    lazy var databaseQueue = initDatabaseQueue()
 
     private let fileManager = FileManager.default
     private var documentsDBPath: String
@@ -34,22 +34,16 @@ class DBService {
     }
 
     // MARK: - Setup
-    func isDatabaseOpen() -> Bool {
-        if database == nil {
-            initDatabase()
-        }
-
-        return database.open()
-    }
-
-    private func initDatabase() {
+    private func initDatabaseQueue() -> FMDatabaseQueue {
         if isFirstLaunch() {
             copyDatabase(from: resourcesDBPath, to: documentsDBPath)
-            database = FMDatabase(path: documentsDBPath)
+            databaseQueue = FMDatabaseQueue(path: documentsDBPath)!
         } else {
-            database = FMDatabase(path: documentsDBPath)
+            databaseQueue = FMDatabaseQueue(path: documentsDBPath)!
             AppUpdateService.checkUpdates()
         }
+
+        return databaseQueue
     }
 
     private func isFirstLaunch() -> Bool {
@@ -68,12 +62,11 @@ class DBService {
 // MARK: Execute SQLite queries from file
 extension DBService {
     func executeScript(fileNamed: String) {
-        if isDatabaseOpen() {
-            guard let scriptContent = AppUpdateService.readScript(fileNamed: fileNamed) else { return }
+        guard let scriptContent = AppUpdateService.readScript(fileNamed: fileNamed) else { return }
 
-            debugPrint("Run script: \(fileNamed)")
-            database.executeStatements(scriptContent)
-            database.close()
+        debugPrint("Run script: \(fileNamed)")
+        databaseQueue.inTransaction { database, _ in
+            database.executeUpdate(scriptContent, withArgumentsIn: [])
         }
     }
 }
