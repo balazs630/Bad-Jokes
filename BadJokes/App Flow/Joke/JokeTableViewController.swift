@@ -20,15 +20,6 @@ class JokeTableViewController: UIViewController {
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
 
-    // MARK: Initializers
-    deinit {
-        NotificationCenter.default.removeObserver(
-            self,
-            name: UIApplication.didBecomeActiveNotification,
-            object: nil
-        )
-    }
-
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
