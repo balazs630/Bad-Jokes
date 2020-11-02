@@ -10,6 +10,6 @@ import Foundation
 
 extension DateComponents {
     func datePart() -> Date.DatePart {
-        return Date.DatePart(year: self.year!, month: self.month!, day: self.day!)
+        Date.DatePart(year: year!, month: month!, day: day!)
     }
 }

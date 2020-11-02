@@ -11,7 +11,7 @@ import UIKit
 extension UINib {
     static func loadView(named name: NibName, bundle: Bundle? = nil) -> UIView {
         guard let view = UINib(nibName: name.rawValue, bundle: bundle)
-            .instantiate(withOwner: nil, options: nil)
+            .instantiate(withOwner: nil)
             .first as? UIView else {
                 fatalError("Couldn't load nib with name: \(name.rawValue)!")
         }

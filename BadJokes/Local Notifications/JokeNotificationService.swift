@@ -13,7 +13,6 @@ class JokeNotificationService {
     // MARK: Properties
     private let notificationCenter = UNUserNotificationCenter.current()
     private let jokeNotificationGenerator = JokeNotificationGenerator()
-    private let defaults = UserDefaults.standard
 
     private var jokeTypes: [String] = []
     private var currentTimeZoneName: String {
@@ -25,7 +24,7 @@ class JokeNotificationService {
 extension JokeNotificationService {
     func setNewRepeatingNotifications() {
         guard DBService.shared.hasUnusedJoke(),
-            !defaults.bool(forKey: UserDefaults.Key.Sw.globalOff) else { return }
+            !UserDefaults.standard.bool(forKey: UserDefaults.Key.Sw.globalOff) else { return }
 
         removeAllScheduledNotification()
         let notificationTimes = jokeNotificationGenerator.generateNotificationTimes()
@@ -46,13 +45,15 @@ extension JokeNotificationService {
     private func addJokeNotificationRequest(on time: Date) {
         let content = setNotificationContent()
         let trigger = setNotificationTrigger(on: time)
-        let request = UNNotificationRequest(identifier: UUID().uuidString,
-                                            content: content,
-                                            trigger: trigger)
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: content,
+            trigger: trigger
+        )
 
         guard let jokeId = content.userInfo[Constant.notificationJokeIdKey] as? Int else { return }
 
-        notificationCenter.add(request, withCompletionHandler: nil)
+        notificationCenter.add(request)
         DBService.shared.insertNewScheduledJoke(with: jokeId, on: time.convertToUnixTimeStamp())
     }
 
@@ -62,11 +63,10 @@ extension JokeNotificationService {
         let type = jokeNotificationGenerator.generateAvailableJokeType(from: jokeTypes)
         let joke = generateRandomJoke(with: type)
         content.body = joke.jokeText.formatLineBreaks()
-        content.sound = .default
 
-        var userInfo: [String: Int] = [:]
-        userInfo[Constant.notificationJokeIdKey] = joke.jokeId
-        content.userInfo = userInfo
+        content.userInfo = [
+            Constant.notificationJokeIdKey: joke.jokeId
+        ]
 
         return content
     }
@@ -106,8 +106,8 @@ extension JokeNotificationService {
     }
 
     func isNotificationsEnabled(completed: @escaping (Bool) -> Void) {
-        notificationCenter.getNotificationSettings(completionHandler: { settings in
+        notificationCenter.getNotificationSettings { settings in
             completed(settings.authorizationStatus == .authorized)
-        })
+        }
     }
 }

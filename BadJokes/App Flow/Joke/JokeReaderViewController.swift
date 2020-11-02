@@ -25,7 +25,7 @@ class JokeReaderViewController: UIViewController {
 
     // MARK: Actions
     @IBAction func viewDidDrag(_ sender: UIPanGestureRecognizer) {
-        popModalScreen()
+        dismiss(animated: true)
     }
 
     // MARK: - Screen configuration
@@ -39,16 +39,11 @@ class JokeReaderViewController: UIViewController {
         lblEmoji.text = ["😃", "😝", "🤣", "😆", "😄", "😅", "😄", "😁"].randomElement()
     }
 
-    // MARK: - Navigation
-    private func popModalScreen() {
-        dismiss(animated: true)
-    }
-
     static func instantiate(with jokeText: String) -> JokeReaderViewController? {
-        let storyboard = UIStoryboard(name: StoryboardIdentifier.jokes, bundle: nil)
         let identifier = String(describing: JokeReaderViewController.self)
 
-        let jokeReader = storyboard.instantiateViewController(withIdentifier: identifier) as? JokeReaderViewController
+        let jokeReader = UIStoryboard.jokes
+            .instantiateViewController(withIdentifier: identifier) as? JokeReaderViewController
         jokeReader?.jokeText = jokeText
 
         return jokeReader

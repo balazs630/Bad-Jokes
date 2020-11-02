@@ -58,16 +58,12 @@ extension RecurrenceViewController {
 // MARK: - TableViewDelegate
 extension RecurrenceViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.accessoryType = .checkmark
-            selectedIndexPath = indexPath
-        }
+        tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        selectedIndexPath = indexPath
     }
 
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.accessoryType = .none
-        }
+        tableView.cellForRow(at: indexPath)?.accessoryType = .none
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -10,8 +10,8 @@ import UIKit
 
 extension UITableView {
     func removeRowSelections() {
-        self.indexPathsForSelectedRows?.forEach {
-            self.deselectRow(at: $0, animated: true)
+        indexPathsForSelectedRows?.forEach {
+            deselectRow(at: $0, animated: true)
         }
     }
 }

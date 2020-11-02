@@ -25,12 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - UserDefaults setup
 extension AppDelegate {
     private func initUserDefaults() {
-        let defaults = UserDefaults.standard
+        guard UserDefaults.standard.object(forKey: UserDefaults.Key.isAppAlreadyLaunchedOnce) == nil else { return }
 
-        if defaults.object(forKey: UserDefaults.Key.isAppAlreadyLaunchedOnce) == nil {
-            DefaultSettings.firstTimeLaunchDefaults.forEach {
-                defaults.set($0.value, forKey: $0.key)
-            }
+        DefaultSettings.firstTimeLaunchDefaults.forEach {
+            UserDefaults.standard.set($0.value, forKey: $0.key)
         }
     }
 }

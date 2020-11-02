@@ -22,9 +22,11 @@ class JokeTableViewController: UIViewController {
 
     // MARK: Initializers
     deinit {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIApplication.didBecomeActiveNotification,
-                                                  object: nil)
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
     }
 
     // MARK: - View lifecycle
@@ -77,14 +79,16 @@ extension JokeTableViewController {
     }
 
     private func requestStoreReview() {
-        let triggers = [
-            StoreReviewTrigger(name: UserDefaults.Key.StoreReviewTrigger.newUser,
-                               rules: [.launchCount(3), .storedJokeCount(10)]),
-            StoreReviewTrigger(name: UserDefaults.Key.StoreReviewTrigger.oldUser,
-                               rules: [.storedJokeCount(50)])
-        ]
-
-        triggers.forEach {
+        [
+            StoreReviewTrigger(
+                name: UserDefaults.Key.StoreReviewTrigger.newUser,
+                rules: [.launchCount(3), .storedJokeCount(10)]
+            ),
+            StoreReviewTrigger(
+                name: UserDefaults.Key.StoreReviewTrigger.oldUser,
+                rules: [.storedJokeCount(50)]
+            )
+        ].forEach {
             StoreReviewService.requestTimedReview(for: $0)
         }
     }
@@ -101,10 +105,12 @@ private extension JokeTableViewController {
     }
 
     private func setObserverForUIApplicationDidBecomeActive() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(applicationDidBecomeActive),
-                                               name: UIApplication.didBecomeActiveNotification,
-                                               object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationDidBecomeActive),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
     }
 
     private func didBecomeEmpty() -> DidBecomeEmpty {
@@ -117,13 +123,11 @@ private extension JokeTableViewController {
         removeEmptyViews()
         tableView.separatorStyle = dataSource.jokes.isEmpty ? .none : .singleLine
 
-        if dataSource.jokes.isEmpty {
-            if DBService.shared.isSchedulesListEmpty() {
-                displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
-            } else {
-                displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)
-            }
-        }
+        guard dataSource.jokes.isEmpty else { return }
+
+        DBService.shared.isSchedulesListEmpty()
+            ? displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
+            : displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)
     }
 
     private func displayViewInFrontOfTableView(frontview view: UIView) {
@@ -146,19 +150,22 @@ private extension JokeTableViewController {
 extension JokeTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let rawIdentifier = segue.identifier,
-            let segueIdentifier = SegueIdentifier(rawValue: rawIdentifier) else { return }
+              let segueIdentifier = SegueIdentifier(rawValue: rawIdentifier)
+        else { return }
 
         switch segueIdentifier {
         case .showSettingsSegue:
             guard let navigationController = segue.destination as? UINavigationController,
-                let destVC = navigationController.viewControllers.first as? SettingsViewController else { return }
+                  let destVC = navigationController.viewControllers.first as? SettingsViewController
+            else { return }
             destVC.delegate = self
         case .showJokeSegue:
             guard let destVC = segue.destination as? JokeReaderViewController,
-                let sender = sender as? UITableViewCell,
-                let selectedIndex = tableView.indexPath(for: sender),
-                let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeTableViewCell,
-                let jokeText = jokeCell.jokeLabel.text else { return }
+                  let sender = sender as? UITableViewCell,
+                  let selectedIndex = tableView.indexPath(for: sender),
+                  let jokeCell = tableView.cellForRow(at: selectedIndex) as? JokeTableViewCell,
+                  let jokeText = jokeCell.jokeLabel.text
+            else { return }
             destVC.jokeText = jokeText
             tableView.removeRowSelections()
         default:

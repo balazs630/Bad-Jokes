@@ -67,15 +67,17 @@ class DateUtil {
 
     func isPunctualTimeSet() -> Bool {
         guard let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time),
-            let timeRange = TimeRange(rawValue: timeSetting) else { return false }
+              let timeRange = TimeRange(rawValue: timeSetting)
+        else { return false }
 
         return timeRange == .atGivenTime
     }
 
     func incrementDateBasedOnPeriodSetting(date: Date) -> Date {
         guard let periodicitySetting = defaults.string(forKey: UserDefaults.Key.Lbl.periodicity),
-            let periodicity = Periodicity(rawValue: periodicitySetting) else {
-                return date
+              let periodicity = Periodicity(rawValue: periodicitySetting)
+        else {
+            return date
         }
 
         switch periodicity {

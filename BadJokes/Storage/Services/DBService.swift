@@ -29,8 +29,10 @@ class DBService {
             fatalError("Couldn't find documents directory!")
         }
 
-        resourcesDBPath = Bundle.main.path(forResource: Constant.databaseFileName,
-                                           ofType: Constant.databaseFileExtension)!
+        resourcesDBPath = Bundle.main.path(
+            forResource: Constant.databaseFileName,
+            ofType: Constant.databaseFileExtension
+        )!
     }
 
     // MARK: - Setup
@@ -61,12 +63,12 @@ class DBService {
 
 // MARK: Execute SQLite queries from file
 extension DBService {
-    func executeScript(fileNamed: String) {
-        guard let scriptContent = AppUpdateService.readScript(fileNamed: fileNamed) else { return }
+    func executeSQLFile(named fileName: String) {
+        guard let sqlStatements = AppUpdateService.readFile(named: fileName) else { return }
 
-        debugPrint("Run script: \(fileNamed)")
+        debugPrint("Run script: \(fileName)")
         databaseQueue.inTransaction { database, _ in
-            database.executeUpdate(scriptContent, withArgumentsIn: [])
+            database.executeUpdate(sqlStatements, withArgumentsIn: [])
         }
     }
 }

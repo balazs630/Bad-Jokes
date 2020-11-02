@@ -22,8 +22,8 @@ enum SegueIdentifier: String {
     case showJokeSegue
 }
 
-struct StoryboardIdentifier {
-    static let jokes = "Jokes"
+extension UIStoryboard {
+    static let jokes = UIStoryboard(name: "Jokes", bundle: nil)
 }
 
 enum NibName: String {

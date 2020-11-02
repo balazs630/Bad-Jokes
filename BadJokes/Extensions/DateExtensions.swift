@@ -10,39 +10,38 @@ import Foundation
 
 extension Date {
     func isToday() -> Bool {
-        let calendar = Calendar(identifier: .gregorian)
-        return calendar.isDateInToday(self)
+        Calendar(identifier: .gregorian).isDateInToday(self)
     }
 
     func isInPast() -> Bool {
-        return self < Date()
+        self < Date()
     }
 
     func isInFuture() -> Bool {
-        return self > Date()
+        self > Date()
     }
 
     func add(minutes: Int) -> Date {
-        return Calendar.current.date(byAdding: .minute, value: minutes, to: self)!
+        Calendar.current.date(byAdding: .minute, value: minutes, to: self)!
     }
 
     func add(hours: Int) -> Date {
-        return Calendar.current.date(byAdding: .hour, value: hours, to: self)!
+        Calendar.current.date(byAdding: .hour, value: hours, to: self)!
     }
 
     func add(days: Int) -> Date {
-        return Calendar.current.date(byAdding: .day, value: days, to: self)!
+        Calendar.current.date(byAdding: .day, value: days, to: self)!
     }
 
     func add(weeks: Int) -> Date {
-        return Calendar.current.date(byAdding: .day, value: 7 * weeks, to: self)!
+        Calendar.current.date(byAdding: .day, value: 7 * weeks, to: self)!
     }
 
     func add(months: Int) -> Date {
-        return Calendar.current.date(byAdding: .month, value: months, to: self)!
+        Calendar.current.date(byAdding: .month, value: months, to: self)!
     }
 
     func convertToUnixTimeStamp() -> Int {
-        return Int(self.timeIntervalSince1970)
+        Int(timeIntervalSince1970)
     }
 }

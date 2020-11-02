@@ -32,22 +32,25 @@ class AppUpdateService {
         return lastVersion
     }
 
-    // MARK: Routines for app updates
-    static func checkUpdates() {
-        if isAppVersionChangedSinceLastLaunch() {
-            runDatabaseMigration()
-            runApplicationUpdateStatements()
-
-            syncCurrentAppVersion()
-        }
+    private static var migrationScripts: [String] {
+        migrationSqlScripts
+            .filter { $0.key.isGreater(than: lastAppVersion) }
+            .map { $0.value }
     }
 
-    static func readScript(fileNamed: String) -> String? {
-        if let file = Bundle.main.path(forResource: fileNamed, ofType: nil) {
-            return try? String(contentsOfFile: file, encoding: .utf8)
-        }
+    // MARK: Routines for app updates
+    static func checkUpdates() {
+        guard isAppVersionChangedSinceLastLaunch() else { return }
 
-        return nil
+        runDatabaseMigration()
+        runApplicationUpdateStatements()
+
+        syncCurrentAppVersion()
+    }
+
+    static func readFile(named fileName: String) -> String? {
+        guard let file = Bundle.main.path(forResource: fileName, ofType: nil) else { return nil }
+        return try? String(contentsOfFile: file, encoding: .utf8)
     }
 }
 
@@ -58,18 +61,8 @@ extension AppUpdateService {
     }
 
     private static func runDatabaseMigration() {
-        let scripts = collectMigrationScripts()
-        scripts.forEach {
-            DBService.shared.executeScript(fileNamed: $0)
-        }
-    }
-
-    private static func collectMigrationScripts() -> [String] {
-        return migrationSqlScripts
-            .filter {
-                $0.key.isGreater(than: lastAppVersion)
-            }.map {
-                $0.value
+        migrationScripts.forEach {
+            DBService.shared.executeSQLFile(named: $0)
         }
     }
 
@@ -96,16 +89,14 @@ extension AppUpdateService {
     }
 
     private static func syncCurrentAppVersion() {
-        let defaults = UserDefaults.standard
-        defaults.set(currentAppVersion, forKey: UserDefaults.Key.appVersion)
+        UserDefaults.standard.set(currentAppVersion, forKey: UserDefaults.Key.appVersion)
     }
 
     private static func renameUserDefaultsKey(from oldKey: String, to newKey: String) {
-        let defaults = UserDefaults.standard
-        let oldValue = defaults.double(forKey: oldKey)
+        let oldValue = UserDefaults.standard.double(forKey: oldKey)
 
-        defaults.set(oldValue, forKey: newKey)
-        defaults.removeObject(forKey: oldKey)
+        UserDefaults.standard.set(oldValue, forKey: newKey)
+        UserDefaults.standard.removeObject(forKey: oldKey)
     }
 
     private static func regenerateJokeSchedules() {

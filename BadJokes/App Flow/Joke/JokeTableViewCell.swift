@@ -13,7 +13,7 @@ class JokeTableViewCell: UITableViewCell {
 
     var jokeText: String? {
         didSet {
-            jokeLabel.text = jokeText
+            jokeLabel.text = jokeText?.formatLineBreaks()
         }
     }
 }

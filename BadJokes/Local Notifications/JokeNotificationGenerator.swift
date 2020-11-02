@@ -11,7 +11,6 @@ import Foundation
 class JokeNotificationGenerator {
     // MARK: Properties
     private let dateUtil = DateUtil()
-    private let defaults = UserDefaults.standard
 
     private let maxLocalNotificationCount = 64
     private var jokeTimesToGenerateCount = 0
@@ -28,11 +27,9 @@ class JokeNotificationGenerator {
             let startDate = endDate.add(days: 1)
             endDate = dateUtil.incrementDateBasedOnPeriodSetting(date: startDate)
 
-            if isPunctualTimeSet {
-                addGivenNotificationTimeBetween(startDate, endDate)
-            } else {
-                addRandomNotificationTimeBetween(startDate, endDate)
-            }
+            isPunctualTimeSet
+                ? addGivenNotificationTimeBetween(startDate, endDate)
+                : addRandomNotificationTimeBetween(startDate, endDate)
         }
 
         return notificationTimes
@@ -119,7 +116,7 @@ class JokeNotificationGenerator {
         var sldProbabilities: [String] = []
 
         Constant.sliders.forEach { slider in
-            let sliderValue = defaults.integer(forKey: slider.value)
+            let sliderValue = UserDefaults.standard.integer(forKey: slider.value)
             guard sliderValue > 0, let jokeType = Constant.jokeTypes[slider.value] else { return }
 
             (1...sliderValue).forEach { _ in

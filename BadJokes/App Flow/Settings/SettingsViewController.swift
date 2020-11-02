@@ -38,9 +38,11 @@ class SettingsViewController: UITableViewController {
 
     // MARK: Initializers
     deinit {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: UIApplication.didBecomeActiveNotification,
-                                                  object: nil)
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
     }
 
     // MARK: - View lifecycle
@@ -98,10 +100,12 @@ extension SettingsViewController {
     }
 
     private func setObserverForUIApplicationDidBecomeActive() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkAppNotificationEnabledStatus),
-                                               name: UIApplication.didBecomeActiveNotification,
-                                               object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(checkAppNotificationEnabledStatus),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
     }
 
     @objc private func checkAppNotificationEnabledStatus() {
@@ -203,7 +207,8 @@ extension SettingsViewController {
 extension SettingsViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let rawIdentifier = segue.identifier,
-            let segueIdentifier = SegueIdentifier(rawValue: rawIdentifier) else { return }
+              let segueIdentifier = SegueIdentifier(rawValue: rawIdentifier)
+        else { return }
 
         switch segueIdentifier {
         case .periodicityDetailSegue:

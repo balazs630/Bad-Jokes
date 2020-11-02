@@ -34,8 +34,7 @@ extension JokeDataSource: UITableViewDataSource {
             fatalError("JokeTableViewCell cannot be found")
         }
 
-        let joke = jokes[indexPath.row]
-        cell.jokeText = joke.jokeText.formatLineBreaks()
+        cell.jokeText = jokes[indexPath.row].jokeText
 
         return cell
     }
@@ -43,14 +42,14 @@ extension JokeDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            DBService.shared.removeDeliveredJokeWith(jokeId: jokes[indexPath.row].jokeId)
-            jokes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+        guard editingStyle == .delete else { return }
 
-            if jokes.isEmpty {
-                didBecomeEmpty()
-            }
+        DBService.shared.removeDeliveredJokeWith(jokeId: jokes[indexPath.row].jokeId)
+        jokes.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
+
+        if jokes.isEmpty {
+            didBecomeEmpty()
         }
     }
 }

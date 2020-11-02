@@ -10,15 +10,15 @@ import Foundation
 
 extension String {
     func formatLineBreaks() -> String {
-        return self.replacingOccurrences(of: "\\n", with: "\n")
+        replacingOccurrences(of: "\\n", with: "\n")
     }
 
     func digits() -> Int? {
-        return Int(self.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())
+        Int(components(separatedBy: CharacterSet.decimalDigits.inverted).joined())
     }
 
     func isGreater(than otherVersion: String) -> Bool {
-        let result = self.compare(otherVersion, options: .numeric)
+        let result = compare(otherVersion, options: .numeric)
         return result == .orderedDescending
     }
 }
