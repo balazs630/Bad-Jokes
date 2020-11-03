@@ -10,12 +10,6 @@ import Foundation
 
 class AppUpdateService {
     // MARK: Properties
-    private static let migrationSqlScripts = [
-        "1.2": "v1.2.sql",
-        "1.3": "v1.3.sql",
-        "1.4": "v1.4.sql"
-    ]
-
     public static var currentAppVersion: String {
         guard let currentVersion = Bundle.main.infoDictionary?[Constant.shortVersionString] as? String else {
             return "1.1"
@@ -30,12 +24,6 @@ class AppUpdateService {
         }
 
         return lastVersion
-    }
-
-    private static var migrationScripts: [String] {
-        migrationSqlScripts
-            .filter { $0.key.isGreater(than: lastAppVersion) }
-            .map { $0.value }
     }
 
     // MARK: Routines for app updates
@@ -61,9 +49,14 @@ extension AppUpdateService {
     }
 
     private static func runDatabaseMigration() {
-        migrationScripts.forEach {
-            DBService.shared.executeSQLFile(named: $0)
-        }
+        [
+            "1.2": "v1.2.sql",
+            "1.3": "v1.3.sql",
+            "1.4": "v1.4.sql",
+            "1.5": "v1.5.sql"
+        ]
+        .filter { $0.key.isGreater(than: lastAppVersion) }
+        .forEach { DBService.shared.executeSQLFile(named: $0.value) }
     }
 
     private static func runApplicationUpdateStatements() {
@@ -73,7 +66,6 @@ extension AppUpdateService {
 
         if "1.3".isGreater(than: lastAppVersion) {
             renameUserDefaultsKey(from: "sldMoriczka", to: "sldMoricka")
-            regenerateJokeSchedules()
         }
 
         if "1.3.1".isGreater(than: lastAppVersion) {
@@ -83,7 +75,7 @@ extension AppUpdateService {
             UserDefaults.standard.set(isActive, forKey: UserDefaults.Key.StoreReviewTrigger.copyJoke)
         }
 
-        if "1.4".isGreater(than: lastAppVersion) {
+        if "1.5".isGreater(than: lastAppVersion) {
             regenerateJokeSchedules()
         }
     }

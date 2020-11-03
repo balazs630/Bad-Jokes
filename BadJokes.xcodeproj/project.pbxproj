@@ -30,6 +30,7 @@
 		AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */; };
 		AC66A3D320E79B0600BF53E3 /* WarningTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */; };
 		AC674B74214401B6009F8B46 /* v1.3.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC674B73214401B6009F8B46 /* v1.3.sql */; };
+		AC6F581C254F962200471BDA /* v1.5.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC6F581B254F962200471BDA /* v1.5.sql */; };
 		AC72CAA321E7E659005EBDED /* StoreReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC72CAA221E7E659005EBDED /* StoreReviewService.swift */; };
 		AC7A4E341F51F74700E8F438 /* JokeNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationService.swift */; };
 		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
@@ -83,6 +84,7 @@
 		AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoNotificationScheduledView.xib; sourceTree = "<group>"; };
 		AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WarningTableHeaderView.xib; sourceTree = "<group>"; };
 		AC674B73214401B6009F8B46 /* v1.3.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.3.sql; sourceTree = "<group>"; };
+		AC6F581B254F962200471BDA /* v1.5.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.5.sql; sourceTree = "<group>"; };
 		AC72CAA221E7E659005EBDED /* StoreReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewService.swift; sourceTree = "<group>"; };
 		AC7A4E331F51F74700E8F438 /* JokeNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeNotificationService.swift; sourceTree = "<group>"; };
 		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				AC29785720CC80AF00A49689 /* v1.2.sql */,
 				AC674B73214401B6009F8B46 /* v1.3.sql */,
 				AC05B3D622ECF51200CF2711 /* v1.4.sql */,
+				AC6F581B254F962200471BDA /* v1.5.sql */,
 			);
 			path = "Migration Scripts";
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC6F581C254F962200471BDA /* v1.5.sql in Resources */,
 				AC66A3D320E79B0600BF53E3 /* WarningTableHeaderView.xib in Resources */,
 				AC674B74214401B6009F8B46 /* v1.3.sql in Resources */,
 				AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */,
@@ -669,7 +673,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UW8QF9DSWQ;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/BadJokes/Supporting Files/Info.plist";
@@ -677,7 +681,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.balazs630.BadJokes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -697,7 +701,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UW8QF9DSWQ;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/BadJokes/Supporting Files/Info.plist";
@@ -705,7 +709,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.1;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.balazs630.BadJokes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
