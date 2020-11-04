@@ -110,7 +110,7 @@ extension SettingsViewController {
 
     private func updateTableHeaderView() {
         if !DBService.shared.hasUnusedJoke() {
-            tableView.tableHeaderView = UINib.loadView(named: .warningTableHeaderView)
+            tableView.tableHeaderView = UINib.warningTableHeaderView
         }
     }
 }

@@ -23,12 +23,10 @@
 		AC1C1139203F191E00D2370B /* JokeNotificationGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */; };
 		AC237A0421EB4BC8004EEC2C /* StoreReviewTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC237A0321EB4BC8004EEC2C /* StoreReviewTrigger.swift */; };
 		AC237A0621EB4E25004EEC2C /* StoreReviewRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC237A0521EB4E25004EEC2C /* StoreReviewRule.swift */; };
-		AC23A4B82068505F008BED6C /* WaitingForFirstNotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */; };
 		AC2579B120461AAA00C1D904 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B020461AAA00C1D904 /* DateUtil.swift */; };
 		AC29785820CC80AF00A49689 /* v1.2.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC29785720CC80AF00A49689 /* v1.2.sql */; };
 		AC4C1BE923664BB500052A12 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4C1BE823664BB500052A12 /* UIViewControllerExtension.swift */; };
-		AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */; };
-		AC66A3D320E79B0600BF53E3 /* WarningTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */; };
+		AC5A31D1255355E300639EB5 /* UIStoryboardExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A31D0255355E300639EB5 /* UIStoryboardExtensions.swift */; };
 		AC674B74214401B6009F8B46 /* v1.3.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC674B73214401B6009F8B46 /* v1.3.sql */; };
 		AC6F581C254F962200471BDA /* v1.5.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC6F581B254F962200471BDA /* v1.5.sql */; };
 		AC72CAA321E7E659005EBDED /* StoreReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC72CAA221E7E659005EBDED /* StoreReviewService.swift */; };
@@ -42,10 +40,13 @@
 		ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB7C1E71FDD6106007ED514 /* Constants.swift */; };
 		ACBDC24A20EAD26300CDB54F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */; };
 		ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */; };
-		ACBDC24F20EC213D00CDB54F /* UINibExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24E20EC213D00CDB54F /* UINibExtensions.swift */; };
 		ACBF5CBE21961FC500DCE6CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */; };
 		ACBF5CC021961FF200DCE6CC /* Jokes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */; };
 		ACD7E85D20C8763F00A8F105 /* AppUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85C20C8763F00A8F105 /* AppUpdateService.swift */; };
+		ACE076E32551FBE4007B7072 /* WaitingForFirstJokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE076E22551FBE4007B7072 /* WaitingForFirstJokeViewController.swift */; };
+		ACE076EE25520A16007B7072 /* NoJokeScheduledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE076ED25520A16007B7072 /* NoJokeScheduledViewController.swift */; };
+		ACE076FB25533243007B7072 /* WarningTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE076FA25533243007B7072 /* WarningTableHeaderView.xib */; };
+		ACE076FE2553326E007B7072 /* UINibExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE076FD2553326E007B7072 /* UINibExtensions.swift */; };
 		ACE689C421484F8B00754221 /* v1.1-base.sql in Resources */ = {isa = PBXBuildFile; fileRef = ACE689C321484F8B00754221 /* v1.1-base.sql */; };
 		ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE906B21F22A27200A6A082 /* SettingsViewController.swift */; };
 		ACECF0A51F60A88F0072367C /* jokesDB.db in Resources */ = {isa = PBXBuildFile; fileRef = ACECF0A41F60A88F0072367C /* jokesDB.db */; };
@@ -77,12 +78,10 @@
 		AC1C1138203F191E00D2370B /* JokeNotificationGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeNotificationGenerator.swift; sourceTree = "<group>"; };
 		AC237A0321EB4BC8004EEC2C /* StoreReviewTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewTrigger.swift; sourceTree = "<group>"; };
 		AC237A0521EB4E25004EEC2C /* StoreReviewRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewRule.swift; sourceTree = "<group>"; };
-		AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitingForFirstNotificationView.xib; sourceTree = "<group>"; };
 		AC2579B020461AAA00C1D904 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		AC29785720CC80AF00A49689 /* v1.2.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.2.sql; sourceTree = "<group>"; };
 		AC4C1BE823664BB500052A12 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoNotificationScheduledView.xib; sourceTree = "<group>"; };
-		AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WarningTableHeaderView.xib; sourceTree = "<group>"; };
+		AC5A31D0255355E300639EB5 /* UIStoryboardExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtensions.swift; sourceTree = "<group>"; };
 		AC674B73214401B6009F8B46 /* v1.3.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.3.sql; sourceTree = "<group>"; };
 		AC6F581B254F962200471BDA /* v1.5.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.5.sql; sourceTree = "<group>"; };
 		AC72CAA221E7E659005EBDED /* StoreReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewService.swift; sourceTree = "<group>"; };
@@ -96,10 +95,13 @@
 		ACB7C1E71FDD6106007ED514 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		ACBDC24E20EC213D00CDB54F /* UINibExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINibExtensions.swift; sourceTree = "<group>"; };
 		ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Jokes.storyboard; sourceTree = "<group>"; };
 		ACD7E85C20C8763F00A8F105 /* AppUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateService.swift; sourceTree = "<group>"; };
+		ACE076E22551FBE4007B7072 /* WaitingForFirstJokeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForFirstJokeViewController.swift; sourceTree = "<group>"; };
+		ACE076ED25520A16007B7072 /* NoJokeScheduledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoJokeScheduledViewController.swift; sourceTree = "<group>"; };
+		ACE076FA25533243007B7072 /* WarningTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WarningTableHeaderView.xib; sourceTree = "<group>"; };
+		ACE076FD2553326E007B7072 /* UINibExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINibExtensions.swift; sourceTree = "<group>"; };
 		ACE689C321484F8B00754221 /* v1.1-base.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "v1.1-base.sql"; sourceTree = "<group>"; };
 		ACE906B21F22A27200A6A082 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		ACECF0A21F60A47E0072367C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -161,8 +163,8 @@
 			isa = PBXGroup;
 			children = (
 				ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */,
-				AC6009B220645D7E00AF6BEC /* NoNotificationScheduledView.xib */,
-				AC23A4B72068505F008BED6C /* WaitingForFirstNotificationView.xib */,
+				ACE076ED25520A16007B7072 /* NoJokeScheduledViewController.swift */,
+				ACE076E22551FBE4007B7072 /* WaitingForFirstJokeViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -171,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */,
-				AC66A3D220E79B0600BF53E3 /* WarningTableHeaderView.xib */,
+				ACE076FA25533243007B7072 /* WarningTableHeaderView.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -280,7 +282,8 @@
 				ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */,
 				AC07F8A822ED0FCB00399934 /* UIApplicationExtensions.swift */,
 				ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */,
-				ACBDC24E20EC213D00CDB54F /* UINibExtensions.swift */,
+				AC5A31D0255355E300639EB5 /* UIStoryboardExtensions.swift */,
+				ACE076FD2553326E007B7072 /* UINibExtensions.swift */,
 				ACF0B9302349E01D005A75A9 /* UITableViewExtensions.swift */,
 				AC4C1BE823664BB500052A12 /* UIViewControllerExtension.swift */,
 				ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */,
@@ -431,13 +434,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC6F581C254F962200471BDA /* v1.5.sql in Resources */,
-				AC66A3D320E79B0600BF53E3 /* WarningTableHeaderView.xib in Resources */,
 				AC674B74214401B6009F8B46 /* v1.3.sql in Resources */,
-				AC6009B320645D7E00AF6BEC /* NoNotificationScheduledView.xib in Resources */,
 				AC05B3D722ECF51200CF2711 /* v1.4.sql in Resources */,
 				AC182C052329830400CF3A4F /* README.md in Resources */,
 				AC29785820CC80AF00A49689 /* v1.2.sql in Resources */,
-				AC23A4B82068505F008BED6C /* WaitingForFirstNotificationView.xib in Resources */,
+				ACE076FB25533243007B7072 /* WarningTableHeaderView.xib in Resources */,
 				ACE689C421484F8B00754221 /* v1.1-base.sql in Resources */,
 				ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */,
 				ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */,
@@ -509,8 +510,10 @@
 				ACF0B9312349E01D005A75A9 /* UITableViewExtensions.swift in Sources */,
 				AC0AF9BD20DC66ED00A52478 /* CopyableLabel.swift in Sources */,
 				ACEEA9651F1E5FA600BCF905 /* JokeTableViewController.swift in Sources */,
+				AC5A31D1255355E300639EB5 /* UIStoryboardExtensions.swift in Sources */,
 				ACB5A2931FE7FFA4006DD51E /* JokeReaderViewController.swift in Sources */,
 				AC7A4E341F51F74700E8F438 /* JokeNotificationService.swift in Sources */,
+				ACE076E32551FBE4007B7072 /* WaitingForFirstJokeViewController.swift in Sources */,
 				AC976E892049B48B00B9C611 /* SchedulesTableQueries.swift in Sources */,
 				ACF0EBA3209A7DF300467675 /* DateExtensions.swift in Sources */,
 				AC128336204B5F1600FCC19E /* TimePart.swift in Sources */,
@@ -528,9 +531,9 @@
 				AC72CAA321E7E659005EBDED /* StoreReviewService.swift in Sources */,
 				AC4C1BE923664BB500052A12 /* UIViewControllerExtension.swift in Sources */,
 				ACF0EBA1209A7DDB00467675 /* TimeIntervalExtensions.swift in Sources */,
+				ACE076FE2553326E007B7072 /* UINibExtensions.swift in Sources */,
 				AC1BAF102059D6740047E376 /* RecurrenceViewController.swift in Sources */,
 				ACEEA9631F1E5FA600BCF905 /* AppDelegate.swift in Sources */,
-				ACBDC24F20EC213D00CDB54F /* UINibExtensions.swift in Sources */,
 				AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */,
 				AC100EAC1F548A430069C0DE /* StringExtensions.swift in Sources */,
 				AC05CBD620F0F019009A7A82 /* Schedule.swift in Sources */,
@@ -539,6 +542,7 @@
 				ACE906B31F22A27200A6A082 /* SettingsViewController.swift in Sources */,
 				ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */,
 				ACF0EB9B209A7D9C00467675 /* UserDefaultsExtensions.swift in Sources */,
+				ACE076EE25520A16007B7072 /* NoJokeScheduledViewController.swift in Sources */,
 				AC128334204B5D3F00FCC19E /* DatePart.swift in Sources */,
 				ACACF6E91F51C93E00F501B1 /* DBService.swift in Sources */,
 				ACECF0A71F60AC230072367C /* Joke.swift in Sources */,

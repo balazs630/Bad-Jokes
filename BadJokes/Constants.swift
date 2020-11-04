@@ -22,16 +22,6 @@ enum SegueIdentifier: String {
     case showJokeSegue
 }
 
-extension UIStoryboard {
-    static let jokes = UIStoryboard(name: "Jokes", bundle: nil)
-}
-
-enum NibName: String {
-    case noNotificationScheduledView = "NoNotificationScheduledView"
-    case waitingForFirstNotificationView = "WaitingForFirstNotificationView"
-    case warningTableHeaderView = "WarningTableHeaderView"
-}
-
 struct DefaultSettings {
     static let firstTimeLaunchDefaults: [String: Any] = [
         UserDefaults.Key.isAppAlreadyLaunchedOnce: true,

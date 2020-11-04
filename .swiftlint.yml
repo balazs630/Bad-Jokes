@@ -1,6 +1,8 @@
 disabled_rules:
   - dynamic_inline
   - empty_parentheses_with_trailing_closure
+  - type_name
+  - identifier_name
   - private_unit_test
   - type_body_length
   - valid_docs

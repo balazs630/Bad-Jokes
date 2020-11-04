@@ -3,8 +3,9 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -42,7 +43,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="6Ed-cc-NpV" secondAttribute="trailing" constant="15" id="7we-yz-C0y"/>
                                             <constraint firstItem="6Ed-cc-NpV" firstAttribute="leading" secondItem="TT3-a6-z64" secondAttribute="leading" constant="15" id="Vqs-3z-SgD"/>
@@ -101,7 +102,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="55" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6SB-SV-Tn7">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="JokeTableViewCell" id="NHf-Ph-b9f" customClass="JokeTableViewCell" customModule="BadJokes">
                                         <rect key="frame" x="0.0" y="28" width="375" height="55"/>
@@ -132,7 +133,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WKQ-C6-bmk"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4Ws-hQ-jIK" firstAttribute="top" secondItem="6SB-SV-Tn7" secondAttribute="bottom" id="8Pe-9K-xlP"/>
                             <constraint firstItem="6SB-SV-Tn7" firstAttribute="top" secondItem="OWu-TV-7hS" secondAttribute="bottom" id="cWb-ps-RHj"/>
@@ -185,5 +186,8 @@
     </scenes>
     <resources>
         <image name="settings" width="22" height="22"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

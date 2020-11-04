@@ -9,11 +9,13 @@
 import UIKit
 
 extension UINib {
-    static func loadView(named name: NibName, bundle: Bundle? = nil) -> UIView {
-        guard let view = UINib(nibName: name.rawValue, bundle: bundle)
+    static let warningTableHeaderView = loadView(named: "WarningTableHeaderView")
+
+    static func loadView(named name: String, bundle: Bundle? = nil) -> UIView {
+        guard let view = UINib(nibName: name, bundle: bundle)
             .instantiate(withOwner: nil)
             .first as? UIView else {
-                fatalError("Couldn't load nib with name: \(name.rawValue)!")
+                fatalError("Couldn't load nib with name: \(name)!")
         }
 
         return view

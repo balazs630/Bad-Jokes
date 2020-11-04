@@ -12,10 +12,10 @@ class JokeTableViewController: UIViewController {
     // MARK: Properties
     private var dataSource: JokeDataSource!
     private let jokeNotificationService = JokeNotificationService()
-    private let refreshControl = UIRefreshControl()
 
-    private let noNotificationScheduledView = UINib.loadView(named: .noNotificationScheduledView)
-    private let waitingForFirstNotificationView = UINib.loadView(named: .waitingForFirstNotificationView)
+    private lazy var refreshControl = UIRefreshControl()
+    private lazy var noJokeScheduledViewController = NoJokeScheduledViewController()
+    private lazy var waitingForFirstJokeViewController = WaitingForFirstJokeViewController()
 
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -25,11 +25,6 @@ class JokeTableViewController: UIViewController {
         super.viewDidLoad()
         configureRefreshControl()
         setObserverForUIApplicationDidBecomeActive()
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        updateEmptyViewFrames()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -111,29 +106,41 @@ private extension JokeTableViewController {
     }
 
     private func presentEmptyView() {
-        removeEmptyViews()
-        tableView.separatorStyle = dataSource.jokes.isEmpty ? .none : .singleLine
+        guard dataSource.jokes.isEmpty else {
+            tableView.separatorStyle = .singleLine
+            removeEmptyViews()
+            return
+        }
 
-        guard dataSource.jokes.isEmpty else { return }
-
+        tableView.separatorStyle = .none
         DBService.shared.isSchedulesListEmpty()
-            ? displayViewInFrontOfTableView(frontview: noNotificationScheduledView)
-            : displayViewInFrontOfTableView(frontview: waitingForFirstNotificationView)
+            ? displayNoNotificationScheduledView()
+            : displayWaitingForFirstNotificationView()
     }
 
-    private func displayViewInFrontOfTableView(frontview view: UIView) {
-        tableView.addSubview(view)
-        tableView.bringSubviewToFront(view)
+    private func displayNoNotificationScheduledView() {
+        let emptyView = noJokeScheduledViewController.view!
+        waitingForFirstJokeViewController.view.removeFromSuperview()
+        displayViewInFrontOfTableView(emptyView: emptyView)
+    }
+
+    private func displayWaitingForFirstNotificationView() {
+        let emptyView = waitingForFirstJokeViewController.view!
+        noJokeScheduledViewController.view.removeFromSuperview()
+        displayViewInFrontOfTableView(emptyView: emptyView)
+    }
+
+    private func displayViewInFrontOfTableView(emptyView: UIView) {
+        guard !emptyView.isDescendant(of: tableView) else { return }
+
+        emptyView.frame = tableView.bounds
+        tableView.addSubview(emptyView)
+        tableView.bringSubviewToFront(emptyView)
     }
 
     private func removeEmptyViews() {
-        noNotificationScheduledView.removeFromSuperview()
-        waitingForFirstNotificationView.removeFromSuperview()
-    }
-
-    private func updateEmptyViewFrames() {
-        noNotificationScheduledView.frame = UIScreen.main.bounds
-        waitingForFirstNotificationView.frame = UIScreen.main.bounds
+        noJokeScheduledViewController.view.removeFromSuperview()
+        waitingForFirstJokeViewController.view.removeFromSuperview()
     }
 }
 
