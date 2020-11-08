@@ -40,11 +40,8 @@ class JokeReaderViewController: UIViewController {
     }
 
     static func instantiate(with jokeText: String) -> JokeReaderViewController? {
-        let identifier = String(describing: JokeReaderViewController.self)
-
-        let jokeReader = UIStoryboard.jokes
-            .instantiateViewController(withIdentifier: identifier) as? JokeReaderViewController
-        jokeReader?.jokeText = jokeText
+        let jokeReader = UIStoryboard.jokes.instantiateViewController(JokeReaderViewController.self)
+        jokeReader.jokeText = jokeText
 
         return jokeReader
     }

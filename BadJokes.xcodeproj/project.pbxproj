@@ -33,6 +33,7 @@
 		AC7A4E341F51F74700E8F438 /* JokeNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationService.swift */; };
 		AC88F9E81F2BEA8600ACD4B5 /* PeriodicityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */; };
 		AC88F9EC1F2BEB2A00ACD4B5 /* TimeRangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC88F9EB1F2BEB2A00ACD4B5 /* TimeRangeViewController.swift */; };
+		AC96B6AE2555D98E0083CD47 /* WaitingForFirstJokeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC96B6AD2555D98E0083CD47 /* WaitingForFirstJokeDetailViewController.swift */; };
 		AC976E872049B41C00B9C611 /* JokesTableQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC976E862049B41C00B9C611 /* JokesTableQueries.swift */; };
 		AC976E892049B48B00B9C611 /* SchedulesTableQueries.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC976E882049B48B00B9C611 /* SchedulesTableQueries.swift */; };
 		ACACF6E91F51C93E00F501B1 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACF6E81F51C93E00F501B1 /* DBService.swift */; };
@@ -43,6 +44,7 @@
 		ACBF5CBE21961FC500DCE6CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */; };
 		ACBF5CC021961FF200DCE6CC /* Jokes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */; };
 		ACD7E85D20C8763F00A8F105 /* AppUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD7E85C20C8763F00A8F105 /* AppUpdateService.swift */; };
+		ACDC5C432555EC62005E86CB /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDC5C422555EC62005E86CB /* UIViewExtensions.swift */; };
 		ACE076E32551FBE4007B7072 /* WaitingForFirstJokeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE076E22551FBE4007B7072 /* WaitingForFirstJokeViewController.swift */; };
 		ACE076EE25520A16007B7072 /* NoJokeScheduledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE076ED25520A16007B7072 /* NoJokeScheduledViewController.swift */; };
 		ACE076FB25533243007B7072 /* WarningTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE076FA25533243007B7072 /* WarningTableHeaderView.xib */; };
@@ -88,6 +90,7 @@
 		AC7A4E331F51F74700E8F438 /* JokeNotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JokeNotificationService.swift; sourceTree = "<group>"; };
 		AC88F9E71F2BEA8600ACD4B5 /* PeriodicityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeriodicityViewController.swift; sourceTree = "<group>"; };
 		AC88F9EB1F2BEB2A00ACD4B5 /* TimeRangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRangeViewController.swift; sourceTree = "<group>"; };
+		AC96B6AD2555D98E0083CD47 /* WaitingForFirstJokeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForFirstJokeDetailViewController.swift; sourceTree = "<group>"; };
 		AC976E862049B41C00B9C611 /* JokesTableQueries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesTableQueries.swift; sourceTree = "<group>"; };
 		AC976E882049B48B00B9C611 /* SchedulesTableQueries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesTableQueries.swift; sourceTree = "<group>"; };
 		ACACF6E81F51C93E00F501B1 /* DBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 		ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Jokes.storyboard; sourceTree = "<group>"; };
 		ACD7E85C20C8763F00A8F105 /* AppUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUpdateService.swift; sourceTree = "<group>"; };
+		ACDC5C422555EC62005E86CB /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		ACE076E22551FBE4007B7072 /* WaitingForFirstJokeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForFirstJokeViewController.swift; sourceTree = "<group>"; };
 		ACE076ED25520A16007B7072 /* NoJokeScheduledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoJokeScheduledViewController.swift; sourceTree = "<group>"; };
 		ACE076FA25533243007B7072 /* WarningTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WarningTableHeaderView.xib; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				ACBF5CBF21961FF200DCE6CC /* Jokes.storyboard */,
 				ACE076ED25520A16007B7072 /* NoJokeScheduledViewController.swift */,
 				ACE076E22551FBE4007B7072 /* WaitingForFirstJokeViewController.swift */,
+				AC96B6AD2555D98E0083CD47 /* WaitingForFirstJokeDetailViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				ACE076FD2553326E007B7072 /* UINibExtensions.swift */,
 				ACF0B9302349E01D005A75A9 /* UITableViewExtensions.swift */,
 				AC4C1BE823664BB500052A12 /* UIViewControllerExtension.swift */,
+				ACDC5C422555EC62005E86CB /* UIViewExtensions.swift */,
 				ACF0EB9A209A7D9C00467675 /* UserDefaultsExtensions.swift */,
 			);
 			path = Extensions;
@@ -511,7 +517,9 @@
 				AC0AF9BD20DC66ED00A52478 /* CopyableLabel.swift in Sources */,
 				ACEEA9651F1E5FA600BCF905 /* JokeTableViewController.swift in Sources */,
 				AC5A31D1255355E300639EB5 /* UIStoryboardExtensions.swift in Sources */,
+				ACDC5C432555EC62005E86CB /* UIViewExtensions.swift in Sources */,
 				ACB5A2931FE7FFA4006DD51E /* JokeReaderViewController.swift in Sources */,
+				AC96B6AE2555D98E0083CD47 /* WaitingForFirstJokeDetailViewController.swift in Sources */,
 				AC7A4E341F51F74700E8F438 /* JokeNotificationService.swift in Sources */,
 				ACE076E32551FBE4007B7072 /* WaitingForFirstJokeViewController.swift in Sources */,
 				AC976E892049B48B00B9C611 /* SchedulesTableQueries.swift in Sources */,

@@ -10,4 +10,17 @@ import UIKit
 
 extension UIStoryboard {
     static let jokes = UIStoryboard(name: "Jokes", bundle: nil)
+
+    func instantiateViewController<ViewController: UIViewController>(
+        _ type: ViewController.Type,
+        withIdentifier identifier: String? = nil
+    ) -> ViewController {
+        let identifier = identifier ?? String(describing: type.self)
+
+        guard let viewController = instantiateViewController(withIdentifier: identifier) as? ViewController else {
+            fatalError("Could not instantiate view controller `\(ViewController.self)` with identifier `\(identifier)`")
+        }
+
+        return viewController
+    }
 }

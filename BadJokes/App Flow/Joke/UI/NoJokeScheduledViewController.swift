@@ -9,15 +9,18 @@
 import UIKit
 
 class NoJokeScheduledViewController: UIViewController {
+    // MARK: Properties
     private lazy var arrowImageView = UIImageView()
     private lazy var descriptionLabel = UILabel()
 
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupArrowImageView()
         setupDescriptionLabel()
     }
 
+    // MARK: - Setup appearance
     private func setupArrowImageView() {
         arrowImageView.image = UIImage(named: "arrow-dashed-long")
         arrowImageView.contentMode = .scaleAspectFit

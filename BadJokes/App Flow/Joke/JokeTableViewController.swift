@@ -80,7 +80,7 @@ extension JokeTableViewController {
     }
 }
 
-// MARK: - Screen configurationss
+// MARK: - Screen configurations
 private extension JokeTableViewController {
     private func configureRefreshControl() {
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
@@ -121,21 +121,13 @@ private extension JokeTableViewController {
     private func displayNoNotificationScheduledView() {
         let emptyView = noJokeScheduledViewController.view!
         waitingForFirstJokeViewController.view.removeFromSuperview()
-        displayViewInFrontOfTableView(emptyView: emptyView)
+        tableView.addOverlayingSubView(view: emptyView)
     }
 
     private func displayWaitingForFirstNotificationView() {
         let emptyView = waitingForFirstJokeViewController.view!
         noJokeScheduledViewController.view.removeFromSuperview()
-        displayViewInFrontOfTableView(emptyView: emptyView)
-    }
-
-    private func displayViewInFrontOfTableView(emptyView: UIView) {
-        guard !emptyView.isDescendant(of: tableView) else { return }
-
-        emptyView.frame = tableView.bounds
-        tableView.addSubview(emptyView)
-        tableView.bringSubviewToFront(emptyView)
+        tableView.addOverlayingSubView(view: emptyView)
     }
 
     private func removeEmptyViews() {
