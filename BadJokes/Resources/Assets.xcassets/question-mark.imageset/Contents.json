@@ -1,19 +1,8 @@
 {
   "images" : [
     {
-      "filename" : "question-mark~universal@1x.png",
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "question-mark~universal@2x.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "question-mark~universal@3x.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "question-mark~universal.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
@@ -21,6 +10,6 @@
     "version" : 1
   },
   "properties" : {
-    "compression-type" : "automatic"
+    "preserves-vector-representation" : true
   }
 }

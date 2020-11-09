@@ -45,7 +45,7 @@ class WaitingForFirstJokeViewController: UIViewController {
         view.addSubview(questionButton)
         questionButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            questionButton.widthAnchor.constraint(equalToConstant: 50),
+            questionButton.widthAnchor.constraint(equalToConstant: 60),
             questionButton.heightAnchor.constraint(equalToConstant: 50),
             questionButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             questionButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 30)
