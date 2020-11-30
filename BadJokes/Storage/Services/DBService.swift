@@ -68,7 +68,7 @@ extension DBService {
 
         debugPrint("Run script: \(fileName)")
         databaseQueue.inTransaction { database, _ in
-            database.executeUpdate(sqlStatements, withArgumentsIn: [])
+            database.executeStatements(sqlStatements, withResultBlock: nil)
         }
     }
 }
