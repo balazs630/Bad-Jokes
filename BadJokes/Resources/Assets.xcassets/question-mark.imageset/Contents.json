@@ -3,6 +3,16 @@
     {
       "filename" : "question-mark~universal.pdf",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "question-mark~dark.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
