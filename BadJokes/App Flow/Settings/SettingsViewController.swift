@@ -67,6 +67,7 @@ class SettingsViewController: UITableViewController {
 
     @IBAction func swGlobalOnOffDidChange(_ sender: Any) {
         updateUIElementsBasedOnGlobalDisablerSwitchState()
+        tableView.reloadData()
 
         if swGlobalOff.isOn {
             jokeNotificationService.removeAllScheduledNotification()
@@ -79,7 +80,7 @@ extension SettingsViewController {
     private func updateUIElementsBasedOnGlobalDisablerSwitchState() {
         // If this switch is on, all settings are disabled
         let swGlobalState = !swGlobalOff.isOn
-        tableView.allowsSelection = !swGlobalOff.isOn
+        tableView.allowsSelection = swGlobalState
 
         lblPeriodicity.isEnabled = swGlobalState
         lblRecurrence.isEnabled = swGlobalState
