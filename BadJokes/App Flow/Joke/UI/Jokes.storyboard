@@ -52,9 +52,12 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="500" id="h2V-DG-ac0"/>
+                                </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😃" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8g-vH-cuO">
-                                <rect key="frame" x="311" y="433.5" width="28" height="30"/>
+                                <rect key="frame" x="312" y="433.5" width="28" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -64,10 +67,11 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="x8g-vH-cuO" firstAttribute="top" secondItem="elT-Uk-Fju" secondAttribute="bottom" constant="-15" id="0Qx-x2-oAC"/>
+                            <constraint firstItem="elT-Uk-Fju" firstAttribute="centerX" secondItem="WOH-F7-ZYa" secondAttribute="centerX" id="3oY-48-lAm"/>
                             <constraint firstItem="elT-Uk-Fju" firstAttribute="centerY" secondItem="WOH-F7-ZYa" secondAttribute="centerY" constant="-50" id="5mj-nV-2qG"/>
-                            <constraint firstAttribute="trailing" secondItem="elT-Uk-Fju" secondAttribute="trailing" constant="20" id="8Yt-5r-XK5"/>
-                            <constraint firstItem="elT-Uk-Fju" firstAttribute="leading" secondItem="WOH-F7-ZYa" secondAttribute="leading" constant="20" id="cZ3-RQ-0lS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="x8g-vH-cuO" secondAttribute="trailing" constant="20" id="ckH-Ca-qwY"/>
+                            <constraint firstAttribute="trailing" secondItem="elT-Uk-Fju" secondAttribute="trailing" priority="999" constant="20" id="8Yt-5r-XK5"/>
+                            <constraint firstItem="x8g-vH-cuO" firstAttribute="trailing" secondItem="elT-Uk-Fju" secondAttribute="trailing" constant="-15" id="RXK-OP-YOO"/>
+                            <constraint firstItem="elT-Uk-Fju" firstAttribute="leading" secondItem="WOH-F7-ZYa" secondAttribute="leading" priority="999" constant="20" id="cZ3-RQ-0lS"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="IhL-0t-MGK" appends="YES" id="vdR-8A-qhQ"/>

@@ -685,7 +685,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = UW8QF9DSWQ;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/BadJokes/Supporting Files/Info.plist";
@@ -713,7 +713,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = UW8QF9DSWQ;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/BadJokes/Supporting Files/Info.plist";
