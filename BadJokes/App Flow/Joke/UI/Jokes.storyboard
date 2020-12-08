@@ -258,8 +258,8 @@
                         <viewLayoutGuide key="safeArea" id="WKQ-C6-bmk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4Ws-hQ-jIK" firstAttribute="top" secondItem="6SB-SV-Tn7" secondAttribute="bottom" id="8Pe-9K-xlP"/>
-                            <constraint firstItem="6SB-SV-Tn7" firstAttribute="top" secondItem="OWu-TV-7hS" secondAttribute="bottom" id="cWb-ps-RHj"/>
+                            <constraint firstAttribute="bottom" secondItem="6SB-SV-Tn7" secondAttribute="bottom" id="8Pe-9K-xlP"/>
+                            <constraint firstItem="6SB-SV-Tn7" firstAttribute="top" secondItem="WKQ-C6-bmk" secondAttribute="top" id="cWb-ps-RHj"/>
                             <constraint firstAttribute="trailing" secondItem="6SB-SV-Tn7" secondAttribute="trailing" id="dzD-LV-MVE"/>
                             <constraint firstItem="6SB-SV-Tn7" firstAttribute="leading" secondItem="LUm-La-pTa" secondAttribute="leading" id="pry-Jd-jbt"/>
                         </constraints>
