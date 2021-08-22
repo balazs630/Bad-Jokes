@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol RecurrenceViewControllerDelegate: class {
+protocol RecurrenceViewControllerDelegate: AnyObject {
     func saveRecurrence(with selectedOption: Recurrence)
 }
 

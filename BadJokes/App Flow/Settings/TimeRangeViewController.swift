@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol TimeRangeViewControllerDelegate: class {
+protocol TimeRangeViewControllerDelegate: AnyObject {
     func saveTimeRange(with selectedOption: TimeRange)
     func saveTimeRange(with selectedOption: TimeRange, hours: String, minutes: String)
 }

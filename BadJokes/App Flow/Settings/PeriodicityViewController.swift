@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol PeriodicityViewControllerDelegate: class {
+protocol PeriodicityViewControllerDelegate: AnyObject {
     func savePeriodicity(with selectedOption: Periodicity)
 }
 
