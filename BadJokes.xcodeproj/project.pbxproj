@@ -26,6 +26,7 @@
 		AC2579B120461AAA00C1D904 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2579B020461AAA00C1D904 /* DateUtil.swift */; };
 		AC29785820CC80AF00A49689 /* v1.2.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC29785720CC80AF00A49689 /* v1.2.sql */; };
 		AC4C1BE923664BB500052A12 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4C1BE823664BB500052A12 /* UIViewControllerExtension.swift */; };
+		AC4ECEF92714C3E9003A40B2 /* v1.6.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC4ECEF82714C3E9003A40B2 /* v1.6.sql */; };
 		AC5A31D1255355E300639EB5 /* UIStoryboardExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A31D0255355E300639EB5 /* UIStoryboardExtensions.swift */; };
 		AC674B74214401B6009F8B46 /* v1.3.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC674B73214401B6009F8B46 /* v1.3.sql */; };
 		AC6F581C254F962200471BDA /* v1.5.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC6F581B254F962200471BDA /* v1.5.sql */; };
@@ -83,6 +84,7 @@
 		AC2579B020461AAA00C1D904 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		AC29785720CC80AF00A49689 /* v1.2.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.2.sql; sourceTree = "<group>"; };
 		AC4C1BE823664BB500052A12 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		AC4ECEF82714C3E9003A40B2 /* v1.6.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.6.sql; sourceTree = "<group>"; };
 		AC5A31D0255355E300639EB5 /* UIStoryboardExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtensions.swift; sourceTree = "<group>"; };
 		AC674B73214401B6009F8B46 /* v1.3.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.3.sql; sourceTree = "<group>"; };
 		AC6F581B254F962200471BDA /* v1.5.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.5.sql; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				AC674B73214401B6009F8B46 /* v1.3.sql */,
 				AC05B3D622ECF51200CF2711 /* v1.4.sql */,
 				AC6F581B254F962200471BDA /* v1.5.sql */,
+				AC4ECEF82714C3E9003A40B2 /* v1.6.sql */,
 			);
 			path = "Migration Scripts";
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC6F581C254F962200471BDA /* v1.5.sql in Resources */,
+				AC4ECEF92714C3E9003A40B2 /* v1.6.sql in Resources */,
 				AC674B74214401B6009F8B46 /* v1.3.sql in Resources */,
 				AC05B3D722ECF51200CF2711 /* v1.4.sql in Resources */,
 				AC182C052329830400CF3A4F /* README.md in Resources */,

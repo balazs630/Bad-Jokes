@@ -53,7 +53,8 @@ extension AppUpdateService {
             "1.2": "v1.2.sql",
             "1.3": "v1.3.sql",
             "1.4": "v1.4.sql",
-            "1.5": "v1.5.sql"
+            "1.5": "v1.5.sql",
+            "1.6": "v1.6.sql"
         ]
         .filter { $0.key.isGreater(than: lastAppVersion) }
         .forEach { DBService.shared.executeSQLFile(named: $0.value) }
@@ -76,6 +77,10 @@ extension AppUpdateService {
         }
 
         if "1.5".isGreater(than: lastAppVersion) {
+            regenerateJokeSchedules()
+        }
+
+        if "1.6".isGreater(than: lastAppVersion) {
             regenerateJokeSchedules()
         }
     }
