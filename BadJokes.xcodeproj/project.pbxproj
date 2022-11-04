@@ -40,6 +40,7 @@
 		ACACF6E91F51C93E00F501B1 /* DBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACACF6E81F51C93E00F501B1 /* DBService.swift */; };
 		ACB5A2931FE7FFA4006DD51E /* JokeReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB5A2921FE7FFA4006DD51E /* JokeReaderViewController.swift */; };
 		ACB7C1E81FDD6106007ED514 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB7C1E71FDD6106007ED514 /* Constants.swift */; };
+		ACBCBB3B2915B1390006CB45 /* v1.7.sql in Resources */ = {isa = PBXBuildFile; fileRef = ACBCBB3A2915B1390006CB45 /* v1.7.sql */; };
 		ACBDC24A20EAD26300CDB54F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */; };
 		ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */; };
 		ACBF5CBE21961FC500DCE6CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */; };
@@ -98,6 +99,7 @@
 		ACACF6E81F51C93E00F501B1 /* DBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBService.swift; sourceTree = "<group>"; };
 		ACB5A2921FE7FFA4006DD51E /* JokeReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokeReaderViewController.swift; sourceTree = "<group>"; };
 		ACB7C1E71FDD6106007ED514 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		ACBCBB3A2915B1390006CB45 /* v1.7.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.7.sql; sourceTree = "<group>"; };
 		ACBDC24920EAD26300CDB54F /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		ACBDC24B20EAD46A00CDB54F /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		ACBF5CBD21961FC500DCE6CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				AC05B3D622ECF51200CF2711 /* v1.4.sql */,
 				AC6F581B254F962200471BDA /* v1.5.sql */,
 				AC4ECEF82714C3E9003A40B2 /* v1.6.sql */,
+				ACBCBB3A2915B1390006CB45 /* v1.7.sql */,
 			);
 			path = "Migration Scripts";
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				AC29785820CC80AF00A49689 /* v1.2.sql in Resources */,
 				ACE076FB25533243007B7072 /* WarningTableHeaderView.xib in Resources */,
 				ACE689C421484F8B00754221 /* v1.1-base.sql in Resources */,
+				ACBCBB3B2915B1390006CB45 /* v1.7.sql in Resources */,
 				ACEEA96A1F1E5FA600BCF905 /* Assets.xcassets in Resources */,
 				ACBDC24C20EAD46A00CDB54F /* Settings.storyboard in Resources */,
 				ACBF5CBE21961FC500DCE6CC /* LaunchScreen.storyboard in Resources */,
