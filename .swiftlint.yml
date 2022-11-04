@@ -5,7 +5,6 @@ disabled_rules:
   - identifier_name
   - private_unit_test
   - type_body_length
-  - valid_docs
   - nesting
 
 excluded:
