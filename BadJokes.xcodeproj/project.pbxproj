@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3BCED003FFE0CF7812EE66D8 /* Pods_BadJokes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946577951C2F75DE8DA6E042 /* Pods_BadJokes.framework */; };
 		AC05B3D722ECF51200CF2711 /* v1.4.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC05B3D622ECF51200CF2711 /* v1.4.sql */; };
 		AC05CBD620F0F019009A7A82 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC05CBD520F0F019009A7A82 /* Schedule.swift */; };
 		AC07F8A922ED0FCB00399934 /* UIApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07F8A822ED0FCB00399934 /* UIApplicationExtensions.swift */; };
@@ -66,7 +65,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		946577951C2F75DE8DA6E042 /* Pods_BadJokes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BadJokes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC05B3D622ECF51200CF2711 /* v1.4.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = v1.4.sql; sourceTree = "<group>"; };
 		AC05CBD520F0F019009A7A82 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		AC07F8A822ED0FCB00399934 /* UIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtensions.swift; sourceTree = "<group>"; };
@@ -125,8 +123,6 @@
 		ACF0EBA0209A7DDB00467675 /* TimeIntervalExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalExtensions.swift; sourceTree = "<group>"; };
 		ACF0EBA2209A7DF300467675 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		ACF0EBA4209A7E0800467675 /* DateComponentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponentExtensions.swift; sourceTree = "<group>"; };
-		C3ED8405DEE9AC1E96F6B644 /* Pods-BadJokes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadJokes.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BadJokes/Pods-BadJokes.debug.xcconfig"; sourceTree = "<group>"; };
-		FCE01A74ADE163D939CEB1C5 /* Pods-BadJokes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BadJokes.release.xcconfig"; path = "Pods/Target Support Files/Pods-BadJokes/Pods-BadJokes.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,22 +130,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BCED003FFE0CF7812EE66D8 /* Pods_BadJokes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		21E039D2A8BF97C8BFD7610D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C3ED8405DEE9AC1E96F6B644 /* Pods-BadJokes.debug.xcconfig */,
-				FCE01A74ADE163D939CEB1C5 /* Pods-BadJokes.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		AC05CBD720F0F041009A7A82 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				ACECF0A21F60A47E0072367C /* libsqlite3.0.tbd */,
-				946577951C2F75DE8DA6E042 /* Pods_BadJokes.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -236,7 +221,6 @@
 				ACEEA9611F1E5FA600BCF905 /* BadJokes */,
 				ACEEA9601F1E5FA600BCF905 /* Products */,
 				ACECF0A11F60A47E0072367C /* Frameworks */,
-				21E039D2A8BF97C8BFD7610D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -383,11 +367,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ACEEA9711F1E5FA600BCF905 /* Build configuration list for PBXNativeTarget "BadJokes" */;
 			buildPhases = (
-				B426F3D7A85DBD9B39CEA4B1 /* [CP] Check Pods Manifest.lock */,
 				ACEEA95B1F1E5FA600BCF905 /* Sources */,
 				ACEEA95C1F1E5FA600BCF905 /* Frameworks */,
 				ACEEA95D1F1E5FA600BCF905 /* Resources */,
-				1E278F0BEBA5BB362B974E2B /* [CP] Embed Pods Frameworks */,
 				AC2579A82042CB4300C1D904 /* SwiftLint */,
 			);
 			buildRules = (
@@ -466,23 +448,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1E278F0BEBA5BB362B974E2B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BadJokes/Pods-BadJokes-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BadJokes/Pods-BadJokes-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BadJokes/Pods-BadJokes-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		AC2579A82042CB4300C1D904 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -497,24 +462,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#exit\n\n# Apple Silicon support\nif [[ `uname -m` == 'arm64' ]]; then\n  export PATH=\"$PATH:/opt/homebrew/bin\"\nfi\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		B426F3D7A85DBD9B39CEA4B1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BadJokes-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -690,7 +637,6 @@
 		};
 		ACEEA9721F1E5FA600BCF905 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3ED8405DEE9AC1E96F6B644 /* Pods-BadJokes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -718,7 +664,6 @@
 		};
 		ACEEA9731F1E5FA600BCF905 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCE01A74ADE163D939CEB1C5 /* Pods-BadJokes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

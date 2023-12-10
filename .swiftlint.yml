@@ -6,6 +6,3 @@ disabled_rules:
   - private_unit_test
   - type_body_length
   - nesting
-
-excluded:
-  - Pods
