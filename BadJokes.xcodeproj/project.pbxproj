@@ -28,6 +28,7 @@
 		AC4ECEF92714C3E9003A40B2 /* v1.6.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC4ECEF82714C3E9003A40B2 /* v1.6.sql */; };
 		AC5A31D1255355E300639EB5 /* UIStoryboardExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5A31D0255355E300639EB5 /* UIStoryboardExtensions.swift */; };
 		AC674B74214401B6009F8B46 /* v1.3.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC674B73214401B6009F8B46 /* v1.3.sql */; };
+		AC6D71CA2B25CCD600062797 /* FMDB in Frameworks */ = {isa = PBXBuildFile; productRef = AC6D71C92B25CCD600062797 /* FMDB */; };
 		AC6F581C254F962200471BDA /* v1.5.sql in Resources */ = {isa = PBXBuildFile; fileRef = AC6F581B254F962200471BDA /* v1.5.sql */; };
 		AC72CAA321E7E659005EBDED /* StoreReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC72CAA221E7E659005EBDED /* StoreReviewService.swift */; };
 		AC7A4E341F51F74700E8F438 /* JokeNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7A4E331F51F74700E8F438 /* JokeNotificationService.swift */; };
@@ -130,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC6D71CA2B25CCD600062797 /* FMDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +379,9 @@
 			dependencies = (
 			);
 			name = BadJokes;
+			packageProductDependencies = (
+				AC6D71C92B25CCD600062797 /* FMDB */,
+			);
 			productName = BadJokes;
 			productReference = ACEEA95F1F1E5FA600BCF905 /* BadJokes.app */;
 			productType = "com.apple.product-type.application";
@@ -414,6 +419,9 @@
 				Base,
 			);
 			mainGroup = ACEEA9561F1E5FA600BCF905;
+			packageReferences = (
+				AC6D71C82B25CCD600062797 /* XCRemoteSwiftPackageReference "fmdb" */,
+			);
 			productRefGroup = ACEEA9601F1E5FA600BCF905 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -710,6 +718,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AC6D71C82B25CCD600062797 /* XCRemoteSwiftPackageReference "fmdb" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ccgus/fmdb";
+			requirement = {
+				kind = exactVersion;
+				version = 2.7.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AC6D71C92B25CCD600062797 /* FMDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC6D71C82B25CCD600062797 /* XCRemoteSwiftPackageReference "fmdb" */;
+			productName = FMDB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ACEEA9571F1E5FA600BCF905 /* Project object */;
 }
