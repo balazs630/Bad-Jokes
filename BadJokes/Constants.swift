@@ -31,24 +31,24 @@ struct DefaultSettings {
         UserDefaults.Key.StoreReviewTrigger.oldUser: true,
         UserDefaults.Key.StoreReviewTrigger.copyJoke: true,
 
-        UserDefaults.Key.Sw.globalOff: false,
+        UserDefaults.Key.Switch.globalOff: false,
 
-        UserDefaults.Key.Lbl.periodicity: "Napi",
-        UserDefaults.Key.Lbl.recurrence: "1x",
-        UserDefaults.Key.Lbl.time: "Véletlen időpontban",
+        UserDefaults.Key.Label.periodicity: "Napi",
+        UserDefaults.Key.Label.recurrence: "1x",
+        UserDefaults.Key.Label.time: "Véletlen időpontban",
 
-        UserDefaults.Key.Pck.timeHours: "12",
-        UserDefaults.Key.Pck.timeMinutes: "00",
+        UserDefaults.Key.Picker.timeHours: "12",
+        UserDefaults.Key.Picker.timeMinutes: "00",
 
-        UserDefaults.Key.Sld.animal: 10,
-        UserDefaults.Key.Sld.rough: 0,
-        UserDefaults.Key.Sld.geek: 2,
-        UserDefaults.Key.Sld.anti: 6,
-        UserDefaults.Key.Sld.tiring: 10,
-        UserDefaults.Key.Sld.jean: 2,
-        UserDefaults.Key.Sld.moricka: 6,
-        UserDefaults.Key.Sld.cop: 4,
-        UserDefaults.Key.Sld.blonde: 2
+        UserDefaults.Key.Slider.animal: 10,
+        UserDefaults.Key.Slider.rough: 0,
+        UserDefaults.Key.Slider.geek: 2,
+        UserDefaults.Key.Slider.anti: 6,
+        UserDefaults.Key.Slider.tiring: 10,
+        UserDefaults.Key.Slider.jean: 2,
+        UserDefaults.Key.Slider.moricka: 6,
+        UserDefaults.Key.Slider.cop: 4,
+        UserDefaults.Key.Slider.blonde: 2
     ]
 }
 
@@ -58,23 +58,22 @@ extension UserDefaults {
         static let appVersion = "appVersion"
         static let numberOfAppRuns = "numberOfAppRuns"
 
-        // swiftlint:disable:next type_name
-        struct Sw {
+        struct Switch {
             static let globalOff = "swGlobalOff"
         }
 
-        struct Lbl {
+        struct Label {
             static let periodicity = "lblPeriodicity"
             static let time = "lblTime"
             static let recurrence = "lblRecurrence"
         }
 
-        struct Pck {
+        struct Picker {
             static let timeHours = "pckTimeHours"
             static let timeMinutes = "pckTimeMinutes"
         }
 
-        struct Sld {
+        struct Slider {
             static let animal = "sldAnimal"
             static let rough = "sldRough"
             static let geek = "sldGeek"
@@ -104,29 +103,29 @@ struct Constant {
 
     static var sliders: [Int: String] {
         return [
-            1: UserDefaults.Key.Sld.animal,
-            2: UserDefaults.Key.Sld.rough,
-            3: UserDefaults.Key.Sld.geek,
-            4: UserDefaults.Key.Sld.anti,
-            5: UserDefaults.Key.Sld.tiring,
-            6: UserDefaults.Key.Sld.jean,
-            7: UserDefaults.Key.Sld.moricka,
-            8: UserDefaults.Key.Sld.cop,
-            9: UserDefaults.Key.Sld.blonde
+            1: UserDefaults.Key.Slider.animal,
+            2: UserDefaults.Key.Slider.rough,
+            3: UserDefaults.Key.Slider.geek,
+            4: UserDefaults.Key.Slider.anti,
+            5: UserDefaults.Key.Slider.tiring,
+            6: UserDefaults.Key.Slider.jean,
+            7: UserDefaults.Key.Slider.moricka,
+            8: UserDefaults.Key.Slider.cop,
+            9: UserDefaults.Key.Slider.blonde
         ]
     }
 
     static var jokeTypes: [String: String] {
         return [
-            UserDefaults.Key.Sld.animal: "animal",
-            UserDefaults.Key.Sld.rough: "rough",
-            UserDefaults.Key.Sld.geek: "geek",
-            UserDefaults.Key.Sld.anti: "anti",
-            UserDefaults.Key.Sld.tiring: "tiring",
-            UserDefaults.Key.Sld.jean: "jean",
-            UserDefaults.Key.Sld.moricka: "moricka",
-            UserDefaults.Key.Sld.cop: "cop",
-            UserDefaults.Key.Sld.blonde: "blonde"
+            UserDefaults.Key.Slider.animal: "animal",
+            UserDefaults.Key.Slider.rough: "rough",
+            UserDefaults.Key.Slider.geek: "geek",
+            UserDefaults.Key.Slider.anti: "anti",
+            UserDefaults.Key.Slider.tiring: "tiring",
+            UserDefaults.Key.Slider.jean: "jean",
+            UserDefaults.Key.Slider.moricka: "moricka",
+            UserDefaults.Key.Slider.cop: "cop",
+            UserDefaults.Key.Slider.blonde: "blonde"
         ]
     }
 }

@@ -24,7 +24,7 @@ class JokeNotificationService {
 extension JokeNotificationService {
     func setNewRepeatingNotifications() {
         guard DBService.shared.hasUnusedJoke(),
-            !UserDefaults.standard.bool(forKey: UserDefaults.Key.Sw.globalOff) else { return }
+            !UserDefaults.standard.bool(forKey: UserDefaults.Key.Switch.globalOff) else { return }
 
         removeAllScheduledNotification()
         let notificationTimes = jokeNotificationGenerator.generateNotificationTimes()

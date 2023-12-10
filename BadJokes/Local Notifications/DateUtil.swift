@@ -46,15 +46,15 @@ class DateUtil {
         var hours = 0
         var minutes = Int.random(in: 0...59)
 
-        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time),
+        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Label.time),
             let timeRange = TimeRange(rawValue: timeSetting) {
 
             switch timeRange {
             case .random, .morning, .afternoon, .evening:
                 hours = Int.random(in: timeRange.intervallum)
             case .atGivenTime:
-                hours = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
-                minutes = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
+                hours = defaults.integer(forKey: UserDefaults.Key.Picker.timeHours)
+                minutes = defaults.integer(forKey: UserDefaults.Key.Picker.timeMinutes)
             }
         }
 
@@ -62,11 +62,11 @@ class DateUtil {
     }
 
     func getRecurranceNumber() -> Int {
-        return defaults.string(forKey: UserDefaults.Key.Lbl.recurrence)?.digits() ?? 1
+        return defaults.string(forKey: UserDefaults.Key.Label.recurrence)?.digits() ?? 1
     }
 
     func isPunctualTimeSet() -> Bool {
-        guard let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time),
+        guard let timeSetting = defaults.string(forKey: UserDefaults.Key.Label.time),
               let timeRange = TimeRange(rawValue: timeSetting)
         else { return false }
 
@@ -74,7 +74,7 @@ class DateUtil {
     }
 
     func incrementDateBasedOnPeriodSetting(date: Date) -> Date {
-        guard let periodicitySetting = defaults.string(forKey: UserDefaults.Key.Lbl.periodicity),
+        guard let periodicitySetting = defaults.string(forKey: UserDefaults.Key.Label.periodicity),
               let periodicity = Periodicity(rawValue: periodicitySetting)
         else {
             return date
@@ -102,15 +102,15 @@ class DateUtil {
         var dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
         dateComponents.minute = 0
 
-        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Lbl.time),
+        if let timeSetting = defaults.string(forKey: UserDefaults.Key.Label.time),
             let timeRange = TimeRange(rawValue: timeSetting) {
 
             switch timeRange {
             case .random, .morning, .afternoon, .evening:
                 dateComponents.hour = timeRange.intervallum.upperBound
             case .atGivenTime:
-                dateComponents.hour = defaults.integer(forKey: UserDefaults.Key.Pck.timeHours)
-                dateComponents.minute = defaults.integer(forKey: UserDefaults.Key.Pck.timeMinutes)
+                dateComponents.hour = defaults.integer(forKey: UserDefaults.Key.Picker.timeHours)
+                dateComponents.minute = defaults.integer(forKey: UserDefaults.Key.Picker.timeMinutes)
             }
         }
 

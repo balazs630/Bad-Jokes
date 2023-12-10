@@ -6,8 +6,6 @@
 //  Copyright © 2017. Horváth Balázs. All rights reserved.
 //
 
-// swiftlint:disable line_length
-
 import UIKit
 
 @UIApplicationMain

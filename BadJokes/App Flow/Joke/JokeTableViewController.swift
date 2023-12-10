@@ -113,9 +113,11 @@ private extension JokeTableViewController {
         }
 
         tableView.separatorStyle = .none
-        DBService.shared.isSchedulesListEmpty()
-            ? displayNoNotificationScheduledView()
-            : displayWaitingForFirstNotificationView()
+        if DBService.shared.isSchedulesListEmpty() {
+            displayNoNotificationScheduledView()
+        } else {
+            displayWaitingForFirstNotificationView()
+        }
     }
 
     private func displayNoNotificationScheduledView() {

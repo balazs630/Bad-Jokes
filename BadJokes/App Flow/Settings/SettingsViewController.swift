@@ -147,23 +147,23 @@ extension SettingsViewController {
     }
 
     private func loadPreferences() {
-        swGlobalOff.isOn = defaults.bool(forKey: UserDefaults.Key.Sw.globalOff)
+        swGlobalOff.isOn = defaults.bool(forKey: UserDefaults.Key.Switch.globalOff)
 
-        lblPeriodicity.text = defaults.string(forKey: UserDefaults.Key.Lbl.periodicity)
-        lblRecurrence.text = defaults.string(forKey: UserDefaults.Key.Lbl.recurrence)
+        lblPeriodicity.text = defaults.string(forKey: UserDefaults.Key.Label.periodicity)
+        lblRecurrence.text = defaults.string(forKey: UserDefaults.Key.Label.recurrence)
 
-        if let hours = defaults.string(forKey: UserDefaults.Key.Pck.timeHours),
-            let minutes = defaults.string(forKey: UserDefaults.Key.Pck.timeMinutes) {
+        if let hours = defaults.string(forKey: UserDefaults.Key.Picker.timeHours),
+            let minutes = defaults.string(forKey: UserDefaults.Key.Picker.timeMinutes) {
             selectedHours = hours
             selectedMinutes = minutes
         }
 
-        if let timeRange = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
+        if let timeRange = defaults.string(forKey: UserDefaults.Key.Label.time) {
             if case .atGivenTime? = TimeRange(rawValue: timeRange) {
                 lblTime.text = "Pontosan \(selectedHours):\(selectedMinutes)-kor"
                 selectedTimeRange = .atGivenTime
             } else {
-                if let text = defaults.string(forKey: UserDefaults.Key.Lbl.time) {
+                if let text = defaults.string(forKey: UserDefaults.Key.Label.time) {
                     lblTime.text = text
                     selectedTimeRange = TimeRange(rawValue: text)
                 }
@@ -177,16 +177,16 @@ extension SettingsViewController {
     }
 
     private func saveGeneralPreferences() {
-        defaults.set(swGlobalOff.isOn, forKey: UserDefaults.Key.Sw.globalOff)
+        defaults.set(swGlobalOff.isOn, forKey: UserDefaults.Key.Switch.globalOff)
     }
 
     private func saveJokePreferences() {
-        defaults.set(lblPeriodicity.text, forKey: UserDefaults.Key.Lbl.periodicity)
-        defaults.set(lblRecurrence.text, forKey: UserDefaults.Key.Lbl.recurrence)
-        defaults.set(selectedTimeRange.rawValue, forKey: UserDefaults.Key.Lbl.time)
+        defaults.set(lblPeriodicity.text, forKey: UserDefaults.Key.Label.periodicity)
+        defaults.set(lblRecurrence.text, forKey: UserDefaults.Key.Label.recurrence)
+        defaults.set(selectedTimeRange.rawValue, forKey: UserDefaults.Key.Label.time)
 
-        defaults.set(selectedHours, forKey: UserDefaults.Key.Pck.timeHours)
-        defaults.set(selectedMinutes, forKey: UserDefaults.Key.Pck.timeMinutes)
+        defaults.set(selectedHours, forKey: UserDefaults.Key.Picker.timeHours)
+        defaults.set(selectedMinutes, forKey: UserDefaults.Key.Picker.timeMinutes)
 
         sldJokeTypeCollection.forEach {
             guard let slider = Constant.sliders[$0.tag] else { return }

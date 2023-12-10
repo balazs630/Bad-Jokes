@@ -18,7 +18,6 @@ extension UIApplication {
         UIApplication.shared.open(url)
     }
 
-    // swiftlint:disable line_length
     class func topMostViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         if let navigationController = base as? UINavigationController {
             return topMostViewController(base: navigationController.visibleViewController)

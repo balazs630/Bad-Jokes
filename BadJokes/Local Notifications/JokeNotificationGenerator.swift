@@ -27,9 +27,11 @@ class JokeNotificationGenerator {
             let startDate = endDate.add(days: 1)
             endDate = dateUtil.incrementDateBasedOnPeriodSetting(date: startDate)
 
-            isPunctualTimeSet
-                ? addGivenNotificationTimeBetween(startDate, endDate)
-                : addRandomNotificationTimeBetween(startDate, endDate)
+            if isPunctualTimeSet {
+                addGivenNotificationTimeBetween(startDate, endDate)
+            } else {
+                addRandomNotificationTimeBetween(startDate, endDate)
+            }
         }
 
         return notificationTimes
